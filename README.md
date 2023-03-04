@@ -27,6 +27,18 @@
 12. [Error 类型](https://github.com/lxmob/blog/issues/17)
 13. [浅谈 GC](https://github.com/lxmob/blog/issues/18)
 
+## 初识函数
+
+1. [认识函数](https://github.com/lxmob/blog/issues/19)
+2. [JS 预编译](https://github.com/lxmob/blog/issues/20)
+3. [作用域和作用域链](https://github.com/lxmob/blog/issues/21)
+4. [认识闭包](https://github.com/lxmob/blog/issues/22)
+5. [立即执行函数](https://github.com/lxmob/blog/issues/23)
+6. [递归函数](https://github.com/lxmob/blog/issues/24)
+7. [回调函数](https://github.com/lxmob/blog/issues/25)
+8. [callee 与 caller](https://github.com/lxmob/blog/issues/26)
+9. [箭头函数](https://github.com/lxmob/blog/issues/27)
+
 ## 勘误及提问
 
 如果有疑问或者发现错误，可以在相应的 issues 进行提问或勘误。
