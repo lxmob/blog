@@ -46,3 +46,5 @@
 3. [原型和原型链](https://github.com/lxmob/blog/issues/30)
 4. [Object.create 方法](https://github.com/lxmob/blog/issues/31)
 5. [原型继承圣杯模式](https://github.com/lxmob/blog/issues/32)
+6. [hasOwnProperty 和 instanceof ](https://github.com/lxmob/blog/issues/32)
+7. [对象浅拷贝和深拷贝](https://github.com/lxmob/blog/issues/32)
