@@ -39,12 +39,10 @@
 8. [callee 与 caller](https://github.com/lxmob/blog/issues/26)
 9. [箭头函数](https://github.com/lxmob/blog/issues/27)
 
-## 勘误及提问
+## 初识对象
 
-如果有疑问或者发现错误，可以在相应的 issues 进行提问或勘误。
-
-如果喜欢或者有所启发，欢迎 star，对作者也是一种鼓励。
-
-## License
-
-所有文章采用[知识共享署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议](http://creativecommons.org/licenses/by-nc-sa/3.0/cn/)进行许可。
+1. [认识对象](https://github.com/lxmob/blog/issues/28)
+2. [包装对象包装类](https://github.com/lxmob/blog/issues/29)
+3. [原型和原型链](https://github.com/lxmob/blog/issues/30)
+4. [Object.create 方法](https://github.com/lxmob/blog/issues/31)
+5. [原型继承圣杯模式](https://github.com/lxmob/blog/issues/32)
