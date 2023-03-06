@@ -48,3 +48,12 @@
 5. [原型继承圣杯模式](https://github.com/lxmob/blog/issues/32)
 6. [hasOwnProperty 和 instanceof ](https://github.com/lxmob/blog/issues/33)
 7. [对象浅拷贝和深拷贝](https://github.com/lxmob/blog/issues/34)
+
+## 初识数组
+
+1. [认识数组](https://github.com/lxmob/blog/issues/35)
+2. [改变源数组的方法](https://github.com/lxmob/blog/issues/36)
+3. [不改变源数组的方法](https://github.com/lxmob/blog/issues/37)
+4. [数组构造函数身上的方法](https://github.com/lxmob/blog/issues/38)
+5. [数组去重方法](https://github.com/lxmob/blog/issues/39)
+6. [类数组对象](https://github.com/lxmob/blog/issues/40)
