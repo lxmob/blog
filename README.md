@@ -57,3 +57,9 @@
 4. [数组构造函数身上的方法](https://github.com/lxmob/blog/issues/38)
 5. [数组去重方法](https://github.com/lxmob/blog/issues/39)
 6. [类数组对象](https://github.com/lxmob/blog/issues/40)
+
+## 内置对象
+
+1. [日期对象](https://github.com/lxmob/blog/issues/41)
+2. [定时器和计时器](https://github.com/lxmob/blog/issues/42)
+3. [this 详解](https://github.com/lxmob/blog/issues/43)
