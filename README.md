@@ -13,7 +13,7 @@
 
 ## 了解 JS
 
-1. [JS 的三个部分](https://github.com/lxmob/blog/issues/6)
+1. [JS 的组成](https://github.com/lxmob/blog/issues/6)
 2. [JS 是单线程为什么可以做多线程操作](https://github.com/lxmob/blog/issues/7)
 3. [认识变量](https://github.com/lxmob/blog/issues/8)
 4. [原始类型和引用类型的区别](https://github.com/lxmob/blog/issues/9)
@@ -63,3 +63,7 @@
 1. [日期对象](https://github.com/lxmob/blog/issues/41)
 2. [定时器和计时器](https://github.com/lxmob/blog/issues/42)
 3. [this 详解](https://github.com/lxmob/blog/issues/43)
+
+## DOM 系列
+
+1. [认识 DOM](https://github.com/lxmob/blog/issues/44)
