@@ -67,3 +67,5 @@
 ## DOM 系列
 
 1. [认识 DOM](https://github.com/lxmob/blog/issues/44)
+2. [获取元素节点的方法](https://github.com/lxmob/blog/issues/45)
+3. [遍历元素节点树](https://github.com/lxmob/blog/issues/46)
