@@ -81,5 +81,5 @@
 13. [输入框事件](https://github.com/lxmob/blog/blob/main/dom/input.event.html)
 14. [键盘事件](https://github.com/lxmob/blog/blob/main/dom/keydown.html)
 15. [innerHTML](https://github.com/lxmob/blog/blob/main/dom/innerHTML.html)
-16. [DOM 各项案例](https://github.com/lxmob/blog/blob/main/demos)
-17. [DOM 工具函数](https://github.com/lxmob/blog/blob/main/demos/utils.js)
+16. [DOM 各项案例](https://github.com/lxmob/blog/tree/main/demos/dom)
+17. [DOM 工具函数](https://github.com/lxmob/blog/blob/main/demos/dom/utils.js)
