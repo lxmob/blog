@@ -69,3 +69,6 @@
 1. [认识 DOM](https://github.com/lxmob/blog/issues/44)
 2. [获取元素节点的方法](https://github.com/lxmob/blog/issues/45)
 3. [遍历元素节点树](https://github.com/lxmob/blog/issues/46)
+4. [DOM 操作节点](https://github.com/lxmob/blog/issues/47)
+5. [DOM 操作节点属性](https://github.com/lxmob/blog/issues/48)
+6. [document 原型继承](https://github.com/lxmob/blog/issues/49)
