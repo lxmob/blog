@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dom元素节点操作属性</title>
+  </head>
+  <body>
+    <div name="div" id="box"></div>
+    <!-- HTML5 给元素新增的自定义属性 data-*属性 -->
+    <div class="container" data-name="div" data-options="options"></div>
+  </body>
+  <script>
+    /**
+     * 节点属性操作方法
+     * getAttribute
+     * hasAttribute
+     * setAttribute
+     * removeAttribute
+     */
+    var divNode = document.querySelector('#box')
+    console.log(divNode)
+    console.log(divNode.hasAttribute('name'))
+    console.log(divNode.getAttribute('id'))
+    console.log(divNode.setAttribute('input', 'value'))
+    console.log(divNode.removeAttribute('name'))
+    console.log(divNode.getAttributeNode('id'))
+    console.log(divNode.attributes)
+
+    // 自定义属性保存在当前元素节点下 dataset 对象中
+    var contNode = document.getElementsByClassName('container')[0]
+    console.log(contNode.getAttribute('data-name'))
+    console.log(contNode.dataset)
+  </script>
+</html>

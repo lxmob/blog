@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/common.css" />
+    <link rel="stylesheet" href="./index.css" />
+    <title>鼠标行为预测技术（京东商品侧边栏）</title>
+  </head>
+  <body>
+    <!-- 
+      💡 实现京东商品侧边栏，斜着滑入二级菜单页不会影响一级菜单页的改变
+      实现思路：由滑入进一级菜单页的初始点和移动后的点，将初始点与二级菜单的0，0位置的顶点和下方的顶点形成三角形
+              如果移动后的点在这个三角形内则说明期望是滑入二级菜单的操作，如何判断点位在三角形内需要使用到数学的向量和叉乘公式。
+     -->
+    <div id="J_menu_sidebar">
+      <div class="main">
+        <ul class="main-list">
+          <li class="main-item"><a href="javascript:;">菜单1</a></li>
+          <li class="main-item"><a href="javascript:;">菜单2</a></li>
+          <li class="main-item"><a href="javascript:;">菜单3</a></li>
+          <li class="main-item"><a href="javascript:;">菜单4</a></li>
+          <li class="main-item"><a href="javascript:;">菜单5</a></li>
+          <li class="main-item"><a href="javascript:;">菜单6</a></li>
+          <li class="main-item"><a href="javascript:;">菜单7</a></li>
+          <li class="main-item"><a href="javascript:;">菜单8</a></li>
+          <li class="main-item"><a href="javascript:;">菜单9</a></li>
+          <li class="main-item"><a href="javascript:;">菜单10</a></li>
+        </ul>
+      </div>
+      <div class="sub hide">
+        <ul class="sub-list">
+          <li class="sub-item">子菜单1</li>
+          <li class="sub-item">子菜单2</li>
+          <li class="sub-item">子菜单3</li>
+          <li class="sub-item">子菜单4</li>
+          <li class="sub-item">子菜单5</li>
+          <li class="sub-item">子菜单6</li>
+          <li class="sub-item">子菜单7</li>
+          <li class="sub-item">子菜单8</li>
+          <li class="sub-item">子菜单9</li>
+          <li class="sub-item">子菜单10</li>
+        </ul>
+      </div>
+    </div>
+  </body>
+  <script src="../../utils.js"></script>
+  <script src="./pointInTriangle.js"></script>
+  <script src="./index.js"></script>
+</html>

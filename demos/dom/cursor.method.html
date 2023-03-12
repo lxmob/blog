@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>鼠标行为、拖拽</title>
+    <script src="./utils.js"></script>
+    <style>
+      body {
+        height: 1000px;
+      }
+      .box {
+        position: absolute;
+        top: 200px;
+        left: 200px;
+        width: 100px;
+        height: 100px;
+        background-color: #6c7b8b;
+      }
+      .inner {
+        display: none;
+        position: absolute;
+        left: -50px;
+        width: 100px;
+        height: 100px;
+        background-color: #ffefd5;
+      }
+      span {
+        position: absolute;
+        left: 200px;
+        top: 100px;
+      }
+      .block {
+        width: 1000px;
+        height: 100px;
+        background-color: #bbffff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+    <div class="inner"></div>
+    <span>123123123</span>
+    <div class="block"></div>
+  </body>
+  <script>
+    // 🌟 鼠标行为（坐标系属性）
+    // clientX/Y 鼠标位置相对于浏览器视口的坐标（不包含滚动的距离）
+    // x/y 同client相同，但是老版FF不支持
+    // pageX/Y 鼠标位置相对于整个文档的坐标，但是IE9以下不支持（包含滚动的距离）
+    // layerX/Y 同pageX相同，但是IE11以下同client相同（如果元素设置absolute、fixed、sticky同offset相同）
+    // screenX/Y 鼠标位置相对于整个电脑屏幕的坐标
+    // offsetX/Y 鼠标位置相对于当前元素的坐标（包含边框，safari不包含边框）
+    document.onclick = function (event) {
+      console.log('screenX/Y:', event.screenX, event.screenY)
+      console.log('clientX/Y:', event.clientX, event.clientY)
+      console.log('x/y:', event.x, event.y)
+      console.log('pageX/Y:', event.pageX, event.pageY)
+      console.log('layerX/Y:', event.layerX, event.layerY)
+      console.log('offsetX/Y:', event.offsetX, event.offsetY)
+      console.log('pagePos:', pagePos(event))
+    }
+
+    // 🌰 鼠标位置偏移量兼容性封装（解决offsetX/Y在safari中边框问题）
+    function pagePos(event) {
+      var sLeft = getScrollOffset().left,
+        sTop = getScrollOffset().top,
+        // 文档的偏移量通常都是0，但是这里需要兼容IE8及以下
+        cLeft = document.documentElement.clientLeft || 0,
+        cTop = document.documentElement.clientTop || 0
+      return {
+        x: sLeft + event.clientX - cLeft,
+        y: sTop + event.clientY - cTop,
+      }
+    }
+
+    // 🌟 鼠标左中右键 button=0、1、2（IE10以下的值各不相同）
+    document.onmousedown = function (e) {
+      var target = e || window.event
+      console.log(target.button)
+    }
+
+    // 🌟 鼠标拖拽事件
+    var boxEl = document.getElementsByClassName('box')[0],
+      menuEl = document.getElementsByClassName('inner')[0]
+    // 🌰 封装元素拖拽，支持元素双击触发回调，双击菜单展示，边界值处理
+    function elemDrag(opt) {
+      var x,
+        y,
+        w = getStyles(opt.el, 'width'), // 元素宽度
+        h = getStyles(opt.el, 'height'), // 元素高度
+        maxW = getViewportSize().width, // 可视区域最大宽度
+        maxH = getViewportSize().height, // 可视区域最大高度
+        mW = getStyles(opt.menu, 'width'), // 菜单宽度
+        mH = getStyles(opt.menu, 'height'), // 菜单高度
+        sTime = 0, // 记录触发点击事件的开始时间
+        eTime = 0, // 记录触发点击事件的结束时间
+        iPos = [], // 记录元素初始坐标
+        csTime = 0, // 记录元素双击之间的开始时间
+        ceTime = 0, // 记录元素双击之间的结束时间
+        counter = 0, // 记录元素双击间次数
+        timeId = null
+
+      addEvent(opt.el, 'mousedown', function (e) {
+        var target = e || window.event,
+          buttonCode = target.button
+
+        sTime = new Date().getTime()
+        iPos.push(getStyles(opt.el, 'top'), getStyles(opt.el, 'left'))
+
+        // 鼠标位置距离元素内固定偏移量 = 鼠标位置距文档偏移量 - 元素距文档偏移量
+        x = pagePos(target).x - getStyles(opt.el, 'left')
+        y = pagePos(target).y - getStyles(opt.el, 'top')
+
+        // 增加右键弹出菜单框选项
+        if (buttonCode == 2) {
+          var mLeft = pagePos(target).x,
+            mTop = pagePos(target).y
+
+          // 边界情况
+          mLeft = mLeft < 0 ? 0 : mLeft
+          mTop = mTop < 0 ? 0 : mTop
+          mLeft = mLeft > maxW - mW ? mLeft - mW : mLeft
+          mTop = mTop > maxH - mH ? mTop - mH : mTop
+
+          opt.menu.style.top = mTop + 'px'
+          opt.menu.style.left = mLeft + 'px'
+          opt.menu.style.display = 'block'
+        } else if (buttonCode == 0) {
+          opt.menu.style.display = 'none'
+          addEvent(document, 'mousemove', mouseMove)
+          addEvent(document, 'mouseup', mouseUp)
+          // 阻止事件源冒泡和默认事件
+          cancelBubble(target)
+          preventDefault(target)
+        }
+      })
+      function mouseMove(e) {
+        var target = e || window.event,
+          // 元素移动的距离 = 鼠标位置距文档移动后距离 - 鼠标位置距离元素内固定偏移量
+          left = pagePos(target).x - x,
+          top = pagePos(target).y - y
+
+        // 边界情况
+        left = left < 0 ? 0 : left
+        top = top < 0 ? 0 : top
+        left = left > maxW - w ? maxW - w : left
+        top = top > maxH - h ? maxH - h : top
+
+        opt.el.style.top = top + 'px'
+        opt.el.style.left = left + 'px'
+      }
+      function mouseUp() {
+        eTime = new Date().getTime()
+
+        // 小于间隔的 300 毫秒，触发点击事件并将该元素还原初始位置
+        if (eTime - sTime <= 300) {
+          opt.el.style.top = iPos[0] + 'px'
+          opt.el.style.left = iPos[1] + 'px'
+
+          // 触发点击
+          counter++
+
+          if (counter == 1) {
+            csTime = new Date().getTime()
+          }
+          if (counter == 2) {
+            ceTime = new Date().getTime()
+          }
+          // 双击间隔时长小于 300 毫秒则调用回调函数
+          if (csTime && ceTime && ceTime - csTime < 300) {
+            opt.cb()
+          }
+          // 解决只点击了一次记录counter未清空问题bug
+          timeId = setTimeout(function () {
+            csTime = 0
+            ceTime = 0
+            counter = 0
+            clearTimeout(timeId)
+          }, 400)
+        }
+
+        removeEvent(document, 'mousemove', mouseMove)
+        removeEvent(document, 'mouseup', mouseUp)
+      }
+
+      // 阻止右键的默认事件
+      addEvent(document, 'contextmenu', function (e) {
+        var target = e || window.event
+        preventDefault(target)
+      })
+
+      // 点击文档区域取消菜单展示
+      addEvent(document, 'click', function (e) {
+        var target = e || window.event
+        opt.menu.style.display = 'none'
+      })
+
+      // 点击菜单禁止冒泡到顶级取消展示
+      addEvent(opt.menu, 'click', function (e) {
+        var target = e || window.event
+        cancelBubble(target)
+      })
+    }
+
+    elemDrag({
+      el: boxEl,
+      menu: menuEl,
+      cb: function () {
+        window.location.href = 'http://www.baidu.com'
+      },
+    })
+
+    function drag(el) {
+      var x, y
+
+      addEvent(el, 'mousedown', function (e) {
+        var event = e || window.event
+        // 获取鼠标下落点位于元素0，0的固定距离
+        x = pagePos(event).x - getStyles(el, 'left')
+        y = pagePos(event).y - getStyles(el, 'top')
+
+        addEvent(document, 'mousemove', mouseMove)
+        addEvent(document, 'mouseup', mouseUp)
+      })
+
+      function mouseMove(e) {
+        var event = e || window.event
+        // 元素移动后的距离 - 固定距离 = 要移动的位置
+        el.style.left = pagePos(event).x - x + 'px'
+        el.style.top = pagePos(event).y - y + 'px'
+      }
+
+      function mouseUp(e) {
+        var event = e || window.event
+        removeEvent(document, 'mousemove', mouseMove)
+        removeEvent(document, 'mouseup', mouseUp)
+      }
+    }
+
+    // drag(boxEl)
+  </script>
+</html>

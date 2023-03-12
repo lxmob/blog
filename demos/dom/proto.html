@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>document原型继承</title>
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+  <script>
+    // document 实例化对象通过 HTMLDocument 构造函数生成
+    // HTMLDocument.prototype 实例化对象通过 Document 构造函数生成
+    // document 继承 => HTMLDocument.prototype 继承 => Document.prototype
+    console.log(document.__proto__ === HTMLDocument.prototype)
+    console.log('HTMLDocument.prototype', HTMLDocument.prototype)
+    console.log(HTMLDocument.prototype.__proto__ === Document.prototype)
+    console.log('Document.prototype', Document.prototype)
+
+    // 为什么document不直接继承Document原型对象，为了区分开HTMLDocument和XMLDocument
+
+    /**
+     * dom结构树
+     *                                        Node
+     *         Document             CharacterData          Element          Attributes
+     *            ⬇️                      ⬇️                 ⬇️
+     * XMLDocument HTMLDocument     Text    Comment      HTMLElement
+     *                                                       ⬇️
+     *                        (HTMLHeadElement、HTMLBodyElement、HTMLTitleElement、HTMLParagraphElement、
+     *                         HTMLInputElement、HTMLTableElement、HTMLOtherElement)
+     *
+     *
+     */
+
+    /**
+     * dom操作深入
+     * document.getElementById 方法存在于 Document.prototype 身上，Element 和 HTMLElement没有此方法
+     * document.getElementsByName 同上
+     *
+     * getElementsByTagName getElementsByClassName
+     * querySelector querySelectorAll
+     * 这四种方法存在于 Document.prototype 和 Element.prototype
+     */
+    var divNode = document.getElementById('app')
+    // 通过 HTMLDivElement 构造函数创建出来的实例化dom对象，继承 HTMLElement.prototype 和 Element.prototype 属性和方法
+    console.log(divNode.__proto__)
+    // console.log(divNode.getElementById()) // not a function
+    // console.log(divNode.getElementsByName()) // not a function
+
+    // document.body document.title document.head 继承 => HTMLDocument.prototype
+    console.log(HTMLDocument.prototype)
+    console.log(document.body)
+    console.log(document.head)
+    console.log(document.title)
+    // document.documentElement 继承 => Document.prototype
+    console.log(document.documentElement) // 获取html文档
+
+    // 🌰 判断父元素有没有子元素节点
+    HTMLElement.prototype.hasChildren = function () {
+      var nodes = this.childNodes,
+        flags = false
+      for (var i = 0; i < nodes.length; i++) {
+        if (nodes[i].nodeType == 1) {
+          flags = true
+        }
+      }
+      return flags
+    }
+
+    // 🌰 根据下标查找元素下对应的子元素
+    HTMLElement.prototype.findIdxElement = function (idx) {
+      var nodes = this.childNodes,
+        elems = {
+          length: 0,
+          push: Array.prototype.push,
+          splice: Array.prototype.splice,
+        }
+
+      for (var i = 0; i < nodes.length; i++) {
+        if (nodes[i].nodeType == 1) {
+          elems.push(nodes[i])
+        }
+      }
+      return elems[idx]
+    }
+
+    // 🌰 找出一个元素的第n层父元素
+    HTMLElement.prototype.findParentElement = function (n) {
+      var elem = this,
+        isNotNum = typeof n !== 'number'
+
+      if (isNotNum) {
+        return elem
+      } else if (n < 0) {
+        return undefined
+      }
+
+      while (n) {
+        if (elem.nodeName === 'HTML') {
+          elem = null
+          return elem
+        }
+        elem = elem.parentNode
+        n--
+      }
+      return elem
+    }
+
+    // 🌰 查找兄弟元素节点，参数为n支持正负查找，参数0返回自身
+    HTMLElement.prototype.findSiblingElement = function (n) {
+      var elem = this
+      while (n) {
+        if (n > 0) {
+          // 兼容 ie9 以下
+          if (elem.nextElementSibling) {
+            elem = elem.nextElementSibling
+          } else {
+            for (
+              elem = elem.nextSibling;
+              elem && elem.nodeType !== 1;
+              elem = elem.nextSibling
+            );
+          }
+          n--
+        } else if (n < 0) {
+          if (elem.previousElementSibling) {
+            elem = elem.previousElementSibling
+          } else {
+            for (
+              elem = elem.previousSibling;
+              elem && elem.nodeType !== 1;
+              elem = elem.previousSibling
+            );
+          }
+          n++
+        }
+      }
+      return elem
+    }
+
+    // 🌰 找出一个父元素下面的所有子元素
+    HTMLElement.prototype.findAllElement = function () {
+      var temp = {
+          length: 0,
+          push: Array.prototype.push,
+          splice: Array.prototype.splice,
+        },
+        len = node.childNodes.length,
+        item
+      for (var i = 0; i < len; i++) {
+        item = node.childNodes[i]
+        if (item.nodeType == 1) {
+          temp[temp.length] = item
+          temp.length++
+        }
+      }
+      return temp
+    }
+
+    // 🌰 子元素倒叙
+    HTMLElement.prototype.flashback = function () {
+      var children = this.childNodes,
+        len = this.childNodes.length
+      while (len--) {
+        this.appendChild(children[len])
+      }
+    }
+
+    // 🌰 封装一个 insertAfter 方法
+    HTMLElement.prototype.insertAfter = function (target, origin) {
+      var nextNode = origin.nextElementSibling
+      nextNode ? this.insertBefore(target, nextNode) : this.appendChild(target)
+    }
+  </script>
+</html>

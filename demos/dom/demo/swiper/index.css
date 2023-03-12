@@ -1,0 +1,76 @@
+.swiper {
+  position: relative;
+  width: 500px;
+  height: 300px;
+  margin: 40px auto;
+  overflow: hidden;
+}
+
+/* 图片 */
+.swiper-wrap {
+  width: 3000px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: -500px;
+  transition: all 0.5s;
+}
+.swiper-img-item {
+  width: 500px;
+  height: 300px;
+  line-height: 300px;
+  font-size: 40px;
+  float: left;
+  color: #fff;
+  text-align: center;
+}
+
+/* 操作箭头 */
+.swiper-action-left,
+.swiper-action-right {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: 50%;
+  margin-top: -20px;
+  line-height: 40px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+  opacity: 0.6;
+  cursor: pointer;
+  color: #fff;
+  background: #ff5000;
+  z-index: 2;
+}
+.swiper-action-left {
+  left: 5px;
+}
+.swiper-action-right {
+  right: 5px;
+}
+
+/* 小圆点 */
+.swiper-dot {
+  position: absolute;
+  right: 50%;
+  bottom: 10px;
+  transform: translateX(50%);
+  z-index: 2;
+}
+.swiper-dot-item {
+  float: left;
+  width: 12px;
+  height: 12px;
+  text-align: center;
+  line-height: 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: #fff;
+}
+.swiper-dot-item:not(:first-child) {
+  margin-left: 10px;
+}
+.swiper-dot-item.active {
+  background-color: #ff5000;
+}

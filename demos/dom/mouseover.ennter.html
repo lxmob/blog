@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>鼠标移入移出事件</title>
+    <style>
+      .box-wrap {
+        width: 300px;
+        height: 300px;
+        background-color: #698b69;
+      }
+
+      .box-inner {
+        width: 200px;
+        height: 200px;
+        background-color: #97ffff;
+      }
+
+      .box-mini {
+        position: absolute;
+        left: 400px;
+        width: 100px;
+        height: 100px;
+        background-color: #ffec8b;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box-wrap">
+      <div class="box-inner">
+        <div class="box-mini"></div>
+      </div>
+    </div>
+  </body>
+  <script src="./utils.js"></script>
+  <script>
+    var boxWrap = document.getElementsByClassName('box-wrap')[0],
+      boxInner = boxWrap.getElementsByClassName('box-inner')[0],
+      boxMini = boxInner.getElementsByClassName('box-mini')[0]
+
+    // 🌟 mouseover和mouseout
+    // 绑定事件处理函数的元素以及元素内中任意子元素移入移出都会频繁触发冒泡
+    boxWrap.onmouseover = function () {
+      console.log('onmouseover')
+    }
+    boxWrap.onmouseout = function () {
+      console.log('onmouseout')
+    }
+
+    boxInner.onmouseover = function (e) {
+      // cancelBubble(e)
+    }
+    boxInner.onmouseout = function (e) {
+      // cancelBubble(e)
+    }
+
+    // 🌟 mouseenter和mouseleave
+    // 与over和out事件类似，但是当从后代元素移入自己的元素内时不会触发冒泡
+    boxWrap.onmouseenter = function () {
+      // console.log('onmouseenter')
+    }
+    boxWrap.onmouseleave = function () {
+      // console.log('onmouseleave')
+    }
+
+    // 🌰 商品卡片案例 -> example
+  </script>
+</html>

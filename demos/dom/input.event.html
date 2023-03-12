@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>输入框事件</title>
+    <style>
+      .inp-txt {
+        color: #666;
+      }
+      .inp-txt.inp-txt-active {
+        color: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 新浪搜索框 sina.com.cn -->
+    <!-- onfocus onblur 事件为了解决 placeholder 各大浏览器样式兼容问题 -->
+    <input
+      type="text"
+      maxlength="40"
+      value="请输入关键字"
+      class="inp-txt"
+      onfocus="if(this.value=='请输入关键字'){this.value='';this.className='inp-txt inp-txt-active'}"
+      onblur="if(this.value==''){this.value='请输入关键字';this.className='inp-txt'}"
+      autocomplete="off"
+    />
+  </body>
+  <script>
+    var input = document.getElementsByTagName('input')[0]
+
+    // 🌟 oninput HTML5规范，表单值发生改变时触发，IE9以下不支持
+    input.oninput = function () {
+      console.log('oninput', input.value)
+    }
+    // IE需要使用 onpropertychange 事件，IE11不支持
+    input.onpropertychange = function () {}
+
+    // 🌟 onchange 表单值发生改变同时失去焦点时触发事件
+    input.onchange = function () {
+      console.log('onchange', input.value)
+    }
+  </script>
+</html>

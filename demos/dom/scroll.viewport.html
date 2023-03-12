@@ -1,0 +1,135 @@
+<!-- <!DOCTYPE html> -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>滚动条、视口、页面、兼容性</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      #app {
+        position: relative;
+      }
+      .box {
+        position: absolute;
+        /* margin: 100px; */
+        width: 200px;
+        height: 300px;
+        left: 100px;
+        top: 100px;
+        background-color: green;
+      }
+      .inner-box {
+        position: absolute;
+        /* margin: 100px; */
+        left: 100px;
+        top: 100px;
+        width: 80px;
+        height: 80px;
+        background-color: pink;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app" style="width: 5000px; height: 5000px; border: 1px solid #000">
+      <div class="box">
+        <div class="inner-box"></div>
+      </div>
+    </div>
+  </body>
+  <script>
+    // 浏览器兼容的怪异模式和标准模式
+    // <!DOCTYPE html> 这一行代码要求浏览器兼容 w3c 的规范（标准模式）
+    // 如果不写则使用浏览器厂商自己的兼容模式（怪异模式），通常浏览器都会向后兼容自己5个版本
+    console.log(document.compatMode) // CSS1Compat -> w3c，BackCompat -> 怪异
+
+    // 🌟 滚动条滚出距离属性：常规使用 window.pageXOffset/pageYOffset
+    console.log(window.pageXOffset, window.pageYOffset)
+    // 兼容性问题，IE9/IE8及以下需要使用：
+    // document.body.scrollLeft/scrollTop
+    // document.documentElement.scrollLeft/scrollTop
+    // 两者在 IE6789 标准模式和怪异模式下分别互斥（标准模式下一方可用一方不可用）
+    function getScrollOffset() {
+      if (window.pageXOffset) {
+        return { left: window.pageXOffset, top: window.pageYOffset }
+      } else {
+        return {
+          left: document.body.scrollLeft + document.documentElement.scrollLeft,
+          top: document.body.scrollTop + document.documentElement.scrollTop,
+        }
+      }
+    }
+    // 不常见的 window.scrollY/scrollX
+
+    // 🌟 浏览器可视区域的尺寸（视口）window.innerHeight/innerWidth
+    console.log(window.innerHeight, window.innerWidth)
+    // 兼容性问题，IE9/IE8及以下需要使用：
+    // 标准 document.documentElement.clientHeight/clientWidth
+    // 怪异 document.body.clientHeight/clientWidth
+    function getViewportSize() {
+      if (window.innerHeight) {
+        return { width: window.innerWidth, height: window.innerHeight }
+      } else {
+        var isW3C = document.compatMode === 'CSS1Compat'
+        return {
+          width: document[isW3C ? 'documentElement' : 'body'].clientWidth,
+          height: document[isW3C ? 'documentElement' : 'body'].clientHeight,
+        }
+      }
+    }
+    // 浏览器整体宽高 window.outerHeight/outerWidth
+
+    // 🌟 页面整体宽高属性：
+    // 视口的距离 + 滚动条的距离 = 页面整体宽高
+    // window.innerWidth + window.pageXOffset = document.documentElement.scrollWidth / document.body.scrollWidth
+    // window.innerHeight + window.pageYOffset = document.documentElement.scrollHeight / document.body.scrollHeight
+    // 兼容问题，IE567支持 documentElement
+    function getScrollSize() {
+      var isIE567 = !!document.body.scrollHeight
+      return {
+        width: document[isIE567 ? 'documentElement' : 'body'].scrollWidth,
+        height: document[isIE567 ? 'documentElement' : 'body'].scrollHeight,
+      }
+    }
+
+    // 🌿 getBoundingClientRect 获取元素距离视口0,0点位置信息
+    // 兼容问题：IE中无法获取宽高属性
+    // 缺点：不实时
+    var boxNode = document.getElementsByClassName('box')[0],
+      rectInfo = boxNode.getBoundingClientRect()
+    boxNode.style.width = '300px'
+    console.log(rectInfo) // width: 200
+
+    // 🌟 元素位置信息属性
+    // offsetLeft offsetTop 会根据元素的父级定位开始算，如果元素父级没有定位则向上找，一直找到视口0,0点位置
+    var innerNode = boxNode.getElementsByClassName('inner-box')[0]
+    console.log(innerNode.offsetLeft, innerNode.offsetTop)
+    // offsetParent 取元素具有定位的父级元素，一直找到body
+    console.log(innerNode.offsetParent)
+    // 🌰 封装一个方法获取元素距离视口的距离
+    function getElemClientRect(el) {
+      var parent = el.offsetParent,
+        offsetLeft = el.offsetLeft,
+        offsetTop = el.offsetTop
+
+      while (parent) {
+        offsetLeft += parent.offsetLeft
+        offsetTop += parent.offsetTop
+        parent = parent.offsetParent
+      }
+      return { top: offsetTop, left: offsetLeft }
+    }
+
+    // 🌟 设置滚动条滚动的距离
+    // 滚动文档中某个位置 window.scroll(x, y) window.scrollTo(x, y)
+    // 累加滚动文档 window.scrollBy(x, y)
+    window.scroll(500, 500)
+    window.scrollTo(1000, 1000)
+    window.scrollBy(100, 100) // 案例：看小说自动滚动距离
+  </script>
+</html>
