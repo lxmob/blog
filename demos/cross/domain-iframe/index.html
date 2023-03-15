@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>page1</title>
+  </head>
+  <body>
+    <span>当前页面是http://test.baidu.com/index.html</span>
+  </body>
+  <script>
+    document.domain = 'baidu.com'
+
+    var iframe = document.createElement('iframe')
+    iframe.src = 'http://zhidao.baidu.com/index.html'
+    iframe.id = 'myIframe'
+    iframe.style.display = 'none'
+    iframe.onload = function () {
+      var $$ = document.getElementById('myIframe').contentWindow.$
+      $$.post(
+        'http://zhidao.baidu.com/everythins',
+        { status: 123 },
+        function (data) {
+          console.log(data)
+        }
+      )
+    }
+
+    document.body.appendChild(iframe)
+  </script>
+</html>

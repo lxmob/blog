@@ -83,3 +83,21 @@
 15. [innerHTML](https://github.com/lxmob/blog/blob/main/dom/innerHTML.html)
 16. [DOM 各项案例](https://github.com/lxmob/blog/tree/main/demos/dom)
 17. [DOM 工具函数](https://github.com/lxmob/blog/blob/main/demos/dom/utils.js)
+
+## HTTP 相关
+
+1. [URI 统一资源标识符](https://github.com/lxmob/blog/issues/51)
+2. [Domain 域名](https://github.com/lxmob/blog/issues/52)
+3. [DNS 域名服务器](https://github.com/lxmob/blog/issues/53)
+4. [TCP、IP](https://github.com/lxmob/blog/issues/54)
+5. [HTTP、HTTPs](https://github.com/lxmob/blog/issues/55)
+6. [HTTP 请求方法](https://github.com/lxmob/blog/issues/56)
+7. [HTTP 状态码](https://github.com/lxmob/blog/issues/57)
+8. [Accept、Content 字段](https://github.com/lxmob/blog/issues/58)
+9. [浏览器缓存](https://github.com/lxmob/blog/issues/59)
+10. [HTTP 长连接与短连接](https://github.com/lxmob/blog/issues/60)
+11. [Referrer 字段](https://github.com/lxmob/blog/issues/61)
+12. [TCP 四次挥手](https://github.com/lxmob/blog/issues/62)
+13. [同源策略](https://github.com/lxmob/blog/issues/63)
+14. [Ajax 请求](https://github.com/lxmob/blog/issues/64)
+15. [跨域解决方案](https://github.com/lxmob/blog/issues/65)
