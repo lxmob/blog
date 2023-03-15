@@ -101,3 +101,5 @@
 13. [同源策略](https://github.com/lxmob/blog/issues/63)
 14. [Ajax 请求](https://github.com/lxmob/blog/issues/64)
 15. [跨域解决方案](https://github.com/lxmob/blog/issues/65)
+16. [JSONP](https://github.com/lxmob/blog/issues/66)
+17. [Cookie](https://github.com/lxmob/blog/issues/67)
