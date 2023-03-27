@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>typeof</title>
+  </head>
+  <body></body>
+  <!-- 
+    typeof()方法是 JS 内置的方法，返回值是数据类型。
+    typeof()方法返回值是判断后的数据类型，返回值是字符串形式。
+    typeof()方法返回的值包含 number string boolean undefined function object(null) symbol
+  -->
+  <script>
+    console.log(typeof 1); // number
+    console.log(typeof "str"); // string
+    console.log(typeof true); // boolean
+    console.log(typeof null); // object
+    console.log(typeof undefined); // undefined
+    console.log(typeof NaN); // number
+    console.log(typeof Infinity); // number
+    console.log(typeof {}); // object
+    console.log(typeof []); // object
+    console.log(typeof function () {}); // function
+    console.log(typeof Date()); // string
+    console.log(typeof new Date()); // object
+    console.log(typeof a); // undefined
+    console.log(typeof typeof a); // string
+  </script>
+
+  <!-- 
+    null是原始值数据，为什么typeof打印的是object？
+    因为null指代的是空对象的指针和空对象的占位符，JS历史遗留问题
+  -->
+  <script>
+    typeof 1 / 0; // NaN（这个NaN不是字符串类型，是数值类型）
+    typeof typeof 1 / 0; // NaN（这个NaN不是字符串类型，是数值类型）
+    typeof (1 / 0); // "number"
+    typeof typeof (1 / 0); // "string"
+    typeof (typeof 1 / 0); // "number"
+  </script>
+
+  <!-- 增强版实现typeof -->
+  <script>
+    function _typeof(target) {
+      var current = typeof target;
+      if (target === null) {
+        return null;
+      } else if (current === "object") {
+        return Object.prototype.toString
+          .call(target)
+          .slice(8, -1)
+          .toLowerCase();
+      } else {
+        return current;
+      }
+    }
+    console.log(_typeof(undefined)); // undefined
+    console.log(_typeof(null)); // null
+    console.log(_typeof(true)); // boolean
+    console.log(_typeof("str")); // string
+    console.log(_typeof({})); // object
+    console.log(_typeof([])); // array
+    console.log(_typeof(function () {})); // function
+    console.log(_typeof(new Number(123))); // number
+    console.log(_typeof(new String("str"))); // string
+    console.log(_typeof(new Boolean(false))); // boolean
+  </script>
+</html>
