@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dom元素节点树</title>
+  </head>
+  <body>
+    <ul>
+      <li>
+        <!-- 注释节点 -->
+        <h2>h2标签</h2>
+        <a href="">a标签超链接</a>
+        <p>p段落标签</p>
+      </li>
+    </ul>
+  </body>
+  <!-- 
+    遍历节点树 -> 元素节点树
+    节点不等于元素，节点中包含元素 -> 元素节点 = dom元素
+    节点包含：
+      1. 元素节点 (nodeType=1)
+      2. 属性节点 (nodeType=2)
+      3. 文本节点 text (nodeType=3)
+      4. 注释节点 comment (nodeType=8)
+      5. document (nodeType=9)
+      6. DocumentFragment (nodeType=11)
+  -->
+
+  <!-- 
+    遍历节点具备的属性（ie5都支持）
+      parentNode
+      childNodes
+      firstChild
+      lastChild
+      previousSibling
+      nextSibling
+      hasChildNodes
+  -->
+  <script>
+    var aNode = document.getElementsByTagName("a")[0];
+    console.log(aNode.parentNode);
+    console.log(aNode.parentNode.childNodes);
+
+    var liNode = document.getElementsByTagName("li")[0];
+    console.log(liNode.firstChild); // 不常用
+    console.log(liNode.lastChild); // 不常用
+
+    var pNode = document.getElementsByTagName("p")[0];
+    console.log(pNode.previousSibling); // 不常用
+    console.log(pNode.nextSibling); // 不常用
+    console.log(pNode.hasChildNodes());
+  </script>
+
+  <!-- 
+    遍历元素节点具备的属性（不常用）
+      parentElement
+      children
+      childElementCount = children.length
+      firstElementChild
+      lastElementChild
+      previousElementSibling
+      nextElementSibling
+  -->
+  <script>
+    console.log(aNode.parentElement); // ie9以下不支持
+    console.log(liNode.children); // ie7及以下不支持
+    console.log(liNode.firstElementChild); // ie9以下不支持
+    console.log(liNode.lastElementChild); // ie9以下不支持
+    console.log(liNode.previousElementSibling); // ie9以下不支持
+    console.log(liNode.nextElementSibling); // ie9以下不支持
+    console.log(liNode.childElementCount);
+  </script>
+
+  <!-- 
+    节点具备的属性
+      nodeName（只读）
+      nodeValue=value（属性、注释、文本节点可写）
+      nodeType
+  -->
+  <script>
+    var h2Node = document.getElementsByTagName("h2")[0];
+    console.log(h2Node.nodeName); // 获取的元素节点名称大写 H2
+    console.log(document.nodeName); // #document
+    console.log(h2Node.previousSibling.nodeName); // #text
+    console.log(h2Node.childNodes);
+
+    // nodeValue 可写
+    var commentNode = liNode.childNodes[1];
+    commentNode.nodeValue = "nodeValue更改的注释";
+  </script>
+</html>

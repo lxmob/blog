@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dom事件</title>
+  </head>
+  <body>
+    <button id="btn" style="margin-bottom: 20px">触发事件</button>
+  </body>
+
+  <!-- 
+    事件是DOM元素身上本身默认就有的
+    通过绑定事件处理函数（事件反馈）来实现前端的核心，就是前端交互体验
+  -->
+  <script>
+    var btnEl = document.getElementById("btn");
+  </script>
+
+  <!-- 
+    onclick 句柄的形式
+    优点兼容性好
+    缺点无法为元素事件绑定多个处理函数
+   -->
+  <script>
+    btnEl.onclick = function () {
+      console.log("onclick1", this);
+    };
+    btnEl.onclick = function () {
+      console.log("onclick2", this);
+    };
+
+    // btnEl.onclick = null / false
+  </script>
+
+  <!-- 
+    addEventListener(event, fn, false) 
+    优点可以绑定多个事件处理函数
+    缺点兼容性IE9以下不支持，但是它是w3c的规范
+  -->
+  <script>
+    btnEl.addEventListener(
+      "click",
+      function () {
+        console.log("addEventListener1", this);
+      },
+      false
+    );
+    btnEl.addEventListener(
+      "click",
+      function () {
+        console.log("addEventListener2", this);
+      },
+      false
+    );
+
+    // 相同函数的引用处理只执行一次
+    function once() {
+      console.log("once", this);
+    }
+    btnEl.addEventListener("click", once, false);
+    btnEl.addEventListener("click", once, false);
+
+    // btnEl.removeEventListener('click', once, false)
+  </script>
+
+  <!-- 
+    attachEvent(event, fn) IE
+    IE8及以下的绑定方法
+  -->
+  <script>
+    btnEl.attachEvent("onclick", function () {
+      console.log("attachEvent", this); // this -> window
+    });
+
+    // btnEl.detachEvent('onclick', once)
+
+    // 🌰 兼容性封装
+    function addEvent(el, type, fn) {
+      if (el.addEventListener) {
+        el.addEventListener(type, fn, false);
+      } else if (el.attachEvent) {
+        el.attachEvent("on" + type, fn.bind(el));
+      } else {
+        el["on" + type] = fn;
+      }
+    }
+    addEvent(btnEl, "click", function () {
+      console.log("addEvent", this);
+    });
+  </script>
+</html>

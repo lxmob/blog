@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dom事件委托、事件源</title>
+  </head>
+  <body>
+    <!-- 事件对象 -->
+    <button id="btn-event" style="margin-top: 20px">获取事件源</button>
+    <br />
+    <!-- 事件委托 -->
+    <button class="ul-btn" style="margin-top: 20px">增加目标</button>
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+    </ul>
+  </body>
+  <!-- 
+    获取事件源对象 target、srcElement
+  -->
+  <script>
+    var btnEvent = document.getElementById("btn-event");
+    btnEvent.onclick = function (event) {
+      var event = event || window.event;
+      console.log(event.target);
+      console.log(event.srcElement);
+    };
+
+    // 兼容性问题
+    function eventTarget(e) {
+      // IE8及以下event对象存在与window身上
+      var event = e || window.event;
+      // FF只有target，IE只有srcElement，chrome都有
+      return event.target ? event.target : event.srcElement;
+    }
+  </script>
+
+  <!-- 
+    事件委托、事件代理
+    事件源通过冒泡的形式来触发祖父级身上绑定的相同事件处理函数，这种方式就是事件委托
+  -->
+  <script>
+    var ulEl = document.getElementsByTagName("ul")[0],
+      btnEl = document.getElementsByClassName("ul-btn")[0];
+    btnEl.onclick = function () {
+      var liNode = document.createElement("li");
+      liNode.innerText = ulEl.children.length + 1;
+      ulEl.appendChild(liNode);
+    };
+    ulEl.onclick = function (event) {
+      var target = eventTarget(event);
+      console.log(target);
+    };
+  </script>
+</html>

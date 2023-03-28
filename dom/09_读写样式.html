@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>读写样式、操作伪元素、元素运动</title>
+    <style>
+      .box {
+        color: #fff;
+        width: 100px;
+        height: 100px;
+        padding: 10px;
+        background-color: green;
+      }
+      .box::after {
+        content: "";
+        display: block;
+        width: 50px;
+        height: 50px;
+        background-color: palevioletred;
+      }
+      .box.active::after {
+        background-color: palegreen;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">box</div>
+  </body>
+  <!-- 
+    getComputedStyle 查看计算样式 -> 绝对值
+    兼容问题 IE8及以下不支持（IE8使用currentStyle）
+  -->
+  <script>
+    var divEl = document.getElementsByTagName("div")[0];
+    console.log(divEl.style.color);
+    console.log(divEl.style);
+    console.log(window.getComputedStyle(divEl, null));
+
+    // 兼容封装
+    function getStyles(elem, prop) {
+      if (window.getComputedStyle) {
+        return prop
+          ? window.getComputedStyle(elem, null)[prop]
+          : window.getComputedStyle(elem, null);
+      } else {
+        return prop ? elem.currentStyle[prop] : elem.currentStyle;
+      }
+    }
+    console.log(getStyles(divEl)); // 类数组对象
+  </script>
+
+  <!-- 
+    offsetWidth 和 el.style.width 查找的机制不一样，offsetWidth是通过底层渲染引擎大小来返回尺寸
+    而 el.style.width 是通过元素属性行内样式来获取尺寸大小
+  -->
+  <script>
+    console.log(divEl.style.width); // 内联
+    console.log(divEl.offsetWidth); // 120 计算了 padding
+
+    // 运动案例 offsetWidth 导致的问题
+    divEl.onclick = function () {
+      var width = this.offsetWidth; // 获取整个元素的渲染宽度大小
+      // var width = parseInt(getStyles(this, 'width'))
+      this.style.width = width + 10 + "px";
+    };
+  </script>
+
+  <!-- 
+    读取伪元素属性，操作伪元素样式
+  -->
+  <script>
+    console.log(window.getComputedStyle(divEl, "after").width);
+    divEl.onclick = function () {
+      this.className += " active";
+    };
+  </script>
+</html>

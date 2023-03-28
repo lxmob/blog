@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>定时器与计时器</title>
+  </head>
+  <body></body>
+  <!-- 
+    setTimeout 定时器
+    setInterval 计时器
+    两者都属于 JS 内置的方法作为 window 的属性挂载全局。
+  -->
+  <script>
+    setTimeout("console.log(1)", 1000);
+    setInterval(_csl, 1000);
+
+    function _csl() {
+      console.log("csl...");
+    }
+  </script>
+
+  <!-- 计时器唯一标识，每创建一个计时器标识值都会累加 -->
+  <script>
+    var timeId = setTimeout(_csl, 1000);
+    console.log(timeId);
+  </script>
+
+  <!-- 我们可以通过 clearTimeout、clearInterval 来清除计时器 -->
+  <script>
+    var timeId = setInterval(_csl, 1000);
+    clearInterval(timeId);
+    console.log(timeId); // 随机id值
+  </script>
+
+  <!-- 定时器中的 this -->
+  <script>
+    setTimeout(function () {
+      console.log("setTimeout", this); // window
+    }, 3000);
+    setTimeout(() => {
+      console.log("setTimeout", this); // window
+    }, 3000);
+  </script>
+</html>

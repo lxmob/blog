@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>this指向详解</title>
+  </head>
+  <body>
+    <button onclick="console.log(this)">btn</button><br />
+    <button onclick="(function(){console.log(this)})()">btn2</button><br />
+    <button id="button">button</button>
+  </body>
+  <!-- 
+    this 指代的是当前的实例或者调用者
+  -->
+
+  <!-- 
+    全局环境中调用函数 this 非严格模式下指向的是 window 反之 undefined 
+  -->
+  <script>
+    // "use strict";
+    var a = "window => a";
+    global.b = "global => b";
+
+    var obj = {
+      a: "obj => a",
+      show: function () {
+        console.log(this.a); // web
+        console.log(window.a); // web
+        console.log(self.a); // web 和 woker线程下的全局对象
+        console.log(frames.a); // web
+        console.log(global.b); // node 中使用 global 作为全局对象
+        console.log(globalThis.a); // 通用全局对象
+      },
+    };
+    obj.show();
+
+    // 全局环境非严格模式下调用函数 this 指向的是 window，严格模式是 undefined
+    function thiss() {
+      console.log(this);
+    }
+    thiss();
+  </script>
+
+  <!-- 练习题 -->
+  <script>
+    function Foo() {
+      getName = function () {
+        console.log(1);
+      };
+      return this;
+    }
+    Foo.getName = function () {
+      console.log(2);
+    };
+    Foo.prototype.getName = function () {
+      console.log(3);
+    };
+    var getName = function () {
+      console.log(4);
+    };
+    function getName() {
+      console.log(5);
+    }
+
+    /**
+     * GO = {
+     *    Foo: fn,
+     *    getName: undeinfed,
+     *      -> fn(){console.log(5)},
+     *      -> fn(){console.log(4)},
+     *      -> fn(){console.log(1)}
+     * }
+     *
+     */
+    Foo.getName(); // 2
+    getName(); // 4
+    Foo().getName(); // 1
+    getName(); // 1
+    // 运算符优先级
+    // . > new
+    // () > . => new Foo() => .
+    new Foo.getName(); // 2
+    new Foo().getName(); // 3
+    new new Foo().getName(); // 3
+  </script>
+
+  <!-- 
+    dom 事件中的 this
+    在 dom 事件绑定的 this，指向的是绑定事件的该 dom 元素
+
+    通过 bind 方法我们可以改变方法调用的 this 指向，
+    当触发 click 事件时我们对应的事件处理函数会输出 {name: 'bind', event: 'onclick'} 指向是当前的实例对象，
+    如果不通过改变 this 指向默认指向的是事件源。
+  -->
+  <script>
+    (function (doc) {
+      const dom = doc.getElementById("button");
+
+      function Bind() {
+        this.name = "bind";
+        this.event = "onclick";
+        this.init();
+      }
+
+      Bind.prototype.init = function () {
+        this.bind();
+      };
+      Bind.prototype.bind = function () {
+        // dom.onclick = this.click
+        // dom.onclick = this.click.bind(this)
+        // dom.addEventListener('click', this.click, false)
+        dom.addEventListener("click", this.click.bind(this), false);
+      };
+      Bind.prototype.click = function () {
+        console.log(this, this.name);
+      };
+
+      window.Bind = Bind;
+    })(document);
+
+    new Bind();
+  </script>
+
+  <!-- 
+    构造函数中的 this
+    构造函数中的 this 指向当前的实例。
+  -->
+  <script>
+    class Father {
+      constructor(age) {
+        this.age = age;
+      }
+      swim() {
+        console.log("Go swimming!");
+      }
+    }
+    class Son extends Father {
+      constructor() {
+        // super 做了什么？
+        // 1. 调用Father的constructor
+        // 2. 生成this绑定 -> Father this -> Son的实例
+        // 3. this -> new Father() -> {age}
+        super(60);
+        this.hobby = "traval";
+      }
+      study() {
+        console.log(this);
+        this.swim();
+      }
+    }
+    var s = new Son();
+    s.study(); // s 实例 -> Go swimming!
+  </script>
+
+  <!-- 
+    对象方法中的 this
+    对象身上方法被调用 this 指向的是调用该方法的对象。
+  -->
+  <script>
+    var obj = {
+      a: "obj => a",
+      show: function () {
+        console.log(this);
+      },
+      mask: () => {
+        console.log(this);
+      },
+    };
+    obj.show(); // obj
+    obj.mask(); // window 箭头函数的 this
+    obj.mask.call(obj); // window 忽略改变指向
+    obj.show.call(window); // window
+    var fn = obj.show;
+    fn(); // window
+    fn.call(obj); // obj
+  </script>
+
+  <!-- 
+    匿名函数中的 this
+    匿名函数中的 this 会指向 window 严格模式下是 undefined。
+  -->
+  <script>
+    var obj = { name: "obj" };
+    var fn = (function () {
+      console.log(this); // window
+      var fn = function () {
+        console.log(this);
+      }.bind(obj);
+      fn(); // obj
+      return function () {
+        console.log(this);
+      };
+    })();
+
+    fn(); // window
+    fn.call(obj); // obj
+  </script>
+
+  <!-- 
+    call 和 apply
+    改变函数调用时的 this 指向。
+  -->
+  <script>
+    function Dog(eat, name) {
+      this.eat = eat;
+      this.name = name;
+    }
+    var d = {};
+    Dog.call(d, "狗粮", "哈士奇");
+    Dog.apply(d, ["狗粮", "哈士奇"]);
+    console.log(d); // {eat: '狗粮', name: '哈士奇'}
+
+    // 🌰 借用父类构造函数创建实例
+    function Compute() {
+      this.plus = function () {
+        console.log("plus");
+      };
+    }
+    function FullCompute() {
+      Compute.apply(this);
+      this.div = function () {
+        console.log("div");
+      };
+    }
+    var cop = new Compute();
+    cop.plus(); // plus
+  </script>
+
+  <!-- 
+    bind 绑定 this 后返回一个函数，this 只会生效一次，无论后续怎样调用，this 都是同样的值。
+  -->
+  <script>
+    var obj = { name: "obj" };
+    var obj2 = { name: "obj2" };
+    function test() {
+      console.log(this.name);
+    }
+    var test1 = test.bind(obj);
+    var test2 = test1.bind(obj2);
+    var t = test.bind(obj).bind(obj2);
+    test1(); // obj
+    test2(); // obj
+    t(); // obj
+  </script>
+</html>

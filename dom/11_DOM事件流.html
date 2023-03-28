@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dom事件流</title>
+    <style>
+      .wrapper {
+        width: 300px;
+        height: 300px;
+        background-color: #1661ab;
+      }
+      .outer {
+        width: 200px;
+        height: 200px;
+        background-color: #22a2c3;
+      }
+      .inner {
+        width: 100px;
+        height: 100px;
+        background-color: #207f4c;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 事件冒泡与捕获 -->
+    <div class="wrapper">
+      <div class="outer">
+        <div class="inner"></div>
+      </div>
+    </div>
+  </body>
+
+  <!-- 
+    事件流是描述页面中触发事件的顺序（冒泡与捕获）
+    🌟 如果同时为相同的事件绑定了处理函数，不同的处理机制，则先触发捕获后冒泡
+
+    🌟 以下的事件不存在冒泡和捕获机制
+    focus blur change submit reset select
+  -->
+  <script>
+    var wEl = document.getElementsByClassName("wrapper")[0],
+      oEl = wEl.getElementsByClassName("outer")[0],
+      iEl = oEl.getElementsByClassName("inner")[0];
+  </script>
+
+  <!-- 
+    冒泡机制（IE Event Bubbling）
+    事件流触发：事件捕获（不执行事件处理函数）、目标阶段（执行）、事件冒泡
+    从dom的嵌套结构上来讲，它是由触发事件的内部元素事件处理函数一层一层的向外传递的现象，前提是父元素相同的事件绑定对应的处理函数
+  -->
+  <script>
+    wEl.addEventListener(
+      "click",
+      function () {
+        console.log("bubble-wrapper");
+      },
+      false
+    );
+    oEl.addEventListener(
+      "click",
+      function () {
+        console.log("bubble-outer");
+      },
+      false
+    );
+    iEl.addEventListener(
+      "click",
+      function () {
+        console.log("bubble-inner");
+      },
+      false
+    );
+  </script>
+
+  <!-- 
+    捕获机制（Netscape Event Capturing）
+    事件流触发：事件捕获（执行）、目标阶段、事件冒泡
+    它是由外向内一层一层的依次触发事件处理函数，需要将 addEventListener 第三个参数改为 true
+  -->
+  <script>
+    wEl.addEventListener(
+      "click",
+      function () {
+        console.log("wrapper");
+      },
+      true
+    );
+    oEl.addEventListener(
+      "click",
+      function () {
+        console.log("outer");
+      },
+      true
+    );
+    iEl.addEventListener(
+      "click",
+      function () {
+        console.log("inner");
+      },
+      true
+    );
+  </script>
+
+  <!-- 
+    阻止冒泡事件触发
+    w3c: event.stopPropagation()
+    IE: event.cancelBubble = true
+  -->
+  <script>
+    iEl.addEventListener(
+      "click",
+      function (event) {
+        // event.stopPropagation()
+        // event.cancelBubble = true
+        // cancelBubble(event)
+        console.log(event, "inner-stopPropagation");
+      },
+      false
+    );
+
+    // 兼容性封装
+    function cancelBubble(e) {
+      var event = e || window.event;
+      if (event.stopPropagation) {
+        event.stopPropagation();
+      } else {
+        event.cancelBubble = true;
+      }
+    }
+  </script>
+
+  <!-- 取消默认事件 -->
+  <script>
+    document.oncontextmenu = function (event) {
+      // 1. 只能在句柄中使用的方式 return false
+      // return false
+      // 2. w3c: event.preventDefault() 不兼容IE9以下
+      // event.preventDefault()
+      // 3. IE9以下使用 event.returnValue = false
+      event.returnValue = false;
+      console.log("oncontextmenu");
+    };
+  </script>
+</html>
