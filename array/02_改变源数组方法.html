@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>改变源数组的方法</title>
+  </head>
+  <body></body>
+  <!-- 
+    push(...args) 末尾增加元素，返回数组长度
+  -->
+  <script>
+    var arr = [4, 5, 6];
+    console.log(arr.push(10, 20)); // 5
+    console.log(arr); // [4,5,6,10,20]
+  </script>
+
+  <!-- 
+    unshift(...args) 头部增加元素，返回数组长度
+  -->
+  <script>
+    var arr = [1, 2, 3];
+    console.log(arr.unshift(10, 20)); // 5
+    console.log(arr); // [10,20,1,2,3]
+  </script>
+
+  <!-- 
+    pop() 无参，末尾删一个元素，返回删除的元素
+  -->
+  <script>
+    var arr = [1, 2, 3, 4, 5];
+    console.log(arr.pop()); // 5
+    console.log(arr); // [1,2,3,4]
+  </script>
+
+  <!-- 
+    shift() 无参，头部删除一个元素，返回删除的元素
+  -->
+  <script>
+    var arr = [1, 2, 3, 4];
+    console.log(arr.shift()); // 1
+    console.log(arr); // [2,3,4]
+  </script>
+
+  <!-- 
+    splice(startIndex，deleteCount，...args) 增删改数组，返回被删除元素组成的数组
+  -->
+  <script>
+    var arr = ["parrot", "anemone", "blue", "trumpet", "sturgeon"];
+    var removed = arr.splice(arr.length - 3, 2); // 被删除的元素: ["blue", "trumpet"]
+    function splice(idx, arr) {
+      return (idx += idx >= 0 ? 0 : arr.length);
+    }
+  </script>
+
+  <!-- 
+    reverse() 无参，反转数组，返回颠倒后的数组
+  -->
+  <script>
+    var arr = [1, 2, 3];
+    console.log(arr.reverse()); // [3,2,1]
+  </script>
+
+  <!-- 
+    sort 数组排序
+    如果省略参数，元素按照转换为的字符串的各个字符的 Unicode 码进行排序
+
+    1. 返回值小于 0，a 在前
+    2. 返回值大于 0，b 在前
+    3. 返回值等于 0，则不改变
+  -->
+  <script>
+    var arr = [12, 32, 1, 2, 90, 56];
+    arr.sort((a, b) => a - b);
+  </script>
+
+  <!-- 
+    fill(value,start,end) 填充数组
+  -->
+  <script>
+    var arr = Aarray(3).fill({}); // [{},{},{}]
+  </script>
+</html>

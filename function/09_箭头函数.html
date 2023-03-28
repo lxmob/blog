@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>箭头函数</title>
+  </head>
+  <body></body>
+  <!-- 
+    非严格模式下或严格模式下this指向的 window 
+  -->
+  <script>
+    const test = () => {
+      console.log(this); // window
+    };
+    test(1, 2, 3);
+  </script>
+
+  <!-- 
+    箭头函数没有 arguments 对象 
+  -->
+  <script>
+    const test1 = () => {
+      console.log(arguments); // ReferenceError: arguments is not defined
+    };
+    test1();
+  </script>
+
+  <!-- 
+    箭头函数没有原型对象说明它没有函数原型对象身上的方法，同时它没有构造器属性不能被实例化
+  -->
+  <script>
+    const test3 = () => {};
+    new test3(); // TypeError: test is not a constructor
+  </script>
+
+  <!-- 
+    箭头函数忽略任何形式来改变自身 this 的指向
+  -->
+  <script>
+    var obj = {
+      name: "obj",
+      test: () => {
+        console.log(this, this.name);
+      },
+    };
+    var name = "objj";
+    const fn = () => {
+      console.log(this.name);
+    };
+    fn(); // objj
+    fn.call(obj); // objj
+    fn.apply(obj); // objj
+    fn.bind(obj)(); // objj
+  </script>
+
+  <!-- 
+    箭头函数中的 this 不是谁绑定方法就指向谁
+  -->
+  <script>
+    obj.test(); // window objj
+  </script>
+
+  <!-- 
+    箭头函数 this，是外部作用域的 this 指向
+  -->
+  <script>
+    obj.wrap = function () {
+      var t1 = function () {
+        // var t1 = () => {
+        var t2 = () => {
+          // t1是箭头函数 this -> obj
+          // t1是普通函数 this -> window
+          console.log("obj.wrap", this);
+        };
+        t2();
+      };
+      t1();
+    };
+    obj.wrap();
+  </script>
+</html>

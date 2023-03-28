@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>数组构造函数中静态方法</title>
+  </head>
+  <body></body>
+  <!-- 
+    Array.of 创建一个新的 Array 实例
+  -->
+  <script>
+    Array.of(7); // [7]
+    Array(7); // [ , , , , , , ]
+  </script>
+
+  <!-- 
+    Array.from 可以将伪数组转为具备 length 和方法的数组
+  -->
+  <script>
+    Array.from("foo"); // ['f', 'o', 'o']
+    Array.from({ length: 5 }, (v, i) => i); // [0, 1, 2, 3, 4]
+  </script>
+
+  <!-- 
+    Array.isArray 判断是否是数组类型
+  -->
+  <script>
+    Array.isArray(Array.prototype); // true
+  </script>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>原型和原型链</title>
+  </head>
+  <body></body>
+  <!-- 
+    原型是什么？
+    每个对象都有原型对象 prototype 用来存放静态属性和方法，供实例使用。
+  -->
+  <script>
+    function Dog() {
+      // 将 prototype 对象作为值保存在 __proto__ 这个属性中（__proto__是原型链节点）
+      var thiss = {
+        name: "哈士奇",
+        __proto__: Dog.prototype, // 原型容器
+      };
+      return thiss;
+    }
+    Dog.prototype.name = "dog";
+    Dog.prototype.eat = function () {
+      console.log("eat");
+    };
+    var d = new Dog();
+    console.log(d);
+  </script>
+
+  <!-- 
+    实例化后原型链已经确定了，将 Car.prototype 属性指向了一个字面量对象，和 car 实例化时 prototype 对象不是同一个。
+  -->
+  <script>
+    Car.prototype.name = "Benz";
+    function Car() {}
+    var car = new Car();
+    Car.prototype = {
+      name: "Honda",
+    };
+    console.log(car.name); // Benz
+  </script>
+
+  <!-- 
+    原型链是什么？
+    对象身上会有一个属性 __proto__ 指向它的原型对象，原型对象也是具有 __proto__ 属性的，
+    来指向它的原型对象并从中继承静态方法和属性，而这种继承关系就叫做原型链。
+
+    原型链能做什么？
+    通过原型链可以从 __proto__ 这个属性节点一层一层的向下查找属性和方法。
+
+    为什么要有原型链？
+    为了不需要每次在创建实例的时候都去创建一个属性或方法，而是直接继承原型身上的静态方法和属性。
+
+    原型和原型链的区别是什么？
+    原型 prototype 是作为一对象容器的属性存在，而原型链则是通过实例继承原型对象产生 __proto__ 的原型链节点。
+  -->
+  <script>
+    Professor.prototype.professor = "professor";
+    function Professor() {
+      // this.professor = 'professor'
+    }
+    var prof = new Professor();
+    Teacher.prototype = prof;
+    function Teacher() {
+      this.teacher = "teacher";
+      this.sum = 500;
+    }
+    var teac = new Teacher();
+    Student.prototype = teac;
+    function Student() {
+      this.student = "student";
+    }
+    var s = new Student();
+    console.log(s);
+    console.log(Professor.prototype.__proto__); // Object.prototype
+
+    // 这里程序会认为在 student 对象上增加一个 sum 属性并赋值
+    s.sum++; // => student.sum = student.sum + 1
+    console.log(s, teac); // 501 500
+  </script>
+</html>

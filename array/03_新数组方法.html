@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>不对源数组变更的新数组方法</title>
+  </head>
+  <body></body>
+  <!-- 
+    join(分隔符) 数组转字符串，默认以逗号连接
+  -->
+  <script>
+    var arr = ["Wind", "Rain", "Fire"];
+    var myVar1 = arr.join(); // "Wind,Rain,Fire"
+  </script>
+
+  <!-- 
+    indexOf(value, fromIndex) 检索指定元素位置，返回值是查找的元素下标，如果没有找到返回 -1
+  -->
+  <script>
+    ["a", "b", "a", "c"].indexOf("a", 1); // 2
+  </script>
+
+  <!-- 
+    find(fn, this) 默认返回的是查找到的元素，未找到返回 undefined
+  -->
+  <script>
+    var result = arr.find(function (item, index, array) {
+      // 如果返回 true，则返回 item 并停止迭代
+      // 对于 falsy 假值则返回 undefined
+    });
+  </script>
+
+  <!-- 
+    findIndex(fn, this) 默认返回的是查找到的元素下标，未找到返回 -1
+  -->
+  <script>
+    var arr = [1, 2, 11, 12];
+    arr.findIndex((item) => item > 10); // 2
+  </script>
+
+  <!-- 
+    includes(value, fromIndex) 从索引 from 开始搜索元素，如果找到则返回 true
+  -->
+  <script>
+    var arr = [NaN];
+    arr.includes(NaN); // true
+  </script>
+
+  <!-- 
+    some every 单元测试，检索数组中的每一项符合条件函数，返回值是满足条件的布尔值
+  -->
+  <script>
+    var arr = [10, 11, 3];
+    arr.some((item, index, arr) => item > 10); // true
+    // every则是数组中每一项满足整个函数测试的布尔值
+    arr.every((item, index, arr) => item > 10); // false
+  </script>
+
+  <!-- 
+    flat 数组扁平化，将多维数组转成一维数组
+  -->
+  <script>
+    [1, 2, 3, [2, 4]].flat(Infinity); // [1,2,3,2,4]
+    export function flatten(array) {
+      return array.reduce((newArr, children) => newArr.concat(children), []);
+    }
+  </script>
+
+  <!-- 
+    flatMap 相当于加工和扁平化    
+  -->
+  <script>
+    var arr9 = ["科比 詹姆斯 安东尼", "利拉德 罗斯 麦科勒姆"];
+    console.log(arr9.flatMap((x) => x.split(" ")));
+    // [ '科比', '詹姆斯', '安东尼', '利拉德', '罗斯', '麦科勒姆' ]
+  </script>
+
+  <!-- 
+    forEach 数组遍历，返回值 undefined
+  -->
+  <script>
+    arr.forEach(function (item, index, array) {
+      // ... do something with item
+    });
+  </script>
+
+  <!-- 
+    concat 链接数组
+  -->
+  <script>
+    var arr = [1, 2];
+    arr.concat(8, 9, 10); // [1,2,8,9,10]
+    // [1, 2, ...arr]; // ES6
+  </script>
+
+  <!-- 
+    slice(start, end) 截取数组，含头不含尾，返回创建副本，可选参数
+  -->
+  <script>
+    // ["Orange", "Lemon", "Apple"]
+    [("Banana", "Orange", "Lemon", "Apple", "Mango")].slice(1, -1);
+  </script>
+
+  <!-- 
+    map 加工数组返回的是加工后的新数组
+  -->
+  <script>
+    var arr = [1, 2, 3, 4, 5];
+    arr.map((item, index) => item++); // [2,3,4,5,6]
+  </script>
+
+  <!-- 
+    filter 过滤数组
+    通过传递的 callback 进行每一项元素调用，返回值为 true 则会在新数组中添加该元素
+  -->
+  <script>
+    var arr = [1, 2, 3, 4];
+    var results = arr.filter(function (item, index, array) {
+      return item > 2;
+    }); // [3,4]
+  </script>
+
+  <!-- 
+    reduce reduceRight 累加器，接收两个参数 callback 以及 initVal
+  -->
+  <script>
+    var value = arr.reduce(
+      function (pre, cur, index, array) {
+        // ...
+      },
+      [initial]
+    );
+    // 检测
+    var arr11 = [1, 3, 4, 5, 7];
+    var total = arr11.reduce(
+      (preTotal, next) => preTotal + (next % 2 === 1 ? next : 0),
+      0
+    );
+  </script>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IIFE立即执行函数</title>
+  </head>
+  <body>
+    <!-- 
+      immediately invoked function expression 立即执行函数
+      特点：页面加载时，自动执行，执行完毕立即释放该函数。
+    -->
+  </body>
+
+  <!-- 定义和声明 -->
+  <script>
+    // 写法一
+    ;(function () {})()
+    // 写法二
+    ;(function(){}()) // w3c推荐
+  </script>
+
+  <!-- 忽略函数名称 -->
+  <script>
+    // 为什么立即执行函数会忽略函数名称？
+    // 立即执行函数本身的特点，执行完成之后在内存中销毁，导致在之后环境中找不到该函数。
+    console.log(test); // Uncaught ReferenceError: test is not defined;
+    (function test() {
+      var a = 1,
+        b = 2;
+      console.log(a + b);
+    })();
+    console.log(test); // Uncaught ReferenceError: test is not defined;
+  </script>
+
+  <!-- 表达式与执行符号 -->
+  <script>
+    // 只有表达式形式才能被执行符号 () 执行
+    (function add(a, b) {
+      console.log(a + b);
+    })(1, 2);
+
+    // 这是函数声明并非表达式所以会报错
+    function test(a,b){}() // 报错
+
+    // 通过加运算符可以将函数声明变成表达式的方法
+    !function test() {
+      console.log("test");
+    }();
+    -function test() {
+      console.log("test");
+    }();
+    +function test() {
+      console.log("test");
+    }();
+    1 || function test() {
+      console.log("test");
+    }();
+
+    // 不报错，(6) 是一个表达式，并不是执行符号 => function text(){};(6)
+    function test() {}(6)
+  </script>
+
+  <!-- 表达式会自动忽略函数名 -->
+  <script>
+    var test = function fn() {
+      console.log(1);
+    };
+    console.log(fn); //  Uncaught ReferenceError: fn is not defined;
+
+    // 表达式立即执行之后，在匿名函数在内存中被销毁，所以 test 打印的值是 undefined
+    var test = function () {
+      console.log(2);
+    };
+    console.log(test); // fn
+
+    var test = function () {
+      console.log(2);
+    }();
+    console.log(test); // undefined
+
+    // 上面的 🌰 函数声明加上执行符号为进行报错，这里第二个 🌰 怎么没有报错？
+    // var test = function(){} 作为函数表达式，与执行符号 () 组合，此时函数表达式会立即执行，
+    // 而 test 变量接收的结果就是匿名函数 function(){} 立即执行返回的结果。
+  </script>
+</html>

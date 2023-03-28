@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>回调函数</title>
+  </head>
+  <body>
+    <!-- 
+      回调函数被作为参数传递的函数，可指定事件触发程序的绑定函数。
+    -->
+  </body>
+
+  <!-- 回调函数的能力 -->
+  <script>
+    function onMounted(cb) {
+      // todo ....
+      cb && cb();
+    }
+    onMounted(() => {
+      console.log("onMounted");
+    });
+
+    function toSum(count, cb) {
+      const sum = count + 1;
+      const newSum = count + 100;
+      cb && cb(newSum); // 接收指定的回调函数
+      return sum;
+    }
+
+    var num = toSum(10, function (newCount) {
+      console.log(newCount); // 110
+    });
+    console.log(num); // 11
+  </script>
+</html>

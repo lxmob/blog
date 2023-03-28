@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Object.create方法</title>
+  </head>
+  <body></body>
+  <!-- 
+    使用现有的对象来作为新创建对象的原型，既然都是创建对象的原型那么作用就是用于继承。
+  -->
+  <script>
+    var dog = Object.create(null);
+    console.log(dog); // No properties
+    dog.name = "husky";
+    // 将 dog 作为原型对象创建 husky 继承 dog name 属性
+    var husky = Object.create(dog);
+    console.log(husky); // __proto__ => dog { name: 'husky' }
+    console.log(husky.name); // husky
+  </script>
+
+  <!-- 
+    通过 Object.create 创建的对象无法调用 Object.prototype 身上的方法，如果手动更改原型链呢？
+    不能，原型链是程序在创建对象时默认生成的，通过 Object.create 只是创建一个对象的原型并非原型链。
+  -->
+  <script>
+    var person = Object.create(null); // 原型链已断
+    var prototype = {};
+
+    // 手动添加原型链是无效的，这个操作只是为实例对象增加了一个属性
+    person.__proto__ = prototype;
+    console.log(person);
+    person.toString(); // TypeError: person.toString is not a function
+
+    // 但是你可以通过这个属性，来访问添加的对象身上原型对象方法和属性
+    person.__proto__.toString();
+  </script>
+
+  <!-- 
+    如果手动为对象添加 toString 方法呢？
+  -->
+  <script>
+    var num = 1;
+    var cur = {};
+    var createObj = Object.create(null);
+    document.write(num); // 1
+    document.write(cur); // [object Object]
+    // document.write(createObj)
+    // Error cannot convert object to primitive value
+    createObj.toString = function () {
+      return "createObj";
+    };
+    document.write(createObj); // createObj
+  </script>
+</html>

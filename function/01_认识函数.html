@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>认识函数</title>
+  </head>
+  <body>
+    <!-- 
+      函数是什么？
+      JS 函数是一个固定的功能或程序，在这个封装体中需要一个入口和一个出口，而入口就是参数，出口就是返回值。
+
+      为什么会有函数？
+      对特定的功能进行抽象，实现高内聚，低耦合，模块的单一责任制。
+      函数内部变量只供函数内部使用，外界不可访问。
+    -->
+  </body>
+
+  <!-- 创建函数的方法 -->
+  <script>
+    // 1. 函数声明
+    function fn() {
+      console.log("fn");
+    }
+
+    // 2. 函数匿名表达式，又称之为函数字面量
+    var fn2 = function () {
+      console.log("fn2");
+    };
+
+    // 如果我们将一个具名的函数赋值给变量，那么我们分别调用两者，会出现什么效果？
+    // 分析下面的代码，我们将右侧具名函数赋值给变量 fn3 时，
+    // 会忽略原有函数名称，在外部调用时 text 函数是不可见的，我们通过打印 fn3.name 时可以拿到原有函数名称。
+    var fn3 = function text() {
+      console.log("fn3");
+    };
+    console.log(fn3.name); // text
+    fn3(); // fn
+    text(); // ReferenceError
+  </script>
+
+  <!-- 
+    形参与实参
+    形参形式上进行占位，我们可以通过函数名称 .length 来获取形参的数组（为什么可以 .length 因为函数也是一种对象类型）
+    实参实际参数，当我们通过调用函数名称传递的参数就是实参，我们可以在函数内部通过 arguments 来获取实参列表。
+  -->
+  <script>
+    function add(a, b) {
+      // 函数形参的数组
+      console.log(add.length); // 10 20
+      // 函数实参的数组
+      console.log(arguments); // 10 20 30
+    }
+    add(10, 20, 30); // 实际参数
+
+    /**
+     * 在 ES5 之前两者的特性：
+     * 传递的实参，内部进行变更值是有效的，而未传递的实参，内部变更是无效的。
+     * 形参存放栈内存，实参存放在堆内存，形参和实参具有映射关系，形参赋值实参也会跟着变，前提需要实参传递，映射两者对应关系。
+     *
+     */
+    function add2(a, b) {
+      a = 20;
+      b = 10;
+      console.log(arguments[0]); // 20
+      console.log(arguments[1]); // undefined
+    }
+    add2(10);
+  </script>
+
+  <!-- 
+    函数的终止与返回值 
+    函数的终止可以使用 return 关键字，如果函数内没有 return 则默认返回的是 undefined 同样如果 return 后没有跟后续值返回的也是 undefined。
+  -->
+  <script>
+    function increment(a, b) {
+      if (!a) {
+        return;
+      }
+      return a + b;
+    }
+    console.log(increment()); // undefined
+    console.log(increment(1, 2)); // 3
+  </script>
+</html>

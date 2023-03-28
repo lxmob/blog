@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>递归函数</title>
+  </head>
+  <body>
+    <!-- 
+      通过直接或间接调用的方式是递归函数，递归以出口为结尾，再向上一步步赋值计算后返回后结果。
+      递归函数的两个因素
+        第一找到计算的规律
+        第二结束递归的条件作为出口
+    -->
+  </body>
+
+  <!-- 练习题 -->
+  <script>
+    // 用函数实现一个数的阶乘，不能使用循环
+    function factorial(n) {
+      if (n == 1) {
+        return 1;
+      }
+      return (n *= factorial(n - 1));
+    }
+    console.log(factorial(5));
+
+    // 用函数实现接收一个 n，算出斐波那契数列的第 n 位，不能使用循环
+    function fibonacci(n) {
+      if (n <= 1) {
+        return 1;
+      }
+      // 前两位之和 = 第三项结果 n3 = n1 + n2
+      // 要求第 n 项的结果，n - 1 项 + n - 2 项
+      return fibonacci(n - 1) + fibonacci(n - 2);
+    }
+    console.log(fibonacci(5));
+
+    // 尾递归实现
+    function fibonacci2(n, cur = 1, next = 1) {
+      // 结束条件，次数等于 1 时终止递归
+      if (n <= 1) {
+        return next;
+      }
+      // 减少次数，传递前两个数之和
+      return fibonacci2(n - 1, next, cur + next);
+    }
+    console.log(fibonacci2(5));
+  </script>
+</html>

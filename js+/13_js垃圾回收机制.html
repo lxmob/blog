@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GC垃圾回收机制</title>
+  </head>
+  <body></body>
+  <!-- 
+    垃圾回收的原理：
+      1. 找出不再使用的变量
+      2. 释放其占用内存
+      3. 固定的时间间隔运行
+    
+    垃圾回收器首先会排除全局变量和闭包形成的 AO 环境中的变量，然后再处理那些没有被排除的变量进行删除
+  -->
+
+  <!-- 标记清除 mark and sweep 仅高级浏览器支持 -->
+  <script>
+    function test() {
+      var a = 0; // 进入环境标记
+    }
+    test(); // 执行完毕标记 a 离开环境
+  </script>
+
+  <!-- 引用计数 reference counting IE6 以下使用的是引用计数方式 -->
+  <script>
+    function demo() {
+      var obj = new Object(); // obj = 1
+      var objj = new Object(); // objj = 1
+
+      var temp = obj; // obj++ = 2
+      // 循环引用问题
+      obj.prop = objj;
+      objj.prop = obj;
+      // 解除引用
+      obj = null;
+      objj = null;
+    }
+  </script>
+</html>
