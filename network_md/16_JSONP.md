@@ -7,7 +7,7 @@
   - JSONP 是一种跨域获取 JSON 数据的交互技术，非正式的协议
   - JSONP 抓取的资源并不直接是 JSON 数据，而是带有 JSON 数据参数的函数执行
   - JSONP 仅支持 GET 请求
-- [具体代码](https://github.com/lxmob/blog/blob/main/demos/cross/jsonp-ajax/index.html)
+- [具体代码](../network/02_JSONP.html)
 
 ```js
 // 客户端期望返回的

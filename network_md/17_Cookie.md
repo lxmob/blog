@@ -27,7 +27,7 @@ document.cookie = "name=cookie; expires=" + d;
 
 ### 实验性代码
 
-- [具体代码](https://github.com/lxmob/blog/blob/main/demos/cross/cookie/index.html)
+- [具体代码](../network/03_Cookie.html)
 
 ### 单点登录
 

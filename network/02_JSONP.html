@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JSONP</title>
+  </head>
+  <body>
+    <button id="btn">获取数据</button>
+  </body>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script>
+    var oBtn = document.getElementById("btn");
+
+    oBtn.onclick = function () {
+      // var oScript = document.createElement('script')
+      // oScript.src = 'https://www.baidu.com/sugrec?pre=1&p=3&ie=utf-8&json=1&prod=pc&from=pc_web&wd=a&req=2&csor=1&cb=test'
+      // document.body.appendChild(oScript)
+      // document.body.removeChild(oScript)
+
+      $.ajax({
+        url: "https://www.baidu.com/sugrec",
+        type: "GET",
+        data: {
+          pre: 1,
+          p: 3,
+          ie: "utf-8",
+          json: 1,
+          prod: "pc",
+          from: "pc_web",
+          wd: "新闻",
+          req: 2,
+          csor: 2,
+          sugmode: 2,
+        },
+        dataType: "JSONP",
+        jsonp: "cb",
+        // jsonpCallback: 'test',
+        success: function (data) {
+          console.log(data);
+        },
+      });
+    };
+
+    // function test(data) {
+    //   console.log(data)
+    // }
+  </script>
+</html>

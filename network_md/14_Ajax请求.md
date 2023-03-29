@@ -63,4 +63,4 @@
 
 ### 简单封装 Ajax
 
-- [具体代码](https://github.com/lxmob/blog/blob/main/demos/cross/ajax/index.js)
+- [具体代码](../network/01_Ajax.html)
