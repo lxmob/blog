@@ -15,8 +15,10 @@
     </style>
   </head>
   <body>
-    <!-- 新浪搜索框 sina.com.cn -->
-    <!-- onfocus onblur 事件为了解决 placeholder 各大浏览器样式兼容问题 -->
+    <!-- 
+      新浪搜索框 sina.com.cn
+      onfocus onblur 事件为了解决 placeholder 各大浏览器样式兼容问题
+    -->
     <input
       type="text"
       maxlength="40"
@@ -27,19 +29,22 @@
       autocomplete="off"
     />
   </body>
+
+  <!-- 举例说明 -->
   <script>
-    var input = document.getElementsByTagName('input')[0]
+    var input = document.getElementsByTagName("input")[0];
 
-    // 🌟 oninput HTML5规范，表单值发生改变时触发，IE9以下不支持
+    // oninput HTML5规范，表单值发生改变时触发，IE9以下不支持
     input.oninput = function () {
-      console.log('oninput', input.value)
-    }
-    // IE需要使用 onpropertychange 事件，IE11不支持
-    input.onpropertychange = function () {}
+      console.log("oninput", input.value);
+    };
 
-    // 🌟 onchange 表单值发生改变同时失去焦点时触发事件
+    // IE需要使用 onpropertychange 事件，IE11不支持
+    input.onpropertychange = function () {};
+
+    // onchange 表单值发生改变同时失去焦点时触发事件
     input.onchange = function () {
-      console.log('onchange', input.value)
-    }
+      console.log("onchange", input.value);
+    };
   </script>
 </html>

@@ -19,36 +19,36 @@
   <body>
     <div class="box"></div>
   </body>
-  <script src="./utils.js"></script>
+  <script src="../demos/dom/utils.js"></script>
   <script>
-    var bWrap = document.getElementsByClassName('box')[0]
+    var bWrap = document.getElementsByClassName("box")[0];
 
-    // 🌟 keydown
+    // keydown
     document.onkeydown = function (e) {
       var ev = e || window.event,
         code = ev.keyCode, // 键码
-        bLeft = getStyles(bWrap, 'left'),
-        bTop = getStyles(bWrap, 'top')
+        bLeft = getStyles(bWrap, "left"),
+        bTop = getStyles(bWrap, "top");
 
       switch (code) {
         case 37:
-          bWrap.style.left = bLeft - 5 + 'px'
-          break
+          bWrap.style.left = bLeft - 5 + "px";
+          break;
         case 38:
-          bWrap.style.top = bTop - 5 + 'px'
-          break
+          bWrap.style.top = bTop - 5 + "px";
+          break;
         case 39:
-          bWrap.style.left = bLeft + 5 + 'px'
-          break
+          bWrap.style.left = bLeft + 5 + "px";
+          break;
         case 40:
-          bWrap.style.top = bTop + 5 + 'px'
+          bWrap.style.top = bTop + 5 + "px";
       }
-    }
+    };
 
-    // 🌟 keypress事件只触发ASCII码的字符键码，无法触发功能键
+    // keypress 事件只触发 ASCII 码的字符键码，无法触发功能键
     document.onkeypress = function (e) {
-      // 通过String.fromCharCode方法可以获取触发键码具体的值
-      console.log(e.charCode, String.fromCharCode(e.charCode))
-    }
+      // 通过 String.fromCharCode 方法可以获取触发键码具体的值
+      console.log(e.charCode, String.fromCharCode(e.charCode));
+    };
   </script>
 </html>

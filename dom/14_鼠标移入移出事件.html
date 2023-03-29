@@ -34,37 +34,42 @@
       </div>
     </div>
   </body>
-  <script src="./utils.js"></script>
-  <script>
-    var boxWrap = document.getElementsByClassName('box-wrap')[0],
-      boxInner = boxWrap.getElementsByClassName('box-inner')[0],
-      boxMini = boxInner.getElementsByClassName('box-mini')[0]
+  <script src="../demos/dom/utils.js"></script>
 
-    // 🌟 mouseover和mouseout
-    // 绑定事件处理函数的元素以及元素内中任意子元素移入移出都会频繁触发冒泡
+  <!-- 
+    mouseover、mouseout
+    绑定事件处理函数的元素以及元素内中任意子元素移入移出都会频繁触发冒泡
+  -->
+  <script>
+    var boxWrap = document.getElementsByClassName("box-wrap")[0],
+      boxInner = boxWrap.getElementsByClassName("box-inner")[0],
+      boxMini = boxInner.getElementsByClassName("box-mini")[0];
+
     boxWrap.onmouseover = function () {
-      console.log('onmouseover')
-    }
+      console.log("onmouseover");
+    };
     boxWrap.onmouseout = function () {
-      console.log('onmouseout')
-    }
+      console.log("onmouseout");
+    };
 
     boxInner.onmouseover = function (e) {
       // cancelBubble(e)
-    }
+    };
     boxInner.onmouseout = function (e) {
       // cancelBubble(e)
-    }
+    };
+  </script>
 
-    // 🌟 mouseenter和mouseleave
-    // 与over和out事件类似，但是当从后代元素移入自己的元素内时不会触发冒泡
+  <!-- 
+    mouseenter、mouseleave
+    与 over 和 out 事件类似，但是当从后代元素移入自己的元素内时不会触发冒泡
+  -->
+  <script>
     boxWrap.onmouseenter = function () {
       // console.log('onmouseenter')
-    }
+    };
     boxWrap.onmouseleave = function () {
       // console.log('onmouseleave')
-    }
-
-    // 🌰 商品卡片案例 -> example
+    };
   </script>
 </html>
