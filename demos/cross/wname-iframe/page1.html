@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>page1</title>
+  </head>
+  <body>
+    <span>http://test.baidu.com/page1.html</span>
+  </body>
+  <script>
+    var flag = false;
+
+    var iframe = document.createElement("iframe");
+    var getData = function () {
+      if (flag) {
+        var data = iframe.contentWindow.name;
+        console.log(JSON.parse(data));
+      } else {
+        // 当前嵌入的页面与 page1 不同源，当嵌入的页面加载后触发数据拉取
+        // 数据请求完毕后，然后通过设置 window.name 属性来保存拉取的数据，
+        // 最后跳转到与 page1 同源的页面，因为 window.name 的特性无论载入什么页面都不会改变 name 值，解决跨域问题。
+        flag = true;
+
+        // 如果数据拉取的接口，数据量较大造成阻塞呢？
+        // 这里定时器具体应该什么时候跳转？
+        setTimeout(function () {
+          iframe.contentWindow.location = "./page2.html";
+        }, 600);
+      }
+    };
+    // 指定嵌入页面的路径信息
+    iframe.src = "http://zhidao.baidu.com/page3.html";
+
+    // 兼容性 IE
+    if (iframe.attachEvent) {
+      iframe.attachEvent("onload", getData);
+    } else {
+      iframe.onload = getData;
+    }
+
+    document.body.appendChild(iframe);
+  </script>
+</html>

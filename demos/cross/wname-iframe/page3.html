@@ -4,19 +4,20 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>page2子页面</title>
+    <title>page3</title>
   </head>
   <body>
-    当前页面是http://zhidao.baidu.com/index2.html
+    <span>此页面与 page1 和 page2 不同源</span>
+    <span>http://zhidao.baidu.com/page3.html</span>
   </body>
-  <script src="../ajax/index.js"></script>
   <script>
-    $.post(
-      'http://zhidao.baidu.com/get_user',
+    // 伪代码，默认具备 ajax 请求
+    ajax.post(
+      "http://zhidao.baidu.com/get_user",
       { status: 123 },
       function (data) {
-        window.parent.postMessage(JSON.stringify(data), 'http://test.baidu.com')
+        window.name = JSON.stringify(data);
       }
-    )
+    );
   </script>
 </html>

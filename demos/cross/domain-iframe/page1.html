@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>page1</title>
+  </head>
+  <body>
+    <span>http://test.baidu.com/page1.html</span>
+  </body>
+
+  <!-- 实现案例 -->
+  <script>
+    // 设置基础域名
+    document.domain = "baidu.com";
+
+    // 创建 iframe 准备嵌入 page2 页面
+    var iframe = document.createElement("iframe");
+    iframe.src = "http://zhidao.baidu.com/page2.html";
+    iframe.id = "myIframe";
+    iframe.style.display = "none";
+    iframe.onload = function () {
+      // 通过 iframe 嵌入的页面中 contentWindow 属性来获取 window 全局对象
+      var ajax = document.getElementById("myIframe").contentWindow.$;
+
+      // 通过 page2 页面中的请求方法进行获取数据，解决跨域问题
+      ajax.post("http://zhidao.baidu.com/everythins", { status: 123 });
+    };
+
+    document.body.appendChild(iframe);
+  </script>
+
+  <!-- 函数封装 -->
+  <script>
+    var ajaxDoamin = (function () {
+      function craeteIframe(iframeId, iframeSrc) {
+        var iframe = document.createElement("iframe");
+        iframe.id = iframeId;
+        iframe.src = iframeSrc;
+        iframe.style.display = "none";
+        return iframe;
+      }
+
+      return function (opt) {
+        document.domain = opt.basicDoamin;
+        var iframe = craeteIframe(opt.iframeId, opt.iframeSrc);
+        iframe.onload = function () {
+          var ajax = document.getElementById(opt.iframeId).contentWindow.$;
+          ajax.ajax({
+            url: opt.url,
+            type: opt.type,
+            data: opt.data,
+            success: opt.success,
+            error: opt.error,
+          });
+        };
+        document.body.appendChild(iframe);
+      };
+    })();
+
+    ajaxDoamin({
+      basicDoamin: "baidu.com", // 基础域名
+      iframeId: "myIframe",
+      iframeSrc: "http://zhidao.baidu.com/page2.html", // 需要跨域通信的路径页面
+      url: "http://zhidao.baidu.com/everythins", // 数据接口路径
+      type: "post",
+      data: { status: 123 },
+      success: function (data) {
+        console.log(data);
+      },
+      error: function (err) {
+        console.error(err);
+      },
+    });
+  </script>
+</html>
