@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>page3</title>
+  </head>
+  <body>
+    <span>此页面与 page1 同源的页面</span>
+    <span>http://test.baidu.com/page2.html</span>
+  </body>
+  <script>
+    setTimeout(function () {
+      // 通过顶部父级窗口的 hash 参数接收该子级的 hash 数据，解决跨域问题
+      // 缺陷所有的数据全部暴漏在 url 地址栏中，造成数据的泄露
+      window.parent.parent.location.hash = self.location.hash.substring(1);
+    }, 400);
+  </script>
+</html>

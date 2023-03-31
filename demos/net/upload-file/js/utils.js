@@ -14,8 +14,8 @@ var xhr = (function () {
       async = '' + opt.async === 'false' ? false : true,
       dataType = opt.dataType || 'JSON',
       jsonp = opt.jsonp || 'cb',
-      jsonpCallback = opt.jsonpCallback || 'jQuery' + randomNum() + '_' + new Date().getTime();
-    url = opt.url,
+      jsonpCallback = opt.jsonpCallback || 'jQuery' + randomNum() + '_' + new Date().getTime(),
+      url = opt.url,
       data = opt.data || null,
       timeout = opt.timeout || 30000,
       error = opt.error || function () { },
