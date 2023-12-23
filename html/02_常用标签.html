@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>常用标签介绍</title>
+  </head>
+  <body>
+    <!-- heading 标签 => 标题标签  -->
+    <!-- 特点：独占一行、粗体、大小不一致 -->
+    
+    <!-- 浏览器默认字体大小16px，em 单位参照父级元素 font-size 大小 -->
+    <h1>h1 字体默认大小: 2em</h1>
+    <h2>h2 字体默认大小: 1.5em</h2>
+    <h3>h3 字体默认大小: 1.17em</h3>
+    <h4>h4</h4>
+    <h5>h5</h5>
+    <h6 id="box">h6</h6>
+
+
+
+    <!-- p 标签 => 段落标签 -->
+    <!-- 默认大小16px -->
+    <p style="text-indent: 2em">ppppp</p>
+
+    
+
+    <!-- strong 标签 => 粗体、加强语气  -->
+    <strong>strongstrong</strong>
+
+    <!-- 通常情况下不用 b 标签 -->
+    <b>bbbb</b>
+
+
+
+    <!-- em 标签 => 斜体标签、加强语气  -->
+    <em>emem</em>
+
+    <!-- icon 标签通常作为图标来使用 -->
+    <i class="fa fa-star">iii</i>
+
+    
+
+    <!-- del 标签 => 删除中横线标签 -->
+    <del>delete</del>
+
+    <!-- css 样式实现方式 -->
+    <p style="text-decoration: line-through;">9999.99</p>
+
+    
+
+    <!-- ins 标签 => 下划线标签 -->
+    <ins>insins</ins>
+
+    <!-- css 样式实现方式 -->
+    <p style="text-decoration: underline;">underline</p>
+
+    
+
+    <!-- address 标签 => 斜体、语义表示地址 -->
+    <address>北京市西城区马连道110号</address>
+
+    
+
+    <!-- div标签 => 容器标签、盒子标签、网页结构标签、布局标签 -->
+    <!-- 特点：可设宽、高，独占一行 -->
+    <div style="width: 200px; height: 200px; border: 1px solid #000;">divdivdiv</div>
+
+
+
+    <!-- 文本不换行问题 -->
+
+    <!-- 中文换行是因为浏览器认为是一个汉字，下一个字会自动换行 -->
+    <div style="width: 200px; height: 200px; border: 1px solid #000;">
+      我是中文我是中文我是中文我是中文我是中文我是中文我是中文我是中文
+    </div>
+
+    <!-- 英文不换行的原因是因为浏览器认为中间没有空格的是一个单词所以不换行 -->
+    <div style="width: 200px; height: 200px; border: 1px solid #000;">
+      akdjqweoqweopqweasdasdakdjqweoqweopqweasdasdakdjqweoqweopqweasdasdakdjqweoqweopqweasdasd
+    </div>
+    <!-- <div style="width: 200px; height: 200px; border: 1px solid #000;">
+      akdj qweoqweopq weasdasda kdjqweoqweo pqweasda sdakdjqweoq weopqw easdas dakdjqw eoqweop qwe asdasd
+    </div> -->
+    
+
+
+    <!-- 文本分隔符 -->
+    <!-- 空格和换行都属于一个文本分隔符 -->
+    <div style="width: 200px; height: 200px; border: 1px solid #000;">
+      I
+      am super man!
+    </div>
+
+
+
+    <!-- HTML实体字符 -->
+    <!-- 浏览器在解析时对大于号小于号认为是标签，如果想展示标签代码，可以使用实体字符 -->
+    <p>这是<div>标签</p>
+    <p>这是&lt;div&gt;标签</p>
+    <p>&nbsp;这是空格</p>
+    
+
+
+    <!-- img 图片标签 => src = source 资源链接 -->
+
+    <!-- 网络地址 -->
+    <img src="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png" />
+    
+    <!-- 相对路径 => 跳出目录使用 ../ -->
+    <img src="img/iterm_bg.png" />
+
+    <!-- 绝对路径 => 盘符 -->
+    <img src="/Users/ming/Desktop/blog/html/img/iterm_bg.png" />
+
+    <!-- 图片加载不到时可以使用 alt 属性来提示 -->
+    <img src="iterm_bg.png" alt="图片加载失败" />
+
+    <!-- img => title 属性 => 鼠标移入悬浮展示文本 -->
+    <img src="img/iterm_bg.png" title="iterm终端背景图" />
+
+
+
+    <!-- anchor 标签 => 锚点、超链接 hypertext reference -->
+    <a href="https://www.baidu.com">百度一下</a>
+
+    <!-- a => target 属性 => _blank 新开页面 -->
+    <a href="https://www.baidu.com" target="_blank">百度一下</a>
+
+    <!-- a => 打电话 -->
+    <a href="tel:15501238898">联系商家</a>
+
+    <!-- a => 发邮件 -->
+    <a href="mailto:2777343105@qq.com">发邮件</a>
+
+    <!-- a => 锚点定位 -->
+    <a href="#box">锚点跳转</a>
+
+    <!-- a => 协议限定符 -->
+    <a href="javascript:alert('我是a标签')">打开弹窗</a>
+    <a href="">点击后刷新页面</a>
+    <a href="javascript:;">通过协议限定符阻止刷新页面</a>
+
+
+
+    <!-- sup 标签 => 上标 superscripted -->
+    前端<sup><a href="javascript:;">[1]</a></sup>
+    10<sup>5</sup>
+    Na<sup>+</sup>
+
+
+
+    <!-- sub 标签 => 下标 subscripted -->
+    H<sub>2</sub>SO<sub>4</sub>
+
+
+
+    <!-- span 标签 => 默认无样式 -->
+    <!-- 
+      span 存在的意义是什么
+      主要为了在一段文本中区分与其他文本样式上或者段落上的不同
+      亦或者是通过 js 来获取特定的内容
+     -->
+    <p>
+      span<span id="spanText" style="color: red;">span123</span>span
+    </p>
+
+  </body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>元素介绍</title>
+  </head>
+  <body>
+    <!-- 元素是什么 -->
+
+    <!-- 这是标签 -->
+    <p></p> 
+
+    <!-- 这是元素 = 标签 + 内容 -->
+    <p>文本内容</p> 
+    
+
+    <!-- 元素分类 -->
+
+    <!-- 行内元素 or 内联元素 or 行间元素 -->
+    <!-- inline element -->
+    <!-- 特点：不独占一行、无法定义宽高 -->
+    strong em ins del span sup sub label
+
+    <!-- 块级元素 -->
+    <!-- block element -->
+    <!-- 特点：独占一行、可以定义宽高 -->
+    div p hx address ul ol dl form
+
+    <!-- 行内块元素 or 内联块元素 -->
+    <!-- inline-block element -->
+    img iframe input
+
+
+
+    <!-- 关于标签嵌套问题 -->
+    内联元素可以嵌套内联元素
+    块级元素可以嵌套任何元素
+
+    p 标签不可以嵌套 div 标签
+    <p>
+      <div>p => div</div>
+    </p>
+    <!-- 
+      浏览器解析后
+        <p></p>
+        <div>p => div</div>
+        <p></p>
+     -->
+
+    a 标签不可以嵌套 a 标签
+    <a href="javascript:;">
+      <a href="javascript:;">a => a</a>
+    </a>
+    <!-- 
+      浏览器解析后
+        <a href="javascript:;"></a>
+        <a href="javascript:;">a => a</a>
+     -->
+
+
+  </body>
+</html>

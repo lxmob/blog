@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>frameset使用</title>
+  </head>
+  <!-- frameset 设置框架标签 -->
+
+  <!-- 
+    优点：方便布局
+    缺点：请求页面过多、数据交互困难、对搜索引擎极度不友好
+  -->
+
+  <!-- body 中无法展示 frameset 二者只能展示一种 -->
+
+  <!-- 谁的优先级更高呢，按照顺序加载 -->
+
+  <!-- <body><h1>body</h1></body> -->
+
+  <frameset rows="10%, 90%">
+    <frame src="./demo/01_frame_header.html" />
+
+    <frameset cols="20%, 80%">
+      <frame src="./demo/02_frame_sidebar.html" />
+      <frame name="mainFrame" src="https://www.jd.com" />
+    </frameset>
+  </frameset>
+
+  <!-- <body><h1>body</h1></body> -->
+</html>

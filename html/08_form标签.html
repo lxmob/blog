@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>form表单</title>
+  </head>
+  <body>
+
+    <!-- form 表单标签 => 提交表单数据 -->
+
+    <!-- get 请求参数展示形式 ?username=lxm&password=ming -->
+
+    <form method="get" action="">
+
+      <label for="username">
+        账号
+
+        <!-- name = 提交数据参数名称 -->
+        <!-- type = input 框展示类型 -->
+        <!-- id = 可以通过选择器获取、使 label 标签做关联聚焦 -->
+        <!-- value = 展示的默认值 -->
+        <!-- maxlength = 最大长度的字符 -->
+
+        <input id="username" type="text" name="username" value="" maxlength="6">
+      </label>
+
+      <br />
+
+      <label for="password">
+        密码
+
+        <!-- MD5 消息摘要算法，不可逆加密算法 -->
+
+        <input id="password" type="password" name="password">
+      </label>
+
+      <br />
+
+      <label for="readonly">
+        只读
+
+        <!-- 
+          readonly 属性与 disabled 属性都是只读，区别是什么呢
+          在提交表单 disabled 禁用 input 框时数据是无法提交的
+         -->
+
+        <!-- <input id="readonly" type="text" value="3333" readonly="readonly"> -->
+        <input id="disabled" type="text" value="3333" disabled="disabled">
+      </label>
+
+      <br />
+
+      <label for="male">
+        男士
+
+        <!-- radio 属性，input 单选框 -->
+
+        <input id="male" type="radio" name="sex" value="male" checked="checked" />
+      </label>
+
+      <label for="female">
+        女士
+        <input id="female" type="radio" name="sex" value="female" />
+      </label>
+
+      <br />
+
+      <input type="submit" value="登陆">
+
+    </form>
+
+  </body>
+</html>
