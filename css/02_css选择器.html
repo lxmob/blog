@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>选择器</title>
+
+    <!-- css 选择器权重优先级 => !important > 内联样式 > id > class | 属性 | 伪类 > 标签 | 伪元素 > * -->
+
+    <!-- 
+      权重值计算 (256进制)
+      !important = 正无穷
+      内联样式 = 1000
+      id = 100
+      class | 属性 | 伪类 = 10
+      标签 | 伪元素 = 1
+      * = 0
+     -->
+    
+    <style type="text/css">
+
+      /* ID 选择器 => 以 # 号开头 => 唯一性 */
+
+      #box {
+        width: 100px;
+        height: 100px;
+        background-color: seashell;
+      }
+
+      /* class 类选择器 => 以 . 开头 => 可以重复出现多次 */
+
+      .wrapper {
+        width: 50px;
+        height: 50px;
+        border: 1px solid #000;
+      }
+
+      /* 标签选择器 => 初始化标签样式时可以使用 */
+
+      p {
+        font-size: 18px;
+      }
+
+      /* 通配符选择器 => 样式初始化作用所有元素 */
+
+      * {
+        list-style: none;
+      }
+
+      /* 属性选择器 or 标签属性选择器 */
+
+      div[id="main"] {
+        width: 100px;
+        height: 100px;
+        border: 1px solid #000;
+      }
+
+      [id] {
+        width: 100px;
+        height: 100px;
+        border: 1px solid #000;
+      }
+
+      [href] {
+        text-decoration: none;
+      }
+
+      /* !important 权重最高级 => 优先级最高 */
+
+      #box {
+        background-color: steelblue !important;
+      }
+
+      /* 派生选择器 or 父子选择器 */
+
+      /* 
+        浏览器对于父子选择器的匹配规则采用从右到左的形式查找
+        为什么是这种方式
+        如果是从左到右查找浏览器起会从最顶端查找，查找过程包含越级查找，越级查找的过程就会浪费很多时间
+        为什么是最顶端
+        因为 dom 树结构是自上而下的
+        如下案例
+        目标元素 .list span
+        先找到 .list 元素后继续向下查找找到 p 和 ul 继续向下查找， ul 中包含多个元素每次的查找都会浪费时间
+        所以
+        从下向上找最多遍历子元素，如果子元素 li 不包含 span 就不会继续向上查找
+      */
+
+      strong em {
+        color: paleturquoise;
+      }
+
+      /* 并列选择器 */
+
+      div.banner {
+        width: 50px;
+        height: 50px;
+        background-color: skyblue;
+      }
+
+    </style>
+
+  </head>
+  <body>
+
+    <div id="box"></div>
+    <!-- <div id="box"></div> -->
+
+    <div class=".wrapper"></div>
+
+    <p>pppppp</p>
+
+    <div id="main"></div>
+    <div id="main1"></div>
+
+    <a href="http://www.baidu.com">百度一下</a>
+
+    <strong>
+      <em>class body hi!</em>
+    </strong>
+
+    <div id="J_banner" class="banner"></div>
+
+    <!-- 案例 -->
+    <div class="list">
+      <p>
+        <span>目标元素</span>
+      </p>
+      <ul>
+        <li>1</li>
+        <li>...</li>
+        <li>10000</li>
+        <!-- ... -->
+      </ul>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>css介绍</title>
+
+    <!-- css cascading style sheet 层叠样式表 -->
+
+    <!-- 外链样式表 -->
+
+    <link rel="stylesheet" type="text/css" href="demo/01_reset.css" />
+
+    <!-- 权重优先级：行内样式 > 内部样式表 > 外部样式表 -->
+
+    <style type="text/css">
+      /* 
+        内部样式表书写格式
+        选择器: {
+          属性名: 属性值;
+          属性名: 属性值;
+        }
+      */
+
+      #box {
+        width: 200px;
+        height: 200px;
+        background-color: goldenrod;
+      }
+    </style>
+
+  </head>
+
+  <body>
+
+    <!-- 行内样式 or 内联样式 -->
+    <div style="width: 100px; height: 200px; background-color: seashell;"></div>
+
+    <div id="box"></div>
+
+  </body>
+
+</html>

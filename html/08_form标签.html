@@ -6,13 +6,11 @@
     <title>form表单</title>
   </head>
   <body>
-
     <!-- form 表单标签 => 提交表单数据 -->
 
     <!-- get 请求参数展示形式 ?username=lxm&password=ming -->
 
     <form method="get" action="">
-
       <label for="username">
         账号
 
@@ -22,7 +20,7 @@
         <!-- value = 展示的默认值 -->
         <!-- maxlength = 最大长度的字符 -->
 
-        <input id="username" type="text" name="username" value="" maxlength="6">
+        <input id="username" type="text" name="username" value="" maxlength="6" />
       </label>
 
       <br />
@@ -32,7 +30,7 @@
 
         <!-- MD5 消息摘要算法，不可逆加密算法 -->
 
-        <input id="password" type="password" name="password">
+        <input id="password" type="password" name="password" />
       </label>
 
       <br />
@@ -46,7 +44,7 @@
          -->
 
         <!-- <input id="readonly" type="text" value="3333" readonly="readonly"> -->
-        <input id="disabled" type="text" value="3333" disabled="disabled">
+        <input id="disabled" type="text" value="3333" disabled="disabled" />
       </label>
 
       <br />
@@ -66,7 +64,72 @@
 
       <br />
 
-      <input type="submit" value="登陆">
+      <label for="car">
+        汽车
+
+        <!-- checkbox 属性，input 多选框 -->
+
+        <input id="car" type="checkbox" name="like" value="car" />
+      </label>
+
+      <label for="ship">
+        轮船
+        <input id="ship" type="checkbox" name="like" value="ship" />
+      </label>
+
+      <br />
+
+      <label for="fruit">
+        水果
+
+        <!-- select 单项选择框 -->
+
+        <select id="fruit" name="fruit">
+          <option value="">请选择</option>
+          <option value="0">苹果</option>
+          <option value="1">香蕉</option>
+          <option value="2">西瓜</option>
+          <option value="3">草莓</option>
+        </select>
+      </label>
+
+      <br />
+
+      <label for="textarea">
+        文本域
+
+        <!-- textarea 文本域标签 -->
+
+        <!-- cols 可见宽度 宽度计算 = 英文字符8px * cols值 + 内部滚动条宽17px -->
+
+        <!-- rows 可见行数 -->
+
+        <!-- 注意 textarea 中不要换行和空行，否则会导致空文本缩进 -->
+
+        <textarea name="textarea" id="textarea" cols="30" rows="10"></textarea>
+      </label>
+
+      <br />
+
+      <!-- fieldset legend 标签 => 封装组 -->
+
+      <fieldset>
+        <legend>用户注册</legend>
+
+        <label for="username">
+          用户名
+          <input type="text" name="usernmae" id="username" placeholder="请输入用户名"/>
+        </label>
+
+        <label for="password">
+          密码
+          <input type="password" name="password" id="password" placeholder="请输入密码"/>
+        </label>
+      </fieldset>
+
+      <br />
+
+      <input type="submit" value="登陆" />
 
     </form>
 
