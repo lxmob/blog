@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>checkbox另一种样式实现</title>
+
+    <style type="text/css">
+
+      .checkbox-wrapper {
+        width: 40px;
+        height: 40px;
+        border: 2px solid #000;
+      }
+
+      .checkbox-wrapper label {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        margin: 10px;
+        background-color: #000;
+        opacity: 0;
+        /* 兼容 IE 的透明属性写法 */
+        filter: alpha(opacity=0);
+      }
+
+      .checkbox-wrapper input[type="checkbox"] {
+        display: none;
+      }
+
+      /* 紧邻兄弟选择器 => 同父级、相邻、在其之后 */
+      .checkbox-wrapper input[type="checkbox"]:checked + label {
+        opacity: 1;
+        filter: alpha(opacity=100);
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <div class="checkbox-wrapper">
+
+      <input id="checkbox-ipt" type="checkbox" />
+      <label for="checkbox-ipt"></label>
+
+    </div>
+
+  </body>
+</html>
