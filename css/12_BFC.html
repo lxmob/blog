@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BFC介绍</title>
+
+    <!-- BFC特性 => block formatting contexts 块级格式化上下文 => css2.1提出的概念 -->
+
+    <!-- 
+      布局形式
+      普通流布局  normal flow
+      浮动流  float
+      绝对定位布局  absolute positioning
+     -->
+
+    <style type="text/css">
+
+      .box {
+        width: 100px;
+        height: 100px;
+      }
+
+      .box1 {
+        margin-bottom: 100px;
+        background-color: green;
+      }
+
+      .box2 {
+        margin-top: 100px;
+        background-color: blueviolet;
+      }
+
+      .clearBFC {
+        overflow: hidden;
+      }
+
+      .l-wrapper {
+        width: 200px;
+        /* height: 100px; */
+        border: 6px solid #000;
+      }
+
+      .l-wrapper .l-item {
+        float: left;
+        width: 100px;
+        height: 100px;
+      }
+
+      .l-wrapper .l-item.left {
+        background-color: palegreen;
+      }
+
+      .l-wrapper .l-item.right {
+        background-color: rebeccapurple;
+      }
+
+      .t-wrapper {
+        width: 300px;
+        height: 300px;
+        background-color: orange;
+      }
+
+      .t-item {
+        width: 100px;
+        height: 100px;
+        margin: 100px auto 0;
+        background-color: green;
+      }
+
+    </style>
+    
+  </head>
+  <body>
+    <!-- 只要在元素身上设置这样属性的，都是具备 BFC 特性的，也可以称 BFC 元素 -->
+    body
+    float: left right
+    position: absolute fixed
+    display: inline-block table-cell flex
+    overflow: hidden auto scroll
+
+    <br />
+
+    <!-- BFC 解决 margin 合并问题 -->
+    <div class="clearBFC">
+      <div class="box box1"></div>
+    </div>
+
+    <div class="clearBFC">
+      <div class="box box2"></div>
+    </div>
+
+    <br />
+
+    <!-- BFC 解决盒子高度坍塌问题 -->
+    <div class="l-wrapper clearBFC">
+      <div class="l-item left"></div>
+      <div class="l-item right"></div>
+      <p class="clearfix"></p>
+    </div>
+
+    <br />
+
+    <!-- BFC 解决 margin top 塌陷问题 -->
+    <div class="t-wrapper clearBFC">
+      <div class="t-item"></div>
+    </div>
+ 
+  </body>
+</html>

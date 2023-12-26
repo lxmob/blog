@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>定位介绍</title>
+
+    <!-- 
+      通过 position 为元素开启新图层进行定位
+      static = 静态定位(默认值)
+      absolute = 绝对定位 => 不占据文档空间
+      relative = 相对定位 => 占据文档空间
+      fixed = 固定定位
+      sticky = 吸附定位
+     -->
+
+    <!-- 
+      开启定位后相对于父级元素位置（父级要开启定位）
+      通过四个属性来控制定位距离
+      left/right top/bottom
+      只有定位元素才可以使用这四个属性，每组属性选其一使用
+      
+      ps: 如果该元素没有父级包裹，则相对于 html 文档
+     -->
+
+    <style type="text/css">
+
+      .box1 {
+        position: absolute;
+        left: 0;
+        top: 10px;
+        width: 100px;
+        height: 100px;
+        background-color: green;
+      }
+
+      .box2 {
+        width: 200px;
+        height: 200px;
+        background-color: blue;
+      }
+
+    </style>
+
+  </head>
+  <body>
+
+    <div class="box1"></div>
+    <div class="box2"></div>
+
+  </body>
+</html>

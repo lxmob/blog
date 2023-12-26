@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>伪类选择器</title>
+
+    <style type="text/css">
+      /* 第一个 or 最后一个 => 子元素 */
+
+      .box span:first-child {
+        color: red;
+      }
+      .box span:last-child {
+        color: blue;
+      }
+
+      /* nth-child(odd | even | number) 获取子元素可选值 => 基数、偶数、数字 */
+
+      .tb-box tr td:nth-child(odd) {
+        color: #666;
+      }
+
+      /* before 伪类 => 可以用来动态接收数据 */
+
+      .b-box::before {
+        content: attr(data-username);
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <div class="box">
+      <span>123</span>
+      <span>123</span>
+      <span>123</span>
+      <span>123</span>
+      <span>123</span>
+    </div>
+
+    <br />
+
+    <table class="tb-box">
+      <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>8</td>
+        <td>9</td>
+      </tr>
+    </table>
+
+    <br />
+
+    <p class="b-box" data-username="ming">hi,see you again</p>
+
+  </body>
+</html>

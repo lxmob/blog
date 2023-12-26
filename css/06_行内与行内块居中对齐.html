@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>行内元素与行内块元素居中对齐</title>
+
+    <style type="text/css">
+
+      .box img {
+        width: 150px;
+        border: 1px solid #000;
+
+        /* vertical-align => 垂直对齐 */
+        /* 解决行内元素与行内块元素文本垂直对齐的问题 */
+
+        /* vertical-align: middle; */
+        /* vertical-align: top; */
+        /* vertical-align: bottom; */
+        vertical-align: -30px;
+      }
+
+      /* 使用 table td 的特性将容器内多行文本垂直居中显示 */
+      .wrapper {
+        display: table;
+        width: 150px;
+        height: 150px;
+        border: 1px solid #000;
+      }
+
+      .wrapper span {
+        display: table-cell;
+        vertical-align: middle;
+      }
+
+      .tb-box {
+        width: 150px;
+        height: 150px;
+      }
+
+    </style>
+
+  </head>
+  <body>
+
+    <div class="box">
+      <img src="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png" />
+      <span>图片描述文本</span>
+    </div>
+
+    <br />
+
+    <div class="wrapper">
+      <span>多行文本多行文本多行文本多行文本多行文本多行文本多行文本</span>
+    </div>
+
+    <table class="tb-box" border="1">
+      <tr>
+        <!-- 注意：td默认将单元格内文本内容垂直居中显示 -->
+        <td>多行文本</td>
+      </tr>
+    </table>
+
+  </body>
+</html>

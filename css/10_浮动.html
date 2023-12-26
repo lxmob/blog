@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>浮动</title>
+
+    <!-- float 浮动属性的出现就是为了解决文本环绕图片的问题 -->
+
+    <!-- 子元素设置 float 会根据父元素宽度进行排列，如果子元素宽度无法占满父元素一行则会进行换行 -->
+
+    <style type="text/css">
+
+      .f-wrapper{
+        width: 100%;
+        height: 300px;
+        border: 1px solid #000;
+      }
+
+      .f-wrapper img {
+        float: left;
+        width: 200px;
+        height: 100px;
+      }
+
+      .box1 {
+        float: left;
+        width: 100px;
+        height: 100px;
+        background-color: palegreen;
+      }
+
+      .box2 {
+        width: 200px;
+        height: 200px;
+        background-color: rebeccapurple;
+      }
+
+      .l-wrapper {
+        width: 200px;
+        /* height: 100px; */
+        border: 6px solid #000;
+      }
+
+      .l-wrapper .l-item {
+        float: left;
+        width: 100px;
+        height: 100px;
+      }
+
+      .l-wrapper .l-item.left {
+        background-color: palegreen;
+      }
+
+      .l-wrapper .l-item.right {
+        background-color: rebeccapurple;
+      }
+
+      .clearfix {
+        /* 清除浮动元素必须是块级 */
+        clear: both;
+      }
+
+      .u-wrapper {
+        width: 300px;
+        padding: 0;
+        border: 1px solid #000;
+        list-style: none;
+      }
+
+      .u-wrapper .u-item {
+        float: left;
+        width: 100px;
+        height: 100px;
+      }
+
+    </style>
+
+  </head>
+  <body>
+
+    <div class="f-wrapper">
+      <img src="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png" />
+      <span>
+        2023年，我们以不可阻挡的步伐，吹响了14亿人民共同迈入中国式现代化新征程的时代号角。走出一条属于自己的道路，必须坚持发展成果由人民共享。
+        14亿多人民是党的生命之根、执政之基、力量之源。依靠广大人民群众直面变化和挑战，才能书写出更精彩的时代华章。
+        在内蒙古巴彦淖尔，年复一年、日复一日栽种的树让从前的沙漠披上绿装，这离不开一代代防沙治沙人久久为功的坚守。“绿进沙退”，三北人迎来幸福生活，也为国家筑牢生态安全屏障。
+        前进的道路不可能一帆风顺。人民至上、生命至上——这是中国共产党对14亿多人民的庄严承诺。
+        2023年“七下八上”汛期，多地出现极端降雨，引发洪涝和地质灾害。习近平总书记时刻牵挂受灾群众安危冷暖。一个个重要部署，一次次关心叮嘱，饱含着“人民至上，生命至上”的深情。
+        回望2023年，总书记冒寒风、翻山岭，到社区、进农家，察饮食、问健康，人民生活始终被牵挂于心。
+        我国要实现“人口规模巨大的现代化”，在人类历史上没有先例可循，走出一条属于自己的道路，必须坚持以人民为中心的发展思想，发展为了人民、发展依靠人民、发展成果由人民共享。
+      </span>
+    </div>
+
+    <br />
+
+    <!-- 
+      浮动流不会开启新的图层，但是块级元素无法识别浮动流元素的位置
+      内联、内联块、浮动、溢出隐藏、纯文本都可以识别出浮动元素的位置
+     -->
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <!-- <span>inline行内元素</span> -->
+    <!-- 123 -->
+    <!-- <input type="text" /> -->
+
+    <br />
+
+    <!-- 浮动元素对父级造成的影响 -->
+    <div class="l-wrapper">
+      <div class="l-item left"></div>
+      <div class="l-item right"></div>
+      <p class="clearfix"></p>
+    </div>
+
+    <br />
+
+    <!-- 设置浮动的元素就会变成内联块元素 -->
+    <ul class="u-wrapper">
+      <li class="u-item">1</li>
+      <li class="u-item">2</li>
+      <li class="u-item">3</li>
+      <p class="clearfix"></p>
+    </ul>
+
+  </body>
+</html>

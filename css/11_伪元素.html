@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>伪元素</title>
+
+    <!-- w3c 规定元素后两个 :: 的称伪元素 -->
+
+    <style type="text/css">
+
+      .text::before {
+        /* content 属性必须要加 */
+        content: '';
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        background-color: green;
+      }
+
+      .text::after {
+        content: '';
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        background-color: yellow;
+      }
+
+      /* 使用伪元素来设置清除浮动造成的影响 */
+
+      .clearfix::after {
+        content: '';
+        display: block;
+        clear: both;
+      }
+
+    </style>
+
+  </head>
+  <body>
+
+    <p class="text">天气很好</p>
+
+  </body>
+</html>

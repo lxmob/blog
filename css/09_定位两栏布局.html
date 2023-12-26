@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>使用定位两栏布局</title>
+
+    <style type="text/css">
+      
+      html,body{
+        margin: 0;
+        height: 100%;
+      }
+
+      /* 右侧固定左侧自适应 */
+
+      /* .l-left {
+        height: 100%;
+        margin-right: 300px;
+        background-color: green;
+      }
+
+      .l-right {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 300px;
+        height: 100%;
+        background-color: yellowgreen;
+      } */
+
+      /* 左侧固定右侧自适应 */
+
+      .l-left {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 300px;
+        height: 100%;
+        background-color: yellowgreen;
+      }
+
+      .l-right {
+        height: 100%;
+        margin-left: 300px;
+        background-color: green;
+      }
+
+    </style>
+
+  </head>
+  <body>
+
+    <div class="l-left"></div>
+    <div class="l-right"></div>
+
+  </body>
+</html>
