@@ -21,9 +21,8 @@
         color: #666;
       }
 
-      /* before 伪类 => 可以用来动态接收数据 */
-
-      .b-box::before {
+      .b-box:before {
+        /* attr 可以用来动态接收数据 */
         content: attr(data-username);
       }
 

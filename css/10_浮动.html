@@ -5,9 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>浮动</title>
 
-    <!-- float 浮动属性的出现就是为了解决文本环绕图片的问题 -->
+    <!-- 
+      问题
+      1. 浮动是什么
+      2. 浮动存在的意义
+      3. 浮动的特点
+      4. 浮动的缺陷
+    -->
 
-    <!-- 子元素设置 float 会根据父元素宽度进行排列，如果子元素宽度无法占满父元素一行则会进行换行 -->
+    <!-- 浮动是将元素脱离文档流并且依次向右或向左排列，如果父级宽度不够子级排满一行则会进行自动换行 -->
+
+    <!-- float 浮动属性的出现就是为了解决文本环绕图片的问题，例如我们在报纸中看到的排版形式 -->
 
     <style type="text/css">
 
@@ -106,11 +114,11 @@
 
     <br />
 
-    <!-- 浮动元素对父级造成的影响 -->
+    <!-- 当我们给子元素开启浮动时，父级没有高度则会高度坍塌 -->
     <div class="l-wrapper">
       <div class="l-item left"></div>
       <div class="l-item right"></div>
-      <p class="clearfix"></p>
+      <!-- <p class="clearfix"></p> -->
     </div>
 
     <br />
