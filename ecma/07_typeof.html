@@ -34,8 +34,8 @@
     因为null指代的是空对象的指针和空对象的占位符，JS历史遗留问题
   -->
   <script>
-    typeof 1 / 0; // NaN（这个NaN不是字符串类型，是数值类型）
-    typeof typeof 1 / 0; // NaN（这个NaN不是字符串类型，是数值类型）
+    typeof 1 / 0; // NaN => typeof 1 ---> 'number' / 0
+    typeof typeof 1 / 0; // NaN => typoef 1 ---> typeof 'number' ---> 'string' / 0
     typeof (1 / 0); // "number"
     typeof typeof (1 / 0); // "string"
     typeof (typeof 1 / 0); // "number"
