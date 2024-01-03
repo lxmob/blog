@@ -4,25 +4,62 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>继承圣杯模式</title>
+    <title>原型继承</title>
   </head>
   <body></body>
-  <!-- 
-    通过实例化一个对象来继承构造函数的原型对象 prototype
-    缺点：会导致 new 出来的实例共用一块原型对象内存，且没有办法向父类传递参数。
-  -->
+
+  <!-- 继承一：手动将 prototype 赋值给实例化对象 -->
   <script>
-    function Dog(name, age) {
-      this.name = name;
-      this.age = age;
-      this.toys = ["线球", "磨牙棒"];
+    Professor.prototype = {
+      name: 'ming',
+      age: 27
     }
-    Husky.prototype = new Dog();
+    function Professor() {}
+    var p = new Professor()
+    Teacher.prototype = p
+    function Teacher() {
+      this.name = 'ai'
+      this.age = 100
+    }
+    var t = new Teacher()
+    Student.prototype = t
+    function Student() {
+      this.name = 'lili'
+      this.age = 10
+    }
+    var s = new Student()
+    console.log(s)
+  </script>
+
+  <!-- 继承二：通过 call/apply 来借用构造函数的属性和方法 -->
+  <script>
+    Teacher.prototype.car = 'Benz'
+    function Teacher(name, age) {
+      this.name = name
+      this.age = age
+    }
+    function Student(name, age, book) {
+      Teacher.apply(this, [name, age])
+      this.book = book
+    }
+    var s = new Student('ming', 27, 'Js++')
+    console.log(s.car) // undefined 缺点无法访问被借用的构造函数原型对象
+    console.log(s)
+  </script>
+
+  <!-- 继承三：通过将子级 prototype 直接赋值为父级的 prototype -->
+  <script>
+    function Dog(name) {
+      this.name = name
+    }
+    Dog.prototype = { age: 2 }
+    var d = new Dog('pp')
+    console.log(d)
     function Husky() {}
-    var husky1 = new Husky();
-    var husky2 = new Husky();
-    husky2.toys.push("肚兜");
-    console.log(husky1, husky2); // 共用一块内存数据
+    Husky.prototype = Dog.prototype
+    Husky.prototype.age = 1 // 这里把父级的 prototype 的属性值也给污染了
+    var h = new Husky()
+    console.log(h)
   </script>
 
   <!-- 
@@ -31,7 +68,7 @@
     解决方案：创建一个缓冲区，通过一个纯净的对象来作为中间件存储属性，并将中间件的原型对象指向父类原型。
   -->
   <script>
-    Person.prototype.phone = "iphone12";
+    Person.prototype.phone = 'iphone12';
     function Person() {}
     function Student() {}
     function inherit(Target, Origin) {
@@ -44,14 +81,12 @@
     inherit(Student, Person);
     var s = new Student();
     // 完美解决在子类原型对象上更改属性且不影响父类原型问题，同时还能够操作父类属性和方法。
-    Student.prototype.phone = "iphone6";
+    Student.prototype.phone = 'iphone6';
     var p = new Person();
     console.log(s, p);
   </script>
 
-  <!-- 
-    插件改造 ES5 模块化开发
-  -->
+  <!-- 插件改造 ES5 模块化开发 -->
   <script>
     var inheritPlugin = (function () {
       var Buffer = function () {};
@@ -62,40 +97,38 @@
         Target.prototype.super_class = Origin;
       };
     })();
-    Person.prototype.phone = "iphone12";
+    Person.prototype.phone = 'iphone12';
     function Person() {}
     function Student() {}
     inheritPlugin(Student, Person);
     var s = new Student();
-    Student.prototype.phone = "iphone6";
+    Student.prototype.phone = 'iphone6';
     var p = new Person();
     console.log(s, p);
   </script>
 
-  <!-- 
-    根据业务按需求再封装
-  -->
+  <!-- 根据业务按需求再封装 -->
   <script>
     var InitAllPerson = (function () {
       function Person() {}
       Person.prototype = {
         eat: function () {
-          console.log("我喜欢吃:", this.food);
+          console.log('我喜欢吃:', this.food);
         },
         run: function () {
-          console.log("我喜欢运动:", this.sport);
+          console.log('我喜欢运动:', this.sport);
         },
       };
       function Student() {}
       function Teacher() {}
-      Student.prototype = { food: "水果", sport: "游泳" };
-      Teacher.prototype = { food: "豆汁", sport: "跑步" };
+      Student.prototype = { food: '水果', sport: '游泳' };
+      Teacher.prototype = { food: '豆汁', sport: '跑步' };
       inheritPlugin(Student, Person);
       inheritPlugin(Teacher, Person);
       return { Student, Teacher };
     })();
     var s = new InitAllPerson.Student();
-    InitAllPerson.Student.prototype.phone = "iphone6";
+    InitAllPerson.Student.prototype.phone = 'iphone6';
     var t = new InitAllPerson.Teacher();
     console.log(s, t);
   </script>
