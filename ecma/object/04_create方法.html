@@ -7,9 +7,8 @@
     <title>Object.create方法</title>
   </head>
   <body></body>
-  <!-- 
-    使用现有的对象来作为新创建对象的原型，既然都是创建对象的原型那么作用就是用于继承。
-  -->
+
+  <!-- 使用现有的对象来作为新创建对象的原型，用于继承属性和方法 -->
   <script>
     var dog = Object.create(null);
     console.log(dog); // No properties
@@ -21,8 +20,9 @@
   </script>
 
   <!-- 
-    通过 Object.create 创建的对象无法调用 Object.prototype 身上的方法，如果手动更改原型链呢？
-    不能，原型链是程序在创建对象时默认生成的，通过 Object.create 只是创建一个对象的原型并非原型链。
+    通过 Object.create 创建的对象无法调用 Object.prototype 身上的方法
+    手动更改原型链也不行，原型链是程序在创建对象时默认生成的
+    通过 Object.create 只是创建一个对象的原型并非原型链
   -->
   <script>
     var person = Object.create(null); // 原型链已断
@@ -37,9 +37,7 @@
     person.__proto__.toString();
   </script>
 
-  <!-- 
-    如果手动为对象添加 toString 方法呢？
-  -->
+  <!-- 手动为对象添加 toString 方法 -->
   <script>
     var num = 1;
     var cur = {};
@@ -52,5 +50,11 @@
       return "createObj";
     };
     document.write(createObj); // createObj
+  </script>
+
+  <!-- toString 原型方法的重写 -->
+  <script>
+    console.log(Number.prototype.toString.call(1)) // 1
+    console.log(Object.prototype.toString.call(1)) // [object Number]
   </script>
 </html>

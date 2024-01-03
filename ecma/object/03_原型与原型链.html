@@ -72,9 +72,9 @@
       // 通过 new 关键字在内部创建 this 对象指向实例
       var thiss = {
         // 实例对象能够输出原型对象身上的属性是通过 __proto__ 找到的
-        __proto__: (Car.prototype = {
+        __proto__: Car.prototype = {
           name: 'Honda',
-        }),
+        },
       };
       // this.name = 'Benz'
       return thiss;
@@ -119,5 +119,30 @@
     Car.prototype = { name: 'Mazda' };
     // Car.prototype.name = 'Mazda' // 重写 name 属性 
     console.log(car.name); // Benz
+  </script>
+
+  <!-- 实例化对象是无法修改父祖先级的 prototype 原始值属性 -->
+  <script>
+    function Professor() {}
+    var p = new Professor()
+    function Teacher() {
+      this.unf = undefined
+      this.bol = true
+      this.str = 'str'
+      this.num = 100
+      this.desc = { name: 'ming' }
+    }
+    Teacher.prototype = p
+    var t = new Teacher()
+    function Student() {}
+    Student.prototype = t
+    var s = new Student()
+    // s.desc.name = 'mingming' // 引用类型可以修改属性
+    // s.desc.name += 'ming'
+    // s.num++ // 原始类型无法修改 => s.num = s.num + 1
+    // s.str += 'ming'
+    // s.bol += 1
+    // s.unf += 10
+    console.log(s)
   </script>
 </html>
