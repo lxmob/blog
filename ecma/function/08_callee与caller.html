@@ -7,9 +7,8 @@
     <title>函数的callee与caller</title>
   </head>
   <body></body>
-  <!-- 
-    一个例子看懂 callee 与 caller 的区分 
-  -->
+
+  <!-- callee 与 caller 的区分 -->
   <script>
     function dog(name, age) {
       console.log(arguments.callee.length); // 形参长度
@@ -26,9 +25,7 @@
     dog("husky");
   </script>
 
-  <!-- 
-    通过 callee 我们可以调用自身
-  -->
+  <!-- 通过 callee 我们可以调用自身 -->
   <script>
     var sum = (function (n) {
       if (n <= 1) {

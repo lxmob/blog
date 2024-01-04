@@ -57,7 +57,7 @@
     console.log(d)
     function Husky() {}
     Husky.prototype = Dog.prototype
-    Husky.prototype.age = 1 // 这里把父级的 prototype 的属性值也给污染了
+    Husky.prototype.age = 1 // 这里把父级的 prototype 中的属性值也给污染了
     var h = new Husky()
     console.log(h)
   </script>
@@ -105,31 +105,5 @@
     Student.prototype.phone = 'iphone6';
     var p = new Person();
     console.log(s, p);
-  </script>
-
-  <!-- 根据业务按需求再封装 -->
-  <script>
-    var InitAllPerson = (function () {
-      function Person() {}
-      Person.prototype = {
-        eat: function () {
-          console.log('我喜欢吃:', this.food);
-        },
-        run: function () {
-          console.log('我喜欢运动:', this.sport);
-        },
-      };
-      function Student() {}
-      function Teacher() {}
-      Student.prototype = { food: '水果', sport: '游泳' };
-      Teacher.prototype = { food: '豆汁', sport: '跑步' };
-      inheritPlugin(Student, Person);
-      inheritPlugin(Teacher, Person);
-      return { Student, Teacher };
-    })();
-    var s = new InitAllPerson.Student();
-    InitAllPerson.Student.prototype.phone = 'iphone6';
-    var t = new InitAllPerson.Teacher();
-    console.log(s, t);
   </script>
 </html>
