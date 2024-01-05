@@ -7,17 +7,6 @@
     <title>数组去重方法</title>
   </head>
   <body></body>
-  <!-- 随机排序 -->
-  <script>
-    var arr = [2, 0, 1, 9, 7, 5, 109];
-    function randomArr(arr) {
-      // Math.random 开区间 0 - 1
-      return arr.sort((a, b) => {
-        return Math.random() - 0.5;
-      });
-    }
-    console.log(randomArr(arr));
-  </script>
 
   <!-- 数组去重 -->
   <script>
@@ -92,9 +81,7 @@
     console.log(uniqueArr.unique7());
   </script>
 
-  <!-- 
-    编写一个方法将数组扁平化并将扁平化后数组去重，然后进行升序排序
-  -->
+  <!-- 数组扁平化并将扁平化后数组去重，然后进行升序排序 -->
   <script>
     var flatArr = [[1, 1, 2], 4, [7, 7, "a", ["a", "b", 10]], 10, 4, 6, [7, 9]];
     Array.prototype.flatten = function () {

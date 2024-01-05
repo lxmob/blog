@@ -37,10 +37,10 @@
     num.len = 3;
     console.log(num.len); // undeinfed
 
-    var str = "string";
+    var str = 'string';
     // 包装类中默认的属性 { [primitiveValue]: 'string', length: 0 }
     console.log(str.length); // 6 => new String(str).length
-    
+
     // new String(str).length = 1 形成包装类但是未赋值变量 => delete
     str.length = 1;
     console.log(str.length); // 6
@@ -48,12 +48,12 @@
 
   <!-- 练习题 -->
   <script>
-    var name = "ming";
+    var name = 'ming';
     name += 10; // ming10
     var type = typeof name; // string
     if (type.length === 6) {
       // true
-      type.text = "string"; // new String(type).text = 'string' => delete
+      type.text = 'string'; // new String(type).text = 'string' => delete
     }
     console.log(type.text); // undefined
   </script>

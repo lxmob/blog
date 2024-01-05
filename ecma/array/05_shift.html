@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Array.prototype.shift方法</title>
+  </head>
+  <body>
+    <!--  
+      Array.prototype.shift()
+      向源数组删除第一个元素，返回被删除的数（如果数组为空则返回 undefined），改变原数组
+    -->
+  </body>
+
+  <script>
+    var arr = [4, 5, 6];
+    console.log(arr.shift()); // 4
+    console.log(arr.shift()); // 5
+    console.log(arr.shift()); // 6
+    console.log(arr.shift()); // undefined
+
+    // while 循环使用删除
+    var names = ['ming', 'lili', 'cuzz'];
+    while (typeof (i = names.shift()) !== 'undefined') {
+      console.log(i);
+    }
+
+    // 源码实现
+    // [1, 2, 3]
+    // i = 0 [2, 3, undefined]
+    Array.prototype.shift = function () {
+      var cur = this[0];
+      // or = this.reverse()
+      for (var i = 0; i < this.length; i++) {
+        this[i] = this[i + 1];
+      }
+      this.length--;
+      return cur;
+    };
+  </script>
+</html>

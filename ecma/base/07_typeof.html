@@ -14,7 +14,7 @@
   -->
   <script>
     console.log(typeof 1); // number
-    console.log(typeof "str"); // string
+    console.log(typeof 'str'); // string
     console.log(typeof true); // boolean
     console.log(typeof null); // object
     console.log(typeof undefined); // undefined
@@ -47,7 +47,7 @@
       var current = typeof target;
       if (target === null) {
         return null;
-      } else if (current === "object") {
+      } else if (current === 'object') {
         return Object.prototype.toString
           .call(target)
           .slice(8, -1)
@@ -59,12 +59,12 @@
     console.log(_typeof(undefined)); // undefined
     console.log(_typeof(null)); // null
     console.log(_typeof(true)); // boolean
-    console.log(_typeof("str")); // string
+    console.log(_typeof('str')); // string
     console.log(_typeof({})); // object
     console.log(_typeof([])); // array
     console.log(_typeof(function () {})); // function
     console.log(_typeof(new Number(123))); // number
-    console.log(_typeof(new String("str"))); // string
+    console.log(_typeof(new String('str'))); // string
     console.log(_typeof(new Boolean(false))); // boolean
   </script>
 </html>

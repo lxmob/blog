@@ -6,10 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>对象的浅拷贝与深拷贝</title>
   </head>
-  <body></body>
-  <!-- 
-    浅拷贝只拷贝对象的第一层属性，如果属性值是引用类型复制的将是引用值。
-  -->
+  <body>
+    <!--  
+      问题
+      1. 什么是浅拷贝
+      2. 什么是深拷贝
+      3. 两者的区别是什么
+    -->
+  </body>
+
+  <!-- 浅拷贝只拷贝对象的第一层属性，如果属性值是引用类型复制的将是引用值 -->
   <script>
     function _clone(target, origin) {
       for (let key in origin) target[key] = origin[key];
@@ -28,9 +34,7 @@
     console.log(_clone(origin));
   </script>
 
-  <!-- 
-    深拷贝实现递归拷贝对象，避免复制多层引用类型数据嵌套问题。
-  -->
+  <!-- 深拷贝实现递归拷贝对象，避免复制多层引用类型数据嵌套问题 -->
   <script>
     function _deepClone(target, origin) {
       var toString = Object.prototype.toString;

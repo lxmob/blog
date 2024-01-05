@@ -13,16 +13,16 @@
     该函数解析字符串并返回整数，第一个参数是 string，第二参数是 radix 表示 2 - 36 进制范围，默认为10进制。
   -->
   <script>
-    console.log(parseInt(" 123")); // 123
+    console.log(parseInt(' 123')); // 123
     console.log(parseInt(true)); // NaN
 
     // 0123456789abcdef 16进制满足位数进 1
-    console.log(parseInt("b", 16)); // 11
-    console.log(parseInt("10", 16)); // 16
+    console.log(parseInt('b', 16)); // 11
+    console.log(parseInt('10', 16)); // 16
 
     // 判定原则根据第一位如果是字符串则以 NaN 处理，如果是数字截取到末尾最后一个数字
-    console.log(parseInt("101abc")); // 101
-    console.log(parseInt("abc10")); // NaN
+    console.log(parseInt('101abc')); // 101
+    console.log(parseInt('abc10')); // NaN
 
     // parseInt 不能解析 Infinity 或者 -Infinity 返回 NaN
     console.log(parseInt(Infinity)); // NaN
@@ -34,7 +34,7 @@
     同 parseInt 规则一样，但是只接收一个参数 string
   -->
   <script>
-    console.log(parseFloat("3.1456a")); // 3.1456
+    console.log(parseFloat('3.1456a')); // 3.1456
 
     // parseFloat 函数可以解析 Infinity 或者 -Infinity
     console.log(parseFloat(Infinity)); // Infinity

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Array.prototype.splice方法</title>
+  </head>
+  <body>
+    <!--  
+      Array.prototype.splice(startIdx, delCount, ...args)
+      增删改源数组，返回被删除元素组成的数组，若没有被删除的元素则返回空数组，改变原数组
+    -->
+  </body>
+
+  <script>
+    var arr = ['parrot', 'anemone', 'blue', 'trumpet', 'sturgeon'];
+    console.log(arr.splice(arr.length - 3, 2)); // ['blue', 'trumpet']
+    console.log(arr.splice(-2, 1)); // ['trumpet']
+    console.log(arr.splice(2)); // ['blue', 'trumpet', 'sturgeon']
+
+    // 获取指定的下标元素
+    function splice(idx, arr) {
+      return (idx += idx >= 0 ? 0 : arr.length);
+    }
+    console.log(arr[splice(3, arr)]); // 'trumpet'
+    console.log(arr[splice(-3, arr)]); // 'blue'
+
+    // 源码实现
+    Array.prototype.splice = function () {
+      // 未完待续...
+    };
+  </script>
+</html>

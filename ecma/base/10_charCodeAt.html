@@ -20,13 +20,13 @@
     charCodeAt 与 charAt 方法操作相似，但是后者返回的是指定位置的字符子串
   -->
   <script>
-    console.log("12345".charAt(0)); // '1'
-    console.log("12345".charAt(-1)); // ''
-    console.log("12345".charAt(NaN)); // '1'
-    console.log("12345".charAt(Infinity)); // ''
-    console.log("12345".charAt(10)); // ''
+    console.log('12345'.charAt(0)); // '1'
+    console.log('12345'.charAt(-1)); // ''
+    console.log('12345'.charAt(NaN)); // '1'
+    console.log('12345'.charAt(Infinity)); // ''
+    console.log('12345'.charAt(10)); // ''
 
-    var str = "abc";
+    var str = 'abc';
     var pos = str.charCodeAt(0);
     console.log(pos); // 97
   </script>
@@ -44,7 +44,7 @@
       }
       return sum;
     }
-    console.log(strByteSum("jkahsdihjqikwe}{:}信")); // 20 byte
+    console.log(strByteSum('jkahsdihjqikwe}{:}信')); // 20 byte
   </script>
 
   <!-- 
@@ -52,7 +52,7 @@
     我们可以运用数组原型对象身上的 sort() 方法来实现功能。
   -->
   <script>
-    var arr = ["阴天多云", "minga", "晴天", "暴风雨"];
+    var arr = ['阴天多云', 'minga', '晴天', '暴风雨'];
     function sortStrBytes(arr) {
       return arr.sort((a, b) => strByteSum(a) - strByteSum(b));
     }
@@ -61,7 +61,7 @@
 
   <!-- 拓展习题：字符串中出现次数最多的字母 -->
   <script>
-    var str = "kjasduiqwoejnasdmmmasldkasdiip";
+    var str = 'kjasduiqwoejnasdmmmasldkasdiip';
     function getStrTimes(str) {
       var temp = {};
       for (var i = 0; i < str.length; i++) {

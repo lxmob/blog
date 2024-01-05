@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Array.prototype.reverse方法</title>
+  </head>
+  <body>
+    <!--  
+      Array.prototype.reverse()
+      反转数组，返回反转后的数组引用，改变原数组
+    -->
+  </body>
+
+  <script>
+    var arr = [1, 2, 3];
+    console.log(arr.reverse()); // [3, 2, 1]
+    console.log(arr); // [3, 2, 1]
+
+    // 对类数组进行使用
+    var obj = {
+      5: 'a',
+      9: 'b',
+      2: 'c',
+      length: 3,
+    };
+    console.log(Array.prototype.reverse.call(obj));
+
+    // 源码实现
+    // [1, 2, 3]
+    // i = 0 [3, 2, 1]
+    // i = 1 [3, 2, 1]
+    Array.prototype.reverse = function () {
+      for (var i = 0; i < this.length / 2; i++) {
+        var temp = this[i];
+        this[i] = this[this.length - 1 - i];
+        this[this.length - 1 - i] = temp;
+      }
+      return this;
+    };
+  </script>
+</html>

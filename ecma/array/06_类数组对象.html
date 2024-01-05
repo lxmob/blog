@@ -9,7 +9,7 @@
   <body></body>
   <!-- 类数组没有继承 Array.prototype 是不具备数组方法 -->
   <script>
-    var allDiv = document.getElementsByTagName("div");
+    var allDiv = document.getElementsByTagName('div');
     console.log(allDiv); // 类数组对象
 
     function classArr() {
@@ -32,14 +32,6 @@
     console.log(simObjArr); // Object(4) [empty × 2, 1, 2, push: ƒ, splice: ƒ]
   </script>
 
-  <!-- 理解 push 方法在底层做了什么事 -->
-  <script>
-    Array.prototype.push = function (elem) {
-      this[this.length] = elem;
-      this.length++;
-    };
-  </script>
-
   <!-- 
     创建一个类数组继承数组身上的方法，即可以是对象也可以是数组。
     创建类属性的条件：
@@ -49,11 +41,11 @@
   -->
   <script>
     var classObjArr = {
-      0: "类数组",
-      1: "数组方法",
-      2: "对象属性",
-      name: "classArr",
-      options: "config",
+      0: '类数组',
+      1: '数组方法',
+      2: '对象属性',
+      name: 'classArr',
+      options: 'config',
       length: 3,
       push: Array.prototype.push,
       splice: Array.prototype.splice,

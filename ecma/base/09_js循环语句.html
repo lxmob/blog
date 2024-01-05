@@ -30,8 +30,8 @@
     // 满足条件后执行循环体内代码输出 body 然后执行 i++ 再次循环，判断条件满足条件后执行循环体内代码，
     // 直到不满足条件时输出 end 循环结束。
     var i = 0;
-    for (console.log("start"); i < 10; console.log("end")) {
-      console.log("body");
+    for (console.log('start'); i < 10; console.log('end')) {
+      console.log('body');
       i++;
     }
   </script>
@@ -56,7 +56,7 @@
     var i = 0;
     do {
       // 先执行
-      console.log("do while");
+      console.log('do while');
       i++;
     } while (i < 10); // 满足条件后继续执行
   </script>
@@ -117,7 +117,7 @@
     var a = num % 10;
     var b = ((num - a) % 100) / 10;
     var c = (num - a - b * 10) / 100;
-    console.log("" + a + b + c);
+    console.log('' + a + b + c);
 
     // 打印 100 以内的质数
     // 质数仅仅只能被 1 和本身整除的数，能被其他数整除的数不叫质数
@@ -151,9 +151,9 @@
     // 以 9 为次数，依次相乘
     for (var i = 1; i <= 9; i++) {
       for (var j = 1; j <= i; j++) {
-        document.write(j, "*", i, "=", j * i);
+        document.write(j, '*', i, '=', j * i);
       }
-      document.write("<br />");
+      document.write('<br />');
     }
 
     // 水仙花数

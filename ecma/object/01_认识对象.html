@@ -30,13 +30,13 @@
   -->
   <script>
     // 1. 字面量创建方式
-    var obj = { name: "dog" };
+    var obj = { name: 'dog' };
     // 2. js内置构造函数创建方式
     var obj2 = new Object();
-    obj2.name = "dog";
+    obj2.name = 'dog';
     // 3. 自定义构造函数创建
     function CreateObj() {
-      this.name = "dog";
+      this.name = 'dog';
     }
     var obj3 = new CreateObj();
     console.log(obj, obj2, obj3);
@@ -52,11 +52,11 @@
       this.name = name;
       this.age = age;
       this.eat = function () {
-        console.log("eat");
+        console.log('eat');
       };
       // return this
     }
-    var husky = new Dog("哈士奇", 1);
+    var husky = new Dog('哈士奇', 1);
     console.log(husky);
   </script>
 
@@ -70,12 +70,12 @@
      * GO = {
      *  Test: function
      * }
-     * 
+     *
      * Ao = {
      *  this: {}
      * }
-     * 
-    */
+     *
+     */
     function Test() {
       var thiss = {};
       thiss.__proto__ = Test.prototype;
@@ -96,7 +96,7 @@
       // return [] 影响结果 x
       // return new Date() 影响结果 x
     }
-    var husky = new Dog("哈士奇");
+    var husky = new Dog('哈士奇');
     console.log(husky);
   </script>
 </html>
