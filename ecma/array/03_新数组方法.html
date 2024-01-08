@@ -9,9 +9,10 @@
   <body></body>
 
   <!--  
-    Array.prototype.join()
-    数组转字符串，通过传递的参数作为分隔符进行连接，不传递默认以逗号分隔
-    不改变原数组，返回值是拼接字符串
+    join()
+    作用：数组转字符串，通过传递的参数作为分隔符进行连接，不传递默认以逗号分隔
+    返回值：拼接后的字符串
+    影响：不改变原数组
   -->
   <script>
     var arr = ['Wind', 'Rain', 'Fire'];
@@ -30,8 +31,10 @@
   </script>
 
   <!-- 
-    Array.prototype.concat(...args) 
-    合并数组，参数可以是值或者数组，不改变原数组，放回值是合并后的新数组
+    concat(...args) 
+    作用：合并数组，参数可以是值或者数组
+    返回值：合并后的新数组
+    影响：不改变原数组
   -->
   <script>
     var arr = [4, 5, 6];
@@ -40,18 +43,20 @@
 
     // 源码实现
     Array.prototype.concat = function () {
-      var newArr = [...this];
+      var nArr = [...this];
       for (var i = 0; i < arguments.length; i++) {
         var cur = arguments[i];
-        Array.isArray(cur) ? newArr.push(...cur) : newArr.push(cur);
+        Array.isArray(cur) ? nArr.push(...cur) : nArr.push(cur);
       }
-      return newArr;
+      return nArr;
     };
   </script>
 
   <!--  
-    Array.prototype.slice(start, end)
-    浅拷贝数组，包括 start 但不包括 end，返回值是新的数组，不改变原数组
+    slice(start, end)
+    作用：浅拷贝数组，包括 start 但不包括 end
+    返回值：新的数组
+    影响：不改变原数组
   -->
   <script>
     var arr = ['ming', 1, 2, 3, 'lili', NaN];
@@ -64,16 +69,12 @@
     var arr2 = arr1.slice(0, 1);
     arr2[0].name = 'lili';
     console.log(arr2, arr1); // {name: 'lili'}
-
-    // 源码实现
-    Array.prototype.slice = function () {
-      // 未完待续...
-    };
   </script>
 
   <!-- 
-    Array.prototype.indexOf(value, fromIndex) 
-    查找指定元素位置，返回值是查找的元素第一次出现的下标，如果没有找到返回 -1
+    indexOf(value, fromIndex) 
+    作用：查找指定元素位置
+    返回值：查找到元素第一次出现时的下标，如果没有找到返回 -1
   -->
   <script>
     var arr = [4, 5, 5, 6];
@@ -82,13 +83,12 @@
     console.log(arr.indexOf(5, 2)); // 2
 
     // 源码实现
-    Array.prototype.indexOf = function () {
-      var target = arguments[0],
-        fromIndex = arguments[1],
-        i = fromIndex ? fromIndex : 0,
+    Array.prototype.indexOf = function (t) {
+      var fIdx = arguments[1],
+        i = fIdx ? fIdx : 0,
         result = -1;
       for (; i < this.length; i++) {
-        if (target === this[i]) {
+        if (t === this[i]) {
           result = i;
           break;
         }
@@ -98,8 +98,9 @@
   </script>
 
   <!--  
-    Array.prototype.includes(value, fromIndex)
-    判断一个数组是否包含一个指定的值，返回值是布尔值
+    includes(value, fromIndex)
+    作用：判断一个数组是否包含一个指定的值
+    返回值：布尔值
   -->
   <script>
     var arr = [4, 5, 6];
@@ -110,13 +111,12 @@
     console.log(arr.includes(5, -100)); // true
 
     // 源码实现
-    Array.prototype.includes = function () {
-      var target = arguments[0],
-        fromIndex = arguments[1],
-        i = fromIndex ? fromIndex : 0,
+    Array.prototype.includes = function (t) {
+      var fIdx = arguments[1],
+        i = fIdx ? fIdx : 0,
         result = false;
       for (; i < this.length; i++) {
-        if (target === this[i]) {
+        if (t === this[i]) {
           result = true;
         }
       }

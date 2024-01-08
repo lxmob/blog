@@ -6,7 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>类数组对象</title>
   </head>
-  <body></body>
+  <body>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+  </body>
+
   <!-- 类数组没有继承 Array.prototype 是不具备数组方法 -->
   <script>
     var allDiv = document.getElementsByTagName('div');
@@ -16,20 +21,6 @@
       console.log(arguments); // 类数组对象
     }
     classArr(1, 2, 3, 4);
-  </script>
-
-  <!-- 类数组对象（题） -->
-  <script>
-    var simObjArr = {
-      2: 3,
-      3: 4,
-      length: 2,
-      push: Array.prototype.push,
-      splice: Array.prototype.splice,
-    };
-    simObjArr.push(1);
-    simObjArr.push(2);
-    console.log(simObjArr); // Object(4) [empty × 2, 1, 2, push: ƒ, splice: ƒ]
   </script>
 
   <!-- 
@@ -53,5 +44,19 @@
     console.log(classObjArr[2]); // 对象属性
     console.log(classObjArr[1]); // 数组方法
     console.log(classObjArr.length); // 3
+  </script>
+
+  <!-- 练习题 -->
+  <script>
+    var simObjArr = {
+      2: 3,
+      3: 4,
+      length: 2,
+      push: Array.prototype.push,
+      splice: Array.prototype.splice,
+    };
+    simObjArr.push(1);
+    simObjArr.push(2);
+    console.log(simObjArr); // Object(4) [empty × 2, 1, 2, push: ƒ, splice: ƒ]
   </script>
 </html>

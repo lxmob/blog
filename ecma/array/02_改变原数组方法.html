@@ -7,9 +7,10 @@
   </head>
   <body></body>
 
-  <!--  
-    Array.prototype.push(...args)
-    向源数组末尾增加元素，返回新数组的长度，改变原数组
+  <!-- 
+    push(...args)
+    作用：末尾增加元素
+    返回值：新数组的长度
   -->
   <script>
     var arr = [4, 5, 6];
@@ -26,18 +27,14 @@
   </script>
 
   <!--  
-    Array.prototype.unshift(...args)
-    向源数组开始头部增加元素，返回新数组的长度，改变原数组
+    unshift(...args)
+    作用：头部增加元素
+    返回值：新数组的长度
   -->
   <script>
     var arr = [4, 5, 6];
     console.log(arr.unshift(1, 2, 3)); // 6
     console.log(arr); // [1, 2, 3, 4, 5, 6]
-
-    // 在非数组对象中使用
-    var obj = {};
-    Array.prototype.unshift.call(obj, 1, 2);
-    console.log(obj); // { 0: 1, 1: 2, length: 2 }
 
     // 源码实现
     // [1, 2, 3]
@@ -60,8 +57,9 @@
   </script>
 
   <!--  
-    Array.prototype.pop()
-    向源数组删除最后一个元素，返回被删除的数（如果数组为空则返回 undefined），改变原数组
+    pop()
+    作用：删除最后一个元素
+    返回值：被删除的数（如果数组为空则返回 undefined）
   -->
   <script>
     var arr = [4, 5, 6];
@@ -70,29 +68,18 @@
     console.log(arr.pop()); // 4
     console.log(arr.pop()); // undefined
 
-    // 类数组对象的应用
-    var obj = {
-      length: 3,
-      0: 'a',
-      1: 'b',
-      2: 'c',
-      removeItem: function () {
-        return [].pop.call(this);
-      },
-    };
-    console.log(obj.removeItem());
-
     // 源码实现
     Array.prototype.pop = function () {
-      cur = this[this.length - 1];
+      var cur = this[this.length - 1];
       this.length--;
       return cur;
     };
   </script>
 
   <!--  
-    Array.prototype.shift()
-    向源数组删除第一个元素，返回被删除的数（如果数组为空则返回 undefined），改变原数组
+    shift()
+    作用：删除第一个元素
+    返回值：被删除的数（如果数组为空则返回 undefined）
   -->
   <script>
     var arr = [4, 5, 6];
@@ -101,18 +88,11 @@
     console.log(arr.shift()); // 6
     console.log(arr.shift()); // undefined
 
-    // while 循环使用删除
-    var names = ['ming', 'lili', 'cuzz'];
-    while (typeof (i = names.shift()) !== 'undefined') {
-      console.log(i);
-    }
-
     // 源码实现
     // [1, 2, 3]
     // i = 0 [2, 3, undefined]
     Array.prototype.shift = function () {
       var cur = this[0];
-      // or = this.reverse()
       for (var i = 0; i < this.length; i++) {
         this[i] = this[i + 1];
       }
@@ -122,8 +102,9 @@
   </script>
 
   <!--  
-    Array.prototype.splice(startIdx, delCount, ...args)
-    增删改源数组，返回被删除元素组成的数组，若没有被删除的元素则返回空数组，改变原数组
+    splice(startIdx, delCount, ...args)
+    作用：增删改数组
+    返回值：被删除元素组成的数组，若没有被删除的元素则返回空数组
   -->
   <script>
     var arr = ['parrot', 'anemone', 'blue', 'trumpet', 'sturgeon'];
@@ -137,30 +118,17 @@
     }
     console.log(arr[splice(3, arr)]); // 'trumpet'
     console.log(arr[splice(-3, arr)]); // 'blue'
-
-    // 源码实现
-    Array.prototype.splice = function () {
-      // 未完待续...
-    };
   </script>
 
   <!--  
-    Array.prototype.reverse()
-    反转数组，返回反转后的数组引用，改变原数组
+    reverse()
+    作用：反转数组
+    返回值：反转后的源数组
   -->
   <script>
     var arr = [1, 2, 3];
     console.log(arr.reverse()); // [3, 2, 1]
     console.log(arr); // [3, 2, 1]
-
-    // 对类数组进行使用
-    var obj = {
-      5: 'a',
-      9: 'b',
-      2: 'c',
-      length: 3,
-    };
-    console.log(Array.prototype.reverse.call(obj));
 
     // 源码实现
     // [1, 2, 3]
@@ -177,9 +145,9 @@
   </script>
 
   <!--  
-    Array.prototype.sort(fn?)
-    数组排序，如果省略参数，元素按照转换为的字符串的各个字符的 Unicode 码进行排序
-    改变原数组
+    sort(fn?)
+    作用：数组排序，如果省略参数，元素按照转换为的字符串的各个字符的 Unicode 码进行排序
+    返回值：排序后的源数组
 
     1. 正值，a 在前
     2. 负值，b 在前
@@ -201,10 +169,5 @@
      */
     arr.sort((a, b) => a - b); // [1, 2, 12, 32, 56, 90]
     arr.sort(() => Math.random() - 0.5); // 随机排列 => Math.random 开区间 0-1
-
-    // 源码实现
-    Array.prototype.sort = function () {
-      // 未完待续...
-    };
   </script>
 </html>
