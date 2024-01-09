@@ -192,29 +192,10 @@
       return elem;
     }
 
-    // 找出一个父元素下面的所有子元素
-    function findParentChilds(node) {
-      var temp = {
-          length: 0,
-          push: Array.prototype.push,
-          splice: Array.prototype.splice,
-        },
-        len = node.childNodes.length,
-        item;
-      for (var i = 0; i < len; i++) {
-        item = node.childNodes[i];
-        if (item.nodeType == 1) {
-          temp[temp.length] = item;
-          temp.length++;
-        }
-      }
-      return temp;
-    }
-
     // 子元素倒叙
     function flashbackElem(node) {
       var children = node.childNodes,
-        len = this.childNodes.length;
+        len = children.length;
       while (len--) {
         node.appendChild(children[len]);
       }
