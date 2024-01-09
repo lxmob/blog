@@ -16,6 +16,7 @@
       </li>
     </ul>
   </body>
+
   <!-- 
     遍历节点树 -> 元素节点树
     节点不等于元素，节点中包含元素 -> 元素节点 = dom元素
@@ -39,18 +40,18 @@
       hasChildNodes
   -->
   <script>
-    var aNode = document.getElementsByTagName("a")[0];
+    var aNode = document.getElementsByTagName('a')[0];
     console.log(aNode.parentNode);
     console.log(aNode.parentNode.childNodes);
 
-    var liNode = document.getElementsByTagName("li")[0];
+    var liNode = document.getElementsByTagName('li')[0];
     console.log(liNode.firstChild); // 不常用
     console.log(liNode.lastChild); // 不常用
 
-    var pNode = document.getElementsByTagName("p")[0];
+    var pNode = document.getElementsByTagName('p')[0];
     console.log(pNode.previousSibling); // 不常用
     console.log(pNode.nextSibling); // 不常用
-    console.log(pNode.hasChildNodes());
+    console.log(pNode.hasChildNodes()); // true
   </script>
 
   <!-- 
@@ -64,23 +65,23 @@
       nextElementSibling
   -->
   <script>
-    console.log(aNode.parentElement); // ie9以下不支持
+    console.log(aNode.parentElement); // ie9及以下不支持
     console.log(liNode.children); // ie7及以下不支持
-    console.log(liNode.firstElementChild); // ie9以下不支持
-    console.log(liNode.lastElementChild); // ie9以下不支持
-    console.log(liNode.previousElementSibling); // ie9以下不支持
-    console.log(liNode.nextElementSibling); // ie9以下不支持
-    console.log(liNode.childElementCount);
+    console.log(liNode.firstElementChild); // ie9及以下不支持
+    console.log(liNode.lastElementChild); // ie9及以下不支持
+    console.log(liNode.previousElementSibling); // ie9及以下不支持
+    console.log(liNode.nextElementSibling); // ie9及以下不支持
+    console.log(liNode.childElementCount); // ie9及以下不支持
   </script>
 
   <!-- 
     节点具备的属性
       nodeName（只读）
-      nodeValue=value（属性、注释、文本节点可写）
+      nodeValue=value（属性、注释、文本节点具备的属性，可写）
       nodeType
   -->
   <script>
-    var h2Node = document.getElementsByTagName("h2")[0];
+    var h2Node = document.getElementsByTagName('h2')[0];
     console.log(h2Node.nodeName); // 获取的元素节点名称大写 H2
     console.log(document.nodeName); // #document
     console.log(h2Node.previousSibling.nodeName); // #text
@@ -88,6 +89,141 @@
 
     // nodeValue 可写
     var commentNode = liNode.childNodes[1];
-    commentNode.nodeValue = "nodeValue更改的注释";
+    commentNode.nodeValue = 'nodeValue更改的注释';
+  </script>
+
+  <!-- 封装方法 -->
+  <script>
+    // childNodes => children
+    function elemChildren(node) {
+      var temp = {
+          length: 0,
+          splice: Array.prototype.splice,
+        },
+        len = node.childNodes.length,
+        item;
+      for (var i = 0; i < len; i++) {
+        item = node.childNodes[i];
+        if (item.nodeType == 1) {
+          temp[temp.length] = item;
+          temp.length++;
+        }
+      }
+      return temp;
+    }
+
+    // 判断父元素有没有子元素节点
+    function hasChildren(node) {
+      var nodes = node.childNodes,
+        flags = false;
+      for (var i = 0; i < nodes.length; i++) {
+        if (nodes[i].nodeType == 1) {
+          flags = true;
+        }
+      }
+      return flags;
+    }
+
+    // 根据下标查找元素下对应的子元素
+    function findIdxElem(idx, node) {
+      var nodes = node.childNodes,
+        elems = {
+          length: 0,
+          push: Array.prototype.push,
+          splice: Array.prototype.splice,
+        };
+      for (var i = 0; i < nodes.length; i++) {
+        if (nodes[i].nodeType == 1) {
+          elems.push(nodes[i]);
+        }
+      }
+      return elems[idx];
+    }
+
+    // 找出一个元素的第n层父元素
+    function findParentElem(n, node) {
+      var elem = node,
+        isNotNum = typeof n !== 'number';
+      if (isNotNum) {
+        return elem;
+      } else if (n < 0) {
+        return undefined;
+      }
+      while (n) {
+        if (elem.nodeName === 'HTML') {
+          elem = null;
+          return elem;
+        }
+        elem = elem.parentNode;
+        n--;
+      }
+      return elem;
+    }
+
+    // 查找兄弟元素节点，参数为n支持正负查找，参数0返回自身
+    function findSiblingElem(n, node) {
+      var elem = node;
+      while (n) {
+        if (n > 0) {
+          // 兼容 ie9 以下
+          if (elem.nextElementSibling) {
+            elem = elem.nextElementSibling;
+          } else {
+            for (
+              elem = elem.nextSibling;
+              elem && elem.nodeType !== 1;
+              elem = elem.nextSibling
+            );
+          }
+          n--;
+        } else if (n < 0) {
+          if (elem.previousElementSibling) {
+            elem = elem.previousElementSibling;
+          } else {
+            for (
+              elem = elem.previousSibling;
+              elem && elem.nodeType !== 1;
+              elem = elem.previousSibling
+            );
+          }
+          n++;
+        }
+      }
+      return elem;
+    }
+
+    // 找出一个父元素下面的所有子元素
+    function findParentChilds(node) {
+      var temp = {
+          length: 0,
+          push: Array.prototype.push,
+          splice: Array.prototype.splice,
+        },
+        len = node.childNodes.length,
+        item;
+      for (var i = 0; i < len; i++) {
+        item = node.childNodes[i];
+        if (item.nodeType == 1) {
+          temp[temp.length] = item;
+          temp.length++;
+        }
+      }
+      return temp;
+    }
+
+    // 子元素倒叙
+    function flashbackElem(node) {
+      var children = node.childNodes,
+        len = this.childNodes.length;
+      while (len--) {
+        node.appendChild(children[len]);
+      }
+    }
+
+    // insertAfter 方法
+    function insertAfter(target, origin, node) {
+      var nextNode = origin.nextElementSibling;
+      nextNode ? node.insertBefore(target, nextNode) : node.appendChild(target);
+    }
   </script>
 </html>

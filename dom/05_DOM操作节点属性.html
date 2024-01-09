@@ -20,18 +20,19 @@
       removeAttribute
   -->
   <script>
-    var divNode = document.querySelector("#box");
+    var divNode = document.querySelector('#box');
     console.log(divNode);
-    console.log(divNode.hasAttribute("name"));
-    console.log(divNode.getAttribute("id"));
-    console.log(divNode.setAttribute("input", "value"));
-    console.log(divNode.removeAttribute("name"));
-    console.log(divNode.getAttributeNode("id"));
+    console.log(divNode.hasAttribute('name')); // true
+    console.log(divNode.getAttribute('id')); // 'box'
+
+    divNode.setAttribute('input', 'value'); // setAttribute(attr, value)
+    divNode.removeAttribute('name'); // removeAttribute(attr)
+    console.log(divNode.getAttributeNode('id'));
     console.log(divNode.attributes);
 
-    // 自定义属性保存在当前元素节点下 dataset 对象中
-    var contNode = document.getElementsByClassName("container")[0];
-    console.log(contNode.getAttribute("data-name"));
+    // HTML5中自定义属性保存在当前元素节点下 dataset 对象中
+    var contNode = document.getElementsByClassName('container')[0];
+    console.log(contNode.getAttribute('data-name')); // 'div'
     console.log(contNode.dataset);
   </script>
 </html>

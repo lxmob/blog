@@ -15,6 +15,7 @@
     </div>
     <div class="container"></div>
   </body>
+  
   <!-- 
     通过 dom 元素获取节点的方法
     document.getElementById('id') 元素
@@ -25,39 +26,24 @@
     document.querySelectorAll('* or CSS-selector') 类数组
   -->
   <script>
-    var idBox = document.getElementById("app"); // 通常用来获取模块化的单个容器元素
-    console.log(idBox);
+    // 通常用来获取模块化的单个容器元素
+    console.log('id: ', document.getElementById('app'));
+    console.log('id: ', document.getElementById('APP')); // ie8以下不区分大小写
 
-    var tagBoxes = document.getElementsByTagName("div"); // ie4及以下不支持
-    var classBoxes = document.getElementsByClassName("box"); // ie8及以下不支持
-    var nameInputs = document.getElementsByName("username"); // 不常用
-    console.log(tagBoxes, classBoxes, nameInputs);
-  </script>
+    console.log('byTagName: ', document.getElementsByTagName('div')); // ie4及以下不支持
+    console.log('byClassName: ', document.getElementsByClassName('box')); // ie8及以下不支持
+    console.log('byName: ', document.getElementsByName('username')); // 不常用
 
-  <!-- 
-    HTML5新引入WEB-API querySelector、querySelectorAll 兼容ie7及以上
-    优点：参数支持标签名、类名、id名等 => css选择器写法
-    缺点：
-      1.性能比以上 get* 方法差 
-      2.不实时性，存储的只是一块片段
+    // HTML5 新引入 WEB-API
+    // 优点：参数支持 css 选择器写法
+    // 缺点：性能比 get 类方法差查询慢，不实时存储的只是一块片段
+    console.log('query: ', document.querySelector('.container')); // ie7以下不支持
+    console.log('queryAll: ', document.querySelectorAll('div')); // ie7以下不支持
 
-    querySelector 只支持选择单个元素，无法选择元素组
-  -->
-  <script>
-    var queryBox = document.querySelector(".container");
-    console.log(queryBox);
-    var queryAll = document.querySelectorAll("div");
-    console.log(queryAll);
-    //
-    queryAll[1].remove();
-    console.log(queryAll);
-  </script>
-
-  <!-- 
-    通配符选择器 *
-  -->
-  <script>
-    var all = document.getElementsByTagName("*");
-    console.log(all);
+    // var tAll = document.getElementsByTagName('div')
+    var qAll = document.querySelectorAll('div');
+    console.log(qAll);
+    qAll[0].remove();
+    console.log(qAll);
   </script>
 </html>

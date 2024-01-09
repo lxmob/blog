@@ -9,33 +9,35 @@
   <body>
     <ul class="list"></ul>
   </body>
+
   <!-- 替换模版 -->
   <script type="text/html" id="tpl">
     <li>第{{num}}项 <button>删除</button></li>
   </script>
 
-  <!-- 
-    创建文档片段 document.createDocumentFragment()
-    它不存在 dom 节点树当中，解决结构回流的问题，提升性能
+  <!--
+    document.createDocumentFragment() 创建文档片段
+    它不存在 dom 节点树当中，存放在内存当中
+    当频繁的向页面添加元素节点时浏览器渲染引擎会不停的计算元素几何的位置就会造成结构回流的问题
+    结构回流 => 浏览器页面会重排元素位置
+    通过 DocumentFragment 来解决浏览器回流的问题
   -->
   <script>
-    var oUl = document.querySelector(".list");
+    var oUl = document.querySelector('.list');
     var oFrag = document.createDocumentFragment(); // 内存容器
     for (var i = 0; i < 50; i++) {
-      var liNode = document.createElement("li");
-      liNode.innerText = "这是第" + i + "项";
+      var liNode = document.createElement('li');
+      liNode.innerText = '这是第' + i + '项';
       oFrag.appendChild(liNode);
     }
     oUl.appendChild(oFrag);
   </script>
 
-  <!-- 
-    🌰 批量创建 li 并添加删除功能，考虑性能节约内存
-  -->
+  <!-- 批量创建 li 并添加删除功能，考虑性能节约内存 -->
   <script>
-    var oList = document.createElement("ul"),
-      tpl = document.getElementById("tpl").innerHTML,
-      list = "";
+    var oList = document.createElement('ul'),
+      tpl = document.getElementById('tpl').innerHTML,
+      list = '';
 
     for (var i = 0; i < 50; i++) {
       list += tpl.replace(/\{\{(.*?)\}\}/, i + 1);
