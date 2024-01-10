@@ -114,10 +114,10 @@
 
     // 判断父元素有没有子元素节点
     function hasChildren(node) {
-      var nodes = node.childNodes,
+      var children = node.childNodes,
         flags = false;
-      for (var i = 0; i < nodes.length; i++) {
-        if (nodes[i].nodeType == 1) {
+      for (var i = 0; i < children.length; i++) {
+        if (children[i].nodeType == 1) {
           flags = true;
         }
       }
@@ -126,15 +126,15 @@
 
     // 根据下标查找元素下对应的子元素
     function findIdxElem(idx, node) {
-      var nodes = node.childNodes,
+      var children = node.childNodes,
         elems = {
           length: 0,
           push: Array.prototype.push,
           splice: Array.prototype.splice,
         };
-      for (var i = 0; i < nodes.length; i++) {
-        if (nodes[i].nodeType == 1) {
-          elems.push(nodes[i]);
+      for (var i = 0; i < children.length; i++) {
+        if (children[i].nodeType == 1) {
+          elems.push(children[i]);
         }
       }
       return elems[idx];
@@ -190,6 +190,22 @@
         }
       }
       return elem;
+    }
+
+    // 遍历所有的子元素节点
+    function forElemChild(node) {
+      var children = node.childNodes,
+        len = children.length,
+        item;
+      if (node && node.nodeType === 1) {
+        console.log(node);
+      }
+      for (var i = 0; i < len; i++) {
+        item = children[i];
+        if (item.nodeType === 1 && item.hasChildNodes()) {
+          forElemChild(item);
+        }
+      }
     }
 
     // 子元素倒叙

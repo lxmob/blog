@@ -10,6 +10,7 @@
     <div class="e-clock"></div>
     <div class="countdown"></div>
   </body>
+
   <!-- 
     创建一个日期对象，如果不传递参数默认是当前最新的时间，
     如果传递参数其中 month 参数计数从 0 开始，所以我们传递参数时 month + 1 月份。
@@ -20,7 +21,7 @@
 
     // 日期对象实例化，继承 => Date.prototype 继承 => Object.prototype。
     var date = new Date();
-    var _date = new Date("2017-04-08");
+    var _date = new Date('2017-04-08');
     var _1970 = new Date(0);
   </script>
 
@@ -41,10 +42,23 @@
     date.getTime(); // 获取日期时间戳，计算机纪元时间 1970 年 1 月 1 日开始的毫秒数。
   </script>
 
+  <!-- 定时器与计时器 -->
+  <script>
+    setTimeout('console.log(1)', 1000);
+    setInterval(_csl, 1000);
+
+    function _csl() {
+      console.log('csl...');
+    }
+    var timeId = setTimeout(_csl, 1000); // 唯一标识
+    console.log(timeId); // 随机id值
+    clearTimeout(timeId);
+  </script>
+
   <!-- 电子时钟 -->
   <script>
     function setZero(num) {
-      return num < 10 ? "0" + num : num;
+      return num < 10 ? '0' + num : num;
     }
     function showTime() {
       var date = new Date(),
@@ -56,8 +70,8 @@
         s = date.getSeconds();
       return `${y}年${setZero(m)}月${setZero(d)}日 ${setZero(h)}点${setZero(m)}分钟${setZero(s)}秒`;
     }
-    var eClockWrap = document.getElementsByClassName("e-clock")[0];
-    setInterval(() => {
+    var eClockWrap = document.getElementsByClassName('e-clock')[0];
+    setInterval(function () {
       eClockWrap.innerHTML = showTime();
     }, 1000);
   </script>
@@ -74,8 +88,8 @@
         s = Math.floor(interval % 60);
       return `倒计时：${setZero(d)}天 ${setZero(h)}小时 ${setZero(m)}分钟 ${setZero(s)}秒`;
     }
-    var countdownWrap = document.getElementsByClassName("countdown")[0];
-    setInterval(() => {
+    var countdownWrap = document.getElementsByClassName('countdown')[0];
+    setInterval(function () {
       countdownWrap.innerHTML = countdown(new Date('2024-03-28'));
     }, 1000);
   </script>
