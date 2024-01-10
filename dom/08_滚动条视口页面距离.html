@@ -1,4 +1,3 @@
-<!-- <!DOCTYPE html> -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -42,19 +41,12 @@
       </div>
     </div>
   </body>
-  <!-- 
-    浏览器兼容的怪异模式和标准模式
-    <!DOCTYPE html> 这一行代码要求浏览器兼容 w3c 的规范（标准模式）
-    如果不写则使用浏览器厂商自己的兼容模式（怪异模式），通常浏览器都会向后兼容自己5个版本
-  -->
-  <script>
-    console.log(document.compatMode); // CSS1Compat -> w3c，BackCompat -> 怪异
-  </script>
 
   <!-- 
-    滚动条滚出距离属性：
+    滚动条滚出距离属性
       常规使用 window.pageXOffset/pageYOffset
-    兼容性问题，IE9/IE8及以下需要使用：
+
+    兼容性问题，IE9/IE8及以下需要使用
       document.body.scrollLeft/scrollTop
       document.documentElement.scrollLeft/scrollTop
       两者在 IE6789 标准模式和怪异模式下分别互斥（标准模式下一方可用一方不可用）
@@ -62,9 +54,8 @@
     不常见的 window.scrollY/scrollX
   -->
   <script>
-    console.log(window.pageXOffset, window.pageYOffset);
     // 兼容封装
-    function getScrollOffset() {
+    function getPageXYOffset() {
       if (window.pageXOffset) {
         return { left: window.pageXOffset, top: window.pageYOffset };
       } else {
@@ -77,31 +68,32 @@
   </script>
 
   <!-- 
-    浏览器可视区域的尺寸（视口）window.innerHeight/innerWidth
-    兼容性问题，IE9/IE8及以下需要使用：
+    浏览器可视区域的尺寸（视口）
+      常规使用 window.innerHeight/innerWidth
+
+    兼容性问题，IE9/IE8及以下需要使用
       标准 document.documentElement.clientHeight/clientWidth
       怪异 document.body.clientHeight/clientWidth
 
-    浏览器整体宽高 window.outerHeight/outerWidth
+    浏览器整体宽高（包含工具条） window.outerHeight/outerWidth
   -->
   <script>
-    console.log(window.innerHeight, window.innerWidth);
     // 兼容封装
     function getViewportSize() {
       if (window.innerHeight) {
         return { width: window.innerWidth, height: window.innerHeight };
       } else {
-        var isW3C = document.compatMode === "CSS1Compat";
+        var isW3C = document.compatMode === 'CSS1Compat';
         return {
-          width: document[isW3C ? "documentElement" : "body"].clientWidth,
-          height: document[isW3C ? "documentElement" : "body"].clientHeight,
+          width: document[isW3C ? 'documentElement' : 'body'].clientWidth,
+          height: document[isW3C ? 'documentElement' : 'body'].clientHeight,
         };
       }
     }
   </script>
 
   <!-- 
-    页面整体宽高属性：视口的距离 + 滚动条的距离 = 页面整体宽高
+    页面整体宽高属性（视口的距离 + 滚动条的距离 = 页面整体宽高）
     window.innerWidth + window.pageXOffset = document.documentElement.scrollWidth / document.body.scrollWidth
     window.innerHeight + window.pageYOffset = document.documentElement.scrollHeight / document.body.scrollHeight
     兼容问题，IE567支持 documentElement
@@ -111,36 +103,38 @@
     function getScrollSize() {
       var isIE567 = !!document.body.scrollHeight;
       return {
-        width: document[isIE567 ? "documentElement" : "body"].scrollWidth,
-        height: document[isIE567 ? "documentElement" : "body"].scrollHeight,
+        width: document[isIE567 ? 'documentElement' : 'body'].scrollWidth,
+        height: document[isIE567 ? 'documentElement' : 'body'].scrollHeight,
       };
     }
   </script>
 
   <!-- 
-    获取元素距离视口0,0点位置信息 getBoundingClientRect
+    getBoundingClientRect
+    获取元素距离视口 0,0点位置信息 
     兼容问题：IE中无法获取宽高属性
     缺点：不实时
   -->
   <script>
-    var boxNode = document.getElementsByClassName("box")[0],
+    var boxNode = document.getElementsByClassName('box')[0],
       rectInfo = boxNode.getBoundingClientRect();
-    boxNode.style.width = "300px";
+    boxNode.style.width = '300px';
     console.log(rectInfo); // width: 200
   </script>
 
   <!-- 
     元素位置信息属性
-    offsetLeft、offsetTop 会根据元素的父级定位开始算，如果元素父级没有定位则向上找，一直找到视口0,0点位置
+    offsetLeft、offsetTop 
+    根据元素的父级定位开始算，如果元素父级没有定位则向上找，一直找到 body
   -->
   <script>
-    var innerNode = boxNode.getElementsByClassName("inner-box")[0];
+    var innerNode = boxNode.getElementsByClassName('inner-box')[0];
     console.log(innerNode.offsetLeft, innerNode.offsetTop);
 
-    // offsetParent 取元素具有定位的父级元素，一直找到body
+    // offsetParent 取元素具有定位的父级元素，一直找到 body
     console.log(innerNode.offsetParent);
 
-    // 封装获取元素距离视口的距离
+    // 获取元素距离视口 0,0点的距离
     function getElemClientRect(el) {
       var parent = el.offsetParent,
         offsetLeft = el.offsetLeft,
@@ -157,7 +151,7 @@
 
   <!-- 
     设置滚动条滚动的距离
-    滚动文档中某个位置 window.scroll(x, y)、window.scrollTo(x, y)
+    滚动文档中某个位置 window.scroll(x, y) / window.scrollTo(x, y)
     累加滚动文档 window.scrollBy(x, y)
   -->
   <script>
