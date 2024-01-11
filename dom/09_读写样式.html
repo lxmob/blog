@@ -14,7 +14,7 @@
         background-color: green;
       }
       .box::after {
-        content: "";
+        content: '';
         display: block;
         width: 50px;
         height: 50px;
@@ -28,15 +28,16 @@
   <body>
     <div class="box">box</div>
   </body>
+
   <!-- 
     getComputedStyle 查看计算样式 -> 绝对值
     兼容问题 IE8及以下不支持（IE8使用currentStyle）
   -->
   <script>
-    var divEl = document.getElementsByTagName("div")[0];
-    console.log(divEl.style.color);
-    console.log(divEl.style);
-    console.log(window.getComputedStyle(divEl, null));
+    var divNode = document.getElementsByTagName('div')[0];
+    console.log(divNode.style.color);
+    console.log(divNode.style);
+    console.log(window.getComputedStyle(divNode, null));
 
     // 兼容封装
     function getStyles(elem, prop) {
@@ -48,32 +49,33 @@
         return prop ? elem.currentStyle[prop] : elem.currentStyle;
       }
     }
-    console.log(getStyles(divEl)); // 类数组对象
+    console.log(getStyles(divNode)); // 类数组对象
   </script>
 
   <!-- 
-    offsetWidth 和 el.style.width 查找的机制不一样，offsetWidth是通过底层渲染引擎大小来返回尺寸
+    offsetWidth 和 el.style.width 查找的机制不一样
+    offsetWidth 是通过底层渲染引擎大小来返回尺寸
     而 el.style.width 是通过元素属性行内样式来获取尺寸大小
   -->
   <script>
-    console.log(divEl.style.width); // 内联
-    console.log(divEl.offsetWidth); // 120 计算了 padding
+    console.log(divNode.style.width); // 内联
+    console.log(divNode.offsetWidth); // 120 计算了 padding
 
     // 运动案例 offsetWidth 导致的问题
-    divEl.onclick = function () {
-      var width = this.offsetWidth; // 获取整个元素的渲染宽度大小
+    divNode.onclick = function () {
+      // 获取整个元素的渲染宽度大小
+      // offset 这种方式将 padding 的值也算进去
+      var width = this.offsetWidth;
       // var width = parseInt(getStyles(this, 'width'))
-      this.style.width = width + 10 + "px";
+      this.style.width = width + 10 + 'px';
     };
   </script>
 
-  <!-- 
-    读取伪元素属性，操作伪元素样式
-  -->
+  <!-- 读取伪元素属性，操作伪元素样式 -->
   <script>
-    console.log(window.getComputedStyle(divEl, "after").width);
-    divEl.onclick = function () {
-      this.className += " active";
+    console.log(window.getComputedStyle(divNode, 'after').width);
+    divNode.onclick = function () {
+      this.className += ' active';
     };
   </script>
 </html>

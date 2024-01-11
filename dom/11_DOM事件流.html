@@ -34,15 +34,15 @@
 
   <!-- 
     事件流是描述页面中触发事件的顺序（冒泡与捕获）
-    🌟 如果同时为相同的事件绑定了处理函数，不同的处理机制，则先触发捕获后冒泡
+    如果同时为相同的事件绑定了处理函数，不同的处理机制，则先触发捕获后冒泡
 
-    🌟 以下的事件不存在冒泡和捕获机制
+    以下的事件不存在冒泡和捕获机制
     focus blur change submit reset select
   -->
   <script>
-    var wEl = document.getElementsByClassName("wrapper")[0],
-      oEl = wEl.getElementsByClassName("outer")[0],
-      iEl = oEl.getElementsByClassName("inner")[0];
+    var wEl = document.getElementsByClassName('wrapper')[0],
+      oEl = wEl.getElementsByClassName('outer')[0],
+      iEl = oEl.getElementsByClassName('inner')[0];
   </script>
 
   <!-- 
@@ -52,23 +52,23 @@
   -->
   <script>
     wEl.addEventListener(
-      "click",
+      'click',
       function () {
-        console.log("bubble-wrapper");
+        console.log('bubble-wrapper');
       },
       false
     );
     oEl.addEventListener(
-      "click",
+      'click',
       function () {
-        console.log("bubble-outer");
+        console.log('bubble-outer');
       },
       false
     );
     iEl.addEventListener(
-      "click",
+      'click',
       function () {
-        console.log("bubble-inner");
+        console.log('bubble-inner');
       },
       false
     );
@@ -81,23 +81,23 @@
   -->
   <script>
     wEl.addEventListener(
-      "click",
+      'click',
       function () {
-        console.log("wrapper");
+        console.log('wrapper');
       },
       true
     );
     oEl.addEventListener(
-      "click",
+      'click',
       function () {
-        console.log("outer");
+        console.log('outer');
       },
       true
     );
     iEl.addEventListener(
-      "click",
+      'click',
       function () {
-        console.log("inner");
+        console.log('inner');
       },
       true
     );
@@ -110,12 +110,12 @@
   -->
   <script>
     iEl.addEventListener(
-      "click",
+      'click',
       function (event) {
         // event.stopPropagation()
         // event.cancelBubble = true
         // cancelBubble(event)
-        console.log(event, "inner-stopPropagation");
+        console.log(event, 'inner-stopPropagation');
       },
       false
     );
@@ -140,7 +140,7 @@
       // event.preventDefault()
       // 3. IE9以下使用 event.returnValue = false
       event.returnValue = false;
-      console.log("oncontextmenu");
+      console.log('oncontextmenu');
     };
   </script>
 </html>
