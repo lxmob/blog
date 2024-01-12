@@ -19,29 +19,29 @@
   <body>
     <div class="box"></div>
   </body>
-  <script src="../demos/dom/utils.js"></script>
+
   <script>
-    var bWrap = document.getElementsByClassName("box")[0];
+    var bWrap = document.getElementsByClassName('box')[0];
 
     // keydown
     document.onkeydown = function (e) {
       var ev = e || window.event,
         code = ev.keyCode, // 键码
-        bLeft = getStyles(bWrap, "left"),
-        bTop = getStyles(bWrap, "top");
+        bTop = parseInt(getStyles(bWrap, 'top')),
+        bLeft = parseInt(getStyles(bWrap, 'left'));
 
       switch (code) {
         case 37:
-          bWrap.style.left = bLeft - 5 + "px";
+          bWrap.style.left = bLeft - 5 + 'px';
           break;
         case 38:
-          bWrap.style.top = bTop - 5 + "px";
+          bWrap.style.top = bTop - 5 + 'px';
           break;
         case 39:
-          bWrap.style.left = bLeft + 5 + "px";
+          bWrap.style.left = bLeft + 5 + 'px';
           break;
         case 40:
-          bWrap.style.top = bTop + 5 + "px";
+          bWrap.style.top = bTop + 5 + 'px';
       }
     };
 
@@ -50,5 +50,15 @@
       // 通过 String.fromCharCode 方法可以获取触发键码具体的值
       console.log(e.charCode, String.fromCharCode(e.charCode));
     };
+
+    function getStyles(elem, prop) {
+      if (window.getComputedStyle) {
+        return prop
+          ? window.getComputedStyle(elem, null)[prop]
+          : window.getComputedStyle(elem, null);
+      } else {
+        return prop ? elem.currentStyle[prop] : elem.currentStyle;
+      }
+    }
   </script>
 </html>
