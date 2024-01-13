@@ -7,12 +7,11 @@
   </head>
   <body></body>
 
-  <!-- 对数器 = 生成随机样本自己做比对的机器 -->
   <script>
     // Math.random() => double => [0, 1)
     // 一个等概率的获取随机数的方法
     function testRandom() {
-      var testTime = 10000000,
+      var testTime = 100000,
         count = 0;
       for (var i = 0; i < testTime; i++) {
         // if (Math.random() < 0.3) {
@@ -27,7 +26,7 @@
 
     // [0, K) => [0, K-1] => [0, 8]
     function testKRandom() {
-      var testTime = 10000000,
+      var testTime = 100000,
         K = 9,
         countObj = {};
       for (var i = 0; i < testTime; i++) {
@@ -51,7 +50,7 @@
       return Math.max(Math.random(), Math.random());
     }
     function testX2Random() {
-      var testTime = 10000000,
+      var testTime = 100000,
         count = 0,
         x = 0.6;
       for (var i = 0; i < testTime; i++) {
@@ -70,7 +69,7 @@
       return Math.max(Math.random(), Math.max(Math.random(), Math.random()));
     }
     function testX3Random() {
-      var testTime = 10000000,
+      var testTime = 100000,
         count = 0,
         x = 0.6;
       for (var i = 0; i < testTime; i++) {
@@ -89,7 +88,7 @@
       return Math.min(Math.random(), Math.random());
     }
     function testX2RandomMin() {
-      var testTime = 10000000,
+      var testTime = 100000,
         count = 0,
         x = 0.6;
       for (var i = 0; i < testTime; i++) {
@@ -172,5 +171,78 @@
     }
 
     console.log(y());
+
+    // 对数器 => 生成随机样本自己做比对的机器
+    function selectSort(arr) {
+      if (arr == null || arr.length < 2) {
+        return;
+      }
+      var N = arr.length;
+      for (var i = 0; i < N; i++) {
+        var minNumIndex = i;
+        for (var j = i + 1; j < N; j++) {
+          minNumIndex = arr[j] < arr[minNumIndex] ? j : minNumIndex;
+        }
+        swap(arr, i, minNumIndex);
+      }
+    }
+
+    function swap(arr, i, j) {
+      var temp = arr[j];
+      arr[j] = arr[i];
+      arr[i] = temp;
+    }
+
+    // 返回一个数组arr，arr长度[0, maxLen - 1]，arr中的每个值[0, maxValue - 1]
+    function lenRandomValueRandom(maxLen, maxValue) {
+      var len = parseInt(Math.random() * maxLen),
+        arr = Array(len);
+      for (var i = 0; i < len; i++) {
+        arr[i] = parseInt(Math.random() * maxValue);
+      }
+      return arr;
+    }
+
+    function copyArray(arr) {
+      var nArr = [];
+      for (var i = 0; i < arr.length; i++) {
+        nArr[i] = arr[i];
+      }
+      return nArr;
+    }
+
+    function isSorted(arr) {
+      var max = arr[0];
+      for (var i = 1; i < arr.length; i++) {
+        if (max > arr[i]) {
+          return false;
+        }
+        max = Math.max(max, arr[i]);
+      }
+      return true;
+    }
+
+    // 随机进行样本抽查
+    // 对数器就是用来调bug的，让你不需要依赖线上的测试自己就能写对代码
+    // 随意控制样本的大小
+    function testSort() {
+      var maxLen = 5,
+        maxValue = 1000,
+        testTime = 10000;
+      for (var i = 0; i < testTime; i++) {
+        var arr1 = lenRandomValueRandom(maxLen, maxValue);
+        var temp = copyArray(arr1);
+        selectSort(arr1);
+        if (!isSorted(arr1)) {
+          for (var j = 0; j < temp.length; j++) {
+            console.log(temp[j]);
+          }
+          console.log('选择排序出错了');
+          break;
+        }
+      }
+    }
+
+    testSort();
   </script>
 </html>
