@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>链表</title>
+  </head>
+  <body>
+    <!--  
+      链表
+      单链表：一块内存空间中被分配的值，这个值中记录 next 指针记录下一片空间的内存地址
+      双链表：一块内存空间中被分配的值，这个值中记录着 last 和 next 指针记录上一片和下一片空间的内存地址
+
+      {value, next: 0x100}
+      {value, last: 0x101, next: 0x102}
+    -->
+  </body>
+
+  <script>
+    // 单链表反转
+    function reverseLinkedList(head) {
+      var pre = null,
+        next = null;
+      while (head != null) {
+        // a -> b -> c -> d -> null
+        // null <- a <- b <- c <- d
+        next = head.next;
+        head.next = pre;
+        pre = head;
+        head = next;
+      }
+      return pre;
+    }
+
+    // 双链表反转
+    function reverseDoubleList(head) {
+      var pre = null,
+        next = null;
+      while (head != null) {
+        next = head.next;
+        head.next = pre;
+        head.last = next;
+        pre = head;
+        head = next;
+      }
+      return pre;
+    }
+  </script>
+</html>
