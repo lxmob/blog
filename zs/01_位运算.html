@@ -61,7 +61,7 @@
     function print32(num) {
       var n = '';
       for (var i = 31; i >= 0; i--) {
-        n += (num & (1 << i)) === 0 ? '0' : '1';
+        n += (num & (1 << i)) === 0 ? 0 : 1;
       }
       return n;
     }

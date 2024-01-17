@@ -24,6 +24,11 @@
       while (head != null) {
         // a -> b -> c -> d -> null
         // null <- a <- b <- c <- d
+        // 1. 记录 H 项指针
+        // 2. 将当前 H 项指针指向 pre
+        // 3. 记录 pre 作为下一项的指针
+        // 4. 移动 H
+        // 5. 如果 H == null 已经到尾部直接返回 pre
         next = head.next;
         head.next = pre;
         pre = head;
@@ -37,6 +42,14 @@
       var pre = null,
         next = null;
       while (head != null) {
+        // null <~ a -><~ b -><~ c -><~ d -> null
+        // null <- a ~><- b ~><- c ~><- d ~> null
+        // 1. 记录 H 项 next 指针
+        // 2. 将当前 H 项 next 指针指向 pre
+        // 3. 将当前 H 项 last 指针指向 next
+        // 4. 记录 pre 作为下一项的 next 指针
+        // 5. 移动 H
+        // 6. 如果 H == null 已经到尾部直接返回 pre
         next = head.next;
         head.next = pre;
         head.last = next;
@@ -175,6 +188,8 @@
     }
 
     // 双端链表实现双端队列 => 常数操作 O(1)
+    // 单链是无法实现双端队列的，因为没办法解决尾部出问题
+    // 尾部出找不到上一项的可达项，所以肯定是双链
     class DobbleLinkedListToDeque {
       head = null;
       tail = null;
@@ -288,20 +303,25 @@
     function reverseKGroup(head, K) {
       var start = head,
         end = getKGroupEnd(start, K);
+      // 边界条件
+      // 链表数不够 K 个为一组
       if (end == null) {
         return head;
       }
+      // 换头
       head = end;
       reverse(start, end);
       // 上一组的结尾节点
       var lastEnd = start;
       while (lastEnd.next != null) {
+        // 开始的节点 = 反转后 K 组最后一项的 next 节点
         start = lastEnd.next;
         end = getKGroupEnd(start, K);
         if (end == null) {
           return head;
         }
         reverse(start, end);
+        // 上一组反转后 K 组最后一项 next 节点应该指向反转前 K 组最后一项节点
         lastEnd.next = end;
         lastEnd = start;
       }
@@ -317,6 +337,10 @@
     }
 
     // 单链 K 数项一组反转
+    // 1. 记录 end 下一项节点
+    // 2. 单联反转交换
+    // 3. 移动游标 cur 重复第二步操作直至等于 end 结束
+    // 4. 将 start.next 指向 end
     function reverse(start, end) {
       end = end.next;
       var pre = null,
@@ -341,7 +365,7 @@
         s = l == head1 ? heda2 : head1, // 短链表
         curL = l,
         curS = s,
-        last = curL,
+        last = curL, // 保存最后一项
         carry = 0, // 进位信息
         curNum = 0; // 当前数
       // 第一阶段 l 有 s 有
