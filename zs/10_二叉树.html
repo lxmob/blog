@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>二叉树</title>
+  </head>
+  <body>
+    <!--  
+      二叉树由头部父节点分叉左右子节点，子节点再依次进行分叉，连续的结构
+      同时各个子节点之间相互不串联，这就是二叉树
+
+          1
+        2   3
+      4  5 6 7
+      先序：头左右，输出 = 1,2,4,5,3,6,7
+      中序：左头右，输出 = 4,2,5,1,6,3,7
+      后序：左右头，输出 = 4,5,2,6,7,3,1
+
+          1
+        2   3
+      递归序：输出 = 1,2,2,2,1,3,3,3,1
+    -->
+  </body>
+
+  <script>
+    // 二叉树节点结构
+    class TreeNode {
+      left = null;
+      right = null;
+      constructor(val) {
+        this.val = val;
+      }
+    }
+
+    // 先序
+    function preQueue(head) {
+      if (head == null) {
+        return null;
+      }
+      console.log(head.val);
+      pre(head.left);
+      pre(head.right);
+    }
+
+    // 中序
+    function inQueue(head) {
+      if (head == null) {
+        return null;
+      }
+      inQueue(head.left);
+      console.log(head.val);
+      inQueue(head.right);
+    }
+
+    // 后序
+    function posQueue(head) {
+      if (head == null) {
+        return null;
+      }
+      posQueue(head.left);
+      posQueue(head.right);
+      console.log(head.val);
+    }
+
+    // 递归序
+    function f(head) {
+      if (head == null) {
+        return null;
+      }
+      // 1
+      f(head.left);
+      // 2
+      f(head.right);
+      // 3
+    }
+
+    // 对比两颗树节点是否相同
+    // https://leetcode.cn/problems/same-tree/description/
+    function isSameTree(p, q) {
+      // 左树与右树只要有一个节点与另一颗树的节点没有对上那么结构就不同返回 false
+      if ((p == null) ^ (q == null)) {
+        return false;
+      }
+      // 两颗树头节点都为空
+      if (p == null && q == null) {
+        return true;
+      }
+      // 都不为空
+      return (
+        p.val == q.val &&
+        isSameTree(p.left, q.left) &&
+        isSameTree(p.right, q.right)
+      );
+    }
+
+    // 判断一颗树是否是镜面树
+    // https://leetcode.cn/problems/symmetric-tree/description/
+    function isSymmetric(root) {
+      var isMirror = function (h1, h2) {
+        if ((h1 == null) ^ (h2 == null)) {
+          return false;
+        }
+        if (h1 == null && h2 == null) {
+          return true;
+        }
+        return (
+          h1.val == h2.val &&
+          isMirror(h1.left, h2.right) &&
+          isMirror(h1.right, h2.left)
+        );
+      };
+      return isMirror(root, root);
+    }
+
+    // 返回一颗树的最大深度
+    // https://leetcode.cn/problems/maximum-depth-of-binary-tree/description/
+    function maxDepth(root) {
+      if (root == null) {
+        return 0;
+      }
+      // 取左树与右树的最大值最后再 + root
+      return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
+    }
+
+    // 从先序数组和中序数组构建一颗树
+    // https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/
+    function buildTree(pre, inn) {
+      if (pre == null || inn == null || pre.length != inn.length) {
+        return null;
+      }
+      var f = function (pre, L1, R1, inn, L2, R2) {
+        // 越界情况
+        // 先序 [1,2,3] 中序 [2,3,1]
+        if (L1 > R1) {
+          return null;
+        }
+        var head = new TreeNode(pre[L1]);
+        if (L1 == R1) {
+          return head;
+        }
+        // 先序：L1(头) - R1
+        // 中序：L2 - find - R2
+        // 中序左树 = L2 - find-1，中序右树 = find+1 - R2
+        // 先序左树 = L1+1 - (find-L2)，先序右树 = (find-L2+1) - R1
+        var find = L2;
+        for (; inn[find] != pre[L1]; find++);
+        head.left = f(pre, L1 + 1, L1 + find - L2, inn, L2, find - 1);
+        head.right = f(pre, L1 + find - L2 + 1, R1, inn, find + 1, R2);
+        return head;
+      };
+      return f(pre, 0, pre.length - 1, inn, 0, inn.length - 1);
+    }
+
+    // 优化版
+    function buildTree2(pre, inn) {
+      var pLen = pre.length,
+        iLen = inn.length;
+      if (pre == null || inn == null || pLen != iLen) {
+        return null;
+      }
+      // 空间换时间
+      var hashMap = new Map();
+      for (var i = 0; i < iLen; i++) hashMap.set(inn[i], i);
+      // 时间复杂度 O(n) 有n个子节点 f 函数就被调用n次
+      var f = function (pre, L1, R1, inn, L2, R2, hashMap) {
+        if (L1 > R1) {
+          return null;
+        }
+        var head = new TreeNode(pre[L1]);
+        if (L1 == R1) {
+          return head;
+        }
+        var find = hashMap.get(pre[L1]);
+        head.left = f(pre, L1 + 1, L1 + find - L2, inn, L2, find - 1, hashMap);
+        head.right = f(pre, L1 + find - L2 + 1, R1, inn, find + 1, R2, hashMap);
+        return head;
+      };
+      return f(pre, 0, pre.length - 1, inn, 0, inn.length - 1, hashMap);
+    }
+  </script>
+</html>
