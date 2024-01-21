@@ -305,5 +305,38 @@
       }
       return isSum;
     }
+
+    // 路径总和同时记录达成总和的路径
+    // https://leetcode.cn/problems/path-sum-ii/description/
+    function pathSum(root, tSum) {
+      var ans = [],
+        path = [];
+      if (root == null) {
+        return ans;
+      }
+      function process(head, preSum, tSum) {
+        // base case 叶子节点
+        if (head.left == null && head.right == null) {
+          if (preSum + head.val == tSum) {
+            path.push(head.val);
+            ans.push(path.slice());
+            path.pop();
+          }
+          return;
+        }
+        // 非叶子节点
+        path.push(head.val);
+        preSum += head.val;
+        if (head.left != null) {
+          process(head.left, preSum, tSum);
+        }
+        if (head.right != null) {
+          process(head.right, preSum, tSum);
+        }
+        path.pop();
+      }
+      process(root, 0, tSum);
+      return ans;
+    }
   </script>
 </html>
