@@ -105,20 +105,20 @@
       for (var i = 0; i < len; i++) {
         item = node.childNodes[i];
         if (item.nodeType == 1) {
-          temp[temp.length] = item;
-          temp.length++;
+          temp[temp.length++] = item;
         }
       }
       return temp;
     }
 
-    // 判断父元素有没有子元素节点
+    // 判断一个元素节点有没有子元素节点
     function hasChildren(node) {
       var children = node.childNodes,
         flags = false;
       for (var i = 0; i < children.length; i++) {
         if (children[i].nodeType == 1) {
           flags = true;
+          break;
         }
       }
       return flags;
@@ -142,20 +142,18 @@
 
     // 找出一个元素的第n层父元素
     function findParentElem(n, node) {
-      var elem = node,
-        isNotNum = typeof n !== 'number';
-      if (isNotNum) {
-        return elem;
+      if (typeof n !== 'number') {
+        return node;
       } else if (n < 0) {
         return undefined;
       }
-      while (n) {
-        if (elem.nodeName === 'HTML') {
+      var elem = node;
+      while (n--) {
+        if (elem.parentNode.nodeName === 'HTML') {
           elem = null;
-          return elem;
+          break;
         }
         elem = elem.parentNode;
-        n--;
       }
       return elem;
     }
@@ -218,9 +216,10 @@
     }
 
     // insertAfter 方法
-    function insertAfter(target, origin, node) {
-      var nextNode = origin.nextElementSibling;
-      nextNode ? node.insertBefore(target, nextNode) : node.appendChild(target);
+    function insertAfter(target, origin) {
+      var next = origin.nextElementSibling,
+        parent = origin.parentElement;
+      next ? parent.insertBefore(target, next) : parent.appendChild(target);
     }
   </script>
 </html>

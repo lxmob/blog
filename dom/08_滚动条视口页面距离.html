@@ -93,9 +93,9 @@
   </script>
 
   <!-- 
-    页面整体宽高属性（视口的距离 + 滚动条的距离 = 页面整体宽高）
-    window.innerWidth + window.pageXOffset = document.documentElement.scrollWidth / document.body.scrollWidth
-    window.innerHeight + window.pageYOffset = document.documentElement.scrollHeight / document.body.scrollHeight
+    页面整体宽高属性
+    标准 document.documentElement.scrollWidth/scrollHeight 
+    怪异 document.body.scrollWidth/scrollHeight
     兼容问题，IE567支持 documentElement
   -->
   <script>
