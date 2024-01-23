@@ -136,9 +136,6 @@
           return null;
         }
         var head = new TreeNode(pre[L1]);
-        if (L1 == R1) {
-          return head;
-        }
         // 先序：L1(头) - R1
         // 中序：L2 - find - R2
         // 中序左树 = L2 - find-1，中序右树 = find+1 - R2
@@ -167,11 +164,8 @@
         if (L1 > R1) {
           return null;
         }
-        var head = new TreeNode(pre[L1]);
-        if (L1 == R1) {
-          return head;
-        }
-        var find = hashMap.get(pre[L1]);
+        var head = new TreeNode(pre[L1]),
+          find = hashMap.get(pre[L1]);
         head.left = f(pre, L1 + 1, L1 + find - L2, inn, L2, find - 1, hashMap);
         head.right = f(pre, L1 + find - L2 + 1, R1, inn, find + 1, R2, hashMap);
         return head;
@@ -179,14 +173,14 @@
       return f(pre, 0, pre.length - 1, inn, 0, inn.length - 1, hashMap);
     }
 
-    // 二叉树层序遍历并收集节点
+    // 二叉树层序遍历自下而上收集节点
     // https://leetcode.cn/problems/binary-tree-level-order-traversal-ii/description/
     function levelOrderBottom(root) {
       var nList = [],
         queue = [root];
       // 正序的实现，开启一个队列
-      // 1. 拿出此时队列中的 size，size有多少第二步就执行多少次
-      // 2. 弹出节点，然后收集节点先左后右加入队列
+      // 1.拿出此时队列中的 size，size有多少第二步就执行多少次
+      // 2.弹出节点，然后收集节点先左后右加入队列
       while (queue.length != 0 && root != null) {
         var size = queue.length,
           curLevel = [];
@@ -217,6 +211,7 @@
         }
         var { isBalanced: lIsBld, height: lH } = process(head.left),
           { isBalanced: rIsBld, height: rH } = process(head.right),
+          // 左右数高度取最大值后加上自身高度
           height = Math.max(lH, rH) + 1,
           isBalanced = lIsBld && rIsBld && Math.abs(lH - rH) < 2;
         return info(isBalanced, height);
@@ -225,7 +220,7 @@
     }
 
     // 搜索树：每一颗子树左树的值都比头小右树的值都比头大
-    // 左树搜索树最大 max < x，右树搜索树最小 > x
+    // 左树搜索树最大 max < x，右树搜索树最小 min > x
     // https://leetcode.cn/problems/validate-binary-search-tree/description/
     function isValidBST(root) {
       if (root == null) {

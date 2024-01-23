@@ -4,7 +4,7 @@
 - 定义：按照协议规则先向 WEB 服务器发送请求，将超文本传输至浏览器本地
 - HyperText Transfer Protocol Secure 超文本传输安全协议
 - 定义：基于 SSL/TLS 安全版，为网络通信提供安全及数据完整性的一种安全协议，对网络连接进行加密
-- SSL：Secure Sockets Layer   安全套接层
+- SSL：Secure Sockets Layer 安全套接层
 - TLS：Transport Layer Security 传输层安全
 - 两者区别
   - HTTP 是不安全的（监听和中间人攻击等手段，获取网站账户信息和敏感信息）HTTPS 可防止被攻击
@@ -15,7 +15,7 @@
 
 #### 0.9
 
-- 只能发送 Get 请求
+- 只能发送 GET 请求
 - 只能请求访问 HTML 格式的数据
 
 #### 1.0
