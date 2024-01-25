@@ -12,8 +12,8 @@
   - Etag：该资源在服务器中的唯一标识符（优先级高于 Last Modified）
   - Last-Modified：该资源在服务器最后修改的时间（精确到秒）
 - 请求字段，第二次访问资源时，请求头中将携带这两个字段，资源未被修改服务器响应 304 状态码（Not Modified）
-  - If-Modified-Since：自从什么时间修改了资源，保存响应头中 Last-Modified 字段内容
-  - If-None-Match：如果不匹配，保存响应头中 Etag 字段内容
+  - If-Modified-Since：上一次修改资源的时间，保存响应头中 Last-Modified 字段内容
+  - If-None-Match：如果没有匹配该资源，保存响应头中 Etag 字段内容
 - 资源被修改时，Etag 标识符和 Last-Modified 修改时间字段更新服务器响应 200 状态码
 
 ### 302 跳转重定向

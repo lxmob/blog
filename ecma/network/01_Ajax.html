@@ -23,7 +23,7 @@
 
     <!--  
       XMLHttpRequest and ActiveXObject
-      原生的 XMLHttpRequest 对象与 ActiveXObject 对象
+      原生 XMLHttpRequest 与 ActiveXObject 对象
       作用：
         JS 脚本发送 HTTP 请求必须通过 XMLHttpRequest 对象
         XMLHttpRequest 本身是一个 JS 引擎内置的构造函数，所有的 XHR 对象都需要被实例化
@@ -61,11 +61,11 @@
         可以设置超时时间
 
       Ajax Level2 新增事件（不常用 -> 兼容性问题）
-        xhr.onloadstart 绑定 HTTP 请求发出的监听函数
-        xhr.onerror 绑定请求失败的监听函数
-        xhr.onload 绑定请求成功完成的监听函数
-        xhr.onabort 绑定请求中止（调用 abort()方法）的监听函数
-        xhr.onloadend 绑定请求完成（无论失败或成功）的监听函数
+        xhr.onloadstart 请求发出的监听函数
+        xhr.onerror 请求失败的监听函数
+        xhr.onload 请求成功完成的监听函数
+        xhr.onabort 请求中止（调用 abort()方法）的监听函数
+        xhr.onloadend 请求完成（无论失败或成功）的监听函数
         执行顺序 loadstart -> readyState === 4 -> load/error/abort -> loadend
     -->
   </body>
@@ -87,7 +87,7 @@
         var opt = opt || {},
           url = opt.url,
           method = (opt.type || 'GET').toUpperCase(),
-          async = '' + opt.async === 'false' ? false : true,
+          async = !opt.async ? false : true,
           data = opt.data || null,
           dataType = opt.dataType || 'JSON',
           timeout = opt.timeout || 10000,
@@ -170,7 +170,7 @@
         post(url, data, success, error, complate) {
           _doAjax({ type: 'POST', url, data, success, error, complate });
         },
-        get(url, cb) {
+        get(url, data, success, error, complate) {
           _doAjax({ type: 'GET', url, success, error, complate });
         },
       };
