@@ -23,34 +23,29 @@
 
     <!-- 内部脚本 -->
     <script type="text/javascript">
-      document.write("success");
+      document.write('success');
     </script>
 
     <!-- 外部脚本 -->
     <script src="../demos/dom/utils.js"></script>
 
-    <!-- 以上两者同时存在 -->
-    <!-- 错误的写法，引用的文件会执行，内部的脚本内容不会被执行。 -->
+    <!-- 以上两者同时存在错误的写法，引用的文件会执行，内部的脚本内容不会被执行。 -->
     <script type="text/javascript" src="../demos/dom/utils.js">
       document.write('error') // 此行不执行
     </script>
 
-    <!-- 模板替换 -->
-    <!-- 意为替换模版，后续 {{}} 中的内容将会被替换。 -->
+    <!-- 模版替换后续 {{}} 中的内容将会被替换。 -->
     <script type="text/tpl" id="tpl">
       <div class="container">{{name}}</div>
     </script>
 
-    <!-- 特殊含义 -->
     <!-- 
+      特殊含义
       script 标签本身是用来引用脚本的，文件后缀名对于 script 来讲并不重要，
       而 <script src=".*"> 引用的文件内容对于 script 来讲很重要，脚本内容是否可被 JS 脚本解析。
+
+      script.php 文件 => <?php echo "Hello World!" ?>
     -->
     <script src="script.php"></script>
-    <!--
-      <?php
-          echo "Hello World!"
-      ?>
-    -->
   </body>
 </html>

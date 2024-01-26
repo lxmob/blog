@@ -90,6 +90,8 @@
           async = !opt.async ? false : true,
           data = opt.data || null,
           dataType = opt.dataType || 'JSON',
+          jsonp = opt.jsonp || 'cb',
+          jsonpCallback = opt.jsonpCallback || 'jQuery' + randomNum() + '_' + new Date().getTime(),
           timeout = opt.timeout || 10000,
           error = opt.error || function () {},
           success = opt.success || function () {},
@@ -97,6 +99,22 @@
 
         if (!url) {
           throw new Error('请填写url参数');
+        }
+
+        // jsonp支持
+        if (dataType.toUpperCase() === 'JSONP' && method !== 'GET') {
+          throw new Error('JSONP请求仅支持GET方式');
+        } else {
+          var oScript = document.createElement('script');
+          oScript.src = url.indexOf('?') === -1
+              ? url + '?' + jsonp + '=' + jsonpCallback
+              : url + '&' + jsonp + '=' + jsonpCallback;
+          document.body.appendChild(oScript);
+          document.body.removeChild(oScript);
+          window[jsonpCallback] = function (data) {
+            success(data);
+          };
+          return;
         }
 
         console.log(xhr.readyState); // 0
@@ -161,6 +179,15 @@
           result += key + '=' + obj[key] + '&';
         }
         return result.replace(/&$/, '');
+      }
+
+      // jsonp随机数获取
+      function randomNum() {
+        var num = '';
+        for (var i = 0; i < 20; i++) {
+          num += Math.floor(Math.random() * 10);
+        }
+        return num;
       }
 
       return {
