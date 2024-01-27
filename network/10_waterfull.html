@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>瀑布流</title>
+    <style type="text/css">
+      .wf_wrap {
+        position: relative;
+        width: 1200px;
+        margin: 0 auto;
+      }
+      .wf_item {
+        position: absolute;
+        overflow: hidden;
+      }
+      .wf_item img {
+        display: block;
+        width: 100%;
+        opacity: 0;
+        transition: opacity 5s;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 
+      瀑布流是什么？
+      瀑布流是一种 dom 结构在展现上的一种算法结构，并非是一种案例
+      最初是体现在纸质版杂志周刊上面的，后来才引入到 web 页面中去。
+
+      如何实现？
+      瀑布流可以通过 css flex 布局来实现，也可以通过 js 代码来实现，通常使用 js 实现比较多。
+
+      具体思路
+        1.确定一行要排列几项（每行 5 张）
+        2.每一张图片由一个外部容器进行包裹，宽度是固定的，高度是由图片大小进行撑开，同时每 2 张图片存在间隔
+
+        3.排列时由于每张图片的高度不一致，第一行是固定的贴附顶部，
+          从第二行开始排列，每当排列一张图片需要找出上一次排列中高度最短的项，
+          然后进行依次排列。
+
+        4.如何找到每次排列中高度最短的项呢？
+          首先所有的项都是通过绝对定位上去的，我们通过数组来记录排列时的高度，然后找出最短项的下标，
+          通过下标找到元素，然后拿到元素 offsetLeft 值再加上边距，就能确定当前需要排列的位置。
+    -->
+
+    <div class="wf_wrap">
+      <!-- <img src="https://unsplash.it/300/200" /> -->
+    </div>
+  </body>
+
+  <!-- Waterfull -->
+  <script>
+    (function (doc) {
+      var Waterfull = function (wrap, opt) {
+        this.oWrap = doc.getElementsByClassName(wrap)[0];
+        this.gap = opt.gap;
+        this.column = opt.column;
+        // (容器宽度 - 后四列中包含的间隔只有第一列不包含左侧间隔) / 列数
+        this.itemWidth = (this.oWrap.offsetWidth - (this.column - 1) * this.gap) / this.column;
+        this.heightArr = [];
+        this.pageNum = 0;
+      };
+
+      Waterfull.prototype = {
+        init() {
+          this.bindEvent();
+          this.randomImgDatas();
+        },
+
+        bindEvent() {
+          window.addEventListener('scroll', this.scrollToBottom.bind(this), false);
+        },
+
+        scrollToBottom() {
+          var allHeight = window.pageYOffset + window.innerHeight;
+          if (allHeight === doc.documentElement.scrollHeight) this.randomImgDatas();
+        },
+
+        randomImgDatas() {
+          var datas = [],
+            _self = this;
+          setTimeout(function () {
+            for (var i = 0; i < 30; i++) {
+              var h = Math.floor(Math.random() * 300) + 50;
+              datas[i] = {
+                height: h,
+                width: _self.itemWidth,
+                imgSrc: 'https://unsplash.it/' + _self.itemWidth + '/' + h
+              };
+            }
+            _self.renderList(datas, _self.pageNum++);
+          }, 500);
+        },
+
+        renderList(data, pageNum) {
+          var _self = this,
+            oItems = null,
+            minIdx = -1;
+
+          data.forEach(function (item, idx) {
+            var oItem = doc.createElement('div'),
+              oImg = new Image(),
+              itemLeft = 0;
+
+            oItem.className = 'wf_item';
+            oItem.style.width = item.width + 'px';
+            // 图片等比例叉乘
+            oItem.style.height = (item.height * _self.itemWidth) / item.width + 'px';
+
+            oImg.src = item.imgSrc;
+
+            oItem.appendChild(oImg);
+            _self.oWrap.appendChild(oItem);
+
+            oItems = doc.getElementsByClassName('wf_item');
+            // 排除第一列计算左边距
+            itemLeft = (idx + 1) % _self.column === 1 ? '0' : idx * (_self.itemWidth + _self.gap);
+            // 按规则进行排列
+            if (idx < _self.column && pageNum == 0) {
+              _self.heightArr.push(oItem.offsetHeight);
+              oItem.style.top = '0';
+              oItem.style.left = itemLeft + 'px';
+            } else {
+              minIdx = getMinIdx(_self.heightArr);
+              oItem.style.top = _self.heightArr[minIdx] + _self.gap + 'px';
+              oItem.style.left = oItems[minIdx].offsetLeft + 'px';
+              _self.heightArr[minIdx] += oItem.offsetHeight + _self.gap;
+            }
+            oImg.style.opacity = '1';
+          });
+        }
+      };
+
+      function getMinIdx(arr) {
+        return [].indexOf.call(arr, Math.min.apply(null, arr));
+      }
+
+      window.Waterfull = Waterfull;
+
+    })(document);
+
+    // 初始化
+    new Waterfull('wf_wrap', {gap: 10, column: 5}).init();
+  </script>
+</html>

@@ -14,16 +14,46 @@
       <input type="text" name="filename" /><br />
 
       <!-- 单文件上传 -->
-      <!-- <input type="file" name="file" /><br /> -->
+      <input id="file" type="file" name="file" /><br />
 
       <!-- 多文件上传 -->
       <input type="file" name="file[]" multiple /><br />
 
-      <input type="submit" value="上传" />
+      <input id="submitBtn" type="submit" value="上传" />
     </form>
   </body>
 
   <script>
-    
+    // ajax 异步上传文件
+    var oFile = document.getElementById('file'),
+      oSubmit = document.getElementById('file');
+    // 监听文件选择
+    oFile.onchange = function () {
+      var files = oFile.files,
+        filename = '',
+        filesize = 0,
+        maxSize = 1024 * 1024 * 10; // 默认10mb
+      // files 文件类型数组支持批量上传
+      for (var i = 0; i < files.length; i++) {
+        filename = files[i].name;
+        filesize = files[i].size;
+        // 文件大小控制
+        if (filesize > maxSize) {
+          return;
+        }
+        var fd = new FormData();
+        fd.append('file', files[i]);
+        // 创建 xhr 发送上传请求
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'localhost:8081');
+        xhr.upload.onprogress = function (ev) {
+          var ev = ev || window.event,
+            // 上传进度 = 上传数 / 总数
+            percent = (ev.loaded / ev.total) * 100 + '%';
+          // 动态设置进度条元素宽度
+          console.log(percent);
+        };
+      }
+    };
   </script>
 </html>
