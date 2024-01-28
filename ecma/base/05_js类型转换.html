@@ -61,7 +61,7 @@
     var a = '3' * 2; // (* / - %) 如果遇到这些运算符，其中有一个是数字，那么就会把字符串转为number类型
     console.log(a); // 6
 
-    // 在判断比较运算符的情况下，如果有数字类型，就会将另一数据类型转为Number类型在做比较
+    // 比较大小是需要将两边值类型转换成 Number 类型进行比较
     console.log('1' > 2); // false
     console.log(1 > '2'); // false
     console.log(null < 3); // true
@@ -79,8 +79,8 @@
     // 3. 返回true
 
     // String 字符串之间的比较，比较的是在ASCII码表中的值
-    console.log('1' + 2); // 12
     console.log('a' > 'b'); // false
+    console.log('acd' > 'abc') // true
 
     // Boolean == 和 != 隐式转换, === 和 !== 不进行隐式转换
     console.log(1 == '1'); // true
@@ -101,6 +101,7 @@
     console.log(null === undefined); // false
 
     // isNaN 方法
+    // 内部会先进行数字类型转换调用 Number()
     console.log(isNaN('str')); // true
     console.log(isNaN(undefined)); // true
     console.log(isNaN(null)); // false
