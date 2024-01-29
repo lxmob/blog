@@ -9,8 +9,8 @@
   <body></body>
   <!-- 
     parseInt
-    JS 内置方法
-    该函数解析字符串并返回整数，第一个参数是 string，第二参数是 radix 表示 2 - 36 进制范围，默认为10进制。
+    JS 内置方法，该函数解析字符串并返回整数
+    第一个参数是 string，第二参数是 radix 表示 2 - 36 进制范围默认为10进制
   -->
   <script>
     console.log(parseInt(' 123')); // 123
@@ -20,13 +20,20 @@
     console.log(parseInt('b', 16)); // 11
     console.log(parseInt('10', 16)); // 16
 
-    // 判定原则根据第一位如果是字符串则以 NaN 处理，如果是数字截取到末尾最后一个数字
+    // 判定规则根据第一位如果是字符串则以 NaN 处理
+    // 如果是数字截取到末尾最后一个数字
     console.log(parseInt('101abc')); // 101
     console.log(parseInt('abc10')); // NaN
 
-    // parseInt 不能解析 Infinity 或者 -Infinity 返回 NaN
+    // parseInt 不能解析 Infinity
     console.log(parseInt(Infinity)); // NaN
     console.log(parseInt(-Infinity)); // NaN
+
+    // MDN 更加严格的判断实现
+    function _parseInt(val){
+      if(/^(\-|\+)?([0-9]+|Infinity)$/.test(val))return Number(val);
+      return NaN;
+    }
   </script>
 
   <!-- 
@@ -36,7 +43,7 @@
   <script>
     console.log(parseFloat('3.1456a')); // 3.1456
 
-    // parseFloat 函数可以解析 Infinity 或者 -Infinity
+    // parseFloat 可以解析 Infinity
     console.log(parseFloat(Infinity)); // Infinity
     console.log(parseFloat(-Infinity)); // -Infinity
   </script>

@@ -22,8 +22,8 @@
     // 源码实现
     Array.prototype.forEach = function (cb) {
       var that = this,
-        len = that.length,
-        arg2 = arguments[1] || window;
+          len = that.length,
+          arg2 = arguments[1] || window;
       for (var i = 0; i < len; i++) {
         cb.apply(arg2, [that[i], i, that]);
       }
@@ -37,21 +37,20 @@
   -->
   <script>
     var arr = [12, 5, 8, 130, 44];
-    var result = arr.filter(function (item, idx, arr) {
+    var rsl = arr.filter(function (item, idx, arr) {
       // 函数返回真值则保留元素，反之则不保留
       return item >= 10;
     });
-    console.log(result); // [12, 130, 44]
+    console.log(rsl); // [12, 130, 44]
 
     // 源码实现
     Array.prototype.filter = function (cb) {
       var that = this,
-        len = that.length,
-        arg2 = arguments[1] || window,
-        nArr = [];
+          len = that.length,
+          arg2 = arguments[1] || window,
+          nArr = [];
       for (var i = 0; i < len; i++) {
-        var item = cb.apply(arg2, [that[i], i, that]);
-        item ? nArr.push(item) : '';
+        cb.apply(arg2, [that[i], i, that]) ? nArr.push(that[i]) : '';
       }
       return nArr;
     };
@@ -64,17 +63,17 @@
   -->
   <script>
     var arr = [2, 3, 4];
-    var result = arr.map(function (item, idx, arr) {
+    var rsl = arr.map(function (item, idx, arr) {
       return (item *= 2);
     });
-    console.log(result); // [4, 6, 8]
+    console.log(rsl); // [4, 6, 8]
 
     // 源码实现
     Array.prototype.map = function (cb) {
       var that = this,
-        len = that.length,
-        arg2 = arguments[1] || window,
-        nArr = [];
+          len = that.length,
+          arg2 = arguments[1] || window,
+          nArr = [];
       for (var i = 0; i < len; i++) {
         nArr.push(cb.apply(arg2, [that[i], i, that]));
       }
@@ -89,26 +88,26 @@
   -->
   <script>
     var arr = [10, 11, 3];
-    var result = arr.some(function (item, idx, arr) {
+    var rsl = arr.some(function (item, idx, arr) {
       // 返回一个真值表示元素项通过了测试
       // 确定返回值后立即停止迭代
       return item % 2 === 0;
     });
-    console.log(result); // true
+    console.log(rsl); // true
 
     // 源码实现
     Array.prototype.some = function (cb) {
       var that = this,
-        len = that.length,
-        arg2 = arguments[1] || window,
-        result = false;
+          len = that.length,
+          arg2 = arguments[1] || window,
+          ans = false;
       for (var i = 0; i < len; i++) {
         if (cb.apply(arg2, [that[i], i, that])) {
-          result = true;
+          ans = true;
           break;
         }
       }
-      return result;
+      return ans;
     };
   </script>
 
@@ -119,74 +118,74 @@
   -->
   <script>
     var arr = [10, 11, 3];
-    var result = arr.every(function (item, idx, arr) {
+    var rsl = arr.every(function (item, idx, arr) {
       // 返回一个真值表示元素项通过了测试
       // 确定返回值后立即停止迭代
       return item >= 10;
     });
-    console.log(result); // false
+    console.log(rsl); // false
 
     // 源码实现
     Array.prototype.every = function (cb) {
       var that = this,
-        len = that.length,
-        arg2 = arguments[1] || window,
-        result = true;
+          len = that.length,
+          arg2 = arguments[1] || window,
+          ans = true;
       for (var i = 0; i < len; i++) {
         if (!cb.apply(arg2, [that[i], i, that])) {
-          result = false;
+          ans = false;
           break;
         }
       }
-      return result;
+      return ans;
     };
   </script>
 
   <!--  
-    reduce(fn, initialValue)
+    reduce(fn, initVal)
     作用：归纳函数，遍历数组元素每一步都将当前元素的值与前一步的结果相加
     返回值：累计执行函数的结果
     fn = function (pre, next, idx, arr) {
-      pre = 上一次调用的结果，如果指定了 initialValue 则是指定值，否则就是 arr[0] 的值
-      next = 当前元素的值，如果指定了 initialValue 则是 arr[0]，否则就是 arr[1] 的值
+      pre = 上一次调用的结果，如果指定了 initVal 则是指定值，否则就是 arr[0] 的值
+      next = 当前元素的值，如果指定了 initVal 则是 arr[0]，否则就是 arr[1] 的值
       idx = 正在处理元素的下标索引
       arr = 调用了 reduce 方法的数组本身
     }
   -->
   <script>
     var arr = [4, 5, 6];
-    var result = arr.reduce(function (pre, next) {
+    var rsl = arr.reduce(function (pre, next) {
       return (pre += next);
     });
-    console.log(result); // 15
+    console.log(rsl); // 15
 
     // 源码实现
-    Array.prototype.reduce = function (cb, initialValue) {
+    Array.prototype.reduce = function (cb, initVal) {
       var that = this,
-        len = that.length,
-        arg2 = arguments[2] || window;
+          len = that.length,
+          arg2 = arguments[2] || window;
       for (var i = 0; i < len; i++) {
-        initialValue = cb.apply(arg2, [initialValue, that[i], i, that]);
+        initVal = cb.apply(arg2, [initVal, that[i], i, that]);
       }
-      return initialValue;
+      return initVal;
     };
   </script>
 
   <!--  
-    reduceRight(fn, initialValue)
+    reduceRight(fn, initVal)
     作用：与 reduce 一样，结果是以倒叙的形式展示
     返回值：累计执行函数的结果
   -->
   <script>
     // 源码实现
-    Array.prototype.reduceRight = function (cb, initialValue) {
+    Array.prototype.reduceRight = function (cb, initVal) {
       var that = this,
-        len = that.length,
-        arg2 = arguments[2] || window;
-      for (var i = len - 1; i >= 0; i++) {
-        initialValue = cb.apply(arg2, [initialValue, that[i], i, that]);
+          len = that.length,
+          arg2 = arguments[2] || window;
+      for (var i = len - 1; i >= 0; i--) {
+        initVal = cb.apply(arg2, [initVal, that[i], i, that]);
       }
-      return initialValue;
+      return initVal;
     };
   </script>
 
@@ -202,26 +201,26 @@
       { name: 'aiqing' },
       { name: 'xiaoqing' },
     ];
-    var result = names.find(function (item, idx, arr) {
+    var rsl = names.find(function (item, idx, arr) {
       // 返回一个真值表示已经找到了匹配的元素
       // 确定返回值后立即停止迭代
       return item.name === 'ming';
     });
-    console.log(result); // {name: 'ming'}
+    console.log(rsl); // {name: 'ming'}
 
     // 源码实现
     Array.prototype.find = function (cb) {
       var that = this,
-        len = that.length,
-        arg2 = arguments[1] || window,
-        result = undefined;
+          len = that.length,
+          arg2 = arguments[1] || window,
+          ans = undefined;
       for (var i = 0; i < len; i++) {
         if (cb.apply(arg2, [that[i], i, that])) {
-          result = that[i];
+          ans = that[i];
           break;
         }
       }
-      return result;
+      return ans;
     };
   </script>
 
@@ -232,26 +231,26 @@
   -->
   <script>
     var arr = [1, 2, 11, 12];
-    var result = arr.findIndex(function (item, idx, arr) {
+    var rsl = arr.findIndex(function (item, idx, arr) {
       // 返回一个真值表示已经找到了匹配的元素
       // 确定返回值后立即停止迭代
       return item % 2 === 0;
     });
-    console.log(result); // 1
+    console.log(rsl); // 1
 
     // 源码实现
     Array.prototype.findIndex = function (cb) {
       var that = this,
-        len = that.length,
-        arg2 = arguments[1] || window,
-        result = -1;
+          len = that.length,
+          arg2 = arguments[1] || window,
+          ans = -1;
       for (var i = 0; i < len; i++) {
         if (cb.apply(arg2, [that[i], i, that])) {
-          result = i;
+          ans = i;
           break;
         }
       }
-      return result;
+      return ans;
     };
   </script>
 </html>

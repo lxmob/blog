@@ -15,7 +15,28 @@
     -->
   </body>
 
-  <!-- 浅拷贝只拷贝对象的第一层属性，如果属性值是引用类型复制的将是引用值 -->
+  <!-- 
+    hasOwnProperty 
+    判断对象自身是否存在指定的属性，返回一个 boolean 值 
+  -->
+  <script>
+    function Dog() {
+      this.name = 'dog';
+      this.eat = function () {};
+    }
+    Dog.prototype.run = 'running';
+    var d = new Dog();
+    // for in 迭代一个对象除 Symbol 以外的可枚举属性，包含继承的枚举属性
+    for (var key in d) {
+      document.write(key, '<br />');
+
+      if (d.hasOwnProperty(key)) {
+        document.write('hasOwnProperty: ', key, '<br />');
+      }
+    }
+  </script>
+
+  <!-- 浅拷贝只拷贝对象的第一层属性，如果属性值是引用类型复制的将是引用地址 -->
   <script>
     function _clone(target, origin) {
       for (let key in origin) target[key] = origin[key];
@@ -31,7 +52,10 @@
       maps: [1, 2, 3, 4],
     };
     origin.__proto__.name = "proto_test";
-    console.log(_clone(origin));
+    var o1 = _clone(origin),
+        o2 = _clone(origin)
+    o1.house.width = 500
+    console.log(o2.house.width) // 500
   </script>
 
   <!-- 深拷贝实现递归拷贝对象，避免复制多层引用类型数据嵌套问题 -->

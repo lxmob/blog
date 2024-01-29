@@ -39,11 +39,12 @@
 
   <!-- 手动为对象添加 toString 方法 -->
   <script>
-    var num = 1;
-    var cur = {};
-    var createObj = Object.create(null);
+    var num = 1,
+        cur = {};
     document.write(num); // 1
     document.write(cur); // [object Object]
+
+    var createObj = Object.create(null);
     // document.write(createObj)
     // Error cannot convert object to primitive value
     createObj.toString = function () {

@@ -17,11 +17,13 @@
     console.log({} instanceof Object); // true
     console.log([] instanceof Array); // true
     console.log([] instanceof Object); // true
+    console.log(Number(1) instanceof Number); // false => Number作为函数调用返回原始值
+    console.log(new Number(123) instanceof Number); // true
+    console.log(String('123') instanceof Number); // false
+    console.log(Boolean(true) instanceof Number); // false
+    console.log(NaN instanceof Number); // false
+    console.log(null instanceof Object); // false
 
-    // Object.prototype.toString.call()
-    console.log(Object.prototype.toString.call(d));
-
-    // d.constructor
-    console.log(d.constructor);
+    console.log(Object.prototype.toString.call(d)); // '[object Object]'
   </script>
 </html>

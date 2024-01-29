@@ -11,35 +11,38 @@
     <div class="countdown"></div>
   </body>
 
-  <!-- 
-    创建一个日期对象，如果不传递参数默认是当前最新的时间，
-    如果传递参数其中 month 参数计数从 0 开始，所以我们传递参数时 month + 1 月份。
-  -->
+  <!-- 创建一个日期对象，如果不传递参数默认是当前最新的时间 -->
   <script>
     // 时间戳 1 * 24 * 60 * 60 * 1000
     // new Date(year, month, date, hours, minutes, seconds, ms);
 
-    // 日期对象实例化，继承 => Date.prototype 继承 => Object.prototype。
+    // 日期对象实例化，继承 => Date.prototype 继承 => Object.prototype
     var date = new Date();
-    var _date = new Date('2017-04-08');
+    var _date = new Date('2023-12-31');
     var _1970 = new Date(0);
   </script>
 
   <!-- 日期对象方法 -->
   <script>
-    date.getDate(); // 返回日期一个月中的第几号 1-31。
-    date.getDay(); // 返回日期一周内第几天 0-6 星期天是 0。
-    date.getMonth(); // 返回日期一年内第几月 0-11 1 月是 0。
-    date.getYear(); // 1900 年开始，会导致千年虫问题，千年危机（不推荐使用）。
-    date.getFullYear(); // 获取日期对应当前年份。
+    date.getYear(); // 1900 年开始计算会导致千年虫、千禧年问题
+    date.getDay(); // 返回日期一周内第几天 0-6 星期天是 0
 
-    // 返回日期时分秒毫秒。
+    // 日期年月日
+    date.getFullYear(); // 获取日期对应当前年份
+    date.getMonth() + 1; // 返回日期一年内第几月 0-11 范围
+    date.getDate(); // 返回日期一个月中的第几号 1-31
+
+    // 日期时分秒毫秒
     date.getHours();
     date.getMinutes();
     date.getSeconds();
     date.getMilliseconds();
 
-    date.getTime(); // 获取日期时间戳，计算机纪元时间 1970 年 1 月 1 日开始的毫秒数。
+    date.getTime(); // 获取日期时间戳，计算机纪元时间 1970 年 1 月 1 日开始的毫秒数
+
+    date.getUTCHours(); // UTC 时间世界协调时与 GMT 格林威治时间一样，只不过计算方法不一样
+    date.getUTCMinutes();
+    date.getUTCSeconds();
   </script>
 
   <!-- 定时器与计时器 -->

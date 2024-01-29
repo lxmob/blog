@@ -21,10 +21,10 @@
     console.log(arr.join(0)); // "Wind0Rain0Fire"
 
     // 源码实现
-    Array.prototype.join = function (separator = '') {
-      var str = this[0];
+    Array.prototype.join = function (spt = '') {
+      var str = this[0]
       for (var i = 1; i < this.length; i++) {
-        str += `${separator}${this[i]}`;
+        str += `${spt}${this[i]}`;
       }
       return str;
     };
@@ -83,17 +83,17 @@
     console.log(arr.indexOf(5, 2)); // 2
 
     // 源码实现
-    Array.prototype.indexOf = function (t) {
-      var fIdx = arguments[1],
-        i = fIdx ? fIdx : 0,
-        result = -1;
+    Array.prototype.indexOf = function (tar) {
+      var arg1 = arguments[1],
+          i = arg1 ? arg1 : 0,
+          ans = -1;
       for (; i < this.length; i++) {
-        if (t === this[i]) {
-          result = i;
+        if (tar === this[i]) {
+          ans = i;
           break;
         }
       }
-      return result;
+      return ans;
     };
   </script>
 
@@ -111,16 +111,17 @@
     console.log(arr.includes(5, -100)); // true
 
     // 源码实现
-    Array.prototype.includes = function (t) {
-      var fIdx = arguments[1],
-        i = fIdx ? fIdx : 0,
-        result = false;
+    Array.prototype.includes = function (tar) {
+      var arg1 = arguments[1],
+          i = arg1 ? arg1 : 0,
+          ans = false;
       for (; i < this.length; i++) {
-        if (t === this[i]) {
-          result = true;
+        if (tar === this[i]) {
+          ans = true;
+          break;
         }
       }
-      return result;
+      return ans;
     };
   </script>
 </html>

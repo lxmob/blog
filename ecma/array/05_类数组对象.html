@@ -12,7 +12,7 @@
     <div>3</div>
   </body>
 
-  <!-- 类数组没有继承 Array.prototype 是不具备数组方法 -->
+  <!-- 类数组没有继承 Array.prototype 不具备数组方法 -->
   <script>
     var allDiv = document.getElementsByTagName('div');
     console.log(allDiv); // 类数组对象
@@ -41,8 +41,8 @@
       push: Array.prototype.push,
       splice: Array.prototype.splice,
     };
-    console.log(classObjArr[2]); // 对象属性
-    console.log(classObjArr[1]); // 数组方法
+    console.log(classObjArr[2]); // '对象属性'
+    console.log(classObjArr[1]); // '数组方法'
     console.log(classObjArr.length); // 3
   </script>
 

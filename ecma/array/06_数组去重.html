@@ -32,7 +32,7 @@
   <script>
     function unique2(arr) {
       var temp = {},
-        newArr = [];
+          newArr = [];
       for (var i = 0; i < arr.length; i++) {
         if (!temp.hasOwnProperty(arr[i])) {
           temp[arr[i]] = arr[i];
@@ -71,7 +71,7 @@
   -->
   <script>
     function unique5(arr) {
-      arr.sort();
+      arr.sort(function(a, b){ return a - b });
       for (var i = 0; i < arr.length; i++) {
         if (arr[i] === arr[i + 1]) {
           arr.splice(i, 1);

@@ -46,7 +46,10 @@
     dom.addEventListener('click', cur.click.bind(cur), false);
   </script>
 
-  <!-- bind 绑定 this 后返回一个函数，this 只会生效一次，无论后续怎样调用，this 都是同样的值 -->
+  <!--
+    bind 绑定 this 后返回一个函数
+    this 只会生效一次，无论后续怎样调用 this 都是同样的值 
+  -->
   <script>
     var obj = { name: 'obj' };
     var obj2 = { name: 'obj2' };
