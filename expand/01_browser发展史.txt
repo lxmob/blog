@@ -1,0 +1,21 @@
+主流浏览器内核
+  ie ==> trident
+  chrome ==> webkit/blink
+  safari ==> webkit
+  firefox ==> gecko
+  oprea ==> presto
+  edge ==> webkit 
+
+浏览器发展历程
+  1990 年蒂姆·伯纳森·李，发明了超文本分享资源 Hyper-Text，正式命名为 World Wide Web 移植到 C 语言上改名 libwww => nexus，目的是为了允许别人访问他人编写的网站。
+  1993 美国伊利诺大学 NCSA 组织，马克·安德森开发了 MOSIAC 浏览器，用来显示图片，图形化浏览器。
+  1994 马克·安德森和吉姆·克拉克（硅图 SGI 图形算法）一起创建了 MOSIAC communication corporation 由于 MOSIAC 这个商标被伊利诺大学注册后又转卖给 spy glass 公司
+       又更名为 Netscape communication corporation 网景公司（netscape navigator 浏览器）
+  1996 微软公司收购了 spy glass 公司，使用 MOSIAC 浏览器内核开发了自己的 IE internet exploror 浏览器（trident 内核）后续又发布了 IE3 同时发布了 JScripe 脚本语言。
+  1996 网景公司布兰登·艾奇在 Netscape 开发了 livescript 脚本语言，借着 Sun 公司的 Java 爆火更名为 javascript。
+  2001 IE6 和 XP 诞生，ie6 带来了 js 引擎。
+  2003 mozilla 非盈利组织根据 Netscape navigator 开源了浏览器内核源码开发了自己的 firefox 浏览器。
+  2008 google 基于 webkit/blink 开发了 chrome 浏览器，带来了 V8 引擎。
+      1.直接翻译机器码
+      2.独立于浏览器运行
+  2009 甲骨文 oracle 收购了 Sun 公司，js 所有权归属甲骨文公司。
