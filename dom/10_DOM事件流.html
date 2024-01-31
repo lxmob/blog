@@ -6,17 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>dom事件流</title>
     <style>
-      .wrapper {
+      .wrapper{
         width: 300px;
         height: 300px;
         background-color: #1661ab;
       }
-      .outer {
+      .outer{
         width: 200px;
         height: 200px;
         background-color: #22a2c3;
       }
-      .inner {
+      .inner{
         width: 100px;
         height: 100px;
         background-color: #207f4c;
@@ -53,21 +53,21 @@
   <script>
     wEl.addEventListener(
       'click',
-      function () {
+      function(){
         console.log('bubble-wrapper');
       },
       false
     );
     oEl.addEventListener(
       'click',
-      function () {
+      function(){
         console.log('bubble-outer');
       },
       false
     );
     iEl.addEventListener(
       'click',
-      function () {
+      function(){
         console.log('bubble-inner');
       },
       false
@@ -82,21 +82,21 @@
   <script>
     wEl.addEventListener(
       'click',
-      function () {
+      function(){
         console.log('wrapper');
       },
       true
     );
     oEl.addEventListener(
       'click',
-      function () {
+      function(){
         console.log('outer');
       },
       true
     );
     iEl.addEventListener(
       'click',
-      function () {
+      function(){
         console.log('inner');
       },
       true
@@ -111,7 +111,7 @@
   <script>
     iEl.addEventListener(
       'click',
-      function (event) {
+      function(event){
         // event.stopPropagation()
         // event.cancelBubble = true
         // cancelBubble(event)
@@ -121,19 +121,19 @@
     );
 
     // 兼容性封装
-    function cancelBubble(e) {
+    function cancelBubble(e){
       var event = e || window.event;
-      if (event.stopPropagation) {
+      if(event.stopPropagation){
         event.stopPropagation();
-      } else {
+      }else{
         event.cancelBubble = true;
       }
     }
   </script>
 
-  <!-- 取消默认事件 -->
+  <!-- 阻止默认事件 -->
   <script>
-    document.oncontextmenu = function (event) {
+    document.oncontextmenu = function(event){
       // 1. 只能在句柄中使用的方式 return false
       // return false
       // 2. w3c: event.preventDefault() 不兼容IE9以下

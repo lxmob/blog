@@ -6,21 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>读写样式、操作伪元素、元素运动</title>
     <style>
-      .box {
+      .box{
         color: #fff;
         width: 100px;
         height: 100px;
         padding: 10px;
         background-color: green;
       }
-      .box::after {
+      .box::after{
         content: '';
         display: block;
         width: 50px;
         height: 50px;
         background-color: palevioletred;
       }
-      .box.active::after {
+      .box.active::after{
         background-color: palegreen;
       }
     </style>
@@ -40,12 +40,12 @@
     console.log(window.getComputedStyle(divNode, null));
 
     // 兼容封装
-    function getStyles(elem, prop) {
-      if (window.getComputedStyle) {
+    function getStyles(elem, prop){
+      if(window.getComputedStyle){
         return prop
           ? window.getComputedStyle(elem, null)[prop]
           : window.getComputedStyle(elem, null);
-      } else {
+      }else{
         return prop ? elem.currentStyle[prop] : elem.currentStyle;
       }
     }
@@ -62,7 +62,7 @@
     console.log(divNode.offsetWidth); // 120 计算了 padding
 
     // 运动案例 offsetWidth 导致的问题
-    divNode.onclick = function () {
+    divNode.onclick = function(){
       // 获取整个元素的渲染宽度大小
       // offset 这种方式将 padding 的值也算进去
       var width = this.offsetWidth;
@@ -74,7 +74,7 @@
   <!-- 读取伪元素属性，操作伪元素样式 -->
   <script>
     console.log(window.getComputedStyle(divNode, 'after').width);
-    divNode.onclick = function () {
+    divNode.onclick = function(){
       this.className += ' active';
     };
   </script>

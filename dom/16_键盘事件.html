@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>键盘事件</title>
     <style>
-      .box {
+      .box{
         position: absolute;
         left: 0;
         top: 0;
@@ -24,13 +24,13 @@
     var bWrap = document.getElementsByClassName('box')[0];
 
     // keydown
-    document.onkeydown = function (e) {
+    document.onkeydown = function(e){
       var ev = e || window.event,
-        code = ev.keyCode, // 键码
-        bTop = parseInt(getStyles(bWrap, 'top')),
-        bLeft = parseInt(getStyles(bWrap, 'left'));
+          code = ev.keyCode, // 键码
+          bTop = parseInt(getStyles(bWrap, 'top')),
+          bLeft = parseInt(getStyles(bWrap, 'left'));
 
-      switch (code) {
+      switch(code){
         case 37:
           bWrap.style.left = bLeft - 5 + 'px';
           break;
@@ -46,17 +46,17 @@
     };
 
     // keypress 事件只触发 ASCII 码的字符键码，无法触发功能键
-    document.onkeypress = function (e) {
+    document.onkeypress = function(e){
       // 通过 String.fromCharCode 方法可以获取触发键码具体的值
       console.log(e.charCode, String.fromCharCode(e.charCode));
     };
 
-    function getStyles(elem, prop) {
-      if (window.getComputedStyle) {
+    function getStyles(elem, prop){
+      if(window.getComputedStyle){
         return prop
           ? window.getComputedStyle(elem, null)[prop]
           : window.getComputedStyle(elem, null);
-      } else {
+      }else{
         return prop ? elem.currentStyle[prop] : elem.currentStyle;
       }
     }

@@ -27,10 +27,10 @@
     缺点无法为元素事件绑定多个处理函数
    -->
   <script>
-    btnNode.onclick = function () {
+    btnNode.onclick = function(){
       console.log('onclick1', this);
     };
-    btnNode.onclick = function () {
+    btnNode.onclick = function(){
       console.log('onclick2', this);
     };
 
@@ -45,21 +45,21 @@
   <script>
     btnNode.addEventListener(
       'click',
-      function () {
+      function(){
         console.log('addEventListener1', this);
       },
       false
     );
     btnNode.addEventListener(
       'click',
-      function () {
+      function(){
         console.log('addEventListener2', this);
       },
       false
     );
 
     // 相同函数的引用处理只执行一次
-    function once() {
+    function once(){
       console.log('once', this);
     }
     btnNode.addEventListener('click', once, false);
@@ -73,7 +73,7 @@
     IE8及以下的绑定方法
   -->
   <script>
-    btnNode.attachEvent('onclick', function () {
+    btnNode.attachEvent('onclick', function(){
       console.log('attachEvent', this); // this -> window
     });
 
@@ -83,16 +83,16 @@
     // btnNode.detachEvent('onclick', once)
 
     // 兼容性封装
-    function addEvent(el, type, fn) {
-      if (el.addEventListener) {
+    function addEvent(el, type, fn){
+      if(el.addEventListener){
         el.addEventListener(type, fn, false);
-      } else if (el.attachEvent) {
+      }else if(el.attachEvent){
         el.attachEvent('on' + type, fn.bind(el));
-      } else {
+      }else{
         el['on' + type] = fn;
       }
     }
-    addEvent(btnNode, 'click', function () {
+    addEvent(btnNode, 'click', function(){
       console.log('addEvent', this);
     });
   </script>

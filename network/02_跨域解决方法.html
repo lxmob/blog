@@ -28,14 +28,14 @@
     iframe.src = 'zhidao.baidu.com';
     iframe.id = 'myIframe';
     iframe.style.display = 'none';
-    iframe.onload = function () {
-      var ajax = document.getElementById('myIframe').contentWindow.ajax;
-      ajax.post(
+    iframe.onload = function(){
+      document.getElementById('myIframe')
+      .contentWindow
+      .ajax.post(
         'zhidao.baidu.com/serve/get_name',
         { data: '123' },
         function (data) {
-          // 获取到数据
-          console.log(data);
+          console.log(data); // 获取到数据
         }
       );
     };
@@ -48,30 +48,31 @@
     首先介绍 window.name 的特点
       1.每个浏览器窗口都有一个全局变量 window（包含 iframe 框架 contentWindow）
       2.每个 window 对象都有一个 name 属性（一个窗口只有一个 name 属性）
-      3.该窗口在关闭前，所有跳转的页面都共享一个 name 属性并有读写权限（a 页面跳转到 b 页面）
+      3.该窗口在关闭前，所有跳转的页面都共享一个 name 属性并有读写权限
       4.无论窗口在被关闭前，载入什么页面，都不会改变 name 值
       5.name 属性存储大小为 2mb 的字符串
-      6.问题
+      6.导致的问题
         如果父级窗口地址源和 iframe 地址源不同
         父级无法通过 iframe.contentWindow.name 获取值
         但是 iframe 内部不受该规则限制
     解决方案：
-      先让 iframe 中的页面程序保存 window.name，然后跳转到与父级窗口同源的另一个页面
+      先让 iframe 中的程序请求数据保存至 window.name
+      然后跳转到与父级窗口同源的另一个页面
       父级页面就可以从当前的 iframe 拿到该页面的 window.name
   -->
   <script>
-    var iframe = document.createElement('iframe');
+    var iframe = document.createElement('iframe'),
+        flag = false;
     iframe.src = 'zhidao.baidu.com';
-    var flag = false;
-    var getData = function () {
-      if (flag) {
-        var data = iframe.contentWindow.name; // 第二次加载 iframe => baidu.com
-        console.log(JSON.parse(data));
-      } else {
+    function getData(){
+      if(flag){
+        // 第二次加载 iframe => baidu.com
+        console.log(JSON.parse(iframe.contentWindow.name));
+      }else{
         // 第一次加载 iframe => zhidao.baidu.com
         // zhidao.baidu.com 页面中发送 ajax 拉取数据
         flag = true;
-        setTimeout(function () {
+        setTimeout(function(){
           // 请求数据量较大时并不能解决异步这个问题
           iframe.contentWindow.location = 'baidu.com';
         }, 500);
@@ -93,12 +94,12 @@
   <script>
     var iframe = document.createElement('iframe');
     iframe.src = 'zhidao.baidu.com';
-    iframe.onload = function () {
+    iframe.onload = function(){
       // 向接收方发送数据
       window.parent.postMessage('123', 'baidu.com');
     };
     // 监听消息
-    window.onmessage = function (ev) {
+    window.onmessage = function(ev){
       var ev = ev || window.event;
       console.log(JSON.parse(ev.data));
     };
@@ -112,11 +113,11 @@
   <script>
     var iframe = document.createElement('iframe');
     iframe.src = 'zhidao.baidu.com';
-    iframe.onload = function () {
-      // 请求数据
+    iframe.onload = function(){
+      // 请求数据...
       window.parent.location.hash = 'data..';
     };
-    setTimeout(function () {
+    setTimeout(function(){
       var data = window.location.hash.substring(1);
       console.log(JSON.parse(decodeURI(data)));
     }, 500);

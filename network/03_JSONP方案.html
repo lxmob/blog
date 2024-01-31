@@ -21,7 +21,7 @@
   <script>
     var oBtn = document.getElementById('btn');
 
-    // oBtn.onclick = function () {
+    // oBtn.onclick = function(){
     //   var oScript = document.createElement("script");
     //   oScript.src = "https://www.baidu.com/sugrec?pre=1&p=3&json=1&prod=pc&from=pc_web&wd=a&req=2&csor=1&cb=getData";
     //   document.body.appendChild(oScript);
@@ -29,7 +29,7 @@
     // };
 
     // 执行 callback 的函数
-    function getData(data) {
+    function getData(data){
       console.log(data);
     }
   </script>
@@ -39,26 +39,16 @@
     jquery ajax 默认封装了 jsonp 传递的形式
   -->
   <script>
-    oBtn.onclick = function () {
+    oBtn.onclick = function(){
       $.ajax({
         url: 'https://www.baidu.com/sugrec',
         type: 'GET',
-        data: {
-          pre: 1,
-          p: 3,
-          ie: 'utf-8',
-          json: 1,
-          prod: 'pc',
-          from: 'pc_web',
-          wd: '新闻',
-          req: 2,
-          csor: 2,
-          sugmode: 2,
-        },
+        data: {pre:1,p:3,ie:'utf-8',json:1,prod:'pc',from:'pc_web',wd:'新闻',req:2,csor:2,sugmode:2},
         dataType: 'JSONP',
         jsonp: 'cb',
-        // jsonpCallback: 'test', // 指定触发接收参数的函数调用
-        success: function (data) {
+        // 指定触发接收参数的函数调用
+        // jsonpCallback: 'test',
+        success: function(data){
           // 默认可以通过成功的函数来接收返回的数据
           console.log(data);
         },

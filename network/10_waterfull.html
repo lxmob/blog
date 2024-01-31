@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>瀑布流</title>
     <style type="text/css">
-      .wf_wrap {
+      .wf_wrap{
         position: relative;
         width: 1200px;
         margin: 0 auto;
       }
-      .wf_item {
+      .wf_item{
         position: absolute;
         overflow: hidden;
       }
-      .wf_item img {
+      .wf_item img{
         display: block;
         width: 100%;
         opacity: 0;
@@ -37,8 +37,7 @@
         2.每一张图片由一个外部容器进行包裹，宽度是固定的，高度是由图片大小进行撑开，同时每 2 张图片存在间隔
 
         3.排列时由于每张图片的高度不一致，第一行是固定的贴附顶部，
-          从第二行开始排列，每当排列一张图片需要找出上一次排列中高度最短的项，
-          然后进行依次排列。
+          从第二行开始排列，每当排列一张图片需要找出上一次排列中高度最短的项，然后进行依次排列。
 
         4.如何找到每次排列中高度最短的项呢？
           首先所有的项都是通过绝对定位上去的，我们通过数组来记录排列时的高度，然后找出最短项的下标，
@@ -52,11 +51,11 @@
 
   <!-- Waterfull -->
   <script>
-    (function (doc) {
-      var Waterfull = function (wrap, opt) {
-        this.oWrap = doc.getElementsByClassName(wrap)[0];
+    (function(doc){
+      var Waterfull = function(wrap, opt){
         this.gap = opt.gap;
         this.column = opt.column;
+        this.oWrap = doc.getElementsByClassName(wrap)[0];
         // (容器宽度 - 后四列中包含的间隔只有第一列不包含左侧间隔) / 列数
         this.itemWidth = (this.oWrap.offsetWidth - (this.column - 1) * this.gap) / this.column;
         this.heightArr = [];
@@ -64,25 +63,25 @@
       };
 
       Waterfull.prototype = {
-        init() {
+        init(){
           this.bindEvent();
           this.randomImgDatas();
         },
 
-        bindEvent() {
+        bindEvent(){
           window.addEventListener('scroll', this.scrollToBottom.bind(this), false);
         },
 
-        scrollToBottom() {
+        scrollToBottom(){
           var allHeight = window.pageYOffset + window.innerHeight;
           if (allHeight === doc.documentElement.scrollHeight) this.randomImgDatas();
         },
 
-        randomImgDatas() {
+        randomImgDatas(){
           var datas = [],
-            _self = this;
-          setTimeout(function () {
-            for (var i = 0; i < 30; i++) {
+              _self = this;
+          setTimeout(function(){
+            for(var i = 0; i < 30; i++){
               var h = Math.floor(Math.random() * 300) + 50;
               datas[i] = {
                 height: h,
@@ -94,15 +93,15 @@
           }, 500);
         },
 
-        renderList(data, pageNum) {
+        renderList(data, pageNum){
           var _self = this,
-            oItems = null,
-            minIdx = -1;
+              oItems = null,
+              minIdx = -1;
 
-          data.forEach(function (item, idx) {
+          data.forEach(function(item, idx){
             var oItem = doc.createElement('div'),
-              oImg = new Image(),
-              itemLeft = 0;
+                oImg = new Image(),
+                itemLeft = 0;
 
             oItem.className = 'wf_item';
             oItem.style.width = item.width + 'px';
@@ -118,7 +117,7 @@
             // 排除第一列计算左边距
             itemLeft = (idx + 1) % _self.column === 1 ? '0' : idx * (_self.itemWidth + _self.gap);
             // 按规则进行排列
-            if (idx < _self.column && pageNum == 0) {
+            if(idx < _self.column && pageNum == 0){
               _self.heightArr.push(oItem.offsetHeight);
               oItem.style.top = '0';
               oItem.style.left = itemLeft + 'px';
@@ -133,7 +132,7 @@
         }
       };
 
-      function getMinIdx(arr) {
+      function getMinIdx(arr){
         return [].indexOf.call(arr, Math.min.apply(null, arr));
       }
 

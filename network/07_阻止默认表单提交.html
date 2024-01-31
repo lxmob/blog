@@ -35,12 +35,12 @@
   <script type="text/javascript">
     // onsubmit 事件句柄的内部只能返回 boolean 值来决定是否阻止默认事件
     // onsubmit 接收一个处理函数，函数内执行完代码后 return 的是 boolean 值 false 将阻止后续代码的执行
-    function submit() {
+    function submit(){
       console.log(123);
       return false;
     }
 
-    function submitForm(e) {
+    function submitForm(e){
       var e = e || window.event;
       e.preventDefault(); // 事件对象中阻止默认行为
       console.log(123);

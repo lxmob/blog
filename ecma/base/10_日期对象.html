@@ -50,7 +50,7 @@
     setTimeout('console.log(1)', 1000);
     setInterval(_csl, 1000);
 
-    function _csl() {
+    function _csl(){
       console.log('csl...');
     }
     var timeId = setTimeout(_csl, 1000); // 唯一标识
@@ -60,39 +60,39 @@
 
   <!-- 电子时钟 -->
   <script>
-    function setZero(num) {
+    function setZero(num){
       return num < 10 ? '0' + num : num;
     }
-    function showTime() {
+    function showTime(){
       var date = new Date(),
-        y = date.getFullYear(),
-        m = date.getMonth() + 1,
-        d = date.getDate(),
-        h = date.getHours(),
-        m = date.getMinutes(),
-        s = date.getSeconds();
+          y = date.getFullYear(),
+          m = date.getMonth() + 1,
+          d = date.getDate(),
+          h = date.getHours(),
+          m = date.getMinutes(),
+          s = date.getSeconds();
       return `${y}年${setZero(m)}月${setZero(d)}日 ${setZero(h)}点${setZero(m)}分钟${setZero(s)}秒`;
     }
     var eClockWrap = document.getElementsByClassName('e-clock')[0];
-    setInterval(function () {
+    setInterval(function(){
       eClockWrap.innerHTML = showTime();
     }, 1000);
   </script>
 
   <!-- 倒计时 -->
   <script>
-    function countdown(endTime) {
+    function countdown(endTime){
       var endTime = new Date(endTime).getTime(),
-        nowTime = new Date().getTime(),
-        interval = (endTime - nowTime) / 1000,
-        d = Math.floor(interval / 60 / 60 / 24),
-        h = Math.floor((interval / 60 / 60) % 24),
-        m = Math.floor((interval / 60) % 60),
-        s = Math.floor(interval % 60);
+          nowTime = new Date().getTime(),
+          interval = (endTime - nowTime) / 1000,
+          d = Math.floor(interval / 60 / 60 / 24),
+          h = Math.floor((interval / 60 / 60) % 24),
+          m = Math.floor((interval / 60) % 60),
+          s = Math.floor(interval % 60);
       return `倒计时：${setZero(d)}天 ${setZero(h)}小时 ${setZero(m)}分钟 ${setZero(s)}秒`;
     }
     var countdownWrap = document.getElementsByClassName('countdown')[0];
-    setInterval(function () {
+    setInterval(function(){
       countdownWrap.innerHTML = countdown(new Date('2024-03-28'));
     }, 1000);
   </script>

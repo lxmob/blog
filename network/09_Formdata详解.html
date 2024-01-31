@@ -8,23 +8,24 @@
   </head>
   <body>
     <!-- 
-      form 表单就是为了收集内部数据然后进行提交
+      form 表单标签就是为了收集内部数据然后进行提交
       在没有 form 表单的包裹下 input 这种类型的标签都是属于输入类控件
-      可以通过 JS 脚本 FormData 构造函数手动创建表单格式数据
+      可以通过 JS 脚本 FormData 构造函数手动创建表单数据
     -->
     <!-- <form action=""> -->
-    <input type="text" id="username" value="ming" />
-    <input type="text" id="password" value="1234" />
-    <input type="submit" id="submitBtn" value="提交" />
+      <input type="text" id="username" value="ming" />
+      <input type="text" id="password" value="1234" />
+      <input type="submit" id="submitBtn" value="提交" />
     <!-- </form> -->
   </body>
+
   <script type="text/javascript">
     var username = document.getElementById('username'),
-      password = document.getElementById('password'),
-      submitBtn = document.getElementById('submitBtn'),
-      fd = new FormData();
+        password = document.getElementById('password'),
+        submitBtn = document.getElementById('submitBtn'),
+        fd = new FormData();
 
-    submitBtn.onclick = function () {
+    submitBtn.onclick = function(){
       fd.append('username', username.value); // append 方法添加的新值原属性存在也不会覆盖，而是新增
       fd.append('password', password.value);
 

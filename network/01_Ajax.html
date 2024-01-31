@@ -21,22 +21,21 @@
         前端从 JSON/XML 文档中提取数据，在不刷新整个网页的基础上，渲染到网页相应的位置
     -->
 
-    <!--  
-      XMLHttpRequest and ActiveXObject
-      原生 XMLHttpRequest 与 ActiveXObject 对象
+    <!--
+      创建 Ajax 请求
+        XMLHttpRequest 与 ActiveXObject(IE5/IE6)对象
       作用：
         JS 脚本发送 HTTP 请求必须通过 XMLHttpRequest 对象
-        XMLHttpRequest 本身是一个 JS 引擎内置的构造函数，所有的 XHR 对象都需要被实例化
-      兼容性：
-        IE5/IE6 使用 ActiveXObject
+        XMLHttpRequest 本身是一个 JS 引擎内置的构造函数
+        所有的请求都需要实例化 XHR 对象
       方法：
-        open 接收三个参数，method 请求方法、url 请求地址、async 是否开启异步
-        send 发送 POST 请求体需要携带参数，GET 不填写
+        open(method,url,async) 接收三个参数
+        send(params?) 发送 POST 请求体需要携带参数，GET 不填写
         setRequestHeader 设置请求头字段方法，需要在 open 方法后调用
       事件：
-        onreadystatechang 挂载到 xhr 对象上的事件
+        onreadystatechang 挂载到 xhr 对象上的事件用来监听请求状态
       属性：
-        readyState 各阶段状态码（0-4）当 readyState 变化时会触发 change 事件执行绑定的事件处理函数
+        readyState(0-4) 各阶段状态码
         status 服务器响应的状态码
         responseText 获取字符串数据
         responseXML 获取 XML 数据
@@ -45,73 +44,76 @@
         1 服务器连接已建立
         2 请求已接收
         3 请求处理中
-        4 请求已完成，且响应已就绪
+        4 请求已完成
+    -->
 
+    <!--  
       XHR 标准分为 Level1 和 Level2
       Level1：
-        无法发送跨域请求
-        仅支持发送纯文本（xml、html、json）
-        无法获取传输进度
+        1.无法发送跨域请求
+        2.仅支持发送纯文本（xml、html、json）
+        3.无法获取传输进度
       Level2：
-        可以发送跨域请求
-        支持获取二进制数据
-        支持上传文件
-        formData 对象
-        可以获取传输进度
-        可以设置超时时间
+        1.可以发送跨域请求
+        2.支持获取二进制数据
+        3.支持上传文件
+        4.新增 formData 对象
+        5.可以获取传输进度
+        6.可以设置超时时间
 
-      Ajax Level2 新增事件（不常用 -> 兼容性问题）
-        xhr.onloadstart 请求发出的监听函数
-        xhr.onerror 请求失败的监听函数
-        xhr.onload 请求成功完成的监听函数
-        xhr.onabort 请求中止（调用 abort()方法）的监听函数
-        xhr.onloadend 请求完成（无论失败或成功）的监听函数
+      Ajax Level2 新增事件（存在兼容性问题）
+        xhr.onloadstart 请求发出
+        xhr.onload 请求成功
+        xhr.onerror 请求失败
+        xhr.onabort 请求中止（调用 abort()方法）
+        xhr.onloadend 请求完成（无论失败或成功）
         执行顺序 loadstart -> readyState === 4 -> load/error/abort -> loadend
     -->
   </body>
 
   <script>
-    var $ = (function () {
-      function _doAjax(opt) {
-        // 1. 兼容性，创建ajax对象，不同请求使用不同的xhr对象请求
+    var $ = (function(){
+      function _doAjax(opt){
+        // 1. 兼容性创建ajax对象，不同请求使用不同的xhr对象请求
         var xhr = window.XMLHttpRequest
           ? new XMLHttpRequest() // IE7+
           : new ActiveXObject('Microsoft.XMLHTTP'); // IE5/6
 
-        var t = null;
+        var t = null; // 定时器id
 
-        if (!xhr) {
+        if(!xhr){
           throw new Error('您的浏览器不支持发起数据请求，请更换高级浏览器！'); // IE4
         }
+
         // 2. 对ajax进行配置项
         var opt = opt || {},
-          url = opt.url,
-          method = (opt.type || 'GET').toUpperCase(),
-          async = !opt.async ? false : true,
-          data = opt.data || null,
-          dataType = opt.dataType || 'JSON',
-          jsonp = opt.jsonp || 'cb',
-          jsonpCallback = opt.jsonpCallback || 'jQuery' + randomNum() + '_' + new Date().getTime(),
-          timeout = opt.timeout || 10000,
-          error = opt.error || function () {},
-          success = opt.success || function () {},
-          complate = opt.complate || function () {};
+            url = opt.url,
+            method = (opt.type || 'GET').toUpperCase(),
+            async = !opt.async ? false : true,
+            data = opt.data || null,
+            dataType = opt.dataType || 'JSON',
+            jsonp = opt.jsonp || 'cb',
+            jsonpCallback = opt.jsonpCallback || 'jQuery'+randomNum()+'_'+new Date().getTime(),
+            timeout = opt.timeout || 10000,
+            error = opt.error || function () {},
+            success = opt.success || function () {},
+            complate = opt.complate || function () {};
 
-        if (!url) {
+        if(!url){
           throw new Error('请填写url参数');
         }
 
         // jsonp支持
-        if (dataType.toUpperCase() === 'JSONP' && method !== 'GET') {
+        if(dataType.toUpperCase() === 'JSONP' && method !== 'GET'){
           throw new Error('JSONP请求仅支持GET方式');
-        } else {
+        }else{
           var oScript = document.createElement('script');
           oScript.src = url.indexOf('?') === -1
               ? url + '?' + jsonp + '=' + jsonpCallback
               : url + '&' + jsonp + '=' + jsonpCallback;
           document.body.appendChild(oScript);
           document.body.removeChild(oScript);
-          window[jsonpCallback] = function (data) {
+          window[jsonpCallback] = function(data){
             success(data);
           };
           return;
@@ -123,19 +125,17 @@
         xhr.open(method, url, async);
 
         // 4. POST请求判断是否需要配置application/x-www-form-urlenconded
-        if (method === 'POST') {
-          xhr.setRequestHeader(
-            'Content-type',
-            'application/x-www-form-urlencoded'
-          );
+        if(method === 'POST'){
+          xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');
         }
 
         // 5. 发送请求
         xhr.send(method === 'GET' ? null : formatData(data));
+
         console.log(xhr.readyState); // 1
 
         // 6. 设置超时处理
-        t = setTimeout(function () {
+        t = setTimeout(function(){
           xhr.abort();
           clearTimeout(t);
           t = null;
@@ -144,11 +144,11 @@
         }, timeout);
 
         // 7. 绑定监听xhr状态事件处理函数
-        xhr.onreadstatechange = function () {
+        xhr.onreadstatechange = function(){
           console.log(xhr.readystate); // 2 3 4
-          if (xhr.readystate === 4) {
-            if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
-              switch (dataType.toUpperCase()) {
+          if(xhr.readystate === 4){
+            if((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304){
+              switch(dataType.toUpperCase()){
                 case 'JSON':
                   success(JSON.parse(xhr.responseText));
                   break;
@@ -161,7 +161,7 @@
                 default:
                   success(JSON.parse(xhr.responseText));
               }
-            } else {
+            }else{
               error();
             }
           }
@@ -173,33 +173,33 @@
       }
 
       // 格式化参数
-      function formatData(obj) {
+      function formatData(obj){
         var result = '';
-        for (var key in obj) {
+        for(var key in obj){
           result += key + '=' + obj[key] + '&';
         }
         return result.replace(/&$/, '');
       }
 
       // jsonp随机数获取
-      function randomNum() {
+      function randomNum(){
         var num = '';
-        for (var i = 0; i < 20; i++) {
+        for(var i = 0; i < 20; i++){
           num += Math.floor(Math.random() * 10);
         }
         return num;
       }
 
       return {
-        ajax(opt) {
+        ajax(opt){
           _doAjax(opt);
         },
-        post(url, data, success, error, complate) {
+        post(url, data, success, error, complate){
           _doAjax({ type: 'POST', url, data, success, error, complate });
         },
-        get(url, data, success, error, complate) {
+        get(url, data, success, error, complate){
           _doAjax({ type: 'GET', url, success, error, complate });
-        },
+        }
       };
     })();
 

@@ -23,24 +23,24 @@
 
   <script>
     var manageCookie = {
-      get: function (key, cb) {
+      get(key, cb){
         var cookieList = document.cookie.split('; '),
-          cookieItem = null,
-          len = cookieList.length;
+            cookieItem = null,
+            len = cookieList.length;
 
-        for (var i = 0; i < len; i++) {
+        for(var i = 0; i < len; i++){
           var cookieItem = cookieList[i].split('=');
           cookieItem[0] === key ? cb(cookieItem[1]) : cb(undefined);
         }
         return this;
       },
-      set: function (key, value, expires) {
+      set(key, value, expires){
         document.cookie = key + '=' + value + ';max-age=' + expires;
         return this;
       },
-      delete: function (key) {
+      delete(key){
         return this.set(key, '', -1);
-      },
+      }
     };
 
     manageCookie

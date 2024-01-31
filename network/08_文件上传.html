@@ -26,15 +26,15 @@
   <script>
     // ajax 异步上传文件
     var oFile = document.getElementById('file'),
-      oSubmit = document.getElementById('file');
+        oSubmit = document.getElementById('file');
     // 监听文件选择
-    oFile.onchange = function () {
+    oFile.onchange = function(){
       var files = oFile.files,
-        filename = '',
-        filesize = 0,
-        maxSize = 1024 * 1024 * 10; // 默认10mb
+          filename = '',
+          filesize = 0,
+          maxSize = 1024 * 1024 * 10; // 默认10mb
       // files 文件类型数组支持批量上传
-      for (var i = 0; i < files.length; i++) {
+      for(var i = 0; i < files.length; i++){
         filename = files[i].name;
         filesize = files[i].size;
         // 文件大小控制
@@ -46,11 +46,10 @@
         // 创建 xhr 发送上传请求
         var xhr = new XMLHttpRequest();
         xhr.open('POST', 'localhost:8081');
-        xhr.upload.onprogress = function (ev) {
+        xhr.upload.onprogress = function(ev){
           var ev = ev || window.event,
-            // 上传进度 = 上传数 / 总数
-            percent = (ev.loaded / ev.total) * 100 + '%';
-          // 动态设置进度条元素宽度
+              percent = (ev.loaded / ev.total) * 100 + '%'; // 上传进度 = 上传数 / 总数
+          // 动态设置进度条元素宽度...
           console.log(percent);
         };
       }

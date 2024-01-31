@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>滚动条、视口、页面、兼容性</title>
     <style>
-      * {
+      *{
         margin: 0;
         padding: 0;
         list-style: none;
       }
-      #app {
+      #app{
         position: relative;
       }
-      .box {
+      .box{
         position: absolute;
         /* margin: 100px; */
         width: 200px;
@@ -23,7 +23,7 @@
         top: 100px;
         background-color: green;
       }
-      .inner-box {
+      .inner-box{
         position: absolute;
         /* margin: 100px; */
         left: 100px;
@@ -55,10 +55,10 @@
   -->
   <script>
     // 兼容封装
-    function getPageXYOffset() {
-      if (window.pageXOffset) {
+    function getPageXYOffset(){
+      if(window.pageXOffset){
         return { left: window.pageXOffset, top: window.pageYOffset };
-      } else {
+      }else{
         return {
           left: document.body.scrollLeft + document.documentElement.scrollLeft,
           top: document.body.scrollTop + document.documentElement.scrollTop,
@@ -79,10 +79,10 @@
   -->
   <script>
     // 兼容封装
-    function getViewportSize() {
-      if (window.innerHeight) {
+    function getViewportSize(){
+      if(window.innerHeight){
         return { width: window.innerWidth, height: window.innerHeight };
-      } else {
+      }else{
         var isW3C = document.compatMode === 'CSS1Compat';
         return {
           width: document[isW3C ? 'documentElement' : 'body'].clientWidth,
@@ -100,7 +100,7 @@
   -->
   <script>
     // 兼容封装
-    function getScrollSize() {
+    function getScrollSize(){
       var isIE567 = !!document.body.scrollHeight;
       return {
         width: document[isIE567 ? 'documentElement' : 'body'].scrollWidth,
@@ -117,7 +117,7 @@
   -->
   <script>
     var boxNode = document.getElementsByClassName('box')[0],
-      rectInfo = boxNode.getBoundingClientRect();
+        rectInfo = boxNode.getBoundingClientRect();
     boxNode.style.width = '300px';
     console.log(rectInfo); // width: 200
   </script>
@@ -135,12 +135,12 @@
     console.log(innerNode.offsetParent);
 
     // 获取元素距离视口 0,0点的距离
-    function getElemClientRect(el) {
+    function getElemClientRect(el){
       var parent = el.offsetParent,
-        offsetLeft = el.offsetLeft,
-        offsetTop = el.offsetTop;
+          offsetLeft = el.offsetLeft,
+          offsetTop = el.offsetTop;
 
-      while (parent) {
+      while(parent){
         offsetLeft += parent.offsetLeft;
         offsetTop += parent.offsetTop;
         parent = parent.offsetParent;
