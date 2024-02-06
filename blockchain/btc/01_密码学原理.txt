@@ -6,10 +6,6 @@ crypto-currency
 1.哈希(hash函数)
 2.签名
 
-
-什么是hash函数？
-https://en.wikipedia.org/wiki/Hash_function
-
 密码学中运用的hash函数是cryptographic hash function
 它具备两个重要的性质
 1.collision resistance(哈希碰撞)
@@ -91,9 +87,6 @@ block header中存在很多阈，其中有一个阈是可以设置的随机数no
 
 比特币运用的hash函数叫做SHA-256，secure hash algorithm
 上面介绍的hash函数的三种性质它都是满足的
-
-
-什么是签名？
 
 比特币中的账户管理，它是去中心化的没有机构监管，如何做到账户管理？
 每个人自己创建账户不需要任何人批准，开户的过程就是创建公私密钥对(public key, private key)
