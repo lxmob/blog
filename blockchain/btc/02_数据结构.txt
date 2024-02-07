@@ -37,7 +37,6 @@ block header内保存merkle tree的根哈希值，block body内保存交易信�
 1.全节点(full node)保存block内所有的信息
 2.轻节点(light node)只保存block header信息例如比特币钱包应用
 
-
 如何向一个轻节点去证明某一条交易是写入区块链中呢？
 这里就要用到merkle proof，找到这笔交易所在的位置
 然后从这条交易节点一直向上找到根节点，而这条查找的路径就是merkle proof
