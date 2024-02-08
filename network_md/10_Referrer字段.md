@@ -1,7 +1,7 @@
 ### Referrer
 
-- 定义：来源域名，请求头字段，当浏览器向服务器发送请求时，一般会携带 Referer 告知服务器从哪个页面跳转链接过来的
-- 优点：服务器可以通过 Referer 字段分析不同渠道的流量分布、用户搜索的关键词
+- 来源域名（请求头字段）当浏览器向服务器发送请求时，会携带 Referer 告知服务器从哪个页面跳转链接过来的
+- 服务器可以通过 Referer 字段分析不同渠道的流量分布、用户搜索的关键词
 
 ### 不携带 Referer 信息
 
@@ -23,7 +23,7 @@
 
 ### 协议降级
 
-- 当从 HTTPS 页面引入 HTTP 资源时不发送 Referrer 信息，大部分浏览器默认策略
+- 当从 HTTPs 页面引入 HTTP 资源时不发送 Referrer 信息，大部分浏览器默认策略
 - Referrer Policy: `no-referrer-when-downgrade`
 - Referer: `http://localhost/home/network/`
 

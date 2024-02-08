@@ -24,7 +24,7 @@
 
 ### 2MSL
 
-- 定义：TIME-WAIT 时长 2MSL Maximum Segment Lifetime 最大报文生存时间
+- TIME-WAIT 时长 2MSL Maximum Segment Lifetime 最大报文生存时间
 - 时长：MSL 的值根据不同的情况而不同，一般是 30 秒、1 分钟、2 分钟
 - 目的：保证客户端发送的最后一个报文能够发到服务器，一旦报文丢失，服务器会认为，自己最后一次发送的 FIN+ACK 包，客户端并没有收到，此时，服务器会重新发送一次 FIN+ACK 包，而客户端可以在 2MSL 的时间内收到重新传输的 FIN+ACK 包，接着重新进行第四次挥手，并重启 2MSL 计时器
 

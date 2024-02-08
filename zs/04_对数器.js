@@ -65,7 +65,7 @@ function textX2Random(){
 // textX2Random();
 
 
-// 调整 x 的 3 次方
+// 调整 x^3
 function xToXPower3(){
   return Math.max(Math.random(), Math.max(Math.random(), Math.random()));
 }

@@ -83,7 +83,7 @@ for(; i--; ){
   console.log(i);
 }
 
-// 10 的 n 次方
+// 10^n
 var n = 5,
     num = 1; // 底数
 for(var i = 0; i < n; i++){

@@ -26,7 +26,7 @@ https://explorer.btc.com/zh-CN/btc/blocks
 反之则提高挖矿难度减小目标值，每隔2016个区块都会调整一下挖矿难度，大约14天
 
 block header中nonce阈值它的类型是32位无符号整数，挖矿过程中是需要调整nonce的
-但是nonce最多只有2的32次方个可能的取值，按照比特币挖矿难度就算是把2的32次方个可能的取值
+但是nonce最多只有2^32个可能的取值，按照比特币挖矿难度就算是把2^32个可能的取值
 都遍历一遍很可能仍然是找不到符合难度要求的目标阈，因为比特币的热度导致挖矿难度的增加
 单纯靠调整block header中的这个nonce是大概率找不到目标阈的，搜索空间不够大
 
@@ -39,7 +39,7 @@ block header中nonce阈值它的类型是32位无符号整数，挖矿过程中�
 这个coinbase域对于挖矿有什么用呢？
 当更改了铸币交易中coinbase域的信息，这个交易的哈希值就会产生变化，通过merkle tree向上传递
 最后导致block header中的merkle root hash发生变化，所以可以把它当作额外的随机数空间(extra-nonce)
-例如把coinbase中前8byte作为extra-nonce来使用，这样搜索空间就增大到2的96次方(1byte=8bit)
+例如把coinbase中前8byte作为extra-nonce来使用，这样搜索空间就增大到2^96(1byte=8bit)
 所以真正挖矿的时候是有两层循环的，外层循环去调整extra-nonce的难度，内层循环去寻找符合的目标阈
 
 伯努利试验(bernoulli trial:a random experiment with binary outcome)
