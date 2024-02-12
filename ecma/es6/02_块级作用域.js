@@ -20,12 +20,6 @@ var b = 30;
 
 // ------------------------------------------------------
 
-/*
-  问题
-  1.什么是块级作用域
-  2.块级作用域的特点
-*/
-
 if(1){
   // 块级作用域
 }
@@ -39,64 +33,76 @@ for(;1;){
   // 块级作用域
 }
 
+switch(1){
+  // 块级作用域
+}
+
+try{
+  // 块级作用域
+}catch{
+  // 块级作用域
+}
+
 // ------------------------------------------------------
 
 /*
   let 变量声明特点
-  1.同一变量在同一个作用域下不能重复声明
+  1.同一变量在同一个作用域中不能重复声明
   2.不会声明提升，会产生一个暂时性死区
   3.只能在当前作用域下生效
+  
+  let 本质上就是给 js 增加了一个块级作用域
 */
 
 let num = 100;
-// let num = 200; // 重复声明
+// let num = 200; // 全局作用域中重复声明
 
 function test1(){
   let num = 100;
-  // let num = 200; // 重复声明
+  // let num = 200; // 函数作用域中重复声明
 }
-test1();
+// test1();
 
 function test2(num){
-  // let num = 100; // 重复声明
+  // let num = 100; // 函数作用域中与形参变量重复声明
   console.log(num);
 }
-test2(200);
+// test2(200);
 
 // ------------------------------------------------------
 
-// console.log(c); // 报错
+// console.log(c); // 报错，变量声明不会提升
 let c = 30;
 
 var d = d;
-console.log(d); // undefined
+// console.log(d); // undefined 不报错，var 声明变量提升
 
 // let d = d;
-// console.log(d); // 报错
+// console.log(d); // 报错，变量声明不会提升
 
-function test3(x = y, y = 2){ // 暂时性死区
-  console.log(x,y); // 报错
+function test3(x = y, y = 2){ // es6 函数默认值声明方式，属于暂时性死区
+  console.log(x,y); // 报错，初始化前无法访问 y
 }
 // test3();
 
-// console.log(typeof e); // 报错
+// console.log(typeof e); // 报错，暂时性死区
 let e;
 
 // ------------------------------------------------------
 
 function test4(num){
   {
-    let num = 100;
+    let num = 100; // 不同作用域下声明变量
     console.log(num); // 100
   }
   console.log(num); // 200
 }
-test4(200);
+// test4(200);
 
 // for(;1;){
 //   let num = 1;
 // }
-console.log(num); // 不报错上面代码会导致死循环
+console.log(num); // 不报错，但是上面代码会导致死循环，一直在声明 num
 
 var arr = [];
 for(var i = 0; i < 10; i++){
@@ -117,8 +123,32 @@ for(var j = 0; j < 10; j++){
 // 而 {} 这个属于子块级作用域
 for(let k = 0; k < 10; k++){
   let k = 'a'; // 'a'*10
-  // var k = 'a'; // 报错重复声明
-  console.log(k); 
+  // var k = 'a'; // 报错，变量所处同一作用域，重复声明
+  // console.log(k); 
 }
 
+if(1){
+  let a = 10;
+  {
+    // var a = 20; // 变量 a 提升到全局，导致 let 重复声明
+    console.log(a); // 报错
+  }
+}
 
+// ------------------------------------------------------
+
+if(1){
+  // es6 中兼容在块级作用域中写函数声明
+  function test5(){
+    console.log('test5')
+  }
+  // 但是编码规范不提倡，需要写成函数表达式的形式
+  var test6 = function(){
+
+  }
+}
+test5(); // 函数声明提升到全局作用域
+
+if(1){
+  return 123; // 块级作用域没有返回值，没有方式可以接收返回数据
+}
