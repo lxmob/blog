@@ -22,8 +22,8 @@ function foo2(x = 1){
 function foo3(x = x){
 // 全局作用域中虽然有声明的 x 变量
 // 但是当函数执行时函数 () 内会形成一个单独的作用域
-// 可以看作是 let x = x 当取 x 值时 x 属于暂时性死区
-// function foo3(let x = x){
+// 可以看作是 function foo3(let x = x) 
+// 当取 x 值时 x 存放在暂时性死区
   console.log(x); // 报错
 }
 // foo3();
@@ -71,7 +71,7 @@ function foo3(x = x){
 // ------------------------------------------------------
 
 // es6 对象默认值写法
-let pName = 'limingming',
+let pName = 'ming',
     pAge = 27,
     pKey = 'custom',
     pVal = 'key',
@@ -79,7 +79,7 @@ let pName = 'limingming',
       pName,
       pAge,
       run(){}, // es6 对象方法写法
-      [pKey + pVal]: 123 // es6 字符串拼接属性
+      [pKey + pVal]: pName // es6 字符串拼接属性
     }
 // console.log(person);
 
@@ -105,27 +105,16 @@ let {son: {son: son1}} = person1;
 
 // es6 括号解构赋值
 // let a;
-    // {a} = {a: 1}; // 语法错误，js 认为 {} 内是一个块级作用域
-    // ({a} = {a: 1}); // 加上 () 按照表达式解析
-// console.log(a);
+// {a} = {a: 1}; // 语法错误，js 认为 {} 内是一个块级作用域
+// ({a} = {a: 1}); // 加上 () 按照表达式解析
+// console.log(a); // 1
 
-// 混合形式，模式匹配解构赋值
-let arr = [1, 2, 3], obj = {};
-[obj.a, obj.b, obj.c] = arr;
-// console.log(obj); // {a: 1, b: 2, c: 3}
-
-// 使用 let/var 声明解构赋值加上 () 就报错
+// 使用 let/var 声明变量解构赋值加上 () 就报错
 // let [(a)] = {a: 1}; // 语法错误
-// let ({a: b}) = {a: 1}; // let is not defined
+// let ({a: b}) = {a: 1}; // let is not defined => let = {a: 1}
 // let {(a): b} = {a: 1}; // 语法错误
 // let {a: (b)} = {a: 1}; // 语法错误
 // console.log(b);
-
-// 数组也是特殊的对象，也能进行解构赋值
-// 数组与对象匹配，按照索引的模式
-let arr1 = [1, 2, 3];
-let {0: first, [arr.length - 1]: last} = arr1;
-// console.log(first, last);
 
 // 解构赋值匹配规则需要相同才能够匹配
 // [(b)] = [3];
@@ -135,24 +124,34 @@ let {0: first, [arr.length - 1]: last} = arr1;
 // console.log(b); // 报错，匹配的规则不同 () 与 [] 无法匹配
 
 // ({a: (b) = {}});
-// console.log(b); // {} 混淆，属于默认值
+// console.log(b); // {} b 默认值
 
 // let a = {};
 // [(a.b)] = [3];
 // console.log(a); // {b: 3}
 
+// 混合形式，模式匹配解构赋值
+let arr = [1, 2, 3], obj = {};
+[obj.a, obj.b, obj.c] = arr;
+// console.log(obj); // {a: 1, b: 2, c: 3}
+
+// 数组也是特殊的对象，也能进行解构赋值
+// 数组与对象匹配，按照索引的模式
+let arr1 = [1, 2, 3];
+let {0: first, [arr.length - 1]: last} = arr1;
+// console.log(first, last);
+
 //  ------------------------------------------------------
 
 // es6 函数解构赋值
-
-function test3([x, y]){
+function test3([x, y]){ // 数组参数形式
   console.log(x, y);
 }
 // test3([1, 2]); // 1 2
 // test3([1]); // 1 undefined
 // test3([]); // undefined undefined
 
-function test4({x, y}){
+function test4({x, y}){ // 对象参数形式
   console.log(x, y);
 }
 // test4({y: 2, x: 1}); // 1 2
@@ -161,7 +160,7 @@ function test4({x, y}){
 
 function test5({x = 10} = {}, {y} = {y: 10}){ 
   // x 解构时空对象没有匹配到 x 所以默认值就是 10
-  console.log(x, y)
+  console.log(x, y);
 }
 // test5(); // 10 10
 // test5({}, {}); // 10 undefined
