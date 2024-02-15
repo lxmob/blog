@@ -31,12 +31,18 @@ var fn3 = function text(){
 };
 console.log(fn3.name); // text
 fn3(); // fn
-text(); // ReferenceError
+// text(); // ReferenceError
 
 // 2. 匿名函数表达式（函数字面量）
 var fn2 = function(){
   console.log("fn2");
 }
+
+// 函数名字
+var f = function (){};
+console.log(f.name); // f
+console.log((new Function()).name); // anonymous 匿名的
+console.log((f.bind(null)).name); // bound f
 
 
 /* 
@@ -55,11 +61,14 @@ add(10, 20, 30); // 实际参数
 
 // 形参存放栈内存，实参存放在堆内存，形参和实参具有映射关系
 // 形参赋值实参也会跟着变，前提需要实参传递，映射两者对应关系
+// 但是实参的赋值，形参是不会改变的
 function add2(a, b){
   a = 20;
   b = 10;
   console.log(arguments[0]); // 20
   console.log(arguments[1]); // undefined
+  arguments[1] = 30;
+  console.log(arguments[1], b); // 30 10
 }
 add2(10);
 

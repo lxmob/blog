@@ -20,15 +20,23 @@ function foo2(x = 1){
 }
 
 function foo3(x = x){
-// 全局作用域中虽然有声明的 x 变量
-// 但是当函数执行时函数 () 内会形成一个单独的作用域
+// 当函数具有默认值且执行时函数 () 内会形成一个单独的作用域
 // 可以看作是 function foo3(let x = x) 
 // 当取 x 值时 x 存放在暂时性死区
   console.log(x); // 报错
 }
 // foo3();
 
-// ------------------------------------------------------
+// 设置默认值形成块级作用域
+function foo(x, y = function(){ x = 2; console.log(x);}){
+  var x = 3;
+  // x = 3;
+  y();
+  console.log(x); // 3
+}
+foo();
+console.log(x); // 1
+
 
 // es6 变量解构赋值
 
@@ -68,7 +76,6 @@ function foo3(x = x){
 // let [a = 1, b = a] = [];
 // console.log(a, b);
 
-// ------------------------------------------------------
 
 // es6 对象默认值写法
 let pName = 'ming',
@@ -101,7 +108,6 @@ let person1 = {name: 'ming', age: 27, son: {son: {name: 'sanny'}}}
 let {son: {son: son1}} = person1;
 // console.log(son1.name); // 'sanny'
 
-//  ------------------------------------------------------
 
 // es6 括号解构赋值
 // let a;
@@ -141,7 +147,6 @@ let arr1 = [1, 2, 3];
 let {0: first, [arr.length - 1]: last} = arr1;
 // console.log(first, last);
 
-//  ------------------------------------------------------
 
 // es6 函数解构赋值
 function test3([x, y]){ // 数组参数形式
@@ -166,7 +171,6 @@ function test5({x = 10} = {}, {y} = {y: 10}){
 // test5({}, {}); // 10 undefined
 // test5({x: 2}, {y: 3}); // 2 3
 
-//  ------------------------------------------------------
 
 // es6 解构隐士转换问题
 const uki = 'mingg'
@@ -187,6 +191,3 @@ console.log(tStr); // function
 
 // const {nll} = null;
 // console.log(nll); // 报错
-
-//  ------------------------------------------------------
-
