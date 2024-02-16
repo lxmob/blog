@@ -1,43 +1,3 @@
-// es6 变量默认值
-function test1(x = 1, y = 2){
-  console.log(x + y);
-}
-// test1(3, 7);
-// test1(1);
-// test1(null, 4);
-// test1();
-
-let x = 1; // 全局作用域变量 x
-function foo1(y = x){
-  let x = 2; // 函数作用域变量 x
-  console.log(y) // 1
-}
-// foo1();
-
-function foo2(x = 1){
-  // let x = 2; // 与函数作用域中形参重复声明
-  console.log(x); // 报错
-}
-
-function foo3(x = x){
-// 当函数具有默认值且执行时函数 () 内会形成一个单独的作用域
-// 可以看作是 function foo3(let x = x) 
-// 当取 x 值时 x 存放在暂时性死区
-  console.log(x); // 报错
-}
-// foo3();
-
-// 设置默认值形成块级作用域
-function foo(x, y = function(){ x = 2; console.log(x);}){
-  var x = 3;
-  // x = 3;
-  y();
-  console.log(x); // 3
-}
-foo();
-console.log(x); // 1
-
-
 // es6 变量解构赋值
 
 // 模式匹配（结构化赋值）
@@ -66,29 +26,16 @@ console.log(x); // 1
 // console.log(a, b); // 1 null
 
 // 默认值也可以是函数
-// function test2(){
+// function test1(){
 //   console.log(1);
 // }
-// let [a = test2()] = [1];
+// let [a = test1()] = [1];
 // console.log(a); // 1
 
 // 默认值也可以是变量
 // let [a = 1, b = a] = [];
 // console.log(a, b);
 
-
-// es6 对象默认值写法
-let pName = 'ming',
-    pAge = 27,
-    pKey = 'custom',
-    pVal = 'key',
-    person = {
-      pName,
-      pAge,
-      run(){}, // es6 对象方法写法
-      [pKey + pVal]: pName // es6 字符串拼接属性
-    }
-// console.log(person);
 
 // es6 对象解构赋值
 // let {a: a, b: b, c: c} = {a: 1, b: 2, c: 3};
@@ -149,27 +96,27 @@ let {0: first, [arr.length - 1]: last} = arr1;
 
 
 // es6 函数解构赋值
-function test3([x, y]){ // 数组参数形式
+function test2([x, y]){ // 数组参数形式
   console.log(x, y);
 }
-// test3([1, 2]); // 1 2
-// test3([1]); // 1 undefined
-// test3([]); // undefined undefined
+// test2([1, 2]); // 1 2
+// test2([1]); // 1 undefined
+// test2([]); // undefined undefined
 
-function test4({x, y}){ // 对象参数形式
+function test3({x, y}){ // 对象参数形式
   console.log(x, y);
 }
-// test4({y: 2, x: 1}); // 1 2
-// test4({y: 2}); // undefined 2
-// test4({}); // undefined undefined
+// test3({y: 2, x: 1}); // 1 2
+// test3({y: 2}); // undefined 2
+// test3({}); // undefined undefined
 
-function test5({x = 10} = {}, {y} = {y: 10}){ 
+function test4({x = 10} = {}, {y} = {y: 10}){ 
   // x 解构时空对象没有匹配到 x 所以默认值就是 10
   console.log(x, y);
 }
-// test5(); // 10 10
-// test5({}, {}); // 10 undefined
-// test5({x: 2}, {y: 3}); // 2 3
+// test4(); // 10 10
+// test4({}, {}); // 10 undefined
+// test4({x: 2}, {y: 3}); // 2 3
 
 
 // es6 解构隐士转换问题

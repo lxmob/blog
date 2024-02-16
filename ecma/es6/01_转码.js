@@ -20,7 +20,7 @@
 
 /*
   babel 相关的配置包文件
-  babel-presets-env 规则集，指定 TC39 提案对应的转码规则，
+  babel-presets-env 规则集，指定 TC39 提案对应的转码规则
   babel-core 核心包，编译时需要调用 babel 的 api 来转码
   babel-cli 脚手架工具，提供终端运行命令，在 pakeage.json 配置脚本运行信息
   babel-node 提供支持 ES6 的交互解释器(REPL)环境，可以直接运行 ES6 代码

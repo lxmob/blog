@@ -13,12 +13,12 @@
   </body>
   <!-- 
     this的指向
-    1.全局环境（非严格模式）调用函数 this 指向 window 严格模式下是 undefined
-    2.dom 事件绑定的 this 指向的是绑定该事件的 dom 元素
+    1.普通函数调用 this 指向 window 严格模式下是 undefined
+    2.事件绑定的处理函数调用 this 指向绑定该事件的 dom 元素
     3.构造函数中的 this 指向当前实例化对象
-    4.对象方法被调用 this 指向调用该方法的对象
-    5.IIFE 函数自调用中的 this 指向 window 严格模式下是 undefined
-    6.通过 call/apply、bind 方法可以改变调用函数的 this 指向
+    4.对象中的方法函数 this 指向调用该方法的对象
+    5.自调用函数(IIFE)与普通函数的 this 指向相同
+    6.通过 call、apply、bind 方法可以改变调用函数的 this 指向
   -->
 
   <script>

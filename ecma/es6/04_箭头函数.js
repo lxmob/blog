@@ -13,7 +13,7 @@
 
 let foo1 = a => a,
     foo2 = function (a){return a;}, // 等价
-    foo3 = (a, b) => a+b,
+    foo3 = (a, b) => a + b,
     foo4 = () => 1;
 
 let foo5 = (a, b) => {
@@ -43,7 +43,7 @@ let foo6 = (...args) => {
 let foo7 = (a, b, c) => {
   console.log(a, b, c); // 1 2 3
 }
-// foo7(...[1, 2, 3]); // 展开运算
+// foo7(...[1, 2, 3]); // spread 展开运算
 // foo7.apply(null, [1, 2, 3]); // 通过 es5 方式模拟展开运算
 
 let foo8 = (a, b, ...args) => {
@@ -61,6 +61,7 @@ let foo8 = (a, b, ...args) => {
 
 function foo9(){
   console.log(this);
+  // return function() {
   return () => {
     console.log(this.a); // 由外部函数调用时作用域所决定的 this 指向
   }
@@ -69,8 +70,8 @@ let obj1 = {a: 1},
     obj2 = {a: 2},
     // bar = foo9(); // global undefined
     bar = foo9.call(obj1); // obj1 1
-// 外部变量函数虽然被定义在全局但是箭头函数 this 已经被确定
-// 通过 call/apply/bind 是无法再次改变 this 指向
+// bar 变量接收函数虽然被定义在全局但是箭头函数 this 已经被确定
+// 通过 call/apply/bind 是无法再次改变箭头函数 this 指向
 // bar.call(obj2);
 // bar.apply(obj2);
 // bar.bind(obj2)();

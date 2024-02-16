@@ -1,4 +1,4 @@
-// 'use strict'
+// 'use strict';
 
 // 属性名简写与分组表达式
 let spv = 10,
@@ -44,7 +44,7 @@ Object.defineProperty(obj, 'age', {
     2.然后看配置 writable 是否可写
     3.赋值
   
-  getter 与 setter 就是为了给对象身上默认操作进行重写方法
+  getter setter 就是为了给对象身上的属性默认操作进行方法重写
 */
 
 let op = {
@@ -70,4 +70,3 @@ Object.defineProperty(ob, 'check', {
 })
 console.log(ob.check); // 1
 console.log(ob.check); // 2
-
