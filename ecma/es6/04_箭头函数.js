@@ -17,7 +17,7 @@ let foo1 = a => a,
     foo4 = () => 1;
 
 let foo5 = (a, b) => {
-  console.log(arguments); // 报错
+  console.log(arguments); // Uncaught ReferenceError: arguments is not define
   return a + b;
 }
 // foo5();
@@ -71,7 +71,7 @@ let obj1 = {a: 1},
     // bar = foo9(); // global undefined
     bar = foo9.call(obj1); // obj1 1
 // bar 变量接收函数虽然被定义在全局但是箭头函数 this 已经被确定
-// 通过 call/apply/bind 是无法再次改变箭头函数 this 指向
+// 通过 call、apply、bind 是无法再次改变箭头函数 this 指向
 // bar.call(obj2);
 // bar.apply(obj2);
 // bar.bind(obj2)();
@@ -86,3 +86,22 @@ let p = {
 }
 // p.eat(); // p
 // p.drink(); // global
+
+// 案例
+function foo10(){
+  // return () => {
+  //   return () => {
+  //     return () => {
+  return function(){
+    return function(){
+      return function(){
+        console.log('id:', this.id);
+      }
+    }
+  }
+}
+var f = foo10.call({id: 1});
+var t1 = f.call({id: 2})()();
+var t2 = f().call({id: 3})();
+var t3 = f()().call({id: 4});
+console.log(t1, t2, t3); // 'id:' 1 * 3

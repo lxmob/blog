@@ -63,25 +63,25 @@ let {son: {son: son1}} = person1;
 // console.log(a); // 1
 
 // 使用 let/var 声明变量解构赋值加上 () 就报错
-// let [(a)] = {a: 1}; // 语法错误
-// let ({a: b}) = {a: 1}; // let is not defined => let = {a: 1}
-// let {(a): b} = {a: 1}; // 语法错误
-// let {a: (b)} = {a: 1}; // 语法错误
+// let [(a)] = {a: 1}; // SyntaxError: Invalid destructuring assignment target
+// let ({a: b}) = {a: 1}; // ReferenceError: let is not defined
+// let {(a): b} = {a: 1}; // SyntaxError: Unexpected token '('
+// let {a: (b)} = {a: 1}; // SyntaxError: Invalid destructuring assignment target
 // console.log(b);
 
 // 解构赋值匹配规则需要相同才能够匹配
 // [(b)] = [3];
-// console.log(b); // 3 作为全局变量
+// console.log(b); // 3
 
-// ([b]) = [3];
-// console.log(b); // 报错，匹配的规则不同 () 与 [] 无法匹配
+// 匹配的规则不同 () 与 [] 无法匹配
+// ([b]) = [3]; // SyntaxError: Invalid left-hand side in assignment
 
 // ({a: (b) = {}});
-// console.log(b); // {} b 默认值
+// console.log(b); // {}
 
-// let a = {};
-// [(a.b)] = [3];
-// console.log(a); // {b: 3}
+// let tar = {};
+// [(tar.b)] = [3];
+// console.log(tar); // {b: 3}
 
 // 混合形式，模式匹配解构赋值
 let arr = [1, 2, 3], obj = {};
@@ -134,7 +134,7 @@ console.log(tStr); // function
 // 而 undefined null 是不可以进行隐士转换的
 
 // const {und} = undefined;
-// console.log(und); // 报错
+// console.log(und); // TypeError: Cannot destructure property 'und' of 'undefined' as it is undefined.
 
 // const {nll} = null;
-// console.log(nll); // 报错
+// console.log(nll); // TypeError: Cannot destructure property 'und' of 'undefined' as it is undefined.

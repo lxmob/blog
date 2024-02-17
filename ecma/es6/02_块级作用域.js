@@ -1,5 +1,3 @@
-// 'use strict';
-
 /*
   let 变量声明特点
   1.同一变量在同一个作用域中不能重复声明
@@ -30,13 +28,10 @@ function test2(num){
 
 // TDZ暂时性死区案例
 
-// 报错 => TDZ
-// console.log(c);
+// console.log(c); // ReferenceError: Cannot access 'c' before initialization
 let c = 30;
 
-// 报错 => TDZ
-// let e = e;
-// console.log(e);
+// let e = e; // SyntaxError: Identifier 'e' has already been declared
 
 var d = d;
 // console.log(d); // undefined
@@ -52,7 +47,7 @@ for(var i = 0; i < 10; i++){ // 注意 var 二次声明 i 变量被重新覆盖�
 }
 
 // typeof 也不可避免 TDZ
-// console.log(typeof e); // 报错
+// console.log(typeof e); // ReferenceError: Cannot access 'e' before initialization
 let e;
 
 
@@ -76,14 +71,13 @@ for(let k = 0; k < 10; k++){
 
   // var 变量声明提升导致重复声明
   // 这里可以理解为变量提升的过程中发现块级作用域中已经包含了重复变量
-  // var k = 'a'; // 报错
+  // var k = 'a'; // SyntaxError: Identifier 'k' has already been declared
 }
 
 if(1){
   let a = 10;
   {
-    // var a = 20;
-    // console.log(a); // 报错
+    // var a = 20; // SyntaxError: Identifier 'a' has already been declared
   }
 }
 
@@ -111,8 +105,8 @@ if(1){
 
 {
   let a = 1;
-  // 同一个块级作用域下重复声明导致报错
-  // function a(){}
+  // 同一个块级作用域下重复声明
+  // function a(){}; // SyntaxError: Identifier 'a' has already been declared
   {
     // 函数声明产生块级作用域，函数内部提升
     // a(); // 'a fn'
@@ -122,7 +116,8 @@ if(1){
   }
   // console.log(a); // 1
 }
-// a(); // 报错 说明 a 函数在块级作用域消失后，没有被存在全局作用域
+// 说明 a 函数没有被提升到全局作用域
+// a(); // ReferenceError: a is not defined
 
 
 // 函数默认值案例
@@ -135,11 +130,10 @@ function test6(x = 1, y = 2){
 // test6(null, 4); // 4
 // test6(); // 3
 
-// 报错 => TDZ
 function test7(x = y, y = 2){
   console.log(x, y);
 }
-// test7();
+// test7(); // Uncaught ReferenceError: Cannot access 'y' before initialization
 
 let x = 1;
 function test8(y = x){
@@ -149,15 +143,14 @@ function test8(y = x){
 // test8();
 
 function test9(x = 1){
-  // let x = 2;
-  console.log(x); // 报错
+  // let x = 2; // SyntaxError: Identifier 'x' has already been declared
 }
 
 // 函数形参默认值 TDZ
 // 当取 x 值时 x 存放在暂时性死区
 // function test10(let x = x){
-function test10(x = x){
-  console.log(x); // 报错
+function test10(x = x){ 
+  // ReferenceError: Cannot access 'x' before initialization
 }
 // test10();
 
@@ -179,14 +172,7 @@ console.log(x); // 1
 */
 
 const obj = {name: 'ming'};
-// Object.freeze 静态方法用来冻结对象
-// 不能给冻结的对象新增、修改、删除属性
-// 非严格模式下会导致静默失败，严格模式下报错
-Object.freeze(obj);
-obj.name = 'mingming';
-obj.age = 27;
-delete obj.name;
-console.log(obj);
+// obj = {age: 27}; // TypeError: Assignment to constant variable.
 
 // 特殊注意: 使用 let const class 声明的变量不会作为 window 的属性
 // console.log(global.obj); // undefined

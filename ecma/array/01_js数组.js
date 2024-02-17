@@ -18,6 +18,7 @@ console.log(arr3.__proto__);
 // 稀松数组
 var arr4 = [, , 1, 2, , , 5, 6];
 console.log(arr4.length); // 8
-// var arr5 = new Array(,1,2,,4,5); // 参数报错，构造函数形式无法创建稀松数组
+// 构造函数形式无法创建稀松数组
+// var arr5 = new Array(,1,2,,4,5); // SyntaxError: Unexpected token ','
 var arr5 = new Array(3); // [ empty * 3 ]
 var arr6 = new Array("3"); // ['3']

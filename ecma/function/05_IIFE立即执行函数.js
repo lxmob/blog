@@ -43,8 +43,9 @@ console.log(fn); //  Uncaught ReferenceError: fn is not defined;
   console.log(a + b);
 })(1, 2);
 
-// 这是函数声明并非表达式所以会报错
-function test(a,b){}()
+// 属于函数声明并非表达式
+// SyntaxError: Unexpected token ')'
+function test(a,b){}();
 
 // 通过加运算符可以将函数声明变成表达式的方法
 !function test(){
@@ -60,8 +61,9 @@ function test(a,b){}()
   console.log("test");
 }();
 
-// 不报错，(6) 是一个表达式，并不是执行符号 => function text(){};(6)
-function test() {}(6);
+// (6) 是一个表达式并不是执行符号 
+// => function text(){};(6)
+function test(){}(6);
 
 // var test = function(){} 作为函数表达式，与执行符号 () 组合
 // 此时函数表达式会立即执行
