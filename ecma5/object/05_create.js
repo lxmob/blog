@@ -24,7 +24,7 @@ var prototype = {};
 // 手动添加原型链是无效的，这个操作只是为实例对象增加了一个属性
 person.__proto__ = prototype;
 console.log(person);
-person.toString(); // TypeError: person.toString is not a function
+// person.toString(); // TypeError: person.toString is not a function
 
 // 但是可以通过这个属性，来访问添加的对象身上原型对象方法和属性
 person.__proto__.toString();
@@ -33,8 +33,8 @@ person.__proto__.toString();
 // 手动为对象添加 toString 方法
 var num = 1,
     cur = {};
-document.write(num); // 1
-document.write(cur); // [object Object]
+// document.write(num); // 1
+// document.write(cur); // [object Object]
 
 var createObj = Object.create(null);
 // document.write(createObj)
@@ -42,9 +42,9 @@ var createObj = Object.create(null);
 createObj.toString = function(){
   return "createObj";
 };
-document.write(createObj); // 'createObj'
+// document.write(createObj); // 'createObj'
 
 
 // toString 原型方法的重写 
-console.log(Number.prototype.toString.call(1)) // 1
+console.log(Number.prototype.toString.call(10, 2)) // 1010
 console.log(Object.prototype.toString.call(1)) // '[object Number]'

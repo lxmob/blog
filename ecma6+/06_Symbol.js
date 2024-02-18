@@ -74,3 +74,8 @@ let s5 = Symbol.for('jack'),
 // console.log(Object.keys(mKiin)); // [ 'name' ]
 // console.log(Object.getOwnPropertySymbols(mKiin)); // [ Symbol(name) ]
 // console.log(JSON.stringify(mKiin)); // {"name":"kiin"}
+
+// Symbol 函数中提供了一系列判断用户行为的方法
+// 当用户使用 instanceof 底层实际上调用了 Symbol.hasInstance 方法 
+// Symbol(Symbol.hasInstance)
+// console.log(mKiin instanceof Object);
