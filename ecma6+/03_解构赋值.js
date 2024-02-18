@@ -1,4 +1,4 @@
-// es6 变量解构赋值
+// ES6 变量解构赋值
 
 // 模式匹配（结构化赋值）
 // let [a, b, c] = [1, 2, 3];
@@ -37,9 +37,9 @@
 // console.log(a, b);
 
 
-// es6 对象解构赋值
+// ES6 对象解构赋值
 // let {a: a, b: b, c: c} = {a: 1, b: 2, c: 3};
-// let {a, b, c} = {a: 1, b: 2, c: 3}; // es6 简写
+// let {a, b, c} = {a: 1, b: 2, c: 3}; // ES6 简写
 // console.log(a, b, c); // 1 2 3
 
 // 根据对应的键名映射自定义键名称
@@ -56,7 +56,7 @@ let {son: {son: son1}} = person1;
 // console.log(son1.name); // 'sanny'
 
 
-// es6 括号解构赋值
+// ES6 括号解构赋值
 // let a;
 // {a} = {a: 1}; // 语法错误，js 认为 {} 内是一个块级作用域
 // ({a} = {a: 1}); // 加上 () 按照表达式解析
@@ -95,7 +95,7 @@ let {0: first, [arr.length - 1]: last} = arr1;
 // console.log(first, last);
 
 
-// es6 函数解构赋值
+// ES6 函数解构赋值
 function test2([x, y]){ // 数组参数形式
   console.log(x, y);
 }
@@ -119,7 +119,7 @@ function test4({x = 10} = {}, {y} = {y: 10}){
 // test4({x: 2}, {y: 3}); // 2 3
 
 
-// es6 解构隐士转换问题
+// ES6 解构隐士转换问题
 const uki = 'mingg'
 const [a, b, c, d, e] = uki;
 console.log(a, b, c, d, e); // 'm i n g g'

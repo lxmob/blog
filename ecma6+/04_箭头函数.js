@@ -1,5 +1,5 @@
 /*
-  es6 箭头函数
+  ES6 箭头函数
   原本的样式 () => {} 等同于 function (){}
 
   箭头函数的特点
@@ -44,7 +44,7 @@ let foo7 = (a, b, c) => {
   console.log(a, b, c); // 1 2 3
 }
 // foo7(...[1, 2, 3]); // spread 展开运算
-// foo7.apply(null, [1, 2, 3]); // 通过 es5 方式模拟展开运算
+// foo7.apply(null, [1, 2, 3]); // 通过 ES5 方式模拟展开运算
 
 let foo8 = (a, b, ...args) => {
   console.log(a, b, args); // 1 2 [3, 4] rest 收集参数必须是最后一个参数

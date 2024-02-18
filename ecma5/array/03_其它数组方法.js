@@ -8,11 +8,12 @@ var arr1 = ['Wind','Rain','Fire'];
 console.log(arr1.join()); // "Wind,Rain,Fire"
 console.log(arr1.join('')); // "WindRainFire"
 console.log(arr1.join(0)); // "Wind0Rain0Fire"
-// 源码实现
+
+// polyfill
 Array.prototype.join = function(spt = ''){
   var str = this[0]
   for(var i = 1; i < this.length; i++){
-    str += `${spt}${this[i]}`;
+    str += ('' + spt + this[i]);
   }
   return str;
 }
@@ -27,7 +28,8 @@ Array.prototype.join = function(spt = ''){
 var arr2 = [4, 5, 6];
 console.log(arr2.concat(1, 2, 3)); // [4, 5, 6, 1, 2, 3]
 console.log(arr2.concat([1, 2], {})); // [4, 5, 6, 1, 2, {}]
-// 源码实现
+
+// polyfill
 Array.prototype.concat = function(){
   var nArr = [...this];
   for(var i = 0; i < arguments.length; i++){
@@ -65,7 +67,8 @@ var arr6 = [4, 5, 5, 6];
 console.log(arr6.indexOf(5)); // 1
 console.log(arr6.indexOf(1)); // -1
 console.log(arr6.indexOf(5, 2)); // 2
-// 源码实现
+
+// polyfill
 Array.prototype.indexOf = function(tar){
   var arg2 = arguments[1],
       i = arg2 ? arg2 : 0,
@@ -73,32 +76,6 @@ Array.prototype.indexOf = function(tar){
   for(; i < this.length; i++){
     if(tar === this[i]){
       ans = i;
-      break;
-    }
-  }
-  return ans;
-}
-
-
-/* 
-  includes(value, fromIndex)
-  作用：判断一个数组是否包含一个指定的值
-  返回值：布尔值
-*/
-var arr7 = [4, 5, 6];
-console.log(arr7.includes(4)); // true
-console.log(arr7.includes(1)); // false
-// 索引大于数组长度则直接返回 false
-console.log(arr7.includes(6, 4)); // false
-console.log(arr7.includes(5, -100)); // true
-// 源码实现
-Array.prototype.includes = function(tar){
-  var arg2 = arguments[1],
-      i = arg2 ? arg2 : 0,
-      ans = false;
-  for(; i < this.length; i++){
-    if(tar === this[i]){
-      ans = true;
       break;
     }
   }

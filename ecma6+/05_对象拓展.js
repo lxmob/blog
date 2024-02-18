@@ -24,6 +24,7 @@ let obj = {name: 'ming'},
 
 // Object.defineProperty
 // 允许在对象身上添加或修改一个属性进行描述并返回修改后的对象
+// 这样做的好处就是可以配置对象属性的一些特性
 Object.defineProperty(obj, 'age', {
   value: 27,
   writable: false,
@@ -34,11 +35,18 @@ Object.defineProperty(obj, 'age', {
 // delete obj.age; // 配置不可删除该对象属性
 // console.log(obj);
 
+// 使用对象点语法添加属性方式，属性描述信息默认值都是 true
+// obj.car = ['Benz', 'Toyota'];
+// console.log(Object.getOwnPropertyDescriptor(obj, 'car'));
+
+// 使用 defineProperty 方法来添加属性方式，属性描述信息默认值都是 false
+// Object.defineProperty(obj, 'car', {value: ['Benz', 'Toyota']});
+// console.log(Object.getOwnPropertyDescriptor(obj, 'car'));
 
 /*
   getter setter
   js 中对象在赋值与读取时默认有两个操作 [[Get]] 与 [[Put]]
-  [[Get]] 属性的读取，查找当前属性如果不存在，查找原型对象
+  [[Get]] 属性的读取，查找当前属性，如果不存在查找原型对象
   [[Put]] 属性的赋值
     1.首先看是否有重写 getter 与 setter
     2.然后看配置 writable 是否可写
@@ -80,34 +88,35 @@ let somebody = {name: 'ming'};
 
 // somebody.name = 'mingming'; // 可以改
 // delete somebody.name; // 可以删
+// somebody.car = 'Benz'; // 不可以新增
 
-// 使用对象点语法属性添加方式，属性描述符信息默认值都是 true
-// somebody.car = 'Benz'; // 不可以新增，静默失败
-// console.log(Object.getOwnPropertyDescriptor(somebody, 'car'));
+// 方法新增属性
+// 不区分模式 TypeError: Cannot define property car, object is not extensible
+// Object.defineProperty(somebody, 'car', {value: 'Benz'});
 
-// 属性描述符信息默认值都是 false
-// 无论什么模式下都会 TypeError: Cannot define property car, object is not extensible
-// Object.defineProperty(somebody, 'car', {value: 'Benz'}); // 不可以新增
-
-// 无论什么模式下都会 TypeError: #<Object> is not extensible
+// 不区分模式 TypeError: #<Object> is not extensible
 // somebody.__proto__ = {constructor: Object}; // 禁止更改原型
 
-// Object.isExtensible 判断一个对象是否可扩展
+
+// isExtensible 判断一个对象是否可扩展
 // console.log(Object.isExtensible(somebody)); // false
 
 
 // Object.seal 密封对象
 // 底层通过调用 preventExtensions 禁止扩展对象
-// 然后循环将对象的属性描述符 configurable 设置为 false
+// 然后循环对象的属性将描述信息 configurable 设置为 false
 // Object.seal(somebody);
 
-// somebody.name = 'mingming'; // 同上
-// delete somebody.name; // 同上
-// somebody.car = 'Benz'; // 同上
+// somebody.name = 'mingming'; // 可以改
+// delete somebody.name; // 不可以删
+// somebody.car = 'Benz'; // 不可以新增
 
-// 无论什么模式下都会 TypeError: Cannot define property car, object is not extensible
-// Object.defineProperty(somebody, 'car', {value: 'Benz'}); // 不可以新增
+// 方法新增属性
+// 不区分模式 TypeError: Cannot define property car, object is not extensible
+// Object.defineProperty(somebody, 'car', {value: 'Benz'});
 
+
+// isSealed 判断一个对象是否被密封
 // Object.isSealed(somebody); // true
 
 
@@ -119,9 +128,12 @@ let somebody = {name: 'ming'};
 // somebody.age = 27; // 不可以新增
 // delete somebody.name; // 不可以删
 
-// 无论什么模式下都会 TypeError: Cannot define property car, object is not extensible
-// Object.defineProperty(somebody, 'car', {value: 'Benz'}); // 不可以新增
+// 方法新增属性
+// 不区分模式 TypeError: Cannot define property car, object is not extensible
+// Object.defineProperty(somebody, 'car', {value: 'Benz'});
 
+
+// isFrozen 判断一个对象是否被冻结
 // Object.isFrozen(somebody); // true
 
 // console.log(somebody);
@@ -146,18 +158,11 @@ let mTar = {name: 'ming'},
 // console.log(mTar);
 
 let mHouse = {house: 'villa'};
-// 原始类型中只有字符串包含可枚举的属性
-// console.log(Object.assign(mHouse, 'key')); // {0: 'k', 1: 'e', 2: 'y', house: 'villa'}
-// console.log(Object.assign('key', mHouse)); // [String: 'key'] { house: 'villa' }
-
-// null undefined 将被忽略
-// console.log(Object.assign(mHouse, null)); // { house: 'villa' }
-// console.log(Object.assign(null, mHouse)); // TypeError: Cannot convert undefined or null to object
 
 // 第一个参数是目标对象
 // 如果是原始类型先将目标对象转为包装对象然后进行拷贝源对象可枚举属性
-// console.log(Object.assign(true, mHouse)); // [Boolean: true] { house: 'villa' }
-// console.log(Object.assign(123, mHouse)); // [Number: 123] { house: 'villa' }
+// console.log(Object.assign(true, mHouse)); // Boolean {true, house: 'villa'}
+// console.log(Object.assign(123, mHouse)); // Number {123, house: 'villa'}
 
 // 第二个参数是源对象只将源对象可枚举的属性拷贝至目标对象
 // 如果是原始类型，先将参数二转为包装对象然后判断属性是否可枚举
@@ -166,17 +171,24 @@ let mHouse = {house: 'villa'};
 // console.log(Object.assign(mHouse, true)); // { house: 'villa' }
 // console.log(Object.assign(mHouse, 123)); // { house: 'villa' }
 
+// 原始类型中只有字符串包含可枚举的属性
+// console.log(Object.assign(mHouse, 'key')); // {0: 'k', 1: 'e', 2: 'y', house: 'villa'}
+// console.log(Object.assign('key', mHouse)); // String {'key', house: 'villa'}
+
+// null undefined 将被忽略
+// console.log(Object.assign(mHouse, null)); // { house: 'villa' }
+// console.log(Object.assign(null, mHouse)); // TypeError: Cannot convert undefined or null to object
+
 // 源对象与目标对象属性相同，后面覆盖前面
-// let mBag = {tk: {name: 'supreme'}},
-//     mWallet = {tk: {name: 'coach'}};
-// Object.assign(mBag, mWallet);
-// console.log(mBag); // {tk: {name: 'coach'}}
+let mBag = {tk: {name: 'supreme'}},
+    mWallet = {tk: {name: 'coach'}};
+// console.log(Object.assign(mBag, mWallet)); // {tk: {name: 'coach'}}
 
 // 数组合并按照索引值进行覆盖
-// let mCar = ['Benz', 'Toyota'],
-//     nCar = ['Mazda'];
-// Object.assign(mCar, nCar);
-// console.log(mCar); // ['Mazda', 'Toyota']
+let mCar = ['Benz', 'Toyota'],
+    nCar = ['Mazda'];
+// console.log(Object.assign(mCar, nCar)); // ['Mazda', 'Toyota']
+
 
 // 取值函数的合并只保留属性与属性值
 let mFoo = {
@@ -188,8 +200,7 @@ let mFoo = {
   }
 }
 let mBar = {name: 'bar'};
-// Object.assign(mBar, mFoo);
-// console.log(mBar); // { name: 'foo' }
+// console.log(Object.assign(mBar, mFoo)); // { name: 'foo' }
 
 // 解决 assign 无法拷贝取值函数的问题
 // 通过 getOwnPropertyDescriptors 获取属性描述符的对象集合
@@ -197,6 +208,7 @@ let mBar = {name: 'bar'};
 Object.defineProperties(mBar, Object.getOwnPropertyDescriptors(mFoo));
 // console.log(mBar); // { name: [Getter], date: [Setter] }
 // console.log(mBar.name); // 'foo'
+
 
 // 另一种实现克隆对象的方法
 let mKiin = {name: 'kiin', age: 19},
@@ -219,8 +231,8 @@ Object.defineProperty(mJack, 'car', {value: 'Toyota', enumerable: false});
 // console.log(Object.entries(mJack)); // [ [ 'name', 'jack' ], [ 'age', 18 ] ]
 
 
-// ES2017 对象展开
+// ES2017 对象展开方式
 let mSpread = {name: 'spread', next: 'rest'},
     mRest = {name: 'rest', last: 'spread'},
     nSpread = {...mSpread, ...mRest};
-console.log(nSpread); // { name: 'rest', next: 'rest', last: 'spread' }
+// console.log(nSpread); // { name: 'rest', next: 'rest', last: 'spread' }

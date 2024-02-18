@@ -8,7 +8,8 @@ arr1.forEach(function(item, idx, arr){
   item *= 2;
 });
 console.log(arr1); // [1, 2, 3]
-// 源码实现
+
+// polyfill
 Array.prototype.forEach = function(cb){
   var that = this,
       len = that.length,
@@ -30,7 +31,8 @@ var rsl2 = arr2.filter(function (item, idx, arr){
   return item >= 10;
 });
 console.log(rsl2); // [12, 130, 44]
-// 源码实现
+
+// polyfill
 Array.prototype.filter = function (cb){
   var that = this,
       len = that.length,
@@ -53,7 +55,8 @@ var rsl3 = arr3.map(function (item, idx, arr){
   return (item *= 2);
 });
 console.log(rsl3); // [4, 6, 8]
-// 源码实现
+
+// polyfill
 Array.prototype.map = function (cb){
   var that = this,
       len = that.length,
@@ -78,7 +81,8 @@ var rsl4 = arr4.some(function (item, idx, arr){
   return item % 2 === 0;
 });
 console.log(rsl4); // true
-// 源码实现
+
+// polyfill
 Array.prototype.some = function (cb){
   var that = this,
       len = that.length,
@@ -106,7 +110,8 @@ var rsl5 = arr5.every(function (item, idx, arr){
   return item >= 10;
 });
 console.log(rsl5); // false
-// 源码实现
+
+// polyfill
 Array.prototype.every = function (cb){
   var that = this,
       len = that.length,
@@ -138,7 +143,8 @@ var rsl6 = arr6.reduce(function (pre, next){
   return (pre += next);
 });
 console.log(rsl6); // 15
-// 源码实现
+
+// polyfill
 Array.prototype.reduce = function (cb, initVal){
   var that = this,
       len = that.length,
@@ -163,65 +169,4 @@ Array.prototype.reduceRight = function (cb, initVal){
     initVal = cb.apply(arg2, [initVal, that[i], i, that]);
   }
   return initVal;
-}
-
-
-/* 
-  find(fn, this) 
-  作用：查找元素满足函数的第一个元素的值
-  返回值：目标元素，未找到则返回 undefined
-*/
-var arr7 = [
-  { name: 'ming' },
-  { name: 'lili' },
-  { name: 'aiqing' },
-  { name: 'xiaoqing' },
-];
-var rsl7 = arr7.find(function (item, idx, arr){
-  // 返回一个真值表示已经找到了匹配的元素
-  // 确定返回值后立即停止迭代
-  return item.name === 'ming';
-});
-console.log(rsl7); // {name: 'ming'}
-// 源码实现
-Array.prototype.find = function (cb){
-  var that = this,
-      len = that.length,
-      arg2 = arguments[1] || window,
-      ans = undefined;
-  for(var i = 0; i < len; i++){
-    if(cb.apply(arg2, [that[i], i, that])){
-      ans = that[i];
-      break;
-    }
-  }
-  return ans;
-}
-
-
-/* 
-  findIndex(fn, this)
-  作用：查找元素满足函数第一个元素的索引值
-  返回值：目标元素索引，未找到则返回 -1
-*/
-var arr = [1, 2, 11, 12];
-var rsl = arr.findIndex(function (item, idx, arr){
-  // 返回一个真值表示已经找到了匹配的元素
-  // 确定返回值后立即停止迭代
-  return item % 2 === 0;
-});
-console.log(rsl); // 1
-// 源码实现
-Array.prototype.findIndex = function (cb){
-  var that = this,
-      len = that.length,
-      arg2 = arguments[1] || window,
-      ans = -1;
-  for(var i = 0; i < len; i++){
-    if(cb.apply(arg2, [that[i], i, that])){
-      ans = i;
-      break;
-    }
-  }
-  return ans;
 }
