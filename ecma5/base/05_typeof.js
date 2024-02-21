@@ -1,15 +1,15 @@
 /* 
-  typeof()方法是 JS 内置的方法，返回值是数据类型。
-  typeof()方法返回值是判断后的数据类型，返回值是字符串形式。
-  typeof()方法返回的值包含 number string boolean undefined function object(null) symbol
+  typeof 方法是 JS 内置的方法，返回值是数据类型。
+  typeof 方法返回值是判断后的数据类型，返回值是字符串形式。
+  typeof 方法返回的值包含 number string boolean undefined function object(null) symbol
 */
 
 console.log(typeof 1); // number
 console.log(typeof 'str'); // string
 console.log(typeof true); // boolean
 
-// null是原始值数据，为什么typeof打印的是object？
-// 因为null指代的是空对象的指针和空对象的占位符，JS设计历史遗留问题
+// JS 设计历史遗留问题
+// null 指代的是空对象的指针和空对象的占位符
 console.log(typeof null); // object
 
 console.log(typeof undefined); // undefined

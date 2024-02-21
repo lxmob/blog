@@ -86,8 +86,8 @@
         var isW3C = document.compatMode === 'CSS1Compat';
         return {
           width: document[isW3C ? 'documentElement' : 'body'].clientWidth,
-          height: document[isW3C ? 'documentElement' : 'body'].clientHeight,
-        };
+          height: document[isW3C ? 'documentElement' : 'body'].clientHeight
+        }
       }
     }
   </script>
@@ -104,8 +104,8 @@
       var isIE567 = !!document.body.scrollHeight;
       return {
         width: document[isIE567 ? 'documentElement' : 'body'].scrollWidth,
-        height: document[isIE567 ? 'documentElement' : 'body'].scrollHeight,
-      };
+        height: document[isIE567 ? 'documentElement' : 'body'].scrollHeight
+      }
     }
   </script>
 
@@ -145,7 +145,7 @@
         offsetTop += parent.offsetTop;
         parent = parent.offsetParent;
       }
-      return { top: offsetTop, left: offsetLeft };
+      return {top: offsetTop, left: offsetLeft};
     }
   </script>
 

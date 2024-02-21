@@ -7,7 +7,7 @@ var arr1 = [4, 5, 6];
 console.log(arr1.push(1, 2, 3)); // 6
 console.log(arr1); // [4, 5, 6, 1, 2, 3]
 
-// polyfill
+// 源码实现
 Array.prototype.push = function(){
   for(var i = 0; i < arguments.length; i++){
     this[this.length] = arguments[i];
@@ -25,7 +25,7 @@ var arr2 = [4, 5, 6];
 console.log(arr2.unshift(1, 2, 3)); // 6
 console.log(arr2); // [1, 2, 3, 4, 5, 6]
 
-// polyfill
+// 源码实现
 Array.prototype.unshift = function(){
   var argsLen = arguments.length,
       sumLen = argsLen + this.length;
@@ -50,7 +50,7 @@ console.log(arr3.pop()); // 5
 console.log(arr3.pop()); // 4
 console.log(arr3.pop()); // undefined
 
-// polyfill
+// 源码实现
 Array.prototype.pop = function(){
   var len = this.length,
       cur = this[len - 1];
@@ -71,7 +71,7 @@ console.log(arr4.shift()); // 5
 console.log(arr4.shift()); // 6
 console.log(arr4.shift()); // undefined
 
-// polyfill
+// 源码实现
 Array.prototype.shift = function(){
   var len = this.length,
       cur = this[0];
@@ -110,7 +110,7 @@ var arr6 = [1, 2, 3];
 console.log(arr6.reverse()); // [3, 2, 1]
 console.log(arr6); // [3, 2, 1]
 
-// polyfill
+// 源码实现
 Array.prototype.reverse = function(){
   for(var i = 0; i < (this.length >> 1); i++){
     var temp = this[i];

@@ -47,7 +47,7 @@ console.log(arr5.includes(1)); // false
 console.log(arr5.includes(6, 4)); // false
 console.log(arr5.includes(5, -100)); // true
 
-// polyfill
+// 源码实现
 Array.prototype.includes = function(tar){
   var arg2 = arguments[1],
       i = arg2 ? arg2 : 0,
@@ -101,7 +101,7 @@ let rsl7 = arr8.find(function (item, idx, arr){
 })
 console.log(rsl7); // {name: 'ming'}
 
-// polyfill
+// 源码实现
 Array.prototype.find = function (cb){
   var that = this,
       len = that.length,
@@ -130,7 +130,7 @@ let rsl = arr9.findIndex(function (item, idx, arr){
 });
 console.log(rsl); // 1
 
-// polyfill
+// 源码实现
 Array.prototype.findIndex = function (cb){
   var that = this,
       len = that.length,

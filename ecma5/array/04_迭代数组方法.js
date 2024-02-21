@@ -9,7 +9,7 @@ arr1.forEach(function(item, idx, arr){
 });
 console.log(arr1); // [1, 2, 3]
 
-// polyfill
+// 源码实现
 Array.prototype.forEach = function(cb){
   var that = this,
       len = that.length,
@@ -32,7 +32,7 @@ var rsl2 = arr2.filter(function (item, idx, arr){
 });
 console.log(rsl2); // [12, 130, 44]
 
-// polyfill
+// 源码实现
 Array.prototype.filter = function (cb){
   var that = this,
       len = that.length,
@@ -56,7 +56,7 @@ var rsl3 = arr3.map(function (item, idx, arr){
 });
 console.log(rsl3); // [4, 6, 8]
 
-// polyfill
+// 源码实现
 Array.prototype.map = function (cb){
   var that = this,
       len = that.length,
@@ -82,7 +82,7 @@ var rsl4 = arr4.some(function (item, idx, arr){
 });
 console.log(rsl4); // true
 
-// polyfill
+// 源码实现
 Array.prototype.some = function (cb){
   var that = this,
       len = that.length,
@@ -111,7 +111,7 @@ var rsl5 = arr5.every(function (item, idx, arr){
 });
 console.log(rsl5); // false
 
-// polyfill
+// 源码实现
 Array.prototype.every = function (cb){
   var that = this,
       len = that.length,
@@ -144,7 +144,7 @@ var rsl6 = arr6.reduce(function (pre, next){
 });
 console.log(rsl6); // 15
 
-// polyfill
+// 源码实现
 Array.prototype.reduce = function (cb, initVal){
   var that = this,
       len = that.length,

@@ -9,7 +9,7 @@ console.log(arr1.join()); // "Wind,Rain,Fire"
 console.log(arr1.join('')); // "WindRainFire"
 console.log(arr1.join(0)); // "Wind0Rain0Fire"
 
-// polyfill
+// 源码实现
 Array.prototype.join = function(spt = ''){
   var str = this[0]
   for(var i = 1; i < this.length; i++){
@@ -29,7 +29,7 @@ var arr2 = [4, 5, 6];
 console.log(arr2.concat(1, 2, 3)); // [4, 5, 6, 1, 2, 3]
 console.log(arr2.concat([1, 2], {})); // [4, 5, 6, 1, 2, {}]
 
-// polyfill
+// 源码实现
 Array.prototype.concat = function(){
   var nArr = [...this];
   for(var i = 0; i < arguments.length; i++){
@@ -68,7 +68,7 @@ console.log(arr6.indexOf(5)); // 1
 console.log(arr6.indexOf(1)); // -1
 console.log(arr6.indexOf(5, 2)); // 2
 
-// polyfill
+// 源码实现
 Array.prototype.indexOf = function(tar){
   var arg2 = arguments[1],
       i = arg2 ? arg2 : 0,

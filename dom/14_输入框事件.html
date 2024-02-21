@@ -6,18 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>输入框事件</title>
     <style>
-      .inp-txt {
-        color: #666;
-      }
-      .inp-txt.inp-txt-active {
-        color: #000;
-      }
+      .inp-txt{color: #666;}
+      .inp-txt.inp-txt-active{color: #000;}
     </style>
   </head>
   <body>
-    <!-- 
+    <!--
       新浪搜索框 sina.com.cn
-      onfocus onblur 事件为了解决 placeholder 各大浏览器样式兼容问题
+      使用 onfocus、onblur 事件是为了解决 placeholder 在各大浏览器样式兼容问题
     -->
     <input
       type="text"
@@ -34,17 +30,19 @@
   <script>
     var input = document.getElementsByTagName("input")[0];
 
-    // oninput HTML5规范，表单值发生改变时触发，IE9以下不支持
-    input.oninput = function () {
+    // oninput HTML5规范
+    // 表单值发生改变时触发事件，IE9 以下不支持
+    input.oninput = function(){
       console.log("oninput", input.value);
-    };
+    }
 
-    // IE需要使用 onpropertychange 事件，IE11不支持
-    input.onpropertychange = function () {};
+    // IE 需要使用 onpropertychange 事件，IE11 不支持
+    input.onpropertychange = function(){};
 
-    // onchange 表单值发生改变同时失去焦点时触发事件
-    input.onchange = function () {
+    // onchange 表单值发生改变，同时失去焦点时触发事件
+    // 如果只是失去焦点，但是值没有发生改变则不触发事件
+    input.onchange = function(){
       console.log("onchange", input.value);
-    };
+    }
   </script>
 </html>

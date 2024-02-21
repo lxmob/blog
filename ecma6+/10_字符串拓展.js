@@ -15,7 +15,7 @@ let str1 = 'hash function is point code';
 
 
 // repeat
-// 指定重复字符串的拼接次数，并返回构造新的字符串
+// 指定重复字符串的拼接次数，返回新的字符串
 let str2 = 'hello!';
 // console.log(str2.repeat(3)); // 'hello!hello!hello!'
 // console.log(str2.repeat(0)); // ''
@@ -24,7 +24,7 @@ let str2 = 'hello!';
 
 
 // padStart padEnd
-// 给定长度填充字符串，时钟、彩票号码案例
+// 指定长度，按照具体参数值来填充字符串，返回新的字符串
 let str3 = new Date().getMonth() + 1 + '月';
 // console.log(str3.padStart(3)); // ' 2月'
 // console.log(str3.padStart(3, 0)); // '02月'
@@ -33,17 +33,20 @@ let str3 = new Date().getMonth() + 1 + '月';
 // console.log(str3.padStart(0, 0)); // '2月'
 
 
-// 模板字符串 ${ 表达式 }
+// 模板字符串支持向字符串中增加 `${ 表达式 }`
 let num = 10,
     count = 20,
     str4 = 'number is';
 // console.log(`${str4} ${num + count}`); // 'number is 30'
 
+// 函数调用也可以作为表达式的结果拼接字符串
 function fn(){return [1, 2, 3]};
-// console.log(`callback ${fn}`); // 'callback function fn(){ [1, 2, 3] }'
 // console.log(`callback ${fn()}`); // 'callback 1,2,3'
 
-// 渲染模板
+// 这里是将函数隐士调用 toString 方法转为字符串后拼接的结果
+// console.log(`callback ${fn}`); // 'callback function fn(){ [1, 2, 3] }'
+
+// 应用于渲染模板
 let userInfoList = [
   {name: 'kiin', age: 18}, 
   {name: 'ming', age: 27}
@@ -58,21 +61,22 @@ function tableRender(){
     </table>`
   )
 }
-// console.log(tableRender());
+// tagTemp`${tableRender()}`;
 
 
-// 标签模板
-// 参数一是表达式符号做分割后的字符串数组
-// 后续参数是模板字符串表达式的值
+// 模板函数
+// 第一项参数是用表达式符号来做分割符，组成的字符串数组
+// 后续参数是模板字符串中拼接每一项表达式的值
 function tagTemp($, $1, $2){
   console.log($); // [ 'test ', ' render ', '' ]
   console.log($1); // 30
   console.log($2); // 200
 }
-// tagTemp`${tableRender()}`;
 // tagTemp`test ${count + num} render ${count * num}`;
 
-// 防止恶意脚本注入
+// 使用模板字符串的形式，可能会导致恶意人员进行代码注入
+// 例如向代码中添加 script 恶意脚本
+// 使用模板函数防止恶意脚本注入
 function safeHTML(temp){
   let rsl = temp.join('');
   for(var i = 1; i < arguments.length; i++){

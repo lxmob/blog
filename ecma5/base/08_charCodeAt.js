@@ -34,7 +34,7 @@ console.log(strByteSum('jkahsdihjqikwe}{:}信')); // 20 byte
 
 // 通过上面的方法可以获得任意字符串的占用字节数
 // 可以根据此方法衍生出对一个字符串的数组进行从大到小进行排序
-// 运用数组原型对象身上的 sort() 方法来实现功能
+// 运用数组原型对象身上的 sort 方法来实现功能
 var arr = ['阴天多云', 'minga', '晴天', '暴风雨'];
 function sortStrBytes(arr){
   return arr.sort((a, b) => strByteSum(a) - strByteSum(b));
