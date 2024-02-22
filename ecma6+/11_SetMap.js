@@ -94,3 +94,17 @@ m1.set(1, 'number')
 // Map 原型方法中迭代器接口默认调用的是 entries
 // for(let [key, value] of m1){console.log(key, value)};
 // console.log(Map.prototype[Symbol.iterator] === Map.prototype.entries); // true
+
+
+// weakMap weakSet 
+// 弱映射与弱集合，除了该集合以外，键对象没有被其它地方引用，都会被回收
+// 要求每一个成员只能是对象数据类型，原始类型是没有生命周期的，因此不能作为键名
+// 原型对象中不具备遍历方法，因为垃圾回收器根本不知道集合中的数据在什么时间是否被回收
+
+let wm = new WeakMap(),
+    ws = new WeakSet();
+
+// ws.add(1); // TypeError: Invalid value used in weak set
+// wm.set(true, 1); // TypeError: Invalid value used as weak map key
+ws.add({name: 'kiin'});
+wm.set({name: 'kiin'}, 1);
