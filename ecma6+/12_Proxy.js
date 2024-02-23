@@ -26,7 +26,7 @@ p.age = 18;
 
 /*
   Reflect 内置对象
-  用于拦截 JS 基本操作的方法与 Proxy-handle 方法相同
+  用于拦截 JS 基本操作方法与 Proxy-handle 方法相同
   Reflect 同 Symbol 一样无法进行构造，它不是一个函数对象
 */
 

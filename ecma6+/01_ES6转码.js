@@ -26,6 +26,7 @@
   babel-node 提供支持 ES6 的交互解释器(REPL)环境，可以直接运行 ES6 代码
   babel-register 改写 require 命令，运行时即时编译，只对 require 引入的文件进行编译
   babel-polyfill babel 中默认只转换新语法，不会将新 api 转码
+  babel-plugin-proposal-decorators 用于转换类装饰器的集合插件
 
   注意 babel-node 和 babel-register 不能在生产环境中使用，包体会更沉重
 */
@@ -54,6 +55,10 @@
   }
 */
 
+// 通过 npm 中 npx 执行脚本运行命令监听文件的变化实时编译
+// npx babel demo.js --watch --out-file bundle.js
+
 // npm install @babel/core @babel/cli @babel/preset-env -D
 // npm install @babel/register @babel/node -D
 // npm install @babel/polyfill -D
+// npm install @babel/plugin-proposal-decorators -D
