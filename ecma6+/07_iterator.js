@@ -45,7 +45,7 @@ let gtor2 = makeIterator(arr);
 let mKiin = {name: 'kiin', age: 27};
 // for(let key of mKiin){console.log(key)}; // TypeError: mKiin is not iterable
 
-// 如果我就是要在对象身上使用迭代器
+// 如果想要在对象身上使用迭代器
 // 可以通过向对象部署自定义迭代器的方式来实现迭代功能
 mKiin[Symbol.iterator] = function(){
   return {i: 0, 

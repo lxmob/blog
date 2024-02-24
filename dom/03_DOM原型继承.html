@@ -15,7 +15,7 @@
     HTMLDocument.prototype 实例化对象通过 Document 构造函数生成
     document 继承 => HTMLDocument.prototype 继承 => Document.prototype
 
-    为什么 document 不直接继承 Document 原型对象，为了区分开 HTMLDocument 和 XMLDocument
+    为什么 document 不直接继承 Document 原型对象，为了区分开 HTMLDocument & XMLDocument
   -->
   <script>
     console.log(document.__proto__ === HTMLDocument.prototype);

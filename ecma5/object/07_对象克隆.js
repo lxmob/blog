@@ -77,7 +77,7 @@ console.log(obj);
 
 /* 
   深拷贝另一种方式
-  使用序列化形式进行字符串与对象互转 JSON.stringify 和 JSON.parse
+  使用序列化形式进行字符串与对象互转 JSON.stringify & JSON.parse
 */
 var jsonObj = {
   name: "jsonObj",

@@ -72,12 +72,12 @@ console.log(2 > 1 == 1);
 console.log('a' > 'b'); // false
 console.log('acd' > 'abc') // true
 
-// Boolean == 和 != 隐式转换, === 和 !== 不进行隐式转换
+// Boolean == & != 隐式转换, === & !== 不进行隐式转换
 console.log(1 == '1'); // true
 console.log(1 != '2'); // true
 console.log(1 === '1'); // false
 
-// NaN 和 undefined 和 null
+// NaN & undefined & null
 console.log(NaN == NaN); // false
 console.log(undefined > 0); // false
 console.log(undefined < 0); // false

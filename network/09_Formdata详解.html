@@ -29,7 +29,7 @@
       fd.append('username', username.value); // append 方法添加的新值原属性存在也不会覆盖，而是新增
       fd.append('password', password.value);
 
-      console.log(fd); // 注意这里的 FormData 实例对象是看不出已添加的 key 和 value 的
+      console.log(fd); // 注意这里的 FormData 实例对象是看不出已添加的 key & value 的
 
       console.log(fd.get('username'));
       console.log(fd.get('password'));

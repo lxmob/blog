@@ -28,7 +28,7 @@
   babel-polyfill babel 中默认只转换新语法，不会将新 api 转码
   babel-plugin-proposal-decorators 用于转换类装饰器的集合插件
 
-  注意 babel-node 和 babel-register 不能在生产环境中使用，包体会更沉重
+  注意 babel-node & babel-register 不能在生产环境中使用，包体会更沉重
 */
 
 // 在 .babelrc 文件中配置信息

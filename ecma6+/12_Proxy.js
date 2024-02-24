@@ -2,8 +2,9 @@
   Proxy 代理对象
   用于创建一个对象的代理，实现对象基本操作的拦截与自定义
   例如属性查找、赋值、枚举、函数调用等
-  第一个参数是代理的目标对象，第二参数是拦截器
 */
+
+// new Proxy(target, handle-options)
 
 let o = {name: 'kiin'};
 let p = new Proxy(o, {
