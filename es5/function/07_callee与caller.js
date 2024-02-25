@@ -1,7 +1,7 @@
 /* 
   函数中 callee 与 caller 的区分
-  callee => 函数本身
-  caller => 调用函数的引用
+  callee -> 函数本身
+  caller -> 调用函数的引用
 */
 
 function dog(name, age){

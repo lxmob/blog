@@ -101,7 +101,7 @@ function oneMinNumIdx(arr){
   }
   var L = 0,
       R = N - 1;
-  // 防止指针越界 L m R-1 R => [5,3,3]
+  // 防止指针越界 L m R-1 R -> [5,3,3]
   while(L < R - 1){
     var mid = Math.floor((L + R) / 2);
     if(arr[mid - 1] > arr[mid] && arr[mid + 1] > arr[mid]){

@@ -81,9 +81,9 @@ console.log(obj);
 */
 var jsonObj = {
   name: "jsonObj",
-  eat: function () {}, // => 无法复制
-  undf: undefined, // => 无法复制
-  regexp: /^\d+/, // => {}
+  eat: function () {}, // -> 无法复制
+  undf: undefined, // -> 无法复制
+  regexp: /^\d+/, // -> {}
   symbol: Symbol("little"), // 无法复制
   null: null,
   date: new Date()

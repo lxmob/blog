@@ -25,13 +25,13 @@ console.log(d); // 2
 */
 var num = 123;
 // 这里 js 做了包装类但是并没有将包装类对象赋值给任意的变量
-num.len = 3; // new Number(123).len = 3 => delete
+num.len = 3; // new Number(123).len = 3 -> delete
 console.log(num.len); // undeinfed
 
 var str = 'string';
 // 包装类中默认的属性 { [primitiveValue]: 'string', length: 0 }
-console.log(str.length); // 6 => new String(str).length
-str.length = 1; // new String(str).length = 1 形成包装类但是未赋值变量 => delete
+console.log(str.length); // 6 -> new String(str).length
+str.length = 1; // new String(str).length = 1 形成包装类但是未赋值变量 -> delete
 console.log(str.length); // 6
 
 
@@ -40,6 +40,6 @@ var str = 'ming';
 str += 10; // 'ming10'
 var type = typeof str; // 'string'
 if(type.length === 6){ // true
-  type.text = 'string'; // new String(type).text = 'string' => delete
+  type.text = 'string'; // new String(type).text = 'string' -> delete
 }
 console.log(type.text); // undefined

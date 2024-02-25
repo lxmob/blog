@@ -51,5 +51,5 @@ bar();
 
 
 // 7.eval 函数在严格模式下具有自己的作用域
-eval('var num = 20; console.log(num)');
+eval('var num = 20; console.log(num)'); // eval 会将传入的字符串当作 JS 代码来执行
 console.log(num); // 1

@@ -36,26 +36,26 @@ function a(){
 a();
 console.dir(a);
 
-// a被定义时： a.[[scopes]] => 0 : GO
-// a预编译时： a.[[scopes]] => 0 : a -> AO
+// a被定义时： a.[[scopes]] -> 0 : GO
+// a预编译时： a.[[scopes]] -> 0 : a -> AO
 //                           1 : GO
-// b被定义时： b.[[scopes]] => 0 : a -> AO
+// b被定义时： b.[[scopes]] -> 0 : a -> AO
 //                           1 : GO
-// b预编译时： b.[[scopes]] => 0 : b -> AO
+// b预编译时： b.[[scopes]] -> 0 : b -> AO
 //                           1 : a -> AO
 //                           2 : GO
-// c被定义时： c.[[scopes]] => 0 : b -> AO
+// c被定义时： c.[[scopes]] -> 0 : b -> AO
 //                           1 : a -> AO
 //                           2 : GO
-// c预编译时： c.[[scopes]] => 0 : c -> AO
+// c预编译时： c.[[scopes]] -> 0 : c -> AO
 //                           1 : b -> AO
 //                           2 : a -> AO
 //                           3 : GO
-// c执行结束： c.[[scopes]] => 0 : b -> AO
+// c执行结束： c.[[scopes]] -> 0 : b -> AO
 //                           1 : a -> AO
 //                           2 : GO
-// b执行结束： b.[[scopes]] => 0 : a -> AO
+// b执行结束： b.[[scopes]] -> 0 : a -> AO
 //                           1 : GO
 //           c.[[scopes]] X
-// a执行结束： a.[[scopes]] => 0 : GO
+// a执行结束： a.[[scopes]] -> 0 : GO
 //           b.[[scopes]] X

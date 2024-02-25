@@ -66,10 +66,10 @@
     iframe.src = 'zhidao.baidu.com';
     function getData(){
       if(flag){
-        // 第二次加载 iframe => baidu.com
+        // 第二次加载 iframe -> baidu.com
         console.log(JSON.parse(iframe.contentWindow.name));
       }else{
-        // 第一次加载 iframe => zhidao.baidu.com
+        // 第一次加载 iframe -> zhidao.baidu.com
         // zhidao.baidu.com 页面中发送 ajax 拉取数据
         flag = true;
         setTimeout(function(){

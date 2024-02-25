@@ -62,7 +62,7 @@ function test(a,b){}();
 }();
 
 // (6) 是一个表达式并不是执行符号 
-// => function text(){};(6)
+// -> function text(){};(6)
 function test(){}(6);
 
 // var test = function(){} 作为函数表达式，与执行符号 () 组合
@@ -94,7 +94,7 @@ for(var j = 0; j < myArr.length; j++){
   myArr[j](); // 10*10
 }
 
-// =>
+// ->
 
 function test1(){
   var i = 0;
@@ -107,7 +107,7 @@ function test1(){
 }
 test1();
 
-// =>
+// ->
 
 function test2(){
   var arr = [],
@@ -125,7 +125,7 @@ for(var j = 0; j < myArr.length; j++){
   myArr[j](j);  // 0 1 2 3 4 5 6 7 8 9
 }
 
-// =>
+// ->
 
 function test3(){
   var arr = [],

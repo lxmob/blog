@@ -126,7 +126,7 @@ function buildTree(pre, inn){
   }
   function f(pre, L1, R1, inn, L2, R2){
     // 越界情况
-    // 先序 [1,2,3] 中序 [2,3,1] => 无右树
+    // 先序 [1,2,3] 中序 [2,3,1] -> 无右树
     if(L1 > R1){
       return null;
     }

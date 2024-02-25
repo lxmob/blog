@@ -31,7 +31,7 @@ var obj3 = new CreateObj();
   创建对象三种方式的区别
   从输出的结果上来看三者的 __proto__ 指向不同
   obj1、obj2 指向的是 Object.prototype 说明他们是通过 Object 构造函数创建出来的
-  而 obj3 指向的是 CreateObj.prototype，CreateObj.prototype.__proto__ => Object.prototype 由此可知
+  而 obj3 指向的是 CreateObj.prototype，CreateObj.prototype.__proto__ -> Object.prototype 由此可知
   通过自定义构造函数创建的对象相对比前两种创建方式，原型的指向多增加了一层
 */
 console.log('obj1', obj1.__proto__);

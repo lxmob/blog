@@ -11,18 +11,18 @@ var b = 1 + 1 + "str" + 1 + undefined;
 var c = null;
 console.log(a); // 'str11' 
 console.log(b); // '2str1undefined'
-console.log(c + 2); // 2 => Number(null = 0) + 2 = 2
+console.log(c + 2); // 2 -> Number(null = 0) + 2 = 2
 
 console.log(10 - 5); // 5
 console.log(5 - 2.5); // 2.5
 console.log(3 - null); // 3
-console.log(5 - true); // 4 => 5 - Number(true = 1) = 4
-console.log(2 - 'str'); // NaN => 2 - Number('str' = NaN) = NaN
+console.log(5 - true); // 4 -> 5 - Number(true = 1) = 4
+console.log(2 - 'str'); // NaN -> 2 - Number('str' = NaN) = NaN
 
 console.log(3 * 4); // 12
 console.log(-3 * 4); // -12
-console.log('3' * 2); // 6 => Number('3' = 3) * 2 = 6
-console.log('str' * 2); // NaN => Number('str' = NaN) * 2 = NaN
+console.log('3' * 2); // 6 -> Number('3' = 3) * 2 = 6
+console.log('str' * 2); // NaN -> Number('str' = NaN) * 2 = NaN
 
 console.log(6 / 3); // 2
 console.log(6 / '3'); // 2

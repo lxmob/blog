@@ -8,7 +8,7 @@
 
 // Math.random()
 // 一个等概率获取随机树的方法
-// double 类型数 => 左闭右开 [0, 1)
+// double 类型数 -> 左闭右开 [0, 1)
 function testRandom(){
   var testTime = 100000,
       count = 0;
@@ -24,7 +24,7 @@ function testRandom(){
 
 
 // 如果是 0-K 数范围内等概率发生
-// [0, K) => [0, K-1]
+// [0, K) -> [0, K-1]
 function testKRandom(k){
   var testTime = 100000,
       countObj = {};
@@ -73,7 +73,7 @@ function xToXPower3(){
 
 /* 
   等概率获取 1-5 范围的数函数改造为 
-  => 等概率获取 1-7 范围的数函数
+  -> 等概率获取 1-7 范围的数函数
 */
 function random1_5(){
   return parseInt(Math.random() * 5) + 1;
@@ -116,7 +116,7 @@ function random1_7(){
 
 /* 
   例如: 17-56
-  56 - 17 = 39 => [0, 39] 随机概率的数 + 17
+  56 - 17 = 39 -> [0, 39] 随机概率的数 + 17
   改造 01发生器看最大的数需要几个二进制位
   56 需要 6 个二进制位，那么就将 01发生器 row 6 次
   6 个二进制位就可以返回 [0, 63] 范围的数，如果 row 到的数比 39 大那么就重做
@@ -126,7 +126,7 @@ function random1_7(){
 
 /* 
   0 到 1 不等概率随机改造为
-  => 等概率随机 0 到 1
+  -> 等概率随机 0 到 1
 */
 function x(){
   return Math.random() < 0.84 ? 0 : 1;

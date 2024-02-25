@@ -47,7 +47,7 @@ function Teacher(name, age){
   this.age = age;
   this.name = name;
 }
-// 存在 constructor 属性指向是构造函数 => Teacher
+// 存在 constructor 属性指向是构造函数 -> Teacher
 console.log(Teacher.prototype);
 Teacher.prototype = {
   // 将 Teacher.prototype 改变为 Professor 构造函数
@@ -130,7 +130,7 @@ Student.prototype = t;
 var s = new Student();
 // s.desc.name = 'mingming' // 引用类型可以修改属性
 // s.desc.name += 'ming'
-// s.num++ // 原始类型无法修改 => s.num = s.num + 1
+// s.num++ // 原始类型无法修改 -> s.num = s.num + 1
 // s.str += 'ming'
 // s.bol += 1
 // s.unf += 10

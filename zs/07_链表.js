@@ -190,9 +190,9 @@ class DobbleLinkedListToDeque{
       this.head = cur;
       this.tail = cur;
     }else{
-      // 新项的 next 指针 => 老头
-      // 老头的 last 指针 => 新项
-      // 老头 => 新头
+      // 新项的 next 指针 -> 老头
+      // 老头的 last 指针 -> 新项
+      // 老头 -> 新头
       cur.next = this.head;
       this.head.last = cur;
       this.head = cur;
@@ -225,8 +225,8 @@ class DobbleLinkedListToDeque{
       this.head = null;
       this.tail = null;
     }else{
-      // 换头 => head = head.next
-      // 头项的 last => null
+      // 换头 -> head = head.next
+      // 头项的 last -> null
       this.head = this.head.next;
       this.head.last = null;
     }
@@ -278,7 +278,7 @@ console.log(myDeque);
   给定一个单链表的头节点 head，和一个正数 K，实现 K 个节点的小组内逆序调整
   如果最后一个组不够 K 个就不调整，K 一定大于 0
   1 2 3 4 5 6 7 8 K = 3
-  调整后 => 3 2 1 6 5 4 7 8
+  调整后 -> 3 2 1 6 5 4 7 8
   https://leetcode.cn/problems/reverse-nodes-in-k-group/description/
 */
 function reverseKGroup(head, K){
@@ -389,7 +389,7 @@ function listLength(head){
 
 /* 
   合并两个有序的链表
-  1-3-3-5-7  2-2-2-3-7 => 1-2-2-2-3-3-3-5-7-7
+  1-3-3-5-7  2-2-2-3-7 -> 1-2-2-2-3-3-3-5-7-7
   https://leetcode.cn/problems/merge-two-sorted-lists/description
 */
 function mergeTwoLists(h1, h2){

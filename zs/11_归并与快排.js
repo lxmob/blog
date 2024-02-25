@@ -43,7 +43,7 @@ function merge(arr, L, M, R){
   }
   // 覆盖原数组项
   for(var j = 0; j < nArr.length; j++){
-    arr[L + j] = nArr[j]; // 左右两侧各要考虑到 => L + j
+    arr[L + j] = nArr[j]; // 左右两侧各要考虑到 -> L + j
   }
 }
 
@@ -52,7 +52,7 @@ function merge(arr, L, M, R){
 // console.log(arr);
 
 
-// 非递归实现归并排序 => 迭代算步长
+// 非递归实现归并排序 -> 迭代算步长
 function mergeSortNotR(arr){
   if(arr == null || arr.length < 2){
     return
@@ -62,7 +62,7 @@ function mergeSortNotR(arr){
   while(step < N){
     var L = 0;
     while(L < N){
-      // 边界情况当凑不够步长数时 break => [2, 4, 2]
+      // 边界情况当凑不够步长数时 break -> [2, 4, 2]
       if(step >= N - L){
         break;
       }
@@ -125,7 +125,7 @@ function quickSort(arr){
   if(arr == null || arr.length < 2){
     return;
   }
-  // 返回=区左右两侧边界信息 => 递归分治
+  // 返回=区左右两侧边界信息 -> 递归分治
   // 分层 arr[L...R] 范围 arr[R] 作为划分值
   function partition(arr, L, R){
     var lessR = L - 1,

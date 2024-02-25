@@ -54,7 +54,7 @@ console.log(heap.poll());
 console.log(heap);
 
 
-// 合并K个升序链表 => 数据结构是混合型链表数组
+// 合并K个升序链表 -> 数据结构是混合型链表数组
 // ll = [[1,4,5],[1,3,4],[2,6]]
 // https://leetcode.cn/problems/merge-k-sorted-lists/description/
 function mergeKList(ll){

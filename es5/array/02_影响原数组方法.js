@@ -139,4 +139,4 @@ function compareFn(){
   }
 }
 arr7.sort((a, b) => a - b); // [1, 2, 12, 32, 56, 90]
-arr7.sort(() => Math.random() - 0.5); // 随机排列 => Math.random 开区间 0-1
+arr7.sort(() => Math.random() - 0.5); // 随机排列 -> Math.random 开区间 0-1

@@ -88,7 +88,7 @@
       }
     };
     /**
-     *  b.say => function (fun) {
+     *  b.say -> function (fun) {
      *    普通函数调用 this = window
      *    fun = function () {
      *      console.log(this.name)
@@ -134,8 +134,8 @@
     getName(); // 4
     Foo().getName(); // 1
     getName(); // 1
-    new Foo.getName(); // 2 => 优先级 . > new
-    new Foo().getName(); // 3 => 优先级 () > .
+    new Foo.getName(); // 2 -> 优先级 . > new
+    new Foo().getName(); // 3 -> 优先级 () > .
     new new Foo().getName(); // 3
   </script>
 </html>

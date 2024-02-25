@@ -9,7 +9,7 @@ dog.name = "husky";
 
 // 将 dog 作为原型对象创建 husky 继承 dog name 属性
 var husky = Object.create(dog);
-console.log(husky); // __proto__ => dog { name: 'husky' }
+console.log(husky); // __proto__ -> dog { name: 'husky' }
 console.log(husky.name); // 'husky'
 
 

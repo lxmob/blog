@@ -13,6 +13,6 @@ if(num > 10){
   pass = false;
 }
 
-// =>
+// ->
 
 pass = num > 10 ? true : false;

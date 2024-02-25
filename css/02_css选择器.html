@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>选择器</title>
 
-    <!-- css 选择器权重优先级 => !important > 内联样式 > id > class | 属性 | 伪类 > 标签 | 伪元素 > * -->
+    <!-- css 选择器权重优先级 -> !important > 内联样式 > id > class | 属性 | 伪类 > 标签 | 伪元素 > * -->
 
     <!-- 
       权重值计算 (256进制)
@@ -19,7 +19,7 @@
     
     <style type="text/css">
 
-      /* ID 选择器 => 以 # 号开头 => 唯一性 */
+      /* ID 选择器 -> 以 # 号开头 -> 唯一性 */
 
       #box {
         width: 100px;
@@ -27,7 +27,7 @@
         background-color: seashell;
       }
 
-      /* class 类选择器 => 以 . 开头 => 可以重复出现多次 */
+      /* class 类选择器 -> 以 . 开头 -> 可以重复出现多次 */
 
       .wrapper {
         width: 50px;
@@ -35,13 +35,13 @@
         border: 1px solid #000;
       }
 
-      /* 标签选择器 => 初始化标签样式时可以使用 */
+      /* 标签选择器 -> 初始化标签样式时可以使用 */
 
       p {
         font-size: 18px;
       }
 
-      /* 通配符选择器 => 样式初始化作用所有元素 */
+      /* 通配符选择器 -> 样式初始化作用所有元素 */
 
       * {
         list-style: none;
@@ -65,7 +65,7 @@
         text-decoration: none;
       }
 
-      /* !important 权重最高级 => 优先级最高 */
+      /* !important 权重最高级 -> 优先级最高 */
 
       #box {
         background-color: steelblue !important;

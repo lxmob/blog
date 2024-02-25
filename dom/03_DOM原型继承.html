@@ -13,7 +13,7 @@
   <!-- 
     document 实例化对象通过 HTMLDocument 构造函数生成
     HTMLDocument.prototype 实例化对象通过 Document 构造函数生成
-    document 继承 => HTMLDocument.prototype 继承 => Document.prototype
+    document 继承 -> HTMLDocument.prototype 继承 -> Document.prototype
 
     为什么 document 不直接继承 Document 原型对象，为了区分开 HTMLDocument & XMLDocument
   -->
@@ -42,12 +42,12 @@
   <!--
     document.getElementById
     document.getElementsByName
-    两个方法属于 => Document.prototype
+    两个方法属于 -> Document.prototype
     Element、HTMLElement 原型对象身上没有该方法
   -->
   <script>
     var divNode = document.getElementById('app');
-    console.log(divNode.__proto__); // HTMLDivElement 构造实例化对象继承 => HTMLElement.prototype、Element.prototype
+    console.log(divNode.__proto__); // HTMLDivElement 构造实例化对象继承 -> HTMLElement.prototype、Element.prototype
     console.log(divNode.getElementById); // undefined
     console.log(divNode.getElementsByName); // undefined
   </script>
@@ -57,7 +57,7 @@
     querySelectorAll
     getElementsByTagName 
     getElementsByClassName
-    四个方法属于 => Document.prototype、Element.prototype
+    四个方法属于 -> Document.prototype、Element.prototype
   -->
   <script>
     console.log('Element.prototype', Element.prototype);
@@ -68,10 +68,10 @@
     document.body
     document.head
     document.title
-    继承 => HTMLDocument.prototype
+    继承 -> HTMLDocument.prototype
 
     document.documentElement
-    继承 => Document.prototype
+    继承 -> Document.prototype
   -->
   <script>
     console.log(document.body); // body
