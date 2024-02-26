@@ -6,28 +6,26 @@
     <title>BFC介绍</title>
 
     <!-- 
-      问题
-      1. BFC是什么
-      2. BFC存在的意义
-      3. BFC能够解决什么样的问题
-      4. 开启BFC的方法有哪些
-    -->
-    
-    <!-- 
-      block formatting contexts 块级格式化上下文 -> BFC特性
-
-      BFC是 css2.1 提出的概念，为了解决布局混乱产生的 BUG 问题
-    -->
-
-    <!-- 
       HTML文档中元素布局形式
       普通流布局  normal flow
       浮动流  float
       绝对定位布局  absolute positioning
-     -->
+    -->
+    
+    <!-- 
+      block formatting contexts 块级格式化上下文 -> BFC特性
+      BFC是 css2.1 提出的概念，为了解决布局混乱产生的 BUG 问题
+    -->
+
+    <!-- 
+      只要在元素身上设置这样属性的，都是具备 BFC 特性的，也可以称 BFC 元素
+      float: left right
+      position: absolute fixed
+      display: inline-block table-cell flex
+      overflow: hidden auto scroll
+    -->
 
     <style type="text/css">
-
       .box {
         width: 100px;
         height: 100px;
@@ -79,20 +77,12 @@
         margin: 100px auto 0;
         background-color: green;
       }
-
     </style>
-    
   </head>
+
   <body>
-    <!-- 只要在元素身上设置这样属性的，都是具备 BFC 特性的，也可以称 BFC 元素 -->
-    float: left right
-    position: absolute fixed
-    display: inline-block table-cell flex
-    overflow: hidden auto scroll
 
-    <br />
-
-    <!-- BFC 解决 margin 合并问题 -->
+    <!-- 1.解决两个相邻的块级元素 margin 合并问题 -->
     <div class="clearBFC">
       <div class="box box1"></div>
     </div>
@@ -103,7 +93,7 @@
 
     <br />
 
-    <!-- BFC 解决盒子高度坍塌问题 -->
+    <!-- 2.解决子元素开启浮动父元素高度坍塌问题 -->
     <div class="l-wrapper clearBFC">
       <div class="l-item left"></div>
       <div class="l-item right"></div>
@@ -111,10 +101,12 @@
 
     <br />
 
-    <!-- BFC 解决 margin top 塌陷问题 -->
+    <!-- 3.解决嵌套块级元素 margin top 塌陷问题 -->
     <div class="t-wrapper clearBFC">
       <div class="t-item"></div>
     </div>
+
+    <!-- 4.解决块级元素与浮动元素 float 覆盖问题 -->
  
   </body>
 </html>

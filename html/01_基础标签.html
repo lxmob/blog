@@ -1,84 +1,55 @@
+<!-- 
+  !DOCTYPE 不是标签而是声明，告诉浏览器以 HTML5 标准来解析文档
+  如果不声明则使用浏览器默认的自身渲染模式
+  各个浏览器所采用的渲染模式不同，可能会导致差异
+  CSS1Compat -> w3c 标准兼容模式
+  去掉 !DOCTYPE 声明 -> BackCompat 怪异模式 -> 容易导致奇怪的渲染 BUG
+-->
 <!DOCTYPE html>
-<!-- 英文 -->
+
+<!-- 
+  HTML 文档根标签，lang 属性来表示文档语言
+  en -> 英文
+  zh-CN -> 中文
+  zh-HK -> 香港
+  zh-TW -> 台湾
+  zh-MC -> 澳门
+  zh-SG -> 新加坡
+  zh-Hans/zh-CHS -> 不代表地区的简体中文
+  zh-Hant/zh-CHT -> 不代表地区的繁体中文
+-->
 <html lang="en">
-
-<!-- 简体中文 -->
-<html lang="zh-CN">
-
-<!-- 繁体中文香港 -->
-<html lang="zh-HK">
-
-<!-- 繁体中文台湾 -->
-<html lang="zh-TW">
-
-<!-- 繁体中文澳门 -->
-<html lang="zh-MC">
-
-<!-- 繁体中文新加坡 -->
-<html lang="zh-SG">
-
-<!-- 不代表地区的简体中文 -->
-<html lang="zh-Hans">
-<html lang="zh-CHS">
-
-<!-- 不代表地区的繁体中文 -->
-<html lang="zh-Hant">
-<html lang="zh-CHT">
-
-
-
   <head>
-    <!-- title 标签描述当前页面标题信息，推荐30-40字符 -->
-
-    <!-- 主页：网站名称 + 主要关键字 / 关键字描述 -->
+    <!--
+      title 标签描述当前页面标题信息
+      推荐 30-40 字符
+    -->
     <title>HTML第一课</title>
 
-    <!-- 详情页：详情名称 + 网站名称 + 简介 -->
-    <title>基础标签-HTML第一课-案例1</title>
-
-    <!-- 列表页：分类名称 + 关键字 + 网站名称 -->
-    <title>title标签-HTML标签-HTML第一课</title>
-
-    <!-- 文章页：标题 + 分类 + 网站名称 -->
-    <title>论OpenAI会在哪一年应用广泛-技术讨论-程序猿网</title>
-
-
-
-    <!-- meta 标签 keywords 属性，描述页面关键词，推荐100个字符 -->
-
-    <!-- 网站名称 + 分类信息 -->
+    <!-- keywords 属性，描述页面关键词，推荐 100 个字符 -->
     <meta name="keywords" content="HTML第一课,前端,软件开发" />
 
-
-
-    <!-- meta 标签 description 属性，描述页面详情信息，推荐80-120字 -->
-
-    <!-- 综合 title + keywords 的简单描述 -->
+    <!-- description 属性，描述页面详情信息，推荐 80-120 字 -->
     <meta name="description" content="HTML第一课,详细记录基础标签title、meta及属性keywords和description的作用和应用..." />
 
-
-
-    <!-- meta 标签 charset 属性，设置页面编码字符集 -->
-
-    <!-- unicode万国码 -->
+    <!-- charset 属性，设置页面编码字符集，unicode 万国码 -->
     <meta charset="UTF-8" />
-
-    <!-- 中国信息处理国家标准码 -> 简体中文编码 -->
+    <!-- 中国信息处理国家标准码，简体中文编码 -->
     <meta charset="GB2312" />
-
-    <!-- 汉字扩展规范 -> 扩大了汉字收录，增加了繁体、少数民族的文字 -->
+    <!-- 汉字扩展规范，扩大了汉字收录，增加了繁体、少数民族的文字 -->
     <meta charset="GBK" />
 
 
-    <!-- 关于搜索引擎的认知优先级 title > description > keywords -->
+    <!--
+      关于网页搜索引擎的认知优先级 title > description > keywords
 
-    <template>
       搜索引擎是一种智慧型程序具备学习能力（例如AI）
       每隔一定周期都会启动一种爬虫程序（蜘蛛），它主要会在一定IP范围内的网站进行搜索
       搜索到的网站信息存入自己的数据库中，爬虫程序也具备自己的喜好
-      可以通过title、keywords、description这三项技术来提升网站搜索排名
+      可以通过 title、keywords、description 这三项技术来提升网站搜索排名
       爬虫程序对于语义化的标签优先级更高
-
+    -->
+    <template>
       例如：
       <i>我是i标签</i>
       <em>我是em标签</em>
@@ -90,17 +61,7 @@
   <body></body>
 
   <script>
-
-    // <!DOCTYPE html> 
-
-    // DOCTYPE 声明，不是标签，主要告诉浏览器用哪个版本编写（HTML5）
-
     // 浏览器兼容性模式
     console.log(document.compatMode)
-
-    // CSS1Compat -> w3c标准兼容模式
-
-    // 去掉 DOCTYPE 声明 -> BackCompat 怪异模式 -> 容易导致奇怪的渲染BUG
-
   </script>
 </html>

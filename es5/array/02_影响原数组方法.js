@@ -15,6 +15,7 @@ Array.prototype.push = function(){
   return this.length;
 }
 
+// -----------------------------------------------
 
 /* 
   unshift(...args)
@@ -38,6 +39,7 @@ Array.prototype.unshift = function(){
   return this.length;
 }
 
+// -----------------------------------------------
 
 /* 
   pop()
@@ -59,6 +61,7 @@ Array.prototype.pop = function(){
   return cur;
 }
 
+// -----------------------------------------------
 
 /* 
   shift()
@@ -83,6 +86,7 @@ Array.prototype.shift = function(){
   return cur;
 }
 
+// -----------------------------------------------
 
 /* 
   splice(startIdx, delCount, ...args)
@@ -100,6 +104,7 @@ function splice(idx, arr){
 console.log(arr5[splice(3, arr5)]); // 'trumpet'
 console.log(arr5[splice(-3, arr5)]); // 'blue'
 
+// -----------------------------------------------
 
 /* 
   reverse()
@@ -120,6 +125,7 @@ Array.prototype.reverse = function(){
   return this;
 }
 
+// -----------------------------------------------
 
 /* 
   sort(fn?)

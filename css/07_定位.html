@@ -3,19 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>使用定位两栏布局</title>
+    <title>定位介绍</title>
 
-    <!-- 通过定位我们可以实现左右两栏左固定或右固定的自适应布局 -->
+    <!-- 
+      定位是一种布局方式，可以改变元素在 HTML 文档中的位置
 
-    <style type="text/css">
+      设置 position 属性为元素开启新图层进行定位
+      开启定位后相对于父级元素位置（父级要开启定位）
+      如果父级没有开启定位属性（absolute relative）则相对于 HTML 文档
+      通过设置四个属性来控制定位距离 left/right top/bottom
       
+      定位元素开启新图层类似于层叠的形式，设置 z-index 指定数值来改变层级高低
+    -->
+
+    <!--
+      static = 静态定位(默认值)
+      absolute = 绝对定位 -> 不占据文档空间
+      relative = 相对定位 -> 占据文档空间
+      fixed = 固定定位 -> 不占据文档空间
+      sticky = 吸附定位 -> 页面未超出滚动位置时占据文档空间，当滚动位置超出时进行吸附效果后不占据文档空间
+    -->
+
+    
+    <!-- 通过定位我们可以实现左右两栏左固定或右固定的自适应布局 -->
+    <style type="text/css">
       html,body{
         margin: 0;
         height: 100%;
       }
 
       /* 右侧固定左侧自适应 */
-
       /* .l-left {
         height: 100%;
         margin-right: 300px;
@@ -32,7 +49,6 @@
       } */
 
       /* 左侧固定右侧自适应 */
-
       .l-left {
         position: absolute;
         top: 0;
@@ -47,14 +63,11 @@
         margin-left: 300px;
         background-color: green;
       }
-
     </style>
-
   </head>
-  <body>
 
+  <body>
     <div class="l-left"></div>
     <div class="l-right"></div>
-
   </body>
 </html>

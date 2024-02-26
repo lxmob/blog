@@ -36,6 +36,7 @@
 // let [a = 1, b = a] = [];
 // console.log(a, b);
 
+// -----------------------------------------------
 
 // ES6 对象解构赋值
 // let {a: a, b: b, c: c} = {a: 1, b: 2, c: 3};
@@ -55,6 +56,7 @@ let person1 = {name: 'ming', age: 27, son: {son: {name: 'sanny'}}}
 let {son: {son: son1}} = person1;
 // console.log(son1.name); // 'sanny'
 
+// -----------------------------------------------
 
 // ES6 括号解构赋值
 // let a;
@@ -94,6 +96,7 @@ let arr1 = [1, 2, 3];
 let {0: first, [arr.length - 1]: last} = arr1;
 // console.log(first, last);
 
+// -----------------------------------------------
 
 // ES6 函数解构赋值
 function test2([x, y]){ // 数组参数形式
@@ -118,6 +121,7 @@ function test4({x = 10} = {}, {y} = {y: 10}){
 // test4({}, {}); // 10 undefined
 // test4({x: 2}, {y: 3}); // 2 3
 
+// -----------------------------------------------
 
 // ES6 解构隐士转换问题
 const uki = 'mingg'

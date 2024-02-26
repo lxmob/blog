@@ -6,9 +6,8 @@
     <title>列表标签</title>
   </head>
   <body>
-    <!-- ol 有序列表 -> order list -->
-
     <!-- 
+      ol 有序列表(order list)
       通过 type 属性指定以什么序列开始排序
       a = 英文数字排列
       i = 罗马数字排列
@@ -25,7 +24,10 @@
       <li>测试</li>
     </ol>
 
-    <!-- 按照英文排列超出26个英文字母会怎么排列呢 -->
+    <!-- 
+      如果按照英文排列超出 26 个英文字母会怎么排列呢
+      它会按照 aa -> bb -> cc 双写字母形式继续排列
+    -->
     <ol type="a">
       <li></li>
       <li></li>
@@ -56,7 +58,11 @@
       <li>aa</li>
     </ol>
 
-    <!-- 数字排列如果是想从4开始排列呢 -->
+    <!-- 
+      数字排列如果是想从 4 开始排列呢
+      设置 type 属性指定目标数字是无效的
+      设置 start 属性来指定从第几位开始排列
+    -->
     <!-- <ol type="4"> -->
     <ol type="1" start="4">
       <li></li>
@@ -70,7 +76,10 @@
       <li></li>
     </ol>
 
-    <!-- 如果是倒序呢，超出又会怎样展示 -->
+    <!-- 
+      如果是倒序呢，超出又会怎样展示
+      如果是倒叙排列超出的部分会以负数进行排列
+    -->
     <ol type="1" start="4" reversed>
       <li></li>
       <li></li>
@@ -84,14 +93,13 @@
     </ol>
 
 
-
-    <!-- ul 无序列表 -> unorder list -->
     <!-- 
+      ul 无序列表(unorder list)
       type 属性指定序列样式
-      disc = 默认值 
-      square = 方块
-      circle = 空心圆
-     -->
+        disc = 默认值 
+        square = 方块
+        circle = 空心圆
+    -->
     <!-- <ul type="disc"> -->
     <!-- <ul type="square"> -->
     <ul type="circle">
@@ -103,8 +111,7 @@
     </ul>
 
 
-
-    <!-- dl 定义列表 -> definition list -->
+    <!-- dl 定义列表(definition list) -->
     <dl>
       <dt>dt definition term</dt>
       <dd>dd definition description</dd>
@@ -113,7 +120,6 @@
       <dd>CSS</dd>
       <dd>JS</dd>
     </dl>
-
     
   </body>
 </html>

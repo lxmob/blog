@@ -13,6 +13,7 @@ let str1 = 'hash function is point code';
 // console.log(str1.includes('is')); // true
 // console.log(str1.includes(' ')); // true
 
+// -----------------------------------------------
 
 // repeat
 // 指定重复字符串的拼接次数，返回新的字符串
@@ -22,6 +23,7 @@ let str2 = 'hello!';
 // console.log(str2.repeat(-1)); // RangeError: Invalid count value
 // console.log(str2.repeat(2.5)); // 'hello!hello!'
 
+// -----------------------------------------------
 
 // padStart padEnd
 // 指定长度，按照具体参数值来填充字符串，返回新的字符串
@@ -32,6 +34,7 @@ let str3 = new Date().getMonth() + 1 + '月';
 // console.log(str3.padStart(2, 0)); // '2月'
 // console.log(str3.padStart(0, 0)); // '2月'
 
+// -----------------------------------------------
 
 // 模板字符串支持向字符串中增加 `${ 表达式 }`
 let num = 10,
@@ -63,6 +66,7 @@ function tableRender(){
 }
 // tagTemp`${tableRender()}`;
 
+// -----------------------------------------------
 
 // 模板函数
 // 第一项参数是用表达式符号来做分割符，组成的字符串数组

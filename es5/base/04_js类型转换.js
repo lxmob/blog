@@ -31,6 +31,7 @@ console.log(Boolean(' ')); // true
 console.log(Boolean(NaN)); // false
 console.log(Boolean(0)); // false
 
+// -----------------------------------------------
 
 // 隐式类型转换
 

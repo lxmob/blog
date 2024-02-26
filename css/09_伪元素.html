@@ -6,19 +6,12 @@
     <title>伪元素</title>
 
     <!-- 
-      问题
-      1. 伪元素是什么
-      2. 伪元素存在的意义
-    -->
-
-    <!-- 
       w3c 规定元素后两个 :: 的称为伪元素，伪元素是在对选择元素特定部分增加样式
       常用的就是 before after 可以在元素的前后增加特定的内容
       工作中我们最常用的方式就是使用 after 来解决清除浮动造成的影响
     -->
 
     <style type="text/css">
-
       .text::before {
         /* content 属性必须要加 */
         content: '';
@@ -43,13 +36,10 @@
         display: block;
         clear: both;
       }
-
     </style>
-
   </head>
+
   <body>
-
     <p class="text">天气很好</p>
-
   </body>
 </html>

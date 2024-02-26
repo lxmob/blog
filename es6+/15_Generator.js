@@ -77,6 +77,17 @@ let gen4 = kong();
 // console.log(gen4.throw('type error')); // 2
 
 
-// async await 生成器函数的语法糖
+// async await 本质上是生成器函数中 yield 的语法糖
 // “TJHolowaychuk” 编写的 co 库就是在执行 async await 做的事
-// async 函数返回的是 Promise 对象，await 等待的也是 Promise 对象
+
+// async 关键字用于声明异步函数，可以用在函数声明、函数表达式、箭头函数和方法上
+// 标记 async 关键字的函数返回值是 Promise 对象，可以让函数具有异步特征
+// 但是函数代码块内还是属于同步求值的方式
+async function sol(){
+  console.log(1);
+}
+console.log(sol()); // promise
+
+// JS 运行时在碰到 await 关键字时，会记录在哪里暂停执行
+// 等到 await 右边的值可用了，JS 运行时会向消息队列中推送一个任务
+// 这个任务会恢复异步函数的执行

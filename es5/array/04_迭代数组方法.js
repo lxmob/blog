@@ -19,6 +19,7 @@ Array.prototype.forEach = function(cb){
   }
 }
 
+// -----------------------------------------------
 
 /* 
   filter(fn, this)
@@ -44,6 +45,7 @@ Array.prototype.filter = function (cb){
   return nArr;
 };
 
+// -----------------------------------------------
 
 /* 
   map(fn, this)
@@ -68,6 +70,7 @@ Array.prototype.map = function (cb){
   return nArr;
 }
 
+// -----------------------------------------------
 
 /* 
   some(fn, this)
@@ -97,6 +100,7 @@ Array.prototype.some = function (cb){
   return ans;
 }
 
+// -----------------------------------------------
 
 /* 
   every(fn, this)
@@ -126,6 +130,7 @@ Array.prototype.every = function (cb){
   return ans;
 }
 
+// -----------------------------------------------
 
 /* 
   reduce(fn, initVal)
@@ -155,6 +160,7 @@ Array.prototype.reduce = function (cb, initVal){
   return initVal;
 }
 
+// -----------------------------------------------
 
 /* 
   reduceRight(fn, initVal)

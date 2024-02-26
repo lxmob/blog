@@ -6,20 +6,23 @@
     <title>form表单</title>
   </head>
   <body>
-    <!-- form 表单标签 -> 提交表单数据 -->
-
-    <!-- get 请求参数展示形式 ?username=lxm&password=ming -->
-
+    <!-- 
+      form 表单标签用来提交表单数据
+      method = 选择表单提交的请求方式 get post
+      action = 表示提交的目标地址
+    -->
     <form method="get" action="">
       <label for="username">
         账号
 
-        <!-- name = 提交数据参数名称 -->
-        <!-- type = input 框展示类型 -->
-        <!-- id = 可以通过选择器获取、使 label 标签做关联聚焦 -->
-        <!-- value = 展示的默认值 -->
-        <!-- maxlength = 最大长度的字符 -->
-
+        <!-- 
+          input 输入控件标签
+          name = 提交数据参数名称
+          type = input 框展示类型
+          id = 可以通过选择器获取、使 label 标签做关联聚焦
+          value = 展示的默认值
+          maxlength = 最大长度的字符
+        -->
         <input id="username" type="text" name="username" value="" maxlength="6" />
       </label>
 
@@ -27,9 +30,6 @@
 
       <label for="password">
         密码
-
-        <!-- MD5 消息摘要算法，不可逆加密算法 -->
-
         <input id="password" type="password" name="password" />
       </label>
 
@@ -39,9 +39,9 @@
         只读
 
         <!-- 
-          readonly 属性与 disabled 属性都是只读，区别是什么呢
+          readonly 属性与 disabled 属性都是只读，区别是什么
           在提交表单 disabled 禁用 input 框时数据是无法提交的
-         -->
+        -->
 
         <!-- <input id="readonly" type="text" value="3333" readonly="readonly"> -->
         <input id="disabled" type="text" value="3333" disabled="disabled" />
@@ -98,13 +98,12 @@
       <label for="textarea">
         文本域
 
-        <!-- textarea 文本域标签 -->
-
-        <!-- cols 可见宽度 宽度计算 = 英文字符8px * cols值 + 内部滚动条宽17px -->
-
-        <!-- rows 可见行数 -->
-
-        <!-- 注意 textarea 标签内不要换行和空行，否则会导致空文本缩进 -->
+        <!-- 
+          textarea 文本域标签
+          cols 可见宽度 -> 宽度计算 = 英文字符8px * cols值 + 内部滚动条宽 17px
+          rows 可见行数
+          特别注意 textarea 标签内不要出现换行和空行，否则会导致空文本缩进
+        -->
 
         <textarea name="textarea" id="textarea" cols="30" rows="10"></textarea>
       </label>

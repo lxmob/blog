@@ -12,6 +12,7 @@ let arr1 = new Array(),
 // console.log(arr3); // []
 // console.log(arr4); // [ 1, false, null, {} ]
 
+// -----------------------------------------------
 
 /*
   Array.from(arrayList, mapFn, thisArg)
@@ -33,6 +34,7 @@ let mObj = {[Symbol.iterator]: function(){
 }}
 // console.log(Array.from(mObj)); // [ 0, 1, 2, 3 ]
 
+// -----------------------------------------------
 
 /*
   includes(value, fromIndex)
@@ -61,6 +63,7 @@ Array.prototype.includes = function(tar){
   return ans;
 }
 
+// -----------------------------------------------
 
 /*
   fill(value, start, end)
@@ -77,6 +80,7 @@ let arr6 = [1, 2, 3];
 // arr6.fill(0, 1, -2); // [ 1, 0, 0 ]
 // console.log(arr6);
 
+// -----------------------------------------------
 
 /*
   keys values entries
@@ -87,6 +91,7 @@ let arr7 = ['exercise', 'unbrella', 'pair'];
 // for(let key of arr7.values()){console.log(key)};
 // for(let key of arr7.entries()){console.log(key)};
 
+// -----------------------------------------------
 
 /* 
   find(fn, this) 
@@ -116,6 +121,7 @@ Array.prototype.find = function (cb){
   return ans;
 }
 
+// -----------------------------------------------
 
 /* 
   findIndex(fn, this)

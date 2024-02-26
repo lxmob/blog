@@ -12,6 +12,7 @@ let p = {
 }
 // console.log(p);
 
+// -----------------------------------------------
 
 // 属性描述符
 // 值(value) 
@@ -42,6 +43,8 @@ Object.defineProperty(obj, 'age', {
 // 使用 defineProperty 方法来添加属性方式，属性描述信息默认值都是 false
 // Object.defineProperty(obj, 'car', {value: ['Benz', 'Toyota']});
 // console.log(Object.getOwnPropertyDescriptor(obj, 'car'));
+
+// -----------------------------------------------
 
 /*
   getter setter
@@ -79,6 +82,7 @@ Object.defineProperty(ob, 'check', {
 console.log(ob.check); // 1
 console.log(ob.check); // 2
 
+// -----------------------------------------------
 
 let somebody = {name: 'ming'};
 
@@ -138,6 +142,7 @@ let somebody = {name: 'ming'};
 
 // console.log(somebody);
 
+// -----------------------------------------------
 
 // Object.is 判断两个值是否相等
 // console.log(NaN == NaN); // false
@@ -148,6 +153,7 @@ let somebody = {name: 'ming'};
 // console.log(Object.is(-0, +0)); // false
 // console.log(Object.is(null, undefined)); // false
 
+// -----------------------------------------------
 
 // Object.assign 合并对象仅包含可枚举自身属性(浅拷贝)
 let mTar = {name: 'ming'},
@@ -220,6 +226,7 @@ let mKiin = {name: 'kiin', age: 19},
 // mKiin.car = 'Mazda';
 // console.log(mCopy); // { name: 'kiin', age: 19 }
 
+// -----------------------------------------------
 
 // 对象属性迭代的方法
 // 仅包含自身可枚举的属性(不包含继承属性)
@@ -230,6 +237,7 @@ Object.defineProperty(mJack, 'car', {value: 'Toyota', enumerable: false});
 // console.log(Object.values(mJack)); // [ 'jack', 18 ]
 // console.log(Object.entries(mJack)); // [ [ 'name', 'jack' ], [ 'age', 18 ] ]
 
+// -----------------------------------------------
 
 // ES2017 对象展开方式
 let mSpread = {name: 'spread', next: 'rest'},

@@ -18,6 +18,7 @@ Array.prototype.join = function(spt = ''){
   return str;
 }
 
+// -----------------------------------------------
 
 /* 
   concat(...args) 
@@ -39,6 +40,7 @@ Array.prototype.concat = function(){
   return nArr;
 }
 
+// -----------------------------------------------
 
 /* 
   slice(start, end)
@@ -57,6 +59,7 @@ var arr5 = arr4.slice(0, 1);
 arr5[0].name = 'lili';
 console.log(arr5, arr4); // {name: 'lili'}
 
+// -----------------------------------------------
 
 /* 
   indexOf(value, fromIndex) 
