@@ -69,7 +69,7 @@ let s5 = new Set([...s3].map(x => x * 2)),
 // -----------------------------------------------
 
 // Map 类似于“对象”，但并非对象的一种数据结构，也可以称 hash 结构
-// 它的键名范围不仅限于字符串，而对象的键名只能是字符串
+// 它的键名范围不仅限于字符串，而对象的键名只能是字符串或者 Symbol 类型
 let m1 = new Map([['name', 'kiin']]);
 
 // key 值重复覆盖
@@ -98,7 +98,7 @@ m1.set(1, 'number')
 
 
 // weakMap weakSet 
-// 弱映射与弱集合，除了该集合以外，键对象没有被其它地方引用，都会被回收
+// 弱映射与弱集合，除了该集合以外，键对象没有被其它地方引用，都会被回收 -> DOM 事件绑定案例
 // 要求每一个成员只能是对象数据类型，原始类型是没有生命周期的，因此不能作为键名
 // 原型对象中不具备遍历方法，因为垃圾回收器根本不知道集合中的数据在什么时间是否被回收
 
@@ -109,3 +109,59 @@ let wm = new WeakMap(),
 // wm.set(true, 1); // TypeError: Invalid value used as weak map key
 ws.add({name: 'kiin'});
 wm.set({name: 'kiin'}, 1);
+
+
+// deepClone
+// null undefined Object RegExp Date
+// function x 静态方法不拷贝
+
+function deepClone(origin, hashMap = new WeakMap()){
+  // 小技巧利用 null == undefined 的坑，减少类型判断
+  if(origin == undefined || typeof origin !== 'object'){
+    return origin;
+  }
+  if(origin instanceof RegExp){
+    return RegExp(origin);
+  }
+  if(origin instanceof Date){
+    return Date(origin);
+  }
+  // 每次拷贝前都先判断一下当前要拷贝的值是否存在 hash 表中
+  const hashKey = hashMap.get(origin);
+  // 如果存在就不拷贝了
+  if(hashKey){
+    return hashKey;
+  }
+  // 小技巧通过传入的源对象去构建新对象实例，避免区分数组与对象的类型判断
+  let target = new origin.constructor();
+  // 记录一下当前要拷贝对象的 hash 值
+  hashMap.set(origin, target);
+  for(let key in origin){
+    if(origin.hasOwnProperty(key)){
+      target[key] = deepClone(origin[key], hashMap);
+    }
+  }
+  return target;
+}
+
+let obj1 = {
+  name: 'kiin',
+  info: {
+    age: 18,
+    car: ['Benz', 'Toyota']
+  }
+}
+let obj2 = deepClone(obj1);
+obj2.info.car.push('Mazda');
+console.log(obj1);
+console.log(obj2); // 成功深拷贝
+
+
+// 深拷贝中循环引用问题
+// 解决：使用 Map 结构 Hash 表的方案去记录一下，已拷贝过的对象不再拷贝
+// 可以使用 weakMap 弱引用，当键名对象不在被外部所引用时，Map 内部存储的数据就被垃圾回收给释放了
+let obj3 = {},
+    obj4 = {}
+obj3.quote = obj4;
+obj4.quote = obj3;
+console.log(deepClone(obj4)); // RangeError: Maximum call stack size exceeded
