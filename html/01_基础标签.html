@@ -2,8 +2,6 @@
   !DOCTYPE 不是标签而是声明，告诉浏览器以 HTML5 标准来解析文档
   如果不声明则使用浏览器默认的自身渲染模式
   各个浏览器所采用的渲染模式不同，可能会导致差异
-  CSS1Compat -> w3c 标准兼容模式
-  去掉 !DOCTYPE 声明 -> BackCompat 怪异模式 -> 容易导致奇怪的渲染 BUG
 -->
 <!DOCTYPE html>
 
@@ -20,34 +18,37 @@
 -->
 <html lang="en">
   <head>
-    <!--
-      title 标签描述当前页面标题信息
-      推荐 30-40 字符
-    -->
+    
+    <!-- title 标签描述当前页面标题信息 -->
     <title>HTML第一课</title>
 
-    <!-- keywords 属性，描述页面关键词，推荐 100 个字符 -->
-    <meta name="keywords" content="HTML第一课,前端,软件开发" />
+    <!-- 
+      meta 标签提供 HTML 文档的元数据
+      1. 指定文档编码字符集 charset
+      2. 页面描述信息用于搜索引擎优化 name=description
+      3. 页面描述关键词以便搜索引擎更好的索引页面 name=keywords
+      4. 移动端设置视口缩放与宽度 name=viewport
+    -->
 
-    <!-- description 属性，描述页面详情信息，推荐 80-120 字 -->
-    <meta name="description" content="HTML第一课,详细记录基础标签title、meta及属性keywords和description的作用和应用..." />
-
-    <!-- charset 属性，设置页面编码字符集，unicode 万国码 -->
+    <!-- 
+      UTF-8 -> unicode 万国码
+      GB2312 -> 中国信息处理国家标准码，简体中文编码
+      GBK -> 汉字扩展规范，扩大了汉字收录，增加了繁体、少数民族的文字
+    -->
     <meta charset="UTF-8" />
-    <!-- 中国信息处理国家标准码，简体中文编码 -->
-    <meta charset="GB2312" />
-    <!-- 汉字扩展规范，扩大了汉字收录，增加了繁体、少数民族的文字 -->
-    <meta charset="GBK" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="HTML,CSS,JAVASCRIPT,MING-BLOG" />
+    <meta name="description" content="HTML..." />
 
     <!--
-      关于网页搜索引擎的认知优先级 title > description > keywords
+      关于网页搜索引擎的认知优先级
+      它会认为 title > description > keywords
 
       搜索引擎是一种智慧型程序具备学习能力（例如AI）
-      每隔一定周期都会启动一种爬虫程序（蜘蛛），它主要会在一定IP范围内的网站进行搜索
-      搜索到的网站信息存入自己的数据库中，爬虫程序也具备自己的喜好
+      每隔一定周期都会启动一种爬虫程序（蜘蛛），它主要会在一定 IP 范围内的网站进行搜索
+      搜索到的网站信息存入自己的数据库中，爬虫程序会根据自己的喜好来排名
       可以通过 title、keywords、description 这三项技术来提升网站搜索排名
-      爬虫程序对于语义化的标签优先级更高
+      爬虫程序对于语义化的标签解析的优先级更高
     -->
     <template>
       例如：
@@ -58,10 +59,16 @@
 
   </head>
 
-  <body></body>
+  <body>
+    
+  </body>
 
   <script>
-    // 浏览器兼容性模式
+    /*
+      document.compatMode -> 输出浏览器兼容性模式
+      CSS1Compat -> w3c 标准兼容模式
+      去掉 !DOCTYPE 声明 -> BackCompat 怪异模式 -> 容易导致奇怪的渲染 BUG
+    */
     console.log(document.compatMode)
   </script>
 </html>

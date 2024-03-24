@@ -97,7 +97,8 @@ m1.set(1, 'number')
 // console.log(Map.prototype[Symbol.iterator] === Map.prototype.entries); // true
 
 
-// weakMap weakSet 
+// weakMap weakSet
+// 采用弱引用机制，当外界强引用断掉时 obj = null 集合内的引用会立即被垃圾回收机制给回收
 // 弱映射与弱集合，除了该集合以外，键对象没有被其它地方引用，都会被回收 -> DOM 事件绑定案例
 // 要求每一个成员只能是对象数据类型，原始类型是没有生命周期的，因此不能作为键名
 // 原型对象中不具备遍历方法，因为垃圾回收器根本不知道集合中的数据在什么时间是否被回收

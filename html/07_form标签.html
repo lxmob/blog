@@ -6,10 +6,10 @@
     <title>form表单</title>
   </head>
   <body>
-    <!-- 
+    <!--
       form 表单标签用来提交表单数据
-      method = 选择表单提交的请求方式 get post
-      action = 表示提交的目标地址
+      选择表单提交的请求方式 method=get/post
+      表示提交的目标地址 action=url
     -->
     <form method="get" action="">
       <label for="username">
@@ -39,7 +39,8 @@
         只读
 
         <!-- 
-          readonly 属性与 disabled 属性都是只读，区别是什么
+          readonly 属性与 disabled 属性都是只读
+          区别是什么
           在提交表单 disabled 禁用 input 框时数据是无法提交的
         -->
 
@@ -133,8 +134,6 @@
       <!-- HTML 设计出 button 就是想以更加语义化的方式去替换 input.type="button" -->
       <button type="submit">提交</button>
       <button type="reset">重置</button>
-
     </form>
-
   </body>
 </html>

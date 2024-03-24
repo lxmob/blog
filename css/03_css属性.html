@@ -4,9 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>css属性介绍</title>
-
     <style type="text/css">
-      /* 
+      /*
         width: 宽度
         max-width: 最大宽度
         min-width: 最小宽度
@@ -16,18 +15,18 @@
         max-height: 最大高度
       */
 
-      .box {
-        width: 100%;
-        min-width: 800px;
+      .box{
+        width:100%;
+        min-width:800px;
       }
 
-      .list-wrapper {
-        width: 80px;
-        height: 200px;
+      .list-wrapper{
+        width:80px;
+        height:200px;
 
         /* overflow */
         /* 超出展示滚动条 */
-        overflow: auto;
+        overflow:auto;
 
         /* 溢出隐藏 */
         /* overflow: hidden; */
@@ -36,14 +35,14 @@
         /* overflow: scroll; */
       }
 
-      .list-wrapper {
+      .list-wrapper{
         /* font-szie 属性设置的是字体的高度，宽度是根据高度自适应调节 */
-        font-size: 18px;
+        font-size:18px;
 
 
         /* font-weight */
         /* 字体更细 */
-        font-weight: lighter;
+        font-weight:lighter;
 
         /* 默认字体粗细 */
         /* font-weight: normal; */
@@ -66,7 +65,7 @@
         /* font-style: italic; */
 
         /* 强制使字体倾斜 -> 有些字体是没有斜体的 */
-        font-style: oblique;
+        font-style:oblique;
 
 
         /* font-family */
@@ -74,7 +73,7 @@
         /* font-family: Arial; */
 
         /* 复合型字体 -> 有中文和有空格的字体是要加引号的 */
-        font-family: "Hiragino Sans GB", "Microsoft YaHei", Arial, \5b8b\4f53,
+        font-family:"Hiragino Sans GB", "Microsoft YaHei", Arial, \5b8b\4f53,
           "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
 
 
@@ -90,11 +89,11 @@
           0-255   0-255   0-255
         */
         /* color: #666; */
-        color: rgb(0, 0, 0);
+        color:rgb(0, 0, 0);
 
 
         /* border 边框 */
-        border: 1px solid #000;
+        border:1px solid #000;
         /* border-top: 1px dashed red; */
         /* border-right: 1px double red; */
         /* border-left: 1px groove red; */
@@ -105,39 +104,39 @@
 
       }
 
-      .tgle {
+      .tgle{
         /* 使用 border 形成三角形 */
-        width: 0;
-        height: 0;
-        border-width: 100px;
-        border-style: solid;
-        border-color: transparent;
-        border-left-color: orange;
+        width:0;
+        height:0;
+        border-width:100px;
+        border-style:solid;
+        border-color:transparent;
+        border-left-color:orange;
       }
       
-      .text-box {
-        width: 300px;
-        height: 300px;
-        border: 1px solid #000;
+      .text-box{
+        width:300px;
+        height:300px;
+        border:1px solid #000;
 
         /* text-align: center | left | right */
         /* 文本居中 */
-        text-align: center;
+        text-align:center;
 
 
         /* line-height */
         /* 文本垂直居中 */
-        line-height: 300px;
+        line-height:300px;
 
 
         /* text-indent */
         /* 文本缩进 */
-        text-indent: 6px;
+        text-indent:6px;
 
 
         /* text-decoration */
         /* 文本下划线 */
-        text-decoration: underline;
+        text-decoration:underline;
 
         /* 文本中划线 */
         /* text-decoration: line-through; */
@@ -146,45 +145,45 @@
         /* text-decoration: overline; */
       }
 
-      .cursor-box {
+      .cursor-box{
         /* cursor 光标小手势 */
-        cursor: pointer;
+        cursor:pointer;
         /* cursor: not-allowed; */
       }
 
-      .ov-hidden {
-        width: 100px;
-        height: 30px;
-        border: 1px solid #000;
+      .ov-hidden{
+        width:100px;
+        height:30px;
+        border:1px solid #000;
         /* 文本溢出隐藏 */
 
         /* 文本不换行 */
-        white-space: nowrap;
-        overflow-x: hidden;
+        white-space:nowrap;
+        overflow-x:hidden;
         /* 隐藏部分显示省略号 */
-        text-overflow: ellipsis;
+        text-overflow:ellipsis;
       }
 
-      .ov-hidden:hover {
+      .ov-hidden:hover{
         /* hover 伪类 -> 鼠标移入后改变的样式 */
-        border: 1px solid green;
+        border:1px solid green;
       }
 
-      .hide-box {
+      .hide-box{
         /* display: none 隐藏元素不占据文档空间 */
         /* display: none; */
 
         /* visibility: hidden 隐藏元素同时占据文档空间 */
-        visibility: hidden;
-        width: 100px;
-        height: 100px;
-        background-color: palegoldenrod;
+        visibility:hidden;
+        width:100px;
+        height:100px;
+        background-color:palegoldenrod;
       }
 
-      .show-box {
-        width: 150px;
-        height: 150px;
-        background-color: burlywood;
+      .show-box{
+        width:150px;
+        height:150px;
+        background-color:burlywood;
       }
     </style>
   </head>

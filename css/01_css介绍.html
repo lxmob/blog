@@ -5,30 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>css介绍</title>
 
-    <!-- 
-      css cascading style sheet 层叠样式表
-      权重优先级：行内样式 > 内部样式表 > 外部样式表
-    -->
+    <!-- css cascading style sheet 层叠样式表 -->
 
     <!-- 外链样式表 -->
-    <link rel="stylesheet" type="text/css" href="./common.css" />
+    <link rel="stylesheet" type="text/css" href="/" />
 
     <!-- 内部样式表 -->
     <style type="text/css">
-      #box {
-        width: 200px;
-        height: 200px;
-        background-color: goldenrod;
+      #box{
+        width:200px;
+        height:200px;
+        background-color:goldenrod;
       }
     </style>
 
   </head>
   <body>
-
     <!-- 行内样式 / 内联样式 -->
-    <div style="width: 100px; height: 200px; background-color: seashell;"></div>
+    <div style="width:100px;height:200px; background-color:seashell;"></div>
     
     <div id="box"></div>
-
   </body>
 </html>

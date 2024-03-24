@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BFC介绍</title>
 
-    <!-- 
+    <!--
       HTML文档中元素布局形式
       普通流布局  normal flow
       浮动流  float
@@ -26,63 +26,63 @@
     -->
 
     <style type="text/css">
-      .box {
-        width: 100px;
-        height: 100px;
+      .box{
+        width:100px;
+        height:100px;
       }
 
-      .box1 {
-        margin-bottom: 100px;
-        background-color: green;
+      .box1{
+        margin-bottom:100px;
+        background-color:green;
       }
 
-      .box2 {
-        margin-top: 100px;
-        background-color: blueviolet;
+      .box2{
+        margin-top:100px;
+        background-color:blueviolet;
       }
 
-      .clearBFC {
-        overflow: hidden;
+      .clearBFC{
+        overflow:hidden;
       }
 
-      .l-wrapper {
-        width: 200px;
+      .l-wrapper{
+        width:200px;
         /* height: 100px; */
-        border: 6px solid #000;
+        border:6px solid #000;
       }
 
-      .l-wrapper .l-item {
-        float: left;
-        width: 100px;
-        height: 100px;
+      .l-wrapper .l-item{
+        float:left;
+        width:100px;
+        height:100px;
       }
 
-      .l-wrapper .l-item.left {
-        background-color: palegreen;
+      .l-wrapper .l-item.left{
+        background-color:palegreen;
       }
 
-      .l-wrapper .l-item.right {
-        background-color: rebeccapurple;
+      .l-wrapper .l-item.right{
+        background-color:rebeccapurple;
       }
 
-      .t-wrapper {
-        width: 300px;
-        height: 300px;
-        background-color: orange;
+      .t-wrapper{
+        width:300px;
+        height:300px;
+        background-color:orange;
       }
 
-      .t-item {
-        width: 100px;
-        height: 100px;
-        margin: 100px auto 0;
-        background-color: green;
+      .t-item{
+        width:100px;
+        height:100px;
+        margin:100px auto 0;
+        background-color:green;
       }
     </style>
   </head>
 
   <body>
 
-    <!-- 1.解决两个相邻的块级元素 margin 合并问题 -->
+    <!-- 1. 解决两个相邻的块级元素 margin 合并问题 -->
     <div class="clearBFC">
       <div class="box box1"></div>
     </div>
@@ -93,7 +93,7 @@
 
     <br />
 
-    <!-- 2.解决子元素开启浮动父元素高度坍塌问题 -->
+    <!-- 2. 解决子元素开启浮动父元素高度坍塌问题 -->
     <div class="l-wrapper clearBFC">
       <div class="l-item left"></div>
       <div class="l-item right"></div>
@@ -101,12 +101,12 @@
 
     <br />
 
-    <!-- 3.解决嵌套块级元素 margin top 塌陷问题 -->
+    <!-- 3. 解决嵌套块级元素 margin top 塌陷问题 -->
     <div class="t-wrapper clearBFC">
       <div class="t-item"></div>
     </div>
 
-    <!-- 4.解决块级元素与浮动元素 float 覆盖问题 -->
+    <!-- 4. 解决块级元素与浮动元素 float 覆盖问题 -->
  
   </body>
 </html>
