@@ -1,12 +1,4 @@
 /* 
-  问题
-  1.什么是浅拷贝
-  2.什么是深拷贝
-  3.两者的区别是什么
-*/
-
-
-/* 
   hasOwnProperty 
   判断对象自身是否存在指定的属性，返回一个 boolean 值  
 */
@@ -16,7 +8,7 @@ function Dog(){
 }
 Dog.prototype.run = 'running';
 var d = new Dog();
-// for in 迭代一个对象除 Symbol 以外的可枚举属性，包含继承的枚举属性
+// for in 迭代一个对象除 Symbol 以外的可枚举属性，包含继承的可枚举属性
 for(var key in d){
   document.write(key, '<br />');
 
@@ -31,7 +23,7 @@ for(var key in d){
   如果属性值是引用类型复制的将是引用地址
 */
 function _clone(target, origin){
-  for (let key in origin) target[key] = origin[key];
+  for(let key in origin) target[key] = origin[key];
   return target;
 }
 var origin = {

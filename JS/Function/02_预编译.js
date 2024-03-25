@@ -1,33 +1,30 @@
-/* 
-  问题
-  1.预编译是什么
-  2.预编译中函数与变量提升的区别
-  3.预编译AO与GO的区别
-*/
-
-
-/* 
+/*
+  预编译
   js引擎在执行代码前需要先对代码进行通篇的语法检查
-  然后进行预编译的过程
-  最后交由解释器解释一行执行一行
+  然后进行预编译的过程，最后交由解释器解释一行执行一行
+
+  1. 函数声明提升
+  2. 变量声明提升
 */
 
-// 函数声明提升
-// 整体提升可以优先调用函数
+// 函数整体提升可以优先调用函数
 test();
 function test(){
   console.log("test");
 }
 
-// 变量声明提升
-// 提升的是声明变量而不是赋值语句
+// 变量提升的是声明变量而不是赋值语句
 // var a
 // a = 10
 console.log(a); // undefined
 var a = 10;
 
-// 暗示全局变量 imply global variable
-// es3 中在函数内部没有使用 var 声明的变量默认会被提升到全局变量
+
+/*
+  暗示全局变量 imply global variable
+  ES3 中在函数内部没有使用 var 声明的变量
+  默认会被提升到全局变量
+*/
 function imply(){
   var n = m = 10
 }
@@ -35,8 +32,6 @@ imply();
 console.log(window.m); // 10
 
 
-
-// AO 与 GO 执行期上下文
 
 function fn(a){
   console.log(a); // function a(){}
@@ -49,10 +44,6 @@ function fn(a){
   function d(){}
 }
 fn(2);
-
-// 当 fn 函数执行为什么我们看到第一个输出的 a 变量是函数？
-// 当声明语句和函数声明同时存在时，我们应该怎样区分？
-
 /* 
   AO activation object 活跃对象，函数上下文
   函数在执行前首先要进行预编译创建 AO 对象
@@ -84,8 +75,6 @@ console.log(aa); // 1
     GO = { a: 1 }
 */
 
-
-// 案例题
 
 function test(){
   console.log(b);

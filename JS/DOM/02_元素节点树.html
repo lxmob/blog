@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>dom元素节点树</title>
+    <title>DOM元素节点树</title>
   </head>
   <body>
     <ul>
@@ -17,20 +17,20 @@
     </ul>
   </body>
 
-  <!-- 
+  <!--
     遍历节点树 -> 元素节点树
-    节点不等于元素，节点中包含元素 -> 元素节点 = dom元素
+    节点不等于元素，节点中包含元素 -> 元素节点 = DOM 元素
     节点包含：
-      1. 元素节点 (nodeType=1)
-      2. 属性节点 (nodeType=2)
-      3. 文本节点 text (nodeType=3)
-      4. 注释节点 comment (nodeType=8)
-      5. document (nodeType=9)
-      6. DocumentFragment (nodeType=11)
+    1. 元素节点 (nodeType=1)
+    2. 属性节点 (nodeType=2)
+    3. 文本节点 text (nodeType=3)
+    4. 注释节点 comment (nodeType=8)
+    5. document (nodeType=9)
+    6. DocumentFragment (nodeType=11)
   -->
 
-  <!-- 
-    遍历节点具备的属性（ie5都支持）
+  <!--
+    遍历 Node 节点具备的属性（ie5都支持）
       parentNode
       childNodes
       firstChild
@@ -54,8 +54,8 @@
     console.log(pNode.hasChildNodes()); // true
   </script>
 
-  <!-- 
-    遍历元素节点具备的属性（不常用）
+  <!--
+    遍历 Element 元素节点具备的属性（不常用）
       parentElement
       children
       childElementCount = children.length
@@ -114,14 +114,14 @@
     // 判断一个元素节点有没有子元素节点
     function hasChildren(node){
       var children = node.childNodes,
-          flags = false;
+          flag = false;
       for(var i = 0; i < children.length; i++){
         if(children[i].nodeType == 1){
-          flags = true;
+          flag = true;
           break;
         }
       }
-      return flags;
+      return flag;
     }
 
     // 根据下标查找元素下对应的子元素
@@ -131,7 +131,7 @@
             length: 0,
             push: Array.prototype.push,
             splice: Array.prototype.splice,
-          };
+          }
       for(var i = 0; i < children.length; i++){
         if(children[i].nodeType == 1){
           elems.push(children[i]);

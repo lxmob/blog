@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>dom事件</title>
+    <title>DOM事件绑定</title>
   </head>
   <body>
-    <!-- 行内事件监听器 -> 不推荐使用 -->
+    <!-- 行内事件监听器 不推荐使用 -->
     <!-- <button onclick="console.log(123)">点击</button> -->
-    <button id="btn" style="margin-bottom: 20px">触发事件</button>
+    <button id="btn" style="margin-bottom:20px">触发事件</button>
   </body>
 
   <!-- 
@@ -21,7 +21,7 @@
     var btnNode = document.getElementById('btn');
   </script>
 
-  <!-- 
+  <!--
     onclick 句柄的形式
     优点兼容性好
     缺点无法为元素事件绑定多个处理函数
@@ -37,7 +37,7 @@
     // btnNode.onclick = null / false
   </script>
 
-  <!-- 
+  <!--
     addEventListener(event, fn, false) 
     优点可以绑定多个事件处理函数
     缺点兼容性 IE9 以下不支持，它是 w3c 的规范

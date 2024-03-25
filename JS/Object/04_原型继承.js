@@ -40,7 +40,8 @@ console.log(s2.key); // undefined
 /* 
   继承三
   原型继承（圣杯模式）
-  产生的问题：在父类原型对象上赋值的属性，如果将子类的原型指向父类原型，子类更改原型对象上的属性，将会导致父类原型对象属性变更，引用的同一块地址
+  产生的问题：在父类原型对象上赋值的属性，如果将子类的原型指向父类原型
+            子类更改原型对象上的属性，将会导致父类原型对象属性变更，引用的同一块地址
   解决方案：创建一个缓冲区，通过一个纯净的对象来作为中间件存储属性，并将中间件的原型对象指向父类原型
 */
 Person.prototype.phone = 'iphone12';
@@ -61,9 +62,7 @@ var p = new Person();
 console.log(s, p);
 
 
-/* 
-  插件改造 ES5 模块化开发
-*/
+// 插件改造 ES5 模块化开发
 var inheritPlugin = (function(){
   var Buffer = function(){};
   return function(Target, Origin){

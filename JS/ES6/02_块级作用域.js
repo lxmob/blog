@@ -1,8 +1,8 @@
 /*
   let 变量声明特点
-  1.同一变量在同一个作用域中不能重复声明
-  2.存在声明提升，但是会产生一个暂时性死区(TDZ temporal dead zone)
-  3.只能在当前作用域下生效，外部不可访问块级作用域中的变量
+  1. 同一变量在同一个作用域中不能重复声明
+  2. 存在声明提升，但是会产生一个暂时性死区(TDZ temporal dead zone)
+  3. 只能在当前作用域下生效，外部不可访问块级作用域中的变量
 */
 
 // 重复声明案例
@@ -126,14 +126,8 @@ if(1){
 
 // 函数默认值案例
 
-function test6(x = 1, y = 2){
-  console.log(x + y);
-}
-// test6(3, 7); // 10
-// test6(1); // 3
-// test6(null, 4); // 4
-// test6(); // 3
-
+// 函数默认值声明方法也存在块级作用域
+// 可以看作为 let x = y, let y = 2
 function test7(x = y, y = 2){
   console.log(x, y);
 }
@@ -166,7 +160,6 @@ function test11(x, y = function(){ x = 2; console.log(x);}){
   console.log(x); // 3
 }
 test11();
-console.log(x); // 1
 
 // -----------------------------------------------
 

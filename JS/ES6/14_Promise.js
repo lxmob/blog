@@ -27,8 +27,8 @@ try{
 
 /*
   JS 异步任务
-  1.宏任务（宏任务队里）包含：setTimeout、Ajax、I/O、UI交互等
-  2.微任务（微任务队列）包含：Promise、Nodejs(process.nextTick)
+  1. 宏任务（宏任务队里）包含：setTimeout、Ajax、I/O、UI交互等
+  2. 微任务（微任务队列）包含：Promise、Nodejs(process.nextTick)
   微任务会优先于宏任务先放入异步队列
 */
 

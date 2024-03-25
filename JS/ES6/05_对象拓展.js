@@ -14,18 +14,22 @@ let p = {
 
 // -----------------------------------------------
 
-// 属性描述符
-// 值(value) 
-// 可写(writable) 
-// 可枚举(enumerable) 
-// 可配置(configurable)
+/*
+  属性描述符
+    值(value)
+    可写(writable) 
+    可枚举(enumerable) 
+    可配置(configurable)
+*/ 
 let obj = {name: 'ming'},
     desc = Object.getOwnPropertyDescriptor(obj, 'name');
 // console.log(desc);
 
-// Object.defineProperty
-// 允许在对象身上添加或修改一个属性进行描述并返回修改后的对象
-// 这样做的好处就是可以配置对象属性的一些特性
+/*
+  Object.defineProperty
+  允许在对象身上添加或修改一个属性进行描述并返回修改后的对象
+  这样做的好处就是可以配置对象属性的一些特性
+*/ 
 Object.defineProperty(obj, 'age', {
   value: 27,
   writable: false,
@@ -51,9 +55,9 @@ Object.defineProperty(obj, 'age', {
   js 中对象在赋值与读取时默认有两个操作 [[Get]] 与 [[Put]]
   [[Get]] 属性的读取，查找当前属性，如果不存在查找原型对象
   [[Put]] 属性的赋值
-    1.首先看是否有重写 getter 与 setter
-    2.然后看配置 writable 是否可写
-    3.赋值
+    1. 首先看是否有重写 getter 与 setter
+    2. 然后看配置 writable 是否可写
+    3. 赋值
   
   getter setter 就是为了给对象身上的属性默认操作进行方法重写
 */
@@ -166,18 +170,18 @@ let mTar = {name: 'ming'},
 let mHouse = {house: 'villa'};
 
 // 第一个参数是目标对象
-// 如果是原始类型先将目标对象转为包装对象然后进行拷贝源对象可枚举属性
+// 如果是基本类型先将目标对象转为包装对象然后进行拷贝源对象可枚举属性
 // console.log(Object.assign(true, mHouse)); // Boolean {true, house: 'villa'}
 // console.log(Object.assign(123, mHouse)); // Number {123, house: 'villa'}
 
 // 第二个参数是源对象只将源对象可枚举的属性拷贝至目标对象
-// 如果是原始类型，先将参数二转为包装对象然后判断属性是否可枚举
+// 如果是基本类型，先将参数二转为包装对象然后判断属性是否可枚举
 // 包装类中 [[primitiveValue]] 属性不可枚举
 // 所以导致拷贝失败，忽略源对象属性
 // console.log(Object.assign(mHouse, true)); // { house: 'villa' }
 // console.log(Object.assign(mHouse, 123)); // { house: 'villa' }
 
-// 原始类型中只有字符串包含可枚举的属性
+// 基本类型中只有字符串包含可枚举的属性
 // console.log(Object.assign(mHouse, 'key')); // {0: 'k', 1: 'e', 2: 'y', house: 'villa'}
 // console.log(Object.assign('key', mHouse)); // String {'key', house: 'villa'}
 

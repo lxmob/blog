@@ -6,7 +6,8 @@
 */
 
 var a = 10;
-// 这里将解析为 (function b() {}) 将忽略函数名
+// 解析为立即执行函数但是并没有被执行
+// 匿名函数忽略函数名称 (function b() {})
 if(function b() {}){
   a += typeof b;
 }
@@ -16,13 +17,19 @@ function foo1(x){
   console.log(arguments); // 1 2 3 4 5
   return x;
 }
+// 函数调用时实际传递的参数
+// 映射到 arguments 上
 foo1(1, 2, 3, 4, 5);
 
+// foo2 函数作为函数声明
+// 并没有被执行符号所包裹，所以不是表达式
+// JS 在解析后面括号内容时，会认为是括号运算返回最后一个值
+// foo2 函数加上执行符号后调用，传递参数
 function foo2(x){
   console.log(arguments); // 5
   return x;
 }(1, 2, 3, 4, 5);
-    
+
 ;(function foo3(x){
   console.log(arguments); // 1 2 3 4 5
   return x;

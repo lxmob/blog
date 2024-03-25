@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>dom事件流</title>
+    <title>DOM事件流</title>
     <style>
       .wrapper{
         width: 300px;
@@ -45,10 +45,11 @@
       iEl = oEl.getElementsByClassName('inner')[0];
   </script>
 
-  <!-- 
+  <!--
     冒泡机制（IE Event Bubbling）
     事件流触发：事件捕获（不执行事件处理函数）、目标阶段（执行）、事件冒泡
-    从dom的嵌套结构上来讲，它是由触发事件的内部元素事件处理函数一层一层的向外传递的现象，前提是父元素相同的事件绑定对应的处理函数
+    从 DOM 的嵌套结构上来讲，它是由触发事件的内部元素
+    绑定的事件处理函数一层一层的向外传递的现象，前提是父元素相同的事件绑定对应的处理函数
   -->
   <script>
     wEl.addEventListener(
@@ -136,8 +137,10 @@
     document.oncontextmenu = function(event){
       // 1. 只能在句柄中使用的方式 return false
       // return false
+
       // 2. w3c: event.preventDefault() 不兼容IE9以下
       // event.preventDefault()
+
       // 3. IE9以下使用 event.returnValue = false
       event.returnValue = false;
       console.log('oncontextmenu');

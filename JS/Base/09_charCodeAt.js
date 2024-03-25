@@ -1,13 +1,14 @@
 /* 
   ASCII 码表
-  ASCII 指的是“美国信息交换标准代码”，ASCII 码表分为表一（0 - 127）表二（128 - 255）1 个字节（byte）
+  ASCII 指的是“美国信息交换标准代码”
+  ASCII 码表分为表一（0 - 127）和表二（128 - 255）每一个码值占用 1 个字节（byte）
   Unicode 码涵盖了 ASCII 码表，从 255 之后开始就是 2 个字节。
 */
 
 
 // charCodeAt 方法
-// 该方法可以返回指定位置字符的 Unicode 编码，返回值范围是 0 - 65535 之间的整数。
-// charCodeAt 与 charAt 方法操作相似，但是后者返回的是指定位置的字符子串
+// 该方法可以返回指定位置字符的 Unicode 编码，返回值范围是 0 - 65535 之间的整数
+// charCodeAt 与 charAt 方法操作相似，但是 charAt 返回的是指定位置的字符子串
 console.log('12345'.charAt(0)); // '1'
 console.log('12345'.charAt(-1)); // ''
 console.log('12345'.charAt(NaN)); // '1'

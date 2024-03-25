@@ -77,7 +77,7 @@
 
 /* 
   JS组成的三个部分
-  ECMAScript：语法、变量、关键字、保留字、原始值、原始类型、引用类型、对象、函数等等
+  ECMAScript：语法、变量、关键字、保留字、原始值、基本类型、引用类型、对象、函数等等
   DOM：document object model 遵循 w3c 规范
   BOM：browser object model 没有规范（其实指每个浏览器产商都有不同的设计，没有相应规范约束，从而导致混乱）
 */
@@ -85,12 +85,15 @@
 /*
   JS中的三种对象
   1.本地对象：Native Object
+    是指 JS 语言本身提供的对象，可以直接在 JS 代码中使用
     Object、Function、Array、String、Number、Boolean
     Error、EvalError、SyntaxError、RangeError、ReferenceError、TypeError、URIError
     Date、RegExp
 
   2.内置对象：Built-in Object
-    Global、Math
+    它们不是由 JS 语言本身提供的，而是由宿主环境所提供的
+    例如浏览器环境 window，以及 Nodejs 中的 Global
+    Math、JSON等
     isNaN()、parseInt()、decodeURI()、encodeURI()、Infinity、NaN、undefined
 
     本地对象和内置对象都是 ES 的内部对象

@@ -1,16 +1,8 @@
 /* 
-  问题
-  1.IIFE是什么
-  2.它的特点是什么
-  3.它的优缺点是什么
-*/
-
-
-/* 
   immediately invoked function expression 
   立即执行函数当页面加载时，自动执行，执行完毕立即释放该函数
 
-  由括号运算符包裹形成表达式（忽略原有的函数名）然后被执行符号()执行
+  由括号运算符包裹形成表达式（忽略原有的函数名）然后被执行符号 () 执行
   当执行完毕后该函数在内存中被销毁，导致在之后环境中找不到该函数
 
   优点：私有化变量防止全局变量污染，使固定代码块进行模块化
@@ -19,18 +11,18 @@
 
 
 // 写法一
-;(function () {})()
+;(function (){})();
 // 写法二
-;(function(){}()) // w3c推荐
+;(function (){}()); // w3c推荐
 
 
-// 表达式会忽略函数名称
 console.log(test); // Uncaught ReferenceError: test is not defined;
 (function test(){
   var a = 1,
       b = 2;
   console.log(a + b);
 })();
+// 函数表达式，将忽略函数声明时的命名
 var test = function fn(){
   console.log(1);
 };
@@ -44,8 +36,7 @@ console.log(fn); //  Uncaught ReferenceError: fn is not defined;
 })(1, 2);
 
 // 属于函数声明并非表达式
-// SyntaxError: Unexpected token ')'
-function test(a,b){}();
+// function test(a, b){}(); // SyntaxError: Unexpected token ')'
 
 // 通过加运算符可以将函数声明变成表达式的方法
 !function test(){
@@ -61,9 +52,8 @@ function test(a,b){}();
   console.log("test");
 }();
 
-// (6) 是一个表达式并不是执行符号 
-// -> function text(){};(6)
-function test(){}(6);
+// (6) 是一个表达式并不是执行符号
+function test(){}(6); // -> function text(){};(6)
 
 // var test = function(){} 作为函数表达式，与执行符号 () 组合
 // 此时函数表达式会立即执行

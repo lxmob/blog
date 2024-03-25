@@ -8,12 +8,12 @@
 
 'use strict';
 
-// 1.不能使用 with 表达式
+// 1. 不能使用 with 表达式
 var num = 1,
     obj = {num: 2};
 function test(){
   var num = 3;
-  // with 能够通过参数的不同改变作用域
+  // with 函数能够通过传递的参数不同改变内部代码执行时的作用域
   // with(test){
   // with(window){
   // with(obj){
@@ -23,15 +23,15 @@ function test(){
 test();
 
 
-// 2.不能声明暗示全局变量属性
+// 2. 不能声明暗示全局变量属性
 // globalAttr = 10;
 
 
-// 3.不能删除系统设计的原有属性
+// 3. 不能删除系统设计的原有属性
 // delete Object.prototype;
 
 
-// 4.不能使用函数 callee 与 caller
+// 4. 不能使用函数 callee 与 caller
 function foo(){
   // console.log(arguments.callee);
   // console.log(foo.caller);
@@ -39,17 +39,17 @@ function foo(){
 foo();
 
 
-// 5.函数中的 this 不再指向 window
+// 5. 函数中的 this 不再指向 window
 function bar(){
   // console.log(this); // undefined
 }
 bar();
 
 
-// 6.函数形参不能重复
+// 6. 函数形参不能重复
 // function zen(a, a){};
 
 
-// 7.eval 函数在严格模式下具有自己的作用域
+// 7. eval 函数在严格模式下具有自己的作用域
 eval('var num = 20; console.log(num)'); // eval 会将传入的字符串当作 JS 代码来执行
 console.log(num); // 1
