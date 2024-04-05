@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>this指向详解</title>
+    <title>this详解</title>
   </head>
   <body>
     <button onclick="console.log(this)">btn</button><br />
@@ -12,13 +12,13 @@
     <button id="button">button</button>
   </body>
   <!-- 
-    this的指向
-    1. 普通函数调用 this 指向 window 严格模式下是 undefined
-    2. 事件绑定的处理函数调用 this 指向绑定该事件的 DOM 元素
-    3. 构造函数中的 this 指向当前实例化对象
-    4. 对象中的方法函数 this 指向调用该方法的对象
-    5. 自调用函数(IIFE)与普通函数的 this 指向相同
-    6. 通过 call、apply、bind 方法可以改变调用函数的 this 指向
+    this的值
+    1. 普通函数调用 this 是 window 严格模式下是 undefined
+    2. 事件绑定的处理函数调用 this 是绑定该事件的 DOM 元素
+    3. 构造函数中的 this 是当前实例化对象
+    4. 对象中的方法函数 this 是调用该方法的对象
+    5. 自调用函数(IIFE)与普通函数的 this 是相同
+    6. 通过 call、apply、bind 方法可以改变调用函数的 this 值
   -->
 
   <script>

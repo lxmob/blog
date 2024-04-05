@@ -85,9 +85,9 @@ console.log(s);
 
 /*
   super 关键字
-  1. 在 constructor 中指向父类的构造器
-  2. 在对象方法中指向原型对象
-  3. 在 static 静态方法中指向继承的父类
+  1. 在 constructor 中是父类的构造器
+  2. 在对象方法中是原型对象
+  3. 在 static 静态方法中是继承的父类
 */
 let obj = {
   name: 'kiin',

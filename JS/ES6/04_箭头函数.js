@@ -63,7 +63,7 @@ function foo9(){
   console.log(this);
   // return function() {
   return () => {
-    console.log(this.a); // 由外部函数调用时作用域所决定的 this 指向
+    console.log(this.a); // 由外部函数调用时作用域所决定的 this 值
   }
 }
 let obj1 = {a: 1},
@@ -71,7 +71,7 @@ let obj1 = {a: 1},
     // bar = foo9(); // global undefined
     bar = foo9.call(obj1); // obj1 1
 // bar 变量接收函数虽然被定义在全局但是箭头函数 this 已经被确定
-// 通过 call、apply、bind 是无法再次改变箭头函数 this 指向
+// 通过 call、apply、bind 是无法再次改变箭头函数 this 值
 // bar.call(obj2);
 // bar.apply(obj2);
 // bar.bind(obj2)();

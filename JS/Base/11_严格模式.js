@@ -39,7 +39,7 @@ function foo(){
 foo();
 
 
-// 5. 函数中的 this 不再指向 window
+// 5. 函数中的 this 值不再是 window
 function bar(){
   // console.log(this); // undefined
 }

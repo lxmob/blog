@@ -49,7 +49,7 @@ console.log(Teacher.prototype.constructor); // Professor
 /*
   __proto__
   实例对象身上的隐式属性指向构造函数的原型对象
-  通过 new 关键字在内部创建 this 对象指向实例对象
+  通过 new 关键字在内部创建 this 对象是实例对象
   实例对象身上会添加一个 __proto__ 属性，是继承的原型对象
 */
 function Car(){
