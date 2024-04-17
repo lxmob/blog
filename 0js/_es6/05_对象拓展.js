@@ -149,6 +149,7 @@ let somebody = {name: 'ming'};
 // -----------------------------------------------
 
 // Object.is 判断两个值是否相等
+// 解决全等 NaN、+0、-0 问题 MDN 相等性判断
 // console.log(NaN == NaN); // false
 // console.log(-0 == +0); // true
 // console.log(null == undefined); // true
