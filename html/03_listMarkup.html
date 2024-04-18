@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!--
+      ol 标签 -> 有序列表(order list)
+      通过 type 属性指定以什么序列方式开始排序
+      1. 英文数字排列 a
+      2. 罗马数字排列 i
+      3. 阿拉伯数字排列 0
+    -->
+
+    <!-- <ol type="a"> -->
+    <!-- <ol type="A"> -->
+    <!-- <ol type="i"> -->
+    <!-- <ol type="I"> -->
+    <ol type="1">
+      <li>测试</li>
+      <li>测试</li>
+      <li>测试</li>
+      <li>测试</li>
+    </ol>
+
+    <!--
+      如果按照英文排列方式
+      超出 26 个英文字母会怎么排列
+      它会按照 aa -> bb -> cc 双写字母形式继续排列
+    -->
+    <ol type="a">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li>aa</li>
+    </ol>
+
+    <!--
+      阿拉伯数字排列方式
+      如果是想从 4 开始排列
+      设置 type 属性指定目标数字是无效的
+      设置 start 属性来指定从第几位开始排列
+    -->
+
+    <!-- <ol type="4"> -->
+    <ol type="1" start="4">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ol>
+
+    <!-- 
+      如果是倒序，超出又会怎样展示
+      倒叙排列超出的部分会以负数进行排列
+    -->
+    <ol type="1" start="4" reversed>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li>-1</li>
+      <li>-2</li>
+      <li>-3</li>
+      <li>-4</li>
+    </ol>
+
+    <!-- 
+      ul 无序列表(unorder list)
+      type 属性指定序列样式
+      1. disc = 默认值 
+      2. square = 方块
+      3. circle = 空心圆
+    -->
+
+    <!-- <ul type="disc"> -->
+    <!-- <ul type="square"> -->
+    <ul type="circle">
+      <li>WEB</li>
+      <li>HTML</li>
+      <li>JS</li>
+      <li>VUE</li>
+      <li>REACT</li>
+    </ul>
+
+    <!-- dl 定义列表(definition list) -->
+    <dl>
+      <dt>dt definition term</dt>
+      <dd>dd definition description</dd>
+      <dd>WEB</dd>
+      <dd>HTML</dd>
+      <dd>CSS</dd>
+      <dd>JS</dd>
+    </dl>
+  </body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!--  
+      元素内容水平或垂直居中对齐
+      1.利用定位 + margin:auto
+      2.利用定位 + margin:负值(跟随父级元素宽高变化，前提是需要知道自身宽高)
+      3.利用定位 + transform:translate
+      4.table 布局
+      5.flex 弹性盒子布局
+      6.grid 网格式布局
+
+      内联元素居中对齐
+      水平居中
+      1.行内元素可设置 text-align:center
+      2.flex布局设置父元素 display:flex; justify-content:center
+
+      垂直居中
+      1.单行文本父元素确认高度 height === line-height
+      2.多行文本父元素确认高度 disaply:table-cell; vertical-align:middle
+    -->
+    <style type="text/css">
+      .father1 {
+        width: 200px;
+        height: 200px;
+        border: 1px solid #0a3b98;
+        position: relative;
+      }
+      .son1 {
+        width: 100px;
+        height: 100px;
+        background: #f0a238;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+      }
+
+      .father2 {
+        width: 200px;
+        height: 200px;
+        border: 1px solid #0a3b98;
+        position: relative;
+      }
+      .son2 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -50px;
+        margin-top: -50px;
+        width: 100px;
+        height: 100px;
+        background: salmon;
+      }
+
+      .father3 {
+        width: 200px;
+        height: 200px;
+        border: 1px solid #0a3b98;
+        position: relative;
+      }
+      .son3 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100px;
+        height: 100px;
+        background: skyblue;
+      }
+
+      .father4 {
+        width: 200px;
+        height: 200px;
+        border: 1px solid #0a3b98;
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+      }
+      .son4 {
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        background: antiquewhite;
+      }
+
+      .father5 {
+        width: 200px;
+        height: 200px;
+        border: 1px solid #0a3b98;
+        display: flex;
+        align-items: center; /* 相对于容器水平居中 */
+        justify-content: center; /* 相对于容器垂直居中 */
+      }
+      .son5 {
+        width: 100px;
+        height: 100px;
+        background: orange;
+      }
+
+      .father6 {
+        width: 200px;
+        height: 200px;
+        border: 1px solid #0a3b98;
+        display: grid;
+        align-items: center;
+        justify-content: center;
+      }
+      .son6 {
+        width: 100px;
+        height: 100px;
+        background: greenyellow;
+      }
+
+      .father7 {
+        width: 200px;
+        height: 200px;
+        border: 1px solid #0a3b98;
+        text-align: center;
+        line-height: 200px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="father1">
+      <div class="son1"></div>
+    </div>
+    <hr />
+
+    <div class="father2">
+      <div class="son2"></div>
+    </div>
+    <hr />
+
+    <div class="father3">
+      <div class="son3"></div>
+    </div>
+    <hr />
+
+    <div class="father4">
+      <div class="son4"></div>
+    </div>
+    <hr />
+
+    <div class="father5">
+      <div class="son5"></div>
+    </div>
+    <hr />
+
+    <div class="father6">
+      <div class="son6"></div>
+    </div>
+    <hr />
+
+    <div class="father7">
+      <span>大的要来了</span>
+    </div>
+  </body>
+</html>

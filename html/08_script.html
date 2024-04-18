@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!--
+      head 标签中 script 引入的外部 js 文件将阻塞页面的渲染
+      浏览器会首先解析 HTML 文件，解析到 script 标签时
+      会先下载完所有 script 再往下解析 HTML 结构，导致网页内容呈现滞后，用户体验差
+    -->
+    <script src="xxx.js"></script>
+  </head>
+
+  <body>
+    <!--
+      body 标签尾部 script，浏览器会先解析完整个 HTML页面，再进行外部 js 文件的下载
+      如果 js 代码执行报错，最起码页面的渲染是可以加载出来，因为 dom 文档是自上而下顺序执行
+      但是对于高度依赖于 js 的页面，会导致显示过慢
+    -->
+    <script src="xxx.js"></script>
+
+    <!-- 内部脚本 -->
+    <script type="text/javascript">
+      document.write("success");
+    </script>
+
+    <!-- 外部脚本 -->
+    <script src="xxx.js"></script>
+
+    <!-- 
+      以上两者同时存在错误的写法
+      引用的文件会执行，内部的脚本内容不会被执行
+    -->
+    <script type="text/javascript" src="xxx.js">
+      document.write('error') // 此行不会执行
+    </script>
+
+    <!-- 模版替换后续 {{.*?}} 中的内容将会被替换 -->
+    <script type="text/tpl" id="tpl">
+      <div class="container">{{name}}</div>
+    </script>
+
+    <!--
+      特殊含义
+      script 标签本身是用来引用脚本的，文件后缀名对于 script 来讲并不重要
+      而 <script src=".*"> 引用的文件内容对于 script 来讲很重要，脚本内容是否可被 JS 脚本解析
+
+      script.php 文件 -> <?php echo "Hello World!" ?>
+    -->
+    <script src="script.php"></script>
+  </body>
+</html>

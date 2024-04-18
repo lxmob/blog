@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- 
+      display: none
+      不占据页面空间，触发页面的重排与重绘，无法触发事件处理函数
+
+      visibility: hidden
+      占据页面空间，触发页面的重绘，无法触发事件处理函数
+
+      opacity: 0
+      占据页面空间，可以触发事件处理函数，触发重绘需要看情况
+      如果使用 animation 动画对 opacity 做变化
+      animation 会默认触发 GPU 加速，只会触发 GPU 层面的复合渲染
+      不会触发页面的重绘
+
+      position: absolute
+      元素不可见，不影响页面布局
+
+      clip-path 裁剪方式
+      占据页面空间，触发页面的重绘，无法触发事件处理函数
+
+      transform: scale(0)
+      不占据页面空间，无法触发事件处理函数，触发重绘需要看情况
+    -->
+    <style type="text/css">
+      .box {
+        width: 100px;
+        height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box" style="display:none;"></div>
+    <div class="box" style="visibility:hidden;"></div>
+    <div class="box" style="opacity:0;"></div>
+    <div class="box" style="position:absolute;left:-9999px;"></div>
+    <div class="box" style="clip-path:circle(0);"></div>
+    <div class="box" style="transform:scale(0);"></div>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>
+      <a href="https://www.jd.com" target="mainIframe">京东</a>
+      <a href="https://www.taobao.com" target="mainIframe">淘宝</a>
+      <a href="https://www.tmall.com" target="mainIframe">天猫</a>
+    </p>
+
+    <!--
+      iframe 内联框架标签
+      优点：不会重新加载整个页面，点击切换只加载 iframe 内容
+      缺点：搜索引擎不友好、滚动条混乱兼容性差、外界无法检测数据加载的响应、数据传递复杂
+     -->
+    <iframe
+      name="mainIframe"
+      width="100%"
+      height="600"
+      src="https://www.jd.com"
+      frameborder="0"
+      scrolling="auto"
+    ></iframe>
+  </body>
+</html>

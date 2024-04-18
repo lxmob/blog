@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- 
+      W3C 规定元素后两个 :: 的称为伪元素
+      伪元素是在对选择元素特定部分增加样式
+      常用的就是 before after 可以在元素的前后增加特定的内容
+      最常用的方式就是使用 after 来解决清除浮动造成的影响
+    -->
+    <style type="text/css">
+      .text::before {
+        /* content 属性必须要加 */
+        content: "";
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        background-color: green;
+      }
+
+      .text::after {
+        content: "";
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        background-color: yellow;
+      }
+
+      /* 使用伪元素来设置清除浮动造成的影响 */
+      .clearfix::after {
+        content: "";
+        display: block;
+        clear: both;
+      }
+    </style>
+  </head>
+
+  <body>
+    <p class="text">天气很好</p>
+  </body>
+</html>

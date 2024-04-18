@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- 
+      常用的选择器
+      1.id选择器以 # 开头遵循唯一性，属性值通常以 J_xx 开头
+      2.类选择器以 . 开头可以重复出现多次
+      3.标签选择器 span 初始化标签样式时可以使用
+      4.后代选择器 #J_box span 选择 id 为 J_box 元素内部所有 span 元素
+      5.子选择器 #J_box > div 仅包含子元素不包含 div 内的元素
+      6.交集选择器 .list.header 选择紧接在 .list 之后的所有 .header 元素
+      7.群组选择器 div,p 选择 div、p 的所有元素
+
+      伪类选择器
+      :hover
+      :focus
+      :first-child
+      :last-child
+      :nth-child(n)
+      :not(selector)
+
+      伪元素选择器
+      ::before
+      ::after
+
+      属性选择器
+      [attribute]
+      [href]
+
+      选择器权重优先级
+      按照选择器出现的次数进行累加值最后比较
+      !important(oo) > 内联样式(1000) > id(100) >
+      class、属性、伪类(10) > 标签、伪元素(1) > 通配符 *(0)
+
+      浏览器匹配选择器规则
+      采用从右到左的形式查找，首先定位到最右边的元素，然后向左依次匹配其祖先元素
+      为什么以这种方式来匹配
+      以这种规则进行匹配会更快，首先会检测右边元素是否匹配上，如果未匹配上不需要向左继续匹配
+      其次是以 DOM 树节点向上匹配，最终匹配到根节点
+
+      将这种规则匹配方案可以应用到其它场景中
+      我认为的匹配规则，收集一个父元素中所有的子元素
+      以类的后代选择器为例，将类名拆分成数组，由数组中最后一项开始匹配
+      如果符合规则的子元素大于 1 说明不止有一个子元素，则继续向上匹配
+      直到满足当前匹配的元素结果等于 1 匹配结束
+    -->
+    <style type="text/css"></style>
+  </head>
+
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

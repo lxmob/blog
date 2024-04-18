@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!--
+      Block Formatting Context
+      块级格式化上下文，它是页面中的一块渲染区域
+      遵循 CSS2.1 提出的概念，BFC 为了解决布局混乱产生的 BUG 问题
+
+      触发 BFC 的条件包含不限于
+      float: left、right
+      position: absolute、fixed
+      display: inline-block、table-cell、flex、grid
+      overflow: hidden、auto、scroll
+    -->
+    <style type="text/css">
+      .clearfix {
+        overflow: hidden;
+      }
+
+      .box {
+        width: 100px;
+        height: 100px;
+      }
+
+      .box1 {
+        margin-bottom: 100px;
+        background-color: green;
+      }
+
+      .box2 {
+        margin-top: 100px;
+        background-color: blueviolet;
+      }
+
+      .l-wrapper {
+        width: 200px;
+        /* height: 100px; */
+        border: 6px solid #000;
+      }
+
+      .l-wrapper .l-item {
+        float: left;
+        width: 100px;
+        height: 100px;
+      }
+
+      .l-wrapper .l-item.left {
+        background-color: palegreen;
+      }
+
+      .l-wrapper .l-item.right {
+        background-color: rebeccapurple;
+      }
+
+      .t-wrapper {
+        width: 300px;
+        height: 300px;
+        background-color: orange;
+      }
+
+      .t-item {
+        width: 100px;
+        height: 100px;
+        margin: 100px auto 0;
+        background-color: green;
+      }
+
+      .f-aside {
+        width: 100px;
+        height: 150px;
+        float: left;
+        background: #f66;
+      }
+
+      .f-main {
+        height: 200px;
+        background: #fcc;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 1. 解决两个相邻的块级元素 margin 合并问题 -->
+    <div class="clearfix">
+      <div class="box box1"></div>
+    </div>
+    <div class="clearfix">
+      <div class="box box2"></div>
+    </div>
+    <br />
+
+    <!-- 2. 解决子元素开启浮动父元素高度坍塌问题 -->
+    <div class="l-wrapper clearfix">
+      <div class="l-item left"></div>
+      <div class="l-item right"></div>
+    </div>
+    <br />
+
+    <!-- 3. 解决嵌套块级元素 margin top 塌陷问题 -->
+    <div class="t-wrapper clearfix">
+      <div class="t-item"></div>
+    </div>
+    <br />
+
+    <!-- 4. 解决块级元素与浮动元素 float 覆盖问题 -->
+    <div class="f-aside"></div>
+    <div class="f-main clearfix"></div>
+  </body>
+</html>
