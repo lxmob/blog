@@ -5,7 +5,7 @@
 
 var dog = Object.create(null);
 console.log(dog); // No properties
-dog.name = "husky";
+dog.name = 'husky';
 
 // 将 dog 作为原型对象创建 husky 继承 dog name 属性
 var husky = Object.create(dog);
@@ -29,22 +29,20 @@ console.log(person);
 // 但是可以通过这个属性，来访问添加的对象身上原型对象方法和属性
 person.__proto__.toString();
 
-
 // 手动为对象添加 toString 方法
 var num = 1,
-    cur = {};
+  cur = {};
 // document.write(num); // 1
 // document.write(cur); // [object Object]
 
 var createObj = Object.create(null);
 // document.write(createObj)
 // Error cannot convert object to primitive value
-createObj.toString = function(){
-  return "createObj";
+createObj.toString = function () {
+  return 'createObj';
 };
 // document.write(createObj); // 'createObj'
 
-
-// toString 原型方法的重写 
-console.log(Number.prototype.toString.call(10, 2)) // 1010
-console.log(Object.prototype.toString.call(1)) // '[object Number]'
+// toString 原型方法的重写
+console.log(Number.prototype.toString.call(10, 2)); // 1010
+console.log(Object.prototype.toString.call(1)); // '[object Number]'

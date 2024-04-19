@@ -1,16 +1,16 @@
 /*
   预编译
-  js引擎在执行代码前需要先对代码进行通篇的语法检查
+  js 引擎在执行代码前需要先对代码进行通篇的语法检查
   然后进行预编译的过程，最后交由解释器解释一行执行一行
 
-  1. 函数声明提升
-  2. 变量声明提升
+  1.函数声明提升
+  2.变量声明提升
 */
 
 // 函数整体提升可以优先调用函数
 test();
-function test(){
-  console.log("test");
+function test () {
+  console.log('test');
 }
 
 // 变量提升的是声明变量而不是赋值语句
@@ -25,23 +25,22 @@ var a = 10;
   ES3 中在函数内部没有使用 var 声明的变量
   默认会被提升到全局变量
 */
-function imply(){
-  var n = m = 10
+function imply () {
+  var n = (m = 10);
 }
 imply();
 console.log(window.m); // 10
 
 
-
-function fn(a){
+function fn (a) {
   console.log(a); // function a(){}
   var a = 1;
   console.log(a); // 1
-  function a(){}
+  function a() {}
   console.log(a); // 1
-  var b = function(){};
+  var b = function () {};
   console.log(b); // function (){}
-  function d(){}
+  function d() {}
 }
 fn(2);
 /* 
@@ -60,7 +59,7 @@ fn(2);
 
 
 var aa = 1;
-function aa(){
+function aa () {
   console.log(2);
 }
 console.log(aa); // 1
@@ -76,10 +75,10 @@ console.log(aa); // 1
 */
 
 
-function test(){
+function test () {
   console.log(b);
   // 预编译过程中根本不看这些 if 只看有没有变量声明
-  if(a){
+  if (a) {
     var b = 2;
   }
   c = 3;
@@ -101,10 +100,10 @@ console.log(a);
 */
 
 
-function test(){
+function test () {
   return a;
   a = 1;
-  function a(){}
+  function a () {}
   var a = 2;
 }
 console.log(test()); // fn
@@ -118,9 +117,9 @@ console.log(test()); // fn
 */
 
 
-function test(){
+function test () {
   a = 1;
-  function a(){}
+  function a () {}
   var a = 2;
   return a;
 }
@@ -137,11 +136,11 @@ console.log(test()); // 2
 
 
 a = 1;
-function test(e){
-  function e(){}
+function test (e) {
+  function e () {}
   arguments[0] = 2;
   console.log(e); // 2
-  if(a){
+  if (a) {
     // 这里函数执行时 AO 里的变量 a 还是 undefined
     // 故 b 没有赋值
     var b = 3;
@@ -174,13 +173,13 @@ console.log(f); // 5
 
 
 var x = 1,
-y = (z = 0);
-function add(n){
-return (n = n + 1);
+  y = (z = 0);
+function add (n) {
+  return (n = n + 1);
 }
 y = add(x);
-function add(n){
-return (n = n + 3);
+function add (n) {
+  return (n = n + 3);
 }
 z = add(x);
 console.log(x, y, z); // 1 4 4

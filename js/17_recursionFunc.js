@@ -6,14 +6,13 @@
   缺点：计算量大时容易造成栈溢出，不过 ES6 之后提出的尾递归调用优化了性能
 */
 
-
 // 案例题
 // 找到计算的规律，结束递归的条件作为出口
-function factorial(n){
-  if(n == 1){
+function factorial (n) {
+  if (n == 1) {
     return 1;
   }
-  return (n * factorial(n - 1));
+  return n * factorial(n - 1);
 }
 console.log(factorial(5));
 
@@ -24,8 +23,8 @@ console.log(factorial(5));
 // factorial(2) = 2 * factorial(2 - 1)
 
 // 算出斐波那契数列的第 n 位
-function fibonacci(n){
-  if(n <= 2){
+function fibonacci (n) {
+  if (n <= 2) {
     return 1;
   }
   // 前两位之和 = 第三项结果 n3 = n1 + n2

@@ -12,12 +12,12 @@
   原型对象 prototype 是作为对象容器的属性存在
   而原型链是通过实例继承原型对象产生 __proto__ 的原型链节点
 */
-function Dog(name, age){
+function Dog (name, age) {
   this.name = name;
   this.age = age;
 }
 Dog.prototype.variety = 'husky';
-Dog.prototype.eat = function (){};
+Dog.prototype.eat = function () {};
 
 var d1 = new Dog('qq', 2);
 var d2 = new Dog('oo', 1);
@@ -34,8 +34,8 @@ console.log(Dog.prototype.variety); // 'husky' 实例对象是无法直接向原
   constructor 构造器属性
   原型对象 prototype 身上的属性，指向构造函数本身
 */
-function Professor(){}
-function Teacher(name, age){
+function Professor () {}
+function Teacher (name, age) {
   this.age = age;
   this.name = name;
 }
@@ -52,11 +52,11 @@ console.log(Teacher.prototype.constructor); // Professor
   通过 new 关键字在内部创建 this 对象是实例对象
   实例对象身上会添加一个 __proto__ 属性，是继承的原型对象
 */
-function Car(){
+function Car () {
   var thiss = {
-    __proto__: Car.prototype = {
+    __proto__: (Car.prototype = {
       name: 'Honda',
-    }
+    }),
   };
   // this.name = 'Benz'
   return thiss;
@@ -65,11 +65,10 @@ Car.prototype.name = 'Honda';
 var car = new Car();
 console.log(car.name); // 'Honda'
 
-
 // 修改 __proto__ 属性
-function Person(){};
+function Person () {}
 Person.prototype.name = 'ming';
-var p1 = {name: 'lili'};
+var p1 = { name: 'lili' };
 var p2 = new Person();
 console.log(p2.name); // 'ming'
 p2.__proto__ = p1;
@@ -83,7 +82,7 @@ console.log(p2.name); // 'lili'
   和 car 实例化时 prototype 对象不是同一个
 */
 Car.prototype.name = 'Benz';
-function Car(){}
+function Car () {}
 // function Car(){
 //    this{
 //      __proto__: Car.prototype{
@@ -103,20 +102,19 @@ Car.prototype = { name: 'Mazda' };
 // Car.prototype.name = 'Mazda'
 console.log(car.name); // Benz
 
-
 // 实例化对象是无法修改父祖先级的 prototype 原始值属性
-function Professor(){};
+function Professor () {}
 var p = new Professor();
-function Teacher(){
+function Teacher () {
   this.unf = undefined;
   this.bol = true;
   this.str = 'str';
   this.num = 100;
-  this.desc = {name: 'ming'};
+  this.desc = { name: 'ming' };
 }
 Teacher.prototype = p;
 var t = new Teacher();
-function Student(){};
+function Student () {}
 Student.prototype = t;
 var s = new Student();
 // s.desc.name = 'mingming' // 引用类型可以修改属性

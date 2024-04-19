@@ -11,19 +11,19 @@
 
 
 // 写法一
-;(function (){})();
+;(function () {})();
 // 写法二
-;(function (){}()); // w3c推荐
+;(function () {} ()); // w3c推荐
 
 
 console.log(test); // Uncaught ReferenceError: test is not defined;
-(function test(){
+(function test () {
   var a = 1,
       b = 2;
   console.log(a + b);
 })();
 // 函数表达式，将忽略函数声明时的命名
-var test = function fn(){
+var test = function fn () {
   console.log(1);
 };
 console.log(fn); //  Uncaught ReferenceError: fn is not defined;
@@ -31,34 +31,34 @@ console.log(fn); //  Uncaught ReferenceError: fn is not defined;
 
 // 表达式与执行符号
 // 只有表达式形式才能被执行符号 () 执行
-(function add(a, b){
+(function add (a, b) {
   console.log(a + b);
 })(1, 2);
 
 // 属于函数声明并非表达式
-// function test(a, b){}(); // SyntaxError: Unexpected token ')'
+// function test(a, b) {}(); // SyntaxError: Unexpected token ')'
 
 // 通过加运算符可以将函数声明变成表达式的方法
-!function test(){
+!function test () {
   console.log("test");
 }();
--function test(){
+-function test () {
   console.log("test");
 }();
-+function test(){
++function test () {
   console.log("test");
 }();
-1 || function test(){
+1 || function test () {
   console.log("test");
 }();
 
 // (6) 是一个表达式并不是执行符号
-function test(){}(6); // -> function text(){};(6)
+function test () {}(6); // -> function text(){};(6)
 
 // var test = function(){} 作为函数表达式，与执行符号 () 组合
 // 此时函数表达式会立即执行
 // 而 test 变量接收的结果就是匿名函数 function(){} 立即执行返回的结果
-var test = function (){
+var test = function () {
   console.log(2);
 }();
 console.log(test); // undefined
@@ -68,10 +68,10 @@ console.log(test); // undefined
 // 结合闭包
 // 当 arr 被外部所引用时闭包形成，myArr 函数数组被调用
 // 在内部作用域 AO 访问的 i 已经是 10 
-function test(){
+function test () {
   var arr = [],
       i = 0;
-  for(; i < 10;){
+  for (; i < 10;) {
     arr[i] = function (){
       console.log(i);
     }
@@ -80,16 +80,16 @@ function test(){
   return arr;
 }
 var myArr = test();
-for(var j = 0; j < myArr.length; j++){
+for (var j = 0; j < myArr.length; j++) {
   myArr[j](); // 10*10
 }
 
 // ->
 
-function test1(){
+function test1 () {
   var i = 0;
-  for(; i < 10;){
-    (function (){
+  for (; i < 10;) {
+    (function () {
       console.log(i); // 0 1 2 3 4 5 6 7 8 9
     })();
     i++;
@@ -99,11 +99,11 @@ test1();
 
 // ->
 
-function test2(){
+function test2 () {
   var arr = [],
       i = 0;
-  for(; i < 10;){
-    arr[i] = function (num){
+  for (; i < 10;) {
+    arr[i] = function (num) {
       console.log(num);
     }
     i++;
@@ -111,18 +111,18 @@ function test2(){
   return arr;
 }
 var myArr = test2();
-for(var j = 0; j < myArr.length; j++){
+for (var j = 0; j < myArr.length; j++) {
   myArr[j](j);  // 0 1 2 3 4 5 6 7 8 9
 }
 
 // ->
 
-function test3(){
+function test3 () {
   var arr = [],
       i = 0;
-  for(; i < 10;){
-    (function(j){
-      arr[j] = function (){
+  for (; i < 10;) {
+    (function (j) {
+      arr[j] = function () {
         console.log(j);
       }
     })(i);
@@ -131,6 +131,6 @@ function test3(){
   return arr;
 }
 var myArr = test3();
-for(var j = 0; j < myArr.length; j++){
+for (var j = 0; j < myArr.length; j++) {
   myArr[j]();  // 0 1 2 3 4 5 6 7 8 9
 }

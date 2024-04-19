@@ -9,7 +9,6 @@
   缺点：闭包会导致引用的函数 AO 执行期上下文不会被释放，过度的闭包可能会导致内存泄露或加载过慢
 */
 
-
 /* 
   具体点来讲：当 test1 函数执行完毕时，对应的 AO 执行期上下文并没有销毁
   因为 test2 函数在创建 AO 执行期上下文时作用域链中包含 test1 函数 AO 引用
@@ -18,24 +17,22 @@
 */
 
 // 闭包函数捆绑 global scope
-function test1(){
+function test1 () {
   // 闭包函数捆绑 test1 scope
-  function test2(){}
+  function test2 () {}
   return test2;
 }
 var fn = test1();
 fn();
 
-
-
 // 案例
 
-function Demo(a, b, c){
+function Demo (a, b, c) {
   var d = 1;
   this.a = a;
   this.b = b;
   this.c = c;
-  function f(){
+  function f() {
     d++;
     console.log(d);
   }
@@ -49,15 +46,14 @@ var d2 = new Demo();
 d2.g(); // 2
 
 
-
 // var Compute = (function () {
-(function (){
+(function () {
   var num = 0;
-  class Compute{
-    add(n){
+  class Compute {
+    add(n) {
       return num + n;
     }
-    minus(n){
+    minus(n) {
       return num - n;
     }
   }

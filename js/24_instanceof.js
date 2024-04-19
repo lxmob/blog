@@ -3,7 +3,7 @@
   判断 B 构造函数的 prototype 是否存在 A 实例对象原型链上
 */
 
-function Dog(){};
+function Dog () {}
 var d = new Dog();
 console.log(d instanceof Dog); // true
 console.log(d instanceof Object); // true
