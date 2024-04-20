@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box-wrap {
+        width: 300px;
+        height: 300px;
+        background-color: #698b69;
+      }
+      .box-inner {
+        width: 200px;
+        height: 200px;
+        background-color: #97ffff;
+      }
+      .box-mini {
+        position: absolute;
+        left: 400px;
+        width: 100px;
+        height: 100px;
+        background-color: #ffec8b;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box-wrap">
+      父级元素
+      <div class="box-inner">
+        儿子元素
+        <div class="box-mini">子孙元素</div>
+      </div>
+    </div>
+  </body>
+
+  <!--
+    mouseover、mouseout
+    子元素触发移入移出事件都会冒泡给父级
+    无论是哪个元素只要触发了移入事件后续一定会先触发移出事件
+    例如渲染叠加的嵌套元素，父元素触发移入，再向子元素移入前，一定会先触发父元素的移出
+    这两个方法会导致冒泡事件的频繁触发
+  -->
+  <script>
+    var boxWrap = document.getElementsByClassName('box-wrap')[0],
+        boxInner = boxWrap.getElementsByClassName('box-inner')[0],
+        boxMini = boxInner.getElementsByClassName('box-mini')[0];
+
+    boxWrap.onmouseover = function () {
+      // console.log("父元素: over");
+    }
+    boxWrap.onmouseout = function () {
+      // console.log("父元素: out");
+    }
+
+    boxInner.onmouseover = function (e) {
+      // e.stopPropagation();
+      // console.log('子元素: over');
+    }
+    boxInner.onmouseout = function (e) {
+      // e.stopPropagation();
+      // console.log('子元素: out');
+    }
+  </script>
+
+  <!--
+    mouseenter、mouseleave
+    元素触发移入时使用捕获的顺序来触发事件
+    元素触发移出时按照事件冒泡的顺序来触发事件
+    如果是在渲染叠加的嵌套元素内，子元素的移入和移出是不会频繁触发捕获和冒泡事件的
+  -->
+  <script>
+    boxWrap.addEventListener('mouseenter', function (e) {
+      console.log('父元素: enter');
+    })
+    boxWrap.addEventListener('mouseleave', function (e) {
+      console.log('父元素: leave');
+    })
+
+    boxInner.addEventListener('mouseenter', function (e) {
+      console.log('子元素: enter');
+    })
+    boxInner.addEventListener('mouseleave', function (e) {
+      console.log('子元素: leave');
+    })
+  </script>
+</html>

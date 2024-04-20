@@ -36,11 +36,11 @@ function fn (a) {
   console.log(a); // function a(){}
   var a = 1;
   console.log(a); // 1
-  function a() {}
+  function a () {}
   console.log(a); // 1
   var b = function () {};
   console.log(b); // function (){}
-  function d() {}
+  function d () {}
 }
 fn(2);
 /* 
@@ -173,7 +173,7 @@ console.log(f); // 5
 
 
 var x = 1,
-  y = (z = 0);
+    y = (z = 0);
 function add (n) {
   return (n = n + 1);
 }

@@ -9,8 +9,8 @@ function Professor () {
 Teacher.prototype = new Professor();
 function Teacher () {}
 var t1 = new Teacher(),
-  t2 = new Teacher(),
-  t3 = new Teacher();
+    t2 = new Teacher(),
+    t3 = new Teacher();
 t1.cars.push('Buick');
 console.log(t1.cars); // ['Benz','BMW','Bugatti','Buick']
 console.log(t3.cars); // ['Benz','BMW','Bugatti','Buick']
@@ -30,7 +30,7 @@ function Student (name) {
   this.name = name;
 }
 var s1 = new Student('ming'),
-  s2 = new Student('ling');
+    s2 = new Student('ling');
 s1.cars.push('Buick');
 // 解决共享内存数据问题每个实例都会创建自己的数据内存
 console.log(s2.cars); // ['Benz','BMW','Bugatti']

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <a href="javascript:;">a标签</a>
+  </body>
+
+  <!-- 创建节点的方法 -->
+  <script>
+    // createElement 创建元素节点
+    var el = document.createElement('div');
+    el.innerText = 'el div text';
+    document.body.appendChild(el);
+
+    // createTextNode 创建文本节点
+    var text = document.createTextNode('i am student');
+    el.appendChild(text);
+
+    // createComment 创建注释节点
+    var comment = document.createComment('注释文本');
+
+    // createAttribute 创建属性节点
+    var attr = document.createAttribute('title');
+    attr.value = 'content';
+    console.log(attr);
+  </script>
+
+  <!-- 增删节点的方法 -->
+  <script>
+    // appendChild 动态增加和剪切功能 -> 继承 Node.prototype
+    var divNode = document.createElement('div');
+    document.body.appendChild(divNode);
+    var aNode = document.getElementsByTagName('a')[0];
+    divNode.appendChild(aNode); // 剪切节点
+
+    // insertBefore 插入节点
+    var strongNode = document.createElement('strong');
+    strongNode.innerText = 'strong标签';
+    divNode.insertBefore(strongNode, aNode); // 在 divNode 父节点下 aNode 元素之前插入 strongNode
+
+    // removeChild 删除节点 -> 继承 Node.prototype
+    // 节点通过构造函数实例化生成的 DOM 对象存放于内存当中 -> new HTMLDivElement() -> div DOM -> 堆内存
+    // removeChild 删除的是当前的节点 -> DOM Tree -> node 是没有将内存中的 DOM 对象给删除的
+    divNode.appendChild(comment);
+    divNode.removeChild(comment);
+    // node.remove() ES5方法，是可以将 DOM 对象从内存中进行删除的
+    // comment.remove()
+
+    // replaceChild 替换节点
+    var iNode = document.createElement('i');
+    iNode.innerText = 'i标签文本';
+    divNode.replaceChild(iNode, aNode); // 在 divNode 父节点下新节点 iNode 替换原节点 aNode
+  </script>
+
+  <!--
+    innerText 继承 -> HTMLElement.prototype
+    innerHtml 继承 -> Element.prototype
+    innerText 插入的文本中将标签转为字符实体 -> &lt;&gt;
+    textContent 返回元素及其所有后代节点的文本内容，注释或脚本中的文本也会被包括在内
+  -->
+  <script>
+    divNode.innerHTML += '<span style="color:red;">divNode innerHTML</span>';
+  </script>
+</html>

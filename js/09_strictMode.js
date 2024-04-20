@@ -10,7 +10,7 @@
 
 // 1.不能使用 with 表达式
 var num = 1,
-  obj = { num: 2 };
+    obj = { num: 2 };
 function test () {
   var num = 3;
   // with 函数能够通过传递的参数不同改变内部代码执行时的作用域

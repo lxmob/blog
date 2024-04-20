@@ -19,7 +19,7 @@ var pos = str.charCodeAt(0);
 console.log(pos); // 97
 
 // 通过该方法的特性可以算出任意字符串所占用的字节总数
-function strByteSum(str) {
+function strByteSum (str) {
   var sum = str.length;
   if (!sum) return 0;
   for (var i = 0; i < str.length; i++) {
@@ -34,14 +34,14 @@ console.log(strByteSum('jkahsdihjqikwe}{:}信')); // 20 byte
 // 可以根据此方法衍生出对一个字符串的数组进行从大到小进行排序
 // 运用数组原型对象身上的 sort 方法来实现功能
 var arr = ['阴天多云', 'minga', '晴天', '暴风雨'];
-function sortStrBytes(arr) {
+function sortStrBytes (arr) {
   return arr.sort((a, b) => strByteSum(a) - strByteSum(b));
 }
 console.log(sortStrBytes(arr)); // ['晴天', 'minga', '暴风雨', '阴天多云']
 
 // 案例字符串中出现次数最多的字母
 var str = 'kjasduiqwoejnasdmmmasldkasdiip';
-function getStrTimes(str) {
+function getStrTimes (str) {
   var temp = {};
   for (var i = 0; i < str.length; i++) {
     temp.hasOwnProperty(str[i]) ? temp[str[i]]++ : (temp[str[i]] = 1);

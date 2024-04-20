@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+      form 表单标签就是为了收集内部数据然后进行提交
+      在没有 form 表单的包裹下 input 这种类型的标签都是属于输入类控件
+      可以通过 JS 脚本 FormData 构造函数手动创建表单数据
+    -->
+    <!-- <form action=""> -->
+      <input type="text" id="username" value="ming" />
+      <input type="text" id="password" value="1234" />
+      <input type="submit" id="submitBtn" value="提交" />
+    <!-- </form> -->
+  </body>
+
+  <script type="text/javascript">
+    var username = document.getElementById('username'),
+        password = document.getElementById('password'),
+        submitBtn = document.getElementById('submitBtn'),
+        fd = new FormData();
+
+    submitBtn.onclick = function () {
+      fd.append('username', username.value); // append 方法添加的新值原属性存在也不会覆盖，而是新增
+      fd.append('password', password.value);
+
+      console.log(fd); // 注意这里的 FormData 实例对象是看不出已添加的 key & value 的
+
+      console.log(fd.get('username'));
+      console.log(fd.get('password'));
+
+      fd.set('username', 'mingming');
+      fd.set('token', 'kja1sdqw'); // set 方法属性存在则覆盖原值，否则新增
+
+      console.log(fd.get('token'));
+
+      console.log(fd.has('password')); // true
+
+      fd.delete('passsword');
+      console.log(fd.get('passsword')); // 删除后的 key 打印出来是 null 不是 undefined
+    }
+  </script>
+</html>

@@ -1,5 +1,5 @@
 /* 
-  JS组成的三个部分
+  JS由三个部分组成
   ECMAScript：语法、变量、关键字、保留字、原始值、基本类型、引用类型、对象、函数等等
   DOM：document object model 遵循 w3c 规范
   BOM：browser object model 没有规范（其实指每个浏览器产商都有不同的设计，没有相应规范约束，从而导致混乱）

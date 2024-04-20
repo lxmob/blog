@@ -1,9 +1,9 @@
 /* 
   for 循环步骤
-  1. 声明 i 变量
-  2. 判断条件 if(i < 10){} 若不满足则后续不执行
-  3. 执行循环体内语句 console.log(i)
-  4. i++
+  1.声明 i 变量
+  2.判断条件 if(i < 10){} 若不满足则后续不执行
+  3.执行循环体内语句 console.log(i)
+  4.i++
 */
 
 for (var i = 0; i < 10; i++) {
@@ -79,7 +79,7 @@ for (; i--; ) {
 
 // 10^n
 var n = 5,
-  num = 1; // 底数
+    num = 1; // 底数
 for (var i = 0; i < n; i++) {
   num *= 10;
 }
@@ -87,7 +87,7 @@ console.log(num);
 
 // n 的阶乘
 var n = 5,
-  num = 1;
+    num = 1;
 for (var i = 1; i <= 5; i++) {
   num *= i;
 }
@@ -95,9 +95,9 @@ console.log(num);
 
 // 反转 num 要求不能使用方法
 var num = 798,
-  a = num % 10,
-  b = ((num - a) % 100) / 10,
-  c = (num - a - b * 10) / 100;
+    a = num % 10,
+    b = ((num - a) % 100) / 10,
+    c = (num - a - b * 10) / 100;
 console.log('' + a + b + c);
 
 // 打印 100 以内的质数
@@ -118,9 +118,9 @@ for (var i = 2; i <= 100; i++) {
 // 斐波那契数列
 // 已知两个数都为 1，后面的数依次为前两个数的和
 var n = 5,
-  cur = 1,
-  next = 1,
-  sum = 0;
+    cur = 1,
+    next = 1,
+    sum = 0;
 for (var i = 0; i < n; i++) {
   sum = cur + next;
   cur = next;

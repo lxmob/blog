@@ -28,7 +28,7 @@ var f = 10;
 console.log((f -= 6)); // 4
 
 var g = 2,
-  h = 0;
+    h = 0;
 console.log((g &&= 10)); // 10
 console.log((h &&= 1)); // 0
 
@@ -112,7 +112,7 @@ console.log(a++); // 1
 console.log(++a); // 2
 
 var a = 5,
-  b;
+    b;
 b = a++ + 1;
 console.log(b, a); // 6 6
 
@@ -176,8 +176,8 @@ var a = false;
 console.log((a = !a)); // true
 
 var n = null,
-  u = undefined,
-  str = '';
+    u = undefined,
+    str = '';
 console.log(n ?? 1); // 1
 console.log(u ?? 2); // 2
 console.log(str ?? 3); // ''
@@ -202,7 +202,7 @@ console.log(obj.info.like); // TypeError
 console.log(obj.info?.like); // undefined
 
 var n = null,
-  x = 1;
+    x = 1;
 console.log(n?.(x++)); // undefined
 console.log(x); // 1 左操作数是 null 或 undefined 表达式将不会被计算
 
@@ -283,7 +283,7 @@ function foo2 (x) {
   三元运算优先级 = 3
 */
 var num = 10,
-  pass = null;
+    pass = null;
 
 if (num > 10) {
   pass = true;

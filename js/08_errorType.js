@@ -1,4 +1,4 @@
-// 1. SyntaxError 语法错误
+// 1.SyntaxError 语法错误
 // 变量名不规范、关键字赋值
 // var 1 = 1;
 // new = 1;
@@ -6,14 +6,14 @@
 // function 1test(){};
 
 
-// 2. ReferenceError 引用错误
+// 2.ReferenceError 引用错误
 // 变量或函数未被声明但是被调用或引用
 // foo();
 // console.log(num);
 // var a = 1 = 2;
 
 
-// 3. RangeError 范围错误
+// 3.RangeError 范围错误
 // 数组长度为负数
 // [1, 2, 3].length = -1;
 // 对象方法参数超出预设范围
@@ -21,7 +21,7 @@
 // 函数堆栈调用超过最大值
 
 
-// 4. TypeError 类型错误
+// 4.TypeError 类型错误
 // 调用不存在的方法，首先判断类型是否可调用
 // 123();
 // ({}).say();
@@ -29,14 +29,14 @@
 // new '123';
 
 
-// 5. URIError URI错误
+// 5.URIError URI错误
 // console.log(encodeURI('中文')); // 将中文字符转为固定的编码
 // console.log(decodeURI('%E4%B8%AD%E6%96%87')) // 将编码转为中文
 // 编码遵循一定的规范
 // decodeURI('%qwei1298*&');
 
 
-// 6. EvalError eval函数执行错误
+// 6.EvalError eval函数执行错误
 // 不推荐使用，会导致 XSS 攻击
 // eval('console.log("eval")'); // 放入任意代码字符串都会执行
 

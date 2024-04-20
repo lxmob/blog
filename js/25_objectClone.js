@@ -34,7 +34,7 @@ var origin = {
 };
 origin.__proto__.name = 'proto_test';
 var o1 = _clone(origin),
-  o2 = _clone(origin);
+    o2 = _clone(origin);
 o1.house.width = 500;
 console.log(o2.house.width); // 500
 
@@ -79,5 +79,5 @@ var jsonObj = {
   symbol: Symbol('little'), // 无法复制
   null: null,
   date: new Date(),
-};
+}
 console.log(JSON.parse(JSON.stringify(jsonObj)));

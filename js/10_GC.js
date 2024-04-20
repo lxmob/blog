@@ -31,5 +31,5 @@ foo(); // 标记离开环境
   所以目前在现代 JS 引擎中很少使用这种算法
 */
 var obj = { name: 'kiin' },
-  son = { father: obj };
+    son = { father: obj };
 obj.son = son;

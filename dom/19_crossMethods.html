@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <!-- 
+    方法一
+    服务器中转请求
+    浏览器向同源的服务器发送数据请求（同源策略是浏览器的一种安全检测功能，对服务器没有影响）
+    服务器通过转发给不同源的服务器来获取数据请求
+  -->
+
+  <!--  
+    方法二
+    设置基础域名（document.domain） + iframe
+    例如A页面 tieba.baidu.com 引入 iframe 嵌入不同源地址B页面 zhidao.baidu.com
+    两个源地址分别设置相同基础域名 document.domain = baidu.com
+    A页面利用 iframe 窗口对象 contentWindow 来发送同源请求
+    相当于A页面使用B页面的 ajax 发送请求
+  -->
+  <script>
+    // document.domain 返回当前文档的主机名同时可以设置
+    document.domain = 'baidu.com';
+    var iframe = document.createElement('iframe');
+    iframe.src = 'zhidao.baidu.com';
+    iframe.id = 'myIframe';
+    iframe.style.display = 'none';
+    iframe.onload = function () {
+      document.getElementById('myIframe')
+      .contentWindow
+      .ajax.post(
+        'zhidao.baidu.com/serve/get_name',
+        { data: '123' },
+        function (data) {
+          console.log(data); // 获取到数据
+        }
+      )
+    }
+    document.body.appendChild(iframe);
+  </script>
+
+  <!--  
+    方法三
+    window.name + iframe
+    首先介绍 window.name 的特点
+      1.每个浏览器窗口都有一个全局变量 window（包含 iframe 框架 contentWindow）
+      2.每个 window 对象都有一个 name 属性（一个窗口只有一个 name 属性）
+      3.该窗口在关闭前，所有跳转的页面都共享一个 name 属性并有读写权限
+      4.无论窗口在被关闭前，载入什么页面，都不会改变 name 值
+      5.name 属性存储大小为 2mb 的字符串
+      6.导致的问题
+        如果父级窗口地址源和 iframe 地址源不同
+        父级无法通过 iframe.contentWindow.name 获取值
+        但是 iframe 内部不受该规则限制
+    解决方案：
+      先让 iframe 中的程序请求数据保存至 window.name
+      然后跳转到与父级窗口同源的另一个页面
+      父级页面就可以从当前的 iframe 拿到该页面的 window.name
+  -->
+  <script>
+    var iframe = document.createElement('iframe'),
+        flag = false;
+    iframe.src = 'zhidao.baidu.com';
+    function getData () {
+      if(flag) {
+        // 第二次加载 iframe -> baidu.com
+        console.log(JSON.parse(iframe.contentWindow.name));
+      } else {
+        // 第一次加载 iframe -> zhidao.baidu.com
+        // zhidao.baidu.com 页面中发送 ajax 拉取数据
+        flag = true;
+        setTimeout(function () {
+          // 请求数据量较大时并不能解决异步这个问题
+          iframe.contentWindow.location = 'baidu.com';
+        }, 500);
+      }
+    }
+    iframe.onload = getData;
+    document.body.appendChild(iframe);
+  </script>
+
+  <!--  
+    方法四（了解）
+    window.postMessage + iframe
+    不常用，兼容性问题、xss攻击、伪造数据端漏洞
+    由接收方 otherWindow.postMessage(message, targetOrigin)
+    otherWindow 接收方的引用
+    message 要发送到接收方的数据
+    targetOrigin 接收方的源，源地址中还必须要有监听 onmessage 事件处理函数
+  -->
+  <script>
+    var iframe = document.createElement('iframe');
+    iframe.src = 'zhidao.baidu.com';
+    iframe.onload = function () {
+      // 向接收方发送数据
+      window.parent.postMessage('123', 'baidu.com');
+    };
+    // 监听消息
+    window.onmessage = function (ev) {
+      var ev = ev || window.event;
+      console.log(JSON.parse(ev.data));
+    };
+    document.body.appendChild(iframe);
+  </script>
+
+  <!--  
+    方法五（了解）
+    location.hash + iframe
+  -->
+  <script>
+    var iframe = document.createElement('iframe');
+    iframe.src = 'zhidao.baidu.com';
+    iframe.onload = function(){
+      // 请求数据...
+      window.parent.location.hash = 'data..';
+    };
+    setTimeout(function(){
+      var data = window.location.hash.substring(1);
+      console.log(JSON.parse(decodeURI(data)));
+    }, 500);
+    document.body.appendChild(iframe);
+  </script>
+
+  <!--  
+    方法六  
+    跨域资源共享 Cross-origin resource sharing
+    通过后端设置相应头信息
+    setHttpHeader('Access-Control-Allow-Origin: *')
+    setHttpHeader('Access-Control-Request-Methods: GET,POST')
+  -->
+
+  <!--  
+    方法七
+    JSON with padding 跨域获取 JSON 数据的一种非官方的模式（./03_JSONP.html）
+    注意
+      JSON 与 JSONP 不是一个类型
+      JSON 是数据交换的格式
+      JSONP 是一种跨域获取 JSON 数据的交互技术，非正式的协议
+      JSONP 抓取的资源并不直接是 JSON 数据，而是带有 JSON 数据参数的函数执行
+      JSONP 仅支持 GET 请求
+  -->
+</html>

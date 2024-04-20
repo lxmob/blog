@@ -38,17 +38,17 @@ console.log(null < 3); // true
 
 /*
   运算步骤:
-  1. 2 > 1 返回true
-  2. 隐式转换 Number(true) --> 1 > 3
-  3. 返回false
+  1.2 > 1 返回 true
+  2.隐式转换 Number(true) -> 1 > 3
+  3.返回false
 */
 console.log(2 > 1 > 3); // false
 
 /*
   运算步骤:
-  1. 2 > 1 返回 true
-  2. 隐式转换 Number(true) --> 1 == 1
-  3. 返回 true
+  1.2 > 1 返回 true
+  2.隐式转换 Number(true) -> 1 == 1
+  3.返回 true
 */
 console.log(2 > 1 == 1); // true
 

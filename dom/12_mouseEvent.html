@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        height: 1000px;
+      }
+      .box {
+        position: absolute;
+        top: 200px;
+        left: 200px;
+        width: 100px;
+        height: 100px;
+        background-color: #6c7b8b;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">按下我进行拖拽</div>
+  </body>
+
+  <!-- 下面属性全部是描述鼠标位置的坐标系属性 -->
+  <script>
+    document.onclick = function (event) {
+      // 相对于电脑屏幕的坐标
+      console.log('screenX/Y:', event.screenX, event.screenY);
+
+      // 相对于浏览器视口，不包含滚动的距离
+      console.log('clientX/Y:', event.clientX, event.clientY);
+
+      // 与 client 值相同
+      console.log('x/y:', event.x, event.y);
+
+      // 相对于整个文档的坐标，包含滚动距离
+      console.log('pageX/Y:', event.pageX, event.pageY);
+
+      // 与 page 值相同，IE11 以下与 client 值相同
+      // 如果元素设置 absolute、fixed、sticky 同 offset 值相同
+      console.log('layerX/Y:', event.layerX, event.layerY);
+
+      // 相对于当前元素的坐标，包含边框，safari 不包含边框
+      console.log('offsetX/Y:', event.offsetX, event.offsetY);
+    }
+  </script>
+
+  <!-- 鼠标位置偏移量兼容性封装（解决 offsetX/Y 在 safari 中边框问题）-->
+  <script>
+    function pagePos (event) {
+      var sLeft = window.pageXOffset,
+          sTop = window.pageYOffset,
+          // 文档的偏移量通常都是0，但是这里需要兼容 IE8 及以下
+          cLeft = document.documentElement.clientLeft || 0,
+          cTop = document.documentElement.clientTop || 0;
+      return {
+        // 滚动条滚出的距离 + 鼠标位置相对于浏览器视口的距离 = 鼠标位于整个文档所处的位置
+        // 鼠标位于整个文档所处的位置 - IE8 出现的文档偏移量 = 最终鼠标落点于文档的位置
+        x: sLeft + event.clientX - cLeft,
+        y: sTop + event.clientY - cTop
+      }
+    }
+  </script>
+
+  <!-- 拖拽事件 -->
+  <script>
+    var boxEl = document.getElementsByClassName('box')[0];
+
+    // 简版拖拽
+    function drag (el) {
+      var x, y;
+
+      el.addEventListener('mousedown', function (e) {
+        var event = e || window.event;
+        // 判断鼠标左中右键（0、1、2）
+        console.log(event.button);
+
+        // 获取鼠标下落点位于元素 0，0 的固定距离
+        // 鼠标落点于文档的位置 - 元素位于文档的位置 = 鼠标位于元素的 0,0 的固定距离
+        x = pagePos(event).x - parseInt(window.getComputedStyle(el, null)['left']);
+        y = pagePos(event).y - parseInt(window.getComputedStyle(el, null)['top']);
+
+        document.addEventListener('mousemove', mouseMove);
+        document.addEventListener('mouseup', mouseUp);
+      })
+
+      function mouseMove(e) {
+        var event = e || window.event;
+        // 元素移动后的距离 - 固定距离 = 要移动的位置
+        el.style.left = pagePos(event).x - x + 'px';
+        el.style.top = pagePos(event).y - y + 'px';
+      }
+
+      function mouseUp(e) {
+        var event = e || window.event;
+        document.removeEventListener('mousemove', mouseMove);
+        document.removeEventListener('mouseup', mouseUp);
+      }
+    }
+
+    drag(boxEl);
+  </script>
+</html>

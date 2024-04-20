@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 行内事件监听器 不推荐使用 -->
+    <!-- <button onclick="console.log(123)">点击</button> -->
+    <button id="btn" style="margin-bottom: 20px">触发事件</button>
+  </body>
+
+  <!-- 
+    事件是 DOM 元素身上本身默认就有的
+    通过绑定事件处理函数来实现前端的核心
+    前端交互体验 = 事件 + 事件反馈
+  -->
+  <script>
+    var btnNode = document.getElementById('btn');
+  </script>
+
+  <!--
+    onclick 句柄的形式
+    优点兼容性好
+    缺点无法为元素事件绑定多个处理函数
+   -->
+  <script>
+    btnNode.onclick = function () {
+      console.log('onclick1', this);
+    }
+    btnNode.onclick = function () {
+      console.log('onclick2', this);
+    }
+    
+    // btnNode.onclick = null / false
+  </script>
+
+  <!--
+    addEventListener(event, fn, false) 
+    优点可以绑定多个事件处理函数
+    缺点兼容性 IE9 以下不支持，它是 w3c 的规范
+  -->
+  <script>
+    btnNode.addEventListener(
+      'click',
+      function () {
+        console.log('addEventListener1', this);
+      },
+      false
+    )
+    btnNode.addEventListener(
+      'click',
+      function () {
+        console.log('addEventListener2', this);
+      },
+      false
+    )
+
+    // 相同函数的引用处理只执行一次
+    function once() {
+      console.log('once', this);
+    }
+    btnNode.addEventListener('click', once, false);
+    btnNode.addEventListener('click', once, false);
+
+    // btnNode.removeEventListener('click', once, false)
+  </script>
+
+  <!-- 
+    attachEvent(event, fn) IE
+    IE8及以下的绑定方法
+  -->
+  <script>
+    btnNode.attachEvent('onclick', function () {
+      console.log('attachEvent', this); // this -> window
+    })
+
+    // attachEvent 绑定几次就执行几次
+    btnNode.attachEvent('onclick', once);
+    btnNode.attachEvent('onclick', once);
+    // btnNode.detachEvent('onclick', once)
+
+    // 兼容性封装
+    function addEvent(el, type, fn) {
+      if (el.addEventListener) {
+        el.addEventListener(type, fn, false);
+      } else if (el.attachEvent) {
+        el.attachEvent('on' + type, fn.bind(el));
+      } else {
+        el['on' + type] = fn;
+      }
+    }
+    addEvent(btnNode, 'click', function () {
+      console.log('addEvent', this);
+    })
+  </script>
+</html>

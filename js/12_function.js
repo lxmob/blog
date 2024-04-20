@@ -21,7 +21,7 @@ function fn (参数) {
 // 将一个函数声明赋值给变量，此时属于函数表达式
 // 会忽略原有函数名称，在外部调用时 text 函数是不可见的
 // 但是在函数内部我们可以访问它，对它进行自调用（递归）
-var fn3 = function text() {
+var fn3 = function text () {
   console.log('fn3');
   // text()
 };
