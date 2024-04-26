@@ -1,5 +1,5 @@
-# ming 的博客
+# Ming Blog
 
-## 描述
+## description
 
-记录工作和学习中的一些心得和体会
+Record some insights and experiences from work and study.
